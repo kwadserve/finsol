@@ -12,12 +12,20 @@ class Helper
         return strtoupper($string);
     }
 
-      public static function uploadImages($request, $userId, $gst_type_val, $folderName) {
+      public static function uploadImages($request, $userId, $gst_type_val, $folderName,$for_multiple=null) {
         $userFolder = $folderName;
         if (!File::exists($userFolder)) {
             File::makeDirectory($userFolder, 0777, true, true);
         }
-        $allimages = Documents::where('gst_type_val', $gst_type_val)->get();
+        $where = [];
+       
+        if($for_multiple!=null){
+             $where = ['gst_type_val'=>$gst_type_val, 'for_multiple'=>$for_multiple];  
+        } else {
+            $where = ['gst_type_val'=>$gst_type_val];
+        }
+        
+        $allimages = Documents::where($where)->get();
         $data = [];
         foreach ($allimages as $img) {
             $keyname = $img['doc_key_name'];

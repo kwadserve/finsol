@@ -2,8 +2,11 @@
 namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\UserPanDetail;
+use App\Models\UserEpfDetail;
+use App\Models\UserEpfSignatory;
 use App\Models\Documents;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
  
 class EpfController  extends Controller {
@@ -11,58 +14,88 @@ class EpfController  extends Controller {
         $this->middleware('auth');
     }
     public function index() {
+        echo "Detail page";
+        // $data['epf_company_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => null])->get();
+        // $data['epf_company_signatory_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Signatory'])->get();
+        // return view('user.pages.epf.epfform')->with($data);
+    }
+
+    public function register_form() {
         $data['epf_company_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => null])->get();
         $data['epf_company_signatory_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Signatory'])->get();
+        $data['epf_other_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Others'])->get();
         return view('user.pages.epf.epfform')->with($data);
     }
 
-    public function storeEPF(Request $request) {
+    public function storeEpfCompany(Request $request) {
    
         $userId = auth()->user()->id;
-        $dataon ='partners'; 
+        $dataon ='epfsignatory'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
-            $folderName = 'uploads/users/Gst/'.$useName.'/Firm';
-            $data =  $this->uploadAllImages($request,$userId,2,$folderName);
+            $folderName = 'uploads/users/'.$useName.'/Epf/Company';
+            $data = Helper :: uploadImages($request, $userId, 6, $folderName);
             $data['user_id'] = $userId;
-            $data['email_id'] = $request['email_id'];
-            $data['gst_type'] = $request['gst_type'];
-            $data['trade_name'] = $request['trade_name'];
-            $matchthese = ['user_id'=>$userId, 'gst_type'=>'Firm'];
-            UserGstDetail::where($matchthese)->delete();
-            $lastInsertedId =  UserGstDetail::updateOrCreate($matchthese, $data)->id;
-        if ($request->has('partners')) {
-            $partners = $request->input('partners');
-            UserPartner::where(['user_id' => $userId])->delete();
-            foreach ($partners as $key => $ps) {
-                $folderName = 'uploads/users/Gst/'.$useName.'/Firm/Partners';
-                $partner =  $this->uploadPartnerImages($request, $key, $userId, 2, $folderName,$dataon,1);
-                $partner['user_gst_id'] =  $lastInsertedId;
+            $data['epf_type'] = $request['epf_type'];
+            $matchthese = ['user_id'=>$userId, 'epf_type'=>'Company'];
+            UserEpfDetail::where($matchthese)->delete();
+            $lastInsertedId =  UserEpfDetail::updateOrCreate($matchthese, $data)->id;
+        if ($request->has('epfsignatory')) {
+            $epfsignatory = $request->input('epfsignatory');
+            UserEpfSignatory::where(['user_id' => $userId])->delete();
+            foreach ($epfsignatory as $key => $ps) {
+                $folderName = 'uploads/users/'.$useName.'/Epf/Company/Signatory';
+                $partner =  $this->uploadSignatoryImages($request, $key, $userId, 6, $folderName,$dataon,'EPF Signatory');
+                $partner['user_epf_id'] =  $lastInsertedId;
                 $partner['user_id'] =  $userId;
-                $partner['partner_email'] = $ps['email'];
-                $partner['partner_mobile'] = $ps['mobile'];
-                UserPartner::Create($partner);
+                $partner['epf_sign_email'] = $ps['email'];
+                $partner['epf_sign_mobile'] = $ps['mobile'];
+                UserEpfSignatory::Create($partner);
             }
         }
-        return redirect('/gst/register')->with('success', 'Registered as Firm successfully!');
+        return redirect('/epf/register')->with('success', 'Registered EPF successfully!');
     }
-    // public function register_form() {
-     
-    //     $data['panimages'] = Documents::where('gst_type_val', '4')->get();
-    //     return view('user.pages.pan.panform')->with($data);
-    // }
-  
-    // public function storePan(Request $request) {
-    //     $userId = auth()->user()->id;
-    //     $useName = trim(auth()->user()->name).'-'.$userId; 
-    //     $folderName = 'uploads/users/'.$useName.'/Pan';
-    //     $data = Helper :: uploadImages($request, $userId, 4, $folderName);
-    //     $data['user_id'] = $userId;
-    //     $data['email_id'] = $request['email_id'];
-    //     $data['mobile_number'] = $request['mobile_number'];
-    //     $matchthese = ['user_id' => $userId];
-    //     UserPanDetail::where($matchthese)->delete();
-    //     UserPanDetail::updateOrCreate($matchthese, $data);
-    //     return redirect('/pan/register')->with('success', 'Registered Pan successfully!');;
-    // }
-     
+
+
+    public function storeEpfOthers(Request $request){
+        $userId = auth()->user()->id;
+        $useName = trim(auth()->user()->name).'-'.$userId; 
+        $folderName = 'uploads/users/'.$useName.'/Epf/Others';
+        $data = Helper :: uploadImages($request, $userId, 6, $folderName, $for_multiple='EPF Others');
+        $data['user_id'] = $userId;
+        $data['epf_email'] = $request['email_id'];
+        $data['epf_mobile'] = $request['mobile_number'];
+        $data['epf_type'] = $request['epf_type'];
+        $matchthese = ['user_id' => $userId, 'epf_type' => 'Others'];
+        UserEpfDetail::where($matchthese)->delete();
+        UserEpfDetail::updateOrCreate($matchthese, $data);
+        return redirect('/epf/register')->with('success', 'Registered EPF Others successfully!');;
+    }
+
+    public function uploadSignatoryImages($request, $key, $userId, $gst_type_val, $folderName,$dataon,$for_partner_director) {
+
+        $userFolder = $folderName;
+        if (!File::exists($userFolder)) {
+            File::makeDirectory($userFolder, 0777, true, true);
+        }
+        $allimages = Documents::where(['gst_type_val' => $gst_type_val, 'for_multiple' => $for_partner_director])->get();
+          $data=[];
+        foreach ($allimages as $img) {
+            if ($request->file($dataon)) {
+                $keyname = $img['doc_key_name'];
+                $imgName = str_replace(' ', '', $img['doc_name']);
+               $images = $request->file($dataon)[$key];
+                $related_imgs = [];
+                if (isset($images[$keyname])) {
+                    foreach ($images[$keyname] as $index => $p) {
+                        $newName = $imgName . '_' . ($index + 1) . '_' .($key).'_'. time() . '.' . $p->getClientOriginalExtension();
+                        $imagePath = $p->move($folderName, $newName);
+                        $related_imgs[] = $newName; 
+                    }
+                }
+                
+            }
+          $data[$keyname] =  implode(',', $related_imgs);
+        } 
+        return $data;
+    }
 }

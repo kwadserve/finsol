@@ -45,5 +45,6 @@ Route::post('tan/register', 'TanController@storeTan')->name('tan.register');
 
 
 //Epf DETAILS 
-Route::get('epf', 'EpfController@index')->name('epf');
-Route::post('epf/register', 'EpfController@storeEPF')->name('epf.register');
+Route::get('epf/register', 'EpfController@register_form')->name('epf.register_form');
+Route::post('epf/company', 'EpfController@storeEpfCompany')->name('epf.register.company');
+Route::post('epf/others', 'EpfController@storeEpfOthers')->name('epf.register.others');
