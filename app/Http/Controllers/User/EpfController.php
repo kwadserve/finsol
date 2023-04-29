@@ -21,7 +21,7 @@ class EpfController  extends Controller {
     }
 
     public function register_form() {
-        $data['epf_company_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => null])->get();
+        $data['epf_company_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Company'])->get();
         $data['epf_company_signatory_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Signatory'])->get();
         $data['epf_other_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Others'])->get();
         return view('user.pages.epf.epfform')->with($data);
@@ -33,7 +33,7 @@ class EpfController  extends Controller {
         $dataon ='epfsignatory'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
             $folderName = 'uploads/users/'.$useName.'/Epf/Company';
-            $data = Helper :: uploadImages($request, $userId, 6, $folderName);
+            $data = Helper :: uploadImages($request, $userId, 6, $folderName, $for_multiple='EPF Company');
             $data['user_id'] = $userId;
             $data['epf_type'] = $request['epf_type'];
             $matchthese = ['user_id'=>$userId, 'epf_type'=>'Company'];
@@ -71,13 +71,13 @@ class EpfController  extends Controller {
         return redirect('/epf/register')->with('success', 'Registered EPF Others successfully!');;
     }
 
-    public function uploadSignatoryImages($request, $key, $userId, $gst_type_val, $folderName,$dataon,$for_partner_director) {
+    public function uploadSignatoryImages($request, $key, $userId, $gst_type_val, $folderName,$dataon,$for_multiple) {
 
         $userFolder = $folderName;
         if (!File::exists($userFolder)) {
             File::makeDirectory($userFolder, 0777, true, true);
         }
-        $allimages = Documents::where(['gst_type_val' => $gst_type_val, 'for_multiple' => $for_partner_director])->get();
+        $allimages = Documents::where(['gst_type_val' => $gst_type_val, 'for_multiple' => $for_multiple])->get();
           $data=[];
         foreach ($allimages as $img) {
             if ($request->file($dataon)) {
