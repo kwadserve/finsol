@@ -16,7 +16,7 @@ class PanController  extends Controller {
     }
     public function register_form() {
      
-        $data['panimages'] = Documents::where('gst_type_val', '4')->get();
+        $data['panimages'] = Documents::where('for_multiple', 'PAN')->get();
         return view('user.pages.pan.panform')->with($data);
     }
   
@@ -24,14 +24,14 @@ class PanController  extends Controller {
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
         $folderName = 'uploads/users/'.$useName.'/Pan';
-        $data = Helper :: uploadImages($request, $userId, 4, $folderName);
+        $data = Helper :: uploadImagesNew($request, $userId, $folderName,'PAN');
         $data['user_id'] = $userId;
         $data['email_id'] = $request['email_id'];
         $data['mobile_number'] = $request['mobile_number'];
         $matchthese = ['user_id' => $userId];
         UserPanDetail::where($matchthese)->delete();
         UserPanDetail::updateOrCreate($matchthese, $data);
-        return redirect('/pan/register')->with('success', 'Registered Pan successfully!');;
+        return redirect('/pan/register')->with('success', 'Registered Pan successfully!');
     }
      
 }

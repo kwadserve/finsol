@@ -16,8 +16,8 @@ class UserTanDetail extends Authenticatable
         'email_id',
         'mobile_number',
         'tan_aadhar_voterid_passport_img',
-        'tan_driving_license',
-        'tan_your_photo',
+        'tan_driving_license_img',
+        'tan_your_img',
         'tan_pan_img',
         'status'
     ];

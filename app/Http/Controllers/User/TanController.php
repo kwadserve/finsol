@@ -15,7 +15,7 @@ class TanController  extends Controller {
     }
     public function register_form() {
      
-        $data['tanimages'] = Documents::where('gst_type_val', '5')->get();
+        $data['tanimages'] = Documents::where('for_multiple', 'TAN')->get();
         return view('user.pages.tan.tanform')->with($data);
     }
   
@@ -23,14 +23,14 @@ class TanController  extends Controller {
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
         $folderName = 'uploads/users/'.$useName.'/Tan';
-        $data = Helper :: uploadImages($request, $userId, 5, $folderName);
+        $data = Helper :: uploadImagesNew($request, $userId, $folderName, 'TAN');
         $data['user_id'] = $userId;
         $data['email_id'] = $request['email_id'];
         $data['mobile_number'] = $request['mobile_number'];
         $matchthese = ['user_id' => $userId];
         UserTanDetail::where($matchthese)->delete();
         UserTanDetail::updateOrCreate($matchthese, $data);
-        return redirect('/pan/register')->with('success', 'Registered Tan successfully!');
+        return redirect('/tan/register')->with('success', 'Registered Tan successfully!');
     }
      
 }

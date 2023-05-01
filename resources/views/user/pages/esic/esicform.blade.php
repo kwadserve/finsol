@@ -12,7 +12,7 @@
                 <span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i
                         class="fa-inverse fa-stack-1x text-primary fas fa-check-double"></i></span>
                 <div class="col">
-                    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">New GST
+                    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">New ESIC
                             Registration</span><span
                             class="border position-absolute top-50 translate-middle-y w-100 start-0 z-n1"></span>
                     </h5>
@@ -41,25 +41,21 @@
                                     aria-labelledby="tab-dom-61c83f7c-d9df-458a-94bd-f4e645b55d13"
                                     id="dom-61c83f7c-d9df-458a-94bd-f4e645b55d13">
                                     <ul class="nav nav-pills" id="pill-myTab" role="tablist">
-                                        <li class="nav-item"><a class="nav-link active" id="pill-home-tab"
-                                                data-bs-toggle="tab" href="#pill-tab-home" role="tab"
-                                                aria-controls="pill-tab-home" aria-selected="true">Individual</a>
+                                        <li class="nav-item"><a class="nav-link active" id="esic-company-home"
+                                                data-bs-toggle="tab" href="#esic-company" role="tab"
+                                                aria-controls="esic-company" aria-selected="true">Company</a>
                                         </li>
-                                        <li class="nav-item"><a class="nav-link" id="pill-profile-tab"
-                                                data-bs-toggle="tab" href="#pill-tab-profile" role="tab"
-                                                aria-controls="pill-tab-profile" aria-selected="false">Firm</a></li>
-                                        <li class="nav-item"><a class="nav-link" id="pill-contact-tab"
-                                                data-bs-toggle="tab" href="#pill-tab-contact" role="tab"
-                                                aria-controls="pill-tab-contact" aria-selected="false">Company</a>
-                                        </li>
+                                        <li class="nav-item"><a class="nav-link" id="esic-company-other"
+                                                data-bs-toggle="tab" href="#esic-others" role="tab"
+                                                aria-controls="esic-others" aria-selected="false">Others</a></li>
+
                                     </ul>
                                     <div class="tab-content mt-3" id="pill-myTabContent">
                                         <!------------------tab 1----------------->
-                                        @include('user.pages.gst.individual')
+                                        @include('user.pages.esic.company')
                                         <!------------Tab 2 ------------>
-                                        @include('user.pages.gst.firm')
-                                        <!--------------tab 3 ------------>
-                                        @include('user.pages.gst.company')
+                                        @include('user.pages.esic.others')
+
                                     </div>
                                 </div>
                             </div>

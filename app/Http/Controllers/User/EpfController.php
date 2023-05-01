@@ -21,9 +21,9 @@ class EpfController  extends Controller {
     }
 
     public function register_form() {
-        $data['epf_company_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Company'])->get();
-        $data['epf_company_signatory_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Signatory'])->get();
-        $data['epf_other_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Others'])->get();
+        $data['epf_company_images'] = Documents::where(['for_multiple' => 'EPF Company'])->get();
+        $data['epf_company_signatory_images'] = Documents::where(['for_multiple' => 'EPF Signatory'])->get();
+        $data['epf_other_images'] = Documents::where(['for_multiple' => 'EPF Others'])->get();
         return view('user.pages.epf.epfform')->with($data);
     }
 
@@ -33,7 +33,7 @@ class EpfController  extends Controller {
         $dataon ='epfsignatory'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
             $folderName = 'uploads/users/'.$useName.'/Epf/Company';
-            $data = Helper :: uploadImages($request, $userId, 6, $folderName, $for_multiple='EPF Company');
+            $data = Helper :: uploadImagesNew($request, $userId,  $folderName,  'EPF Company');
             $data['user_id'] = $userId;
             $data['epf_type'] = $request['epf_type'];
             $matchthese = ['user_id'=>$userId, 'epf_type'=>'Company'];
@@ -44,7 +44,7 @@ class EpfController  extends Controller {
             UserEpfSignatory::where(['user_id' => $userId])->delete();
             foreach ($epfsignatory as $key => $ps) {
                 $folderName = 'uploads/users/'.$useName.'/Epf/Company/Signatory';
-                $partner =  $this->uploadSignatoryImages($request, $key, $userId, 6, $folderName,$dataon,'EPF Signatory');
+                $partner =  Helper :: uploadSignatoryImages($request, $key, $userId, $folderName, $dataon,'EPF Signatory');
                 $partner['user_epf_id'] =  $lastInsertedId;
                 $partner['user_id'] =  $userId;
                 $partner['epf_sign_email'] = $ps['email'];
@@ -60,7 +60,7 @@ class EpfController  extends Controller {
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
         $folderName = 'uploads/users/'.$useName.'/Epf/Others';
-        $data = Helper :: uploadImages($request, $userId, 6, $folderName, $for_multiple='EPF Others');
+        $data = Helper :: uploadImagesNew($request, $userId, $folderName, $for_multiple='EPF Others');
         $data['user_id'] = $userId;
         $data['epf_email'] = $request['email_id'];
         $data['epf_mobile'] = $request['mobile_number'];
@@ -71,31 +71,5 @@ class EpfController  extends Controller {
         return redirect('/epf/register')->with('success', 'Registered EPF Others successfully!');;
     }
 
-    public function uploadSignatoryImages($request, $key, $userId, $gst_type_val, $folderName,$dataon,$for_multiple) {
-
-        $userFolder = $folderName;
-        if (!File::exists($userFolder)) {
-            File::makeDirectory($userFolder, 0777, true, true);
-        }
-        $allimages = Documents::where(['gst_type_val' => $gst_type_val, 'for_multiple' => $for_multiple])->get();
-          $data=[];
-        foreach ($allimages as $img) {
-            if ($request->file($dataon)) {
-                $keyname = $img['doc_key_name'];
-                $imgName = str_replace(' ', '', $img['doc_name']);
-               $images = $request->file($dataon)[$key];
-                $related_imgs = [];
-                if (isset($images[$keyname])) {
-                    foreach ($images[$keyname] as $index => $p) {
-                        $newName = $imgName . '_' . ($index + 1) . '_' .($key).'_'. time() . '.' . $p->getClientOriginalExtension();
-                        $imagePath = $p->move($folderName, $newName);
-                        $related_imgs[] = $newName; 
-                    }
-                }
-                
-            }
-          $data[$keyname] =  implode(',', $related_imgs);
-        } 
-        return $data;
-    }
+    
 }

@@ -8,7 +8,7 @@
                         class="toggle-line"></span></span></button>
             <a class="navbar-brand me-1 me-sm-3" href="index-2.html">
                 <div class="d-flex align-items-center"><img class="me-2"
-                        src="../../../assets/img/icons/spot-illustrations/finsol.png" alt="" width="40" /><span
+                        src="{{ asset('assets/img/icons/spot-illustrations/finsol.png')}}" alt="" width="40" /><span
                         class="font-sans-serif">falcon</span></div>
             </a>
             <ul class="navbar-nav align-items-center d-none d-lg-block">
@@ -1033,8 +1033,8 @@
                 data-bs-placement="left" title="Toggle Navigation"><span class="navbar-toggle-icon"><span
                         class="toggle-line"></span></span></button>
         </div><a class="navbar-brand" href="index-2.html">
-            <div class="d-flex align-items-center py-3"><img class="me-2" src="../../../../assets/img/logos/finsol.png"
-                    alt="" width="120" /></div>
+            <div class="d-flex align-items-center py-3"><img class="me-2" src="../assets/img/logos/finsol.png" alt=""
+                    width="120" /></div>
         </a>
     </div>
     <div class="collapse navbggrad navbar-collapse" id="navbarVerticalCollapse">

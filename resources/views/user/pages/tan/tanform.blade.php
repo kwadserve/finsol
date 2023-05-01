@@ -102,8 +102,3 @@
 <!--- add Partner JS  -->
 
 @endsection
-<script>
-setTimeout(function() {
-    $('.alert-success').fadeOut('fast');
-}, 2000);
-</script>

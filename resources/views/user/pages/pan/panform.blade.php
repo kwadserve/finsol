@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="row g-2 ">
                                         @foreach ($panimages as $keyname => $image)
-                                        <div class="col-4 mb-3">
+                                        <div class="col-6 mb-3">
                                             <div class="mb-3">
                                                 <label>{{$image['doc_name']}} Upload :</label>
                                                 <!-- required="required"  -->
@@ -103,8 +103,3 @@
 <!--- add Partner JS  -->
 
 @endsection
-<script>
-setTimeout(function() {
-    $('.alert-success').fadeOut('fast');
-}, 2000);
-</script>

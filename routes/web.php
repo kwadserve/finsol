@@ -48,3 +48,10 @@ Route::post('tan/register', 'TanController@storeTan')->name('tan.register');
 Route::get('epf/register', 'EpfController@register_form')->name('epf.register_form');
 Route::post('epf/company', 'EpfController@storeEpfCompany')->name('epf.register.company');
 Route::post('epf/others', 'EpfController@storeEpfOthers')->name('epf.register.others');
+
+
+
+//ESIC DETAILS 
+Route::get('esic/register', 'ESICController@register_form')->name('esic.register_form');
+Route::post('esic/company', 'ESICController@storeEsicCompany')->name('esic.register.company');
+Route::post('esic/others', 'ESICController@storeEsicOthers')->name('esic.register.others');

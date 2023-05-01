@@ -20,6 +20,17 @@
     <script src="{{ asset('polyfill.io/v3/polyfill.min58be.js?features=window.scroll')}}"></script>
     <script src="{{ asset('vendors/list.js/list.min.js')}}"></script>
     <script src="{{ asset('assets/js/theme.js')}}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        setTimeout(function() {
+            $(".alert-success").fadeOut("slow", function() {
+                $(this).remove();
+            });
+        }, 3000);
+    });
+    </script>
 </body>
 
 
