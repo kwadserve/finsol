@@ -22,9 +22,9 @@
             <div class="row g-0">
                 <div class="col-xl-12">
                     <div class="card mb-3">
-                        <div class="card-header">
-                            <!-- <h6 class="mb-0">Select the Registration type</h6> -->
-                        </div>
+                        <!-- <div class="card-header">
+                             <h6 class="mb-0">Get yourself a New PAN Card</h6> 
+                        </div> -->
                         <div class="card-body">
                             @if (session('success'))
                             <div class="alert alert-success border-2 d-flex align-items-center" role="alert">

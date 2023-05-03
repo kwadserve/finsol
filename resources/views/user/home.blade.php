@@ -92,7 +92,7 @@
                                 </div>
 
                                 <div class="col-lg-4 mt-6 mt-lg-0">
-                                    <div onclick="location.href='{{route('pan.register')}}'" type="button">
+                                    <div onclick="location.href='{{route('pan.register_form')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobgred card-span-img">
                                                 <h2 class="roundtext">PAN</h2>
@@ -107,7 +107,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 mt-6 mt-lg-0">
-                                    <div onclick="location.href='{{route('tan.register')}}'" type="button">
+                                    <div onclick="location.href='{{route('tan.register_form')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobg card-span-img">
                                                 <h2 class="roundtext">TAN</h2>
@@ -126,7 +126,7 @@
 
                             <div class="row mt-6">
                                 <div class="col-lg-4">
-                                    <div onclick="location.href='{{route('epf.register')}}'" type="button">
+                                    <div onclick="location.href='{{route('epf.register_form')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobgred card-span-img">
                                                 <h2 class="roundtext">EPF</h2>
@@ -141,7 +141,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 mt-6 mt-lg-0">
-                                    <div onclick="location.href='{{route('esic.register')}}'" type="button">
+                                    <div onclick="location.href='{{route('esic.register_form')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobg card-span-img">
                                                 <h2 class="roundtext">ESIC</h2>
@@ -156,16 +156,16 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 mt-6 mt-lg-0">
-                                    <div onclick="location.href='http://www.example.com'" type="button">
+                                    <div onclick="location.href='{{route('trademark.register_form')}}'" type="button">
                                         <div class="card card-span h-100">
-                                            <div class="roundlogobgred card-span-img"><span
-                                                    style="color: #fff!important;"
-                                                    class="text-900 fs-3 far fa-handshake"></span></div>
+                                            <div class="roundlogobgred card-span-img">
+                                                <h2 class="roundtext">TM</h2>
+                                            </div>
                                             <div class="card-body pt-6 pb-4">
-                                                <h5 class="mb-2">Partner</h5>
-                                                <p>All the painful or time-consuming tasks in your development workflow
-                                                    such as compiling the
-                                                    SCSS or transpiring the JS are automated.</p>
+                                                <h5 class="mb-2">Trademark</h5>
+                                                <p>With your purchased copy of Falcon, you will get all the uncompressed
+                                                    & documented SCSS and
+                                                    Javascript source code files.</p>
                                             </div>
                                         </div>
                                     </div>
