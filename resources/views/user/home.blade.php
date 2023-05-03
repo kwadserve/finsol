@@ -92,13 +92,13 @@
                                 </div>
 
                                 <div class="col-lg-4 mt-6 mt-lg-0">
-                                    <div onclick="location.href='itr.html'" type="button">
+                                    <div onclick="location.href='{{route('pan.register')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobgred card-span-img">
-                                                <h2 class="roundtext">ITR</h2>
+                                                <h2 class="roundtext">PAN</h2>
                                             </div>
                                             <div class="card-body pt-6 pb-4">
-                                                <h5 class="mb-2">ITR</h5>
+                                                <h5 class="mb-2">PAN</h5>
                                                 <p>With your purchased copy of Falcon, you will get all the uncompressed
                                                     & documented SCSS and
                                                     Javascript source code files.</p>
@@ -107,13 +107,13 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 mt-6 mt-lg-0">
-                                    <div onclick="location.href='tax.html'" type="button">
+                                    <div onclick="location.href='{{route('tan.register')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobg card-span-img">
-                                                <h2 class="roundtext">TAX</h2>
+                                                <h2 class="roundtext">TAN</h2>
                                             </div>
                                             <div class="card-body pt-6 pb-4">
-                                                <h5 class="mb-2">Tax</h5>
+                                                <h5 class="mb-2">TAN</h5>
                                                 <p>All the painful or time-consuming tasks in your development workflow
                                                     such as compiling the
                                                     SCSS or transpiring the JS are automated.</p>
@@ -126,13 +126,13 @@
 
                             <div class="row mt-6">
                                 <div class="col-lg-4">
-                                    <div onclick="location.href='tds.html'" type="button">
+                                    <div onclick="location.href='{{route('epf.register')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobgred card-span-img">
-                                                <h2 class="roundtext">TDS</h2>
+                                                <h2 class="roundtext">EPF</h2>
                                             </div>
                                             <div class="card-body pt-6 pb-4">
-                                                <h5 class="mb-2">TDS</h5>
+                                                <h5 class="mb-2">EPF</h5>
                                                 <p>Build your webapp with the world's most popular front-end component
                                                     library along with
                                                     Falcon's 32 sets of carefully designed elements.</p>
@@ -141,13 +141,13 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 mt-6 mt-lg-0">
-                                    <div onclick="location.href='roc.html'" type="button">
+                                    <div onclick="location.href='{{route('esic.register')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobg card-span-img">
-                                                <h2 class="roundtext">ROC</h2>
+                                                <h2 class="roundtext">ESIC</h2>
                                             </div>
                                             <div class="card-body pt-6 pb-4">
-                                                <h5 class="mb-2">ROC</h5>
+                                                <h5 class="mb-2">ESIC</h5>
                                                 <p>With your purchased copy of Falcon, you will get all the uncompressed
                                                     & documented SCSS and
                                                     Javascript source code files.</p>
