@@ -92,3 +92,4 @@
 
 </html>
 <!-- https://stackoverflow.com/questions/28364496/how-to-remove-public-from-a-laravel-url  -->
+<!-- https://bashooka.com/coding/css-javascript-file-upload-examples/ -->

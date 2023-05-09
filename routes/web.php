@@ -60,3 +60,7 @@ Route::post('esic/others', 'ESICController@storeEsicOthers')->name('esic.registe
 Route::get('trademark/register', 'TradeMarkController@register_form')->name('trademark.register_form');
 Route::post('trademark/company', 'TradeMarkController@storeTrademarkCompany')->name('trademark.register.company');
 Route::post('trademark/others', 'TradeMarkController@storeTrademarkOthers')->name('trademark.register.others');
+
+//Company Regitration DETAILS 
+Route::get('company/register', 'CompanyController@register_form')->name('company.register_form');
+Route::post('company', 'CompanyController@storeCompany')->name('company.register');

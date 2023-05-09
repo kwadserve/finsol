@@ -20,7 +20,7 @@
     <script src="{{ asset('polyfill.io/v3/polyfill.min58be.js?features=window.scroll')}}"></script>
     <script src="{{ asset('vendors/list.js/list.min.js')}}"></script>
     <script src="{{ asset('assets/js/theme.js')}}"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function() {
