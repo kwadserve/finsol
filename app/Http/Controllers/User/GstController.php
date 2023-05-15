@@ -8,13 +8,19 @@ use App\Models\UserGstDetail;
 use App\Models\Documents;
 use App\Models\UserPartner;
 use App\Models\UserDirector;
+use DB; 
 
 class GstController extends Controller {
     public function __construct() {
         $this->middleware('auth');
     }
     public function index() {
-        return view('user.pages.gst.details');
+       // \DB::enableQueryLog();
+        $userId = auth()->user()->id;
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[2,3])->orWhere('id',$userId)->get()->first();
+      //   dd(\DB::getQueryLog());
+        // dd($data);
+        return view('user.pages.gst.details')->with($data);
     }
     public function register_form() {
         $data['images'] = Documents::where('gst_type_val', '1')->get();
@@ -56,6 +62,7 @@ class GstController extends Controller {
         $data['email_id'] = $request['email_id'];
         $data['gst_type'] = $request['gst_type'];
         $data['trade_name'] = $request['trade_name'];
+        $data['status'] = 1 ; //1- Under Process/2- Query Raised/3-Approved
         $matchthese = ['user_id' => $userId, 'gst_type' => 'Individual'];
         UserGstDetail::where($matchthese)->delete();
         UserGstDetail::updateOrCreate($matchthese, $data);
@@ -72,6 +79,7 @@ class GstController extends Controller {
             $data['email_id'] = $request['email_id'];
             $data['gst_type'] = $request['gst_type'];
             $data['trade_name'] = $request['trade_name'];
+            $data['status'] = 1 ;
             $matchthese = ['user_id'=>$userId, 'gst_type'=>'Firm'];
             UserGstDetail::where($matchthese)->delete();
             $lastInsertedId =  UserGstDetail::updateOrCreate($matchthese, $data)->id;
@@ -132,6 +140,7 @@ class GstController extends Controller {
             $data['email_id'] = $request['email_id'];
             $data['gst_type'] = $request['gst_type'];
             $data['trade_name'] = $request['trade_name'];
+            $data['status'] = 1 ;
             $matchthese = ['user_id'=>$userId, 'gst_type'=>'Company'];
             UserGstDetail::where($matchthese)->delete();
             $lastInsertedId =  UserGstDetail::updateOrCreate($matchthese, $data)->id;
@@ -149,5 +158,17 @@ class GstController extends Controller {
             }
         }
         return redirect('/gst/register')->with('success', 'Registered as Company successfully!');
+    }
+
+    public function businessStatus(Request $request){
+        $userId = auth()->user()->id;
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[2,3])->orWhere('id',$userId)->get();
+        return view('user.pages.gst.business_status')->with($data);
+    }
+
+    public function copyOfReturns(Request $request){
+        $userId = auth()->user()->id;
+        $data['userCopyOfReturns'] = UserGstDetail::whereIn('status',[3])->orWhere('id',$userId)->get()->first();
+        return view('user.pages.gst.copy_of_returns')->with($data);
     }
 }

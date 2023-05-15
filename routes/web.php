@@ -34,7 +34,9 @@ Route::get('gst/register', 'GstController@register_form')->name('gst.register_fo
 Route::post('gst/individual', 'GstController@storeIndividual')->name('gst.individual');
 Route::post('gst/firm', 'GstController@storeFirm')->name('gst.firm');
 Route::post('gst/company', 'GstController@storeCompany')->name('gst.company');
-
+Route::get('gst/business', 'GstController@businessStatus')->name('gst.business_status');
+Route::get('gst/copyofreturns', 'GstController@copyOfReturns')->name('gst.copy_of_returns');
+ 
 //PAN DETAILS 
 Route::get('pan/register', 'PanController@register_form')->name('pan.register_form');
 Route::post('pan/register', 'PanController@storePan')->name('pan.register');

@@ -23,125 +23,93 @@
                                         </h1>
                                         <p class="lead">Things you will get right out of the box with Finsol.</p>
                                     </div>
-
-                                    <!------ GST options drop ------->
-                                    <div class="row mt-6">
-                                        <div class="col-lg-3">
-
-                                            <div class="card card-span h-100">
-                                                <div class="roundlogobg topcurves">
-                                                    <h2 class="roundtext">Add Business</h2>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Add your existing GST business</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div onclick="location.href='{{route('gst.register_form')}}'" type="button">
-                                                <div class="card card-span h-100">
-                                                    <div class="roundlogobg topcurves">
-                                                        <h2 class="roundtext">New Registration</h2>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <p>Add your existing GST business</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-
-                                            <div class="card card-span h-100">
-                                                <div class="roundlogobg topcurves">
-                                                    <h2 class="roundtext">GSTR-1</h2>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Add your existing GST business</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-3">
-
-                                            <div class="card card-span h-100">
-                                                <div class="roundlogobg topcurves">
-                                                    <h2 class="roundtext">GSTR 2A Report</h2>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Add your existing GST business</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-lg-3 mt-4">
-
-                                            <div class="card card-span h-100">
-                                                <div class="roundlogobg topcurves">
-                                                    <h2 class="roundtext">GSTR 3B</h2>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Add your existing GST business</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-3 mt-4">
-
-                                            <div class="card card-span h-100">
-                                                <div class="roundlogobg topcurves">
-                                                    <h2 class="roundtext">CMP 8</h2>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Add your existing GST business</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-3 mt-4">
-
-                                            <div class="card card-span h-100">
-                                                <div class="roundlogobg topcurves">
-                                                    <h2 class="roundtext">GSTR-9</h2>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Add your existing GST business</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-lg-3 mt-4">
-
-                                            <div class="card card-span h-100">
-                                                <div class="roundlogobg topcurves">
-                                                    <h2 class="roundtext">GSTR 9C</h2>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p>Add your existing GST business</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-
-
-                                    <!------ GST options drop close ------->
-
                                 </div>
-                            </div><!-- end of .container-->
-                        </section><!-- <section> close ============================-->
-                        <!-- ============================================-->
+
+                                <!------ GST options drop ------->
 
 
 
-                    </div>
+                                <div class="row mt-6 g-3">
+                                    @if($userGstDetails->status =='3' || $userGstDetails->status =='2')
+                                    <div class="col-lg-4">
+                                        <div onclick="location.href='{{route('gst.business_status')}}'" type="button">
+                                            <div class="card card-span h-100">
+                                                <div class="roundlogobg topcurves">
+                                                    <h2 class="roundtext">Business Status </h2>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>Check for the Business Status</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <div class="col-lg-4">
+                                        <div onclick="location.href='{{route('gst.register_form')}}'" type="button">
+                                            <div class="card card-span h-100">
+                                                <div class="roundlogobg topcurves">
+                                                    <h2 class="roundtext">New Registration</h2>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>New Registration for GST </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if($userGstDetails->status =='2')
+                                    <div class="col-lg-4">
+                                        <div onclick="location.href='{{route('gst.copy_of_returns')}}'" type="button">
+                                            <div class="card card-span h-100">
+                                                <div class="roundlogobg topcurves">
+                                                    <h2 class="roundtext">Copy Of Returns</h2>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>Copy Of Returns</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+
+                                <div class="row mt-4 g-3">
+                                    @if($userGstDetails->status =='2')
+                                    <div class="col-lg-4">
+                                        <div class="card card-span h-100">
+                                            <div class="roundlogobg topcurves">
+                                                <h2 class="roundtext">Upload Documents</h2>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Upload Documents</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="card card-span h-100">
+                                            <div class="roundlogobg topcurves">
+                                                <h2 class="roundtext">Hearing & Appeal</h2>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>Hearing and Appeal</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                </div>
+
+                                <!------ GST options drop close ------->
+                            </div>
+                    </div><!-- end of .container-->
+                    </section><!-- <section> close ============================-->
+                    <!-- ============================================-->
+
+
+
                 </div>
-                @include('user.partials.footer')
             </div>
+            @include('user.partials.footer')
         </div>
+    </div>
     </div>
 </main><!-- ===============================================-->
 <!--    End of Main Content-->
