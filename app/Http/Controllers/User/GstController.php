@@ -8,6 +8,8 @@ use App\Models\UserGstDetail;
 use App\Models\Documents;
 use App\Models\UserPartner;
 use App\Models\UserDirector;
+use App\Models\CopyOfReturns;
+use App\Helpers\Helper as Helper;
 use DB; 
 
 class GstController extends Controller {
@@ -162,13 +164,41 @@ class GstController extends Controller {
 
     public function businessStatus(Request $request){
         $userId = auth()->user()->id;
-        $data['userGstDetails'] = UserGstDetail::whereIn('status',[2,3])->orWhere('id',$userId)->get();
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3])->where('user_id',$userId)->get();
         return view('user.pages.gst.business_status')->with($data);
     }
 
     public function copyOfReturns(Request $request){
         $userId = auth()->user()->id;
-        $data['userCopyOfReturns'] = UserGstDetail::whereIn('status',[3])->orWhere('id',$userId)->get()->first();
+        $useGstId = UserGstDetail::select('id')->whereIn('status',[3])->where('user_id',$userId)->get();
+ 
+        foreach($useGstId as $gstId){
+          $userGstId = $gstId->id;
+          $data['copyofreturns']['trade_name'] =  $gstId->trade_name;
+          $data['copyofreturns']['gst_number'] =  $gstId->gst_number;
+          $data['copyofreturns'][$userGstId]=  CopyOfReturns::where('user_gst_id', $userGstId )->get()->toArray();
+            
+        }
+      
+        
         return view('user.pages.gst.copy_of_returns')->with($data);
     }
+
+     public function queryRaised(Request $request){
+          $userId = auth()->user()->id;
+          $gstid = $request->gstid; 
+          
+          $useName = trim(auth()->user()->name).'-'.$userId; 
+          $folderName = 'uploads/users/'.$useName.'/Gst/AdditionalImg';
+           
+          $img = Helper :: uploadImagesNormal($request, $userId, $folderName);
+ 
+      
+         $datas = UserGstDetail::find($gstid);
+         $datas->last_update_by = 'user'; 
+         $datas->last_update_by_id =  $userId;
+         $datas->additional_img = $img['additional_img'];
+         $datas->save();
+         return redirect('/gst/business')->with('success', 'Uploaded the Document!');
+     }
 }

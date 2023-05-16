@@ -77,6 +77,26 @@ class Helper
         return $data;
     }
 
+    public static function uploadImagesNormal($request, $userId, $folderName){
+        $userFolder = $folderName;
+        if (!File::exists($userFolder)) {
+            File::makeDirectory($userFolder, 0777, true, true);
+        }
+        $keyname = 'additional_img';
+         if ($request->hasFile($keyname)) {
+                $images = $request->file($keyname);
+             
+                $related_imgs = [];
+                foreach ($images as $index => $image) {
+                    $newName = ($index + 1) . '_' .mt_rand(2000,9000). $userId . '.' . $image->getClientOriginalExtension();
+                    $path = $image->move($userFolder, $newName);
+                    $related_imgs[] = $newName;
+                }
+                $data[$keyname] = implode(',', $related_imgs);
+            }
+         return  $data;
+    } 
+
 
     public static function uploadSignatoryImages($request, $key, $userId, $folderName,$dataon,$for_multiple) {
 

@@ -95,6 +95,93 @@
                                  </div>
 
 
+
+                                 <div class="table-responsive scrollbar">
+                                     <br><br>
+                                     <table class="table table-hover table-striped overflow-hidden">
+                                         <thead>
+                                             <tr>
+                                                 <th scope="col">Trade Name</th>
+                                                 <th scope="col">GST Number</th>
+                                                 <th scope="col">Year</th>
+                                                 <th scope="col">Month</th>
+                                                 <th scope="col">Quarter</th>
+                                                 <th scope="col">Type</th>
+                                                 <th scope="col">Download</th>
+
+                                             </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tr class="align-middle">
+                                                 <td class="text-nowrap">
+                                                     <div class="align-items-center">
+
+                                                         <div class="ms-2">Ricky Antony</div>
+                                                     </div>
+                                                 </td>
+                                                 <td class="text-nowrap">27BNRPG2461A1Z2</td>
+
+                                                 <td class="text-nowrap">2022</td>
+                                                 <td class="text-nowrap">January</td>
+                                                 <td class="text-nowrap">-</td>
+                                                 <td><span class="badge badge-subtle-success">GSTR-01</span></td>
+
+                                                 <td class="text-nowrap"><button class="btn btn-link p-0" type="button"
+                                                         data-bs-toggle="tooltip" data-bs-placement="top"
+                                                         title="download"><span
+                                                             class="text-500 fas fa-download"></span></button></td>
+
+                                             </tr>
+
+                                             <tr class="align-middle">
+                                                 <td class="text-nowrap">
+                                                     <div class="align-items-center">
+
+                                                         <div class="ms-2">Ricky Antony</div>
+                                                     </div>
+                                                 </td>
+                                                 <td class="text-nowrap">27BNRPG2461A1Z2</td>
+
+                                                 <td class="text-nowrap">2022</td>
+                                                 <td class="text-nowrap">-</td>
+                                                 <td class="text-nowrap">January - April</td>
+                                                 <td><span class="badge badge-subtle-warning">GSTR-2B</span></td>
+
+                                                 <td class="text-nowrap"><button class="btn btn-link p-0" type="button"
+                                                         data-bs-toggle="tooltip" data-bs-placement="top"
+                                                         title="download"><span
+                                                             class="text-500 fas fa-download"></span></button></td>
+
+                                             </tr>
+
+
+                                             <tr class="align-middle">
+                                                 <td class="text-nowrap">
+                                                     <div class="align-items-center">
+
+                                                         <div class="ms-2">Ricky Antony</div>
+                                                     </div>
+                                                 </td>
+                                                 <td class="text-nowrap">27BNRPG2461A1Z2</td>
+
+                                                 <td class="text-nowrap">2022</td>
+                                                 <td class="text-nowrap">January</td>
+                                                 <td class="text-nowrap">-</td>
+                                                 <td><span class="badge badge-subtle-info">GSTR-2A</span></td>
+
+                                                 <td class="text-nowrap"><button class="btn btn-link p-0" type="button"
+                                                         data-bs-toggle="tooltip" data-bs-placement="top"
+                                                         title="download"><span
+                                                             class="text-500 fas fa-download"></span></button></td>
+
+                                             </tr>
+
+                                         </tbody>
+                                     </table>
+                                     <br><br>
+                                 </div>
+
+
                                  <!------ GST options drop close ------->
                              </div>
                      </div><!-- end of .container-->

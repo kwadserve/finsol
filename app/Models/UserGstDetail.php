@@ -28,7 +28,11 @@ class UserGstDetail extends Authenticatable
         'aadharpan_landlord_img',
         'aoa_img',
         'moa_img',
-        'status'
+        'status',
+        'last_updated_by',
+        'last_update_by_id',
+        'additional_img',
+        'note'
     ];
 
 }
