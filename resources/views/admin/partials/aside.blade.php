@@ -72,7 +72,7 @@ if (isFluid) {
                 class="toggle-line"></span></span></button>
     <a class="navbar-brand me-1 me-sm-3" href="index-2.html">
         <div class="d-flex align-items-center"><img class="me-2"
-                src="../../../assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span
+                src="{{ asset('assets/img/icons/spot-illustrations/falcon.png')}}" alt="" width="40" /><span
                 class="font-sans-serif">falcon</span></div>
     </a>
     <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
@@ -88,7 +88,7 @@ if (isFluid) {
                 <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0" aria-labelledby="moduless">
                     <div class="card navbar-card-components shadow-none dark__bg-1000">
                         <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
-                                src="../../../assets/img/icons/spot-illustrations/authentication-corner.png" width="130"
+                                src="{{ asset('assets/img/icons/spot-illustrations/authentication-corner.png')}}" width="130"
                                 alt="" />
                             <div class="row">
                                 <div class="col-6 col-xxl-3">
@@ -372,7 +372,7 @@ if (isFluid) {
                                 <a class="notification notification-flush notification-unread" href="#!">
                                     <div class="notification-avatar">
                                         <div class="avatar avatar-2xl me-3">
-                                            <img class="rounded-circle" src="../../../assets/img/team/1-thumb.png"
+                                            <img class="rounded-circle" src="{{ asset('assets/img/team/1-thumb.png')}}"
                                                 alt="" />
                                         </div>
                                     </div>
@@ -1095,7 +1095,7 @@ if (isFluid) {
             <li class="nav-item dropdown"><a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-xl">
-                        <img class="rounded-circle" src="{{ asset('../../../assets/img/team/3-thumb.png')}}" alt="" />
+                        <img class="rounded-circle" src="{{ asset('assets/img/team/3-thumb.png')}}" alt="" />
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"

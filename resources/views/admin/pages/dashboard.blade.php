@@ -108,7 +108,7 @@
                         <div class="row g-0 h-100 align-items-center">
                             <div class="col">
                                 <div class="d-flex align-items-center"><img class="me-3"
-                                        src="../../../assets/img/icons/weather-icon.png" alt="" height="60" />
+                                        src="{{ asset('assets/img/icons/weather-icon.png')}}" alt="" height="60" />
                                     <div>
                                         <h6 class="mb-2">New York City</h6>
                                         <div class="fs--2 fw-semi-bold">
@@ -383,7 +383,7 @@
             <div class="col-lg-6 col-xl-5 col-xxl-4 mb-3 ps-lg-2">
                 <div class="card h-lg-100">
                     <div class="bg-holder bg-card"
-                        style="background-image:url(../../../assets/img/icons/spot-illustrations/corner-1.png);">
+                        style="background-image:url({{ asset('assets/img/icons/spot-illustrations/corner-1.png')}});">
                     </div>
                     <!--/.bg-holder-->
                     <div class="card-body position-relative">
@@ -414,7 +414,7 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative"><img
                                                     class="rounded-1 border border-200"
-                                                    src="../../../assets/img/products/12.png" width="60" alt="" />
+                                                    src="{{ asset('assets/img/products/12.png')}}" width="60" alt="" />
                                                 <div class="flex-1 ms-3">
                                                     <h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link"
                                                             href="#!">Raven Pro</a>
@@ -440,7 +440,7 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative"><img
                                                     class="rounded-1 border border-200"
-                                                    src="../../../assets/img/products/10.png" width="60" alt="" />
+                                                    src="{{ asset('assets/img/products/10.png')}}" width="60" alt="" />
                                                 <div class="flex-1 ms-3">
                                                     <h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link"
                                                             href="#!">Boots4</a>
@@ -466,7 +466,7 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative"><img
                                                     class="rounded-1 border border-200"
-                                                    src="../../../assets/img/products/11.png" width="60" alt="" />
+                                                    src="{{ asset('assets/img/products/11.png')}}" width="60" alt="" />
                                                 <div class="flex-1 ms-3">
                                                     <h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link"
                                                             href="#!">Falcon</a>
@@ -492,7 +492,7 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative"><img
                                                     class="rounded-1 border border-200"
-                                                    src="../../../assets/img/products/14.png" width="60" alt="" />
+                                                    src="{{ asset('assets/img/products/14.png')}}" width="60" alt="" />
                                                 <div class="flex-1 ms-3">
                                                     <h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link"
                                                             href="#!">Slick</a>
@@ -518,7 +518,7 @@
                                         <td>
                                             <div class="d-flex align-items-center position-relative"><img
                                                     class="rounded-1 border border-200"
-                                                    src="../../../assets/img/products/13.png" width="60" alt="" />
+                                                    src="{{ asset('assets/img/products/13.png')}}" width="60" alt="" />
                                                 <div class="flex-1 ms-3">
                                                     <h6 class="mb-1 fw-semi-bold"><a class="text-dark stretched-link"
                                                             href="#!">Reign Pro</a>
@@ -565,7 +565,7 @@
                     <div class="card-body pb-0">
                         <div class="d-flex mb-3 hover-actions-trigger align-items-center">
                             <div class="file-thumbnail"><img class="border h-100 w-100 object-fit-cover rounded-2"
-                                    src="../../../assets/img/products/5-thumb.png" alt="" /></div>
+                                    src="{{ asset('assets/img/products/5-thumb.png')}}" alt="" /></div>
                             <div class="ms-3 flex-shrink-1 flex-grow-1">
                                 <h6 class="mb-1"><a class="stretched-link text-900 fw-semi-bold"
                                         href="#!">apple-smart-watch.png</a></h6>
@@ -574,19 +574,19 @@
                                 <div class="hover-actions end-0 top-50 translate-middle-y"><a
                                         class="btn btn-light border-300 btn-sm me-1 text-600" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Download"
-                                        href="../../../assets/img/icons/cloud-download.svg" download="download"><img
-                                            src="../../../assets/img/icons/cloud-download.svg" alt=""
+                                        href="{{ asset('assets/img/icons/cloud-download.svg')}}" download="download"><img
+                                            src="{{ asset('assets/img/icons/cloud-download.svg')}}" alt=""
                                             width="15" /></a><button
                                         class="btn btn-light border-300 btn-sm me-1 text-600 shadow-none" type="button"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><img
-                                            src="../../../assets/img/icons/edit-alt.svg" alt="" width="15" /></button>
+                                            src="{{ asset('assets/img/icons/edit-alt.svg')}}" alt="" width="15" /></button>
                                 </div>
                             </div>
                         </div>
                         <hr class="text-200" />
                         <div class="d-flex mb-3 hover-actions-trigger align-items-center">
                             <div class="file-thumbnail"><img class="border h-100 w-100 object-fit-cover rounded-2"
-                                    src="../../../assets/img/products/3-thumb.png" alt="" /></div>
+                                    src="{{ asset('assets/img/products/3-thumb.png')}}" alt="" /></div>
                             <div class="ms-3 flex-shrink-1 flex-grow-1">
                                 <h6 class="mb-1"><a class="stretched-link text-900 fw-semi-bold"
                                         href="#!">iphone.jpg</a></h6>
@@ -595,18 +595,18 @@
                                 <div class="hover-actions end-0 top-50 translate-middle-y"><a
                                         class="btn btn-light border-300 btn-sm me-1 text-600" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Download"
-                                        href="../../../assets/img/icons/cloud-download.svg" download="download"><img
-                                            src="../../../assets/img/icons/cloud-download.svg" alt=""
+                                        href="{{ asset('assets/img/icons/cloud-download.svg')}}" download="download"><img
+                                            src="{{ asset('assets/img/icons/cloud-download.svg')}}" alt=""
                                             width="15" /></a><button
                                         class="btn btn-light border-300 btn-sm me-1 text-600 shadow-none" type="button"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><img
-                                            src="../../../assets/img/icons/edit-alt.svg" alt="" width="15" /></button>
+                                            src="{{ asset('assets/img/icons/edit-alt.svg')}}" alt="" width="15" /></button>
                                 </div>
                             </div>
                         </div>
                         <hr class="text-200" />
                         <div class="d-flex mb-3 hover-actions-trigger align-items-center">
-                            <div class="file-thumbnail"><img class="img-fluid" src="../../../assets/img/icons/zip.png"
+                            <div class="file-thumbnail"><img class="img-fluid" src="{{ asset('assets/img/icons/zip.png')}}"
                                     alt="" /></div>
                             <div class="ms-3 flex-shrink-1 flex-grow-1">
                                 <h6 class="mb-1"><a class="stretched-link text-900 fw-semi-bold" href="#!">Falcon
@@ -616,19 +616,19 @@
                                 <div class="hover-actions end-0 top-50 translate-middle-y"><a
                                         class="btn btn-light border-300 btn-sm me-1 text-600" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Download"
-                                        href="../../../assets/img/icons/cloud-download.svg" download="download"><img
-                                            src="../../../assets/img/icons/cloud-download.svg" alt=""
+                                        href="{{ asset('assets/img/icons/cloud-download.svg')}}" download="download"><img
+                                            src="{{ asset('assets/img/icons/cloud-download.svg')}}" alt=""
                                             width="15" /></a><button
                                         class="btn btn-light border-300 btn-sm me-1 text-600 shadow-none" type="button"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><img
-                                            src="../../../assets/img/icons/edit-alt.svg" alt="" width="15" /></button>
+                                            src="{{ asset('assets/img/icons/edit-alt.svg')}}" alt="" width="15" /></button>
                                 </div>
                             </div>
                         </div>
                         <hr class="text-200" />
                         <div class="d-flex mb-3 hover-actions-trigger align-items-center">
                             <div class="file-thumbnail"><img class="border h-100 w-100 object-fit-cover rounded-2"
-                                    src="../../../assets/img/products/2-thumb.png" alt="" /></div>
+                                    src="{{ asset('assets/img/products/2-thumb.png')}}" alt="" /></div>
                             <div class="ms-3 flex-shrink-1 flex-grow-1">
                                 <h6 class="mb-1"><a class="stretched-link text-900 fw-semi-bold" href="#!">iMac.jpg</a>
                                 </h6>
@@ -637,18 +637,18 @@
                                 <div class="hover-actions end-0 top-50 translate-middle-y"><a
                                         class="btn btn-light border-300 btn-sm me-1 text-600" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Download"
-                                        href="../../../assets/img/icons/cloud-download.svg" download="download"><img
-                                            src="../../../assets/img/icons/cloud-download.svg" alt=""
+                                        href="{{ asset('assets/img/icons/cloud-download.svg')}}" download="download"><img
+                                            src="{{ asset('assets/img/icons/cloud-download.svg')}}" alt=""
                                             width="15" /></a><button
                                         class="btn btn-light border-300 btn-sm me-1 text-600 shadow-none" type="button"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><img
-                                            src="../../../assets/img/icons/edit-alt.svg" alt="" width="15" /></button>
+                                            src="{{ asset('assets/img/icons/edit-alt.svg')}}" alt="" width="15" /></button>
                                 </div>
                             </div>
                         </div>
                         <hr class="text-200" />
                         <div class="d-flex mb-3 hover-actions-trigger align-items-center">
-                            <div class="file-thumbnail"><img class="img-fluid" src="../../../assets/img/icons/docs.png"
+                            <div class="file-thumbnail"><img class="img-fluid" src="{{ asset('assets/img/icons/docs.png')}}"
                                     alt="" /></div>
                             <div class="ms-3 flex-shrink-1 flex-grow-1">
                                 <h6 class="mb-1"><a class="stretched-link text-900 fw-semi-bold"
@@ -658,12 +658,12 @@
                                 <div class="hover-actions end-0 top-50 translate-middle-y"><a
                                         class="btn btn-light border-300 btn-sm me-1 text-600" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Download"
-                                        href="../../../assets/img/icons/cloud-download.svg" download="download"><img
-                                            src="../../../assets/img/icons/cloud-download.svg" alt=""
+                                        href="{{ asset('assets/img/icons/cloud-download.svg')}}" download="download"><img
+                                            src="{{ asset('assets/img/icons/cloud-download.svg')}}" alt=""
                                             width="15" /></a><button
                                         class="btn btn-light border-300 btn-sm me-1 text-600 shadow-none" type="button"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><img
-                                            src="../../../assets/img/icons/edit-alt.svg" alt="" width="15" /></button>
+                                            src="{{ asset('assets/img/icons/edit-alt.svg')}}" alt="" width="15" /></button>
                                 </div>
                             </div>
                         </div>
@@ -692,7 +692,7 @@
                     <div class="card-body py-2">
                         <div class="d-flex align-items-center position-relative mb-3">
                             <div class="avatar avatar-2xl status-online">
-                                <img class="rounded-circle" src="../../../assets/img/team/1.jpg" alt="" />
+                                <img class="rounded-circle" src="{{ asset('assets/img/team/1.jpg')}}" alt="" />
                             </div>
                             <div class="flex-1 ms-3">
                                 <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
@@ -702,7 +702,7 @@
                         </div>
                         <div class="d-flex align-items-center position-relative mb-3">
                             <div class="avatar avatar-2xl status-online">
-                                <img class="rounded-circle" src="../../../assets/img/team/2.jpg" alt="" />
+                                <img class="rounded-circle" src="{{ asset('assets/img/team/2.jpg')}}" alt="" />
                             </div>
                             <div class="flex-1 ms-3">
                                 <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
@@ -712,7 +712,7 @@
                         </div>
                         <div class="d-flex align-items-center position-relative mb-3">
                             <div class="avatar avatar-2xl status-away">
-                                <img class="rounded-circle" src="../../../assets/img/team/3.jpg" alt="" />
+                                <img class="rounded-circle" src="{{ asset('assets/img/team/3.jpg')}}" alt="" />
                             </div>
                             <div class="flex-1 ms-3">
                                 <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
@@ -722,7 +722,7 @@
                         </div>
                         <div class="d-flex align-items-center position-relative mb-3">
                             <div class="avatar avatar-2xl status-offline">
-                                <img class="rounded-circle" src="../../../assets/img/team/4.jpg" alt="" />
+                                <img class="rounded-circle" src="{{ asset('assets/img/team/4.jpg')}}" alt="" />
                             </div>
                             <div class="flex-1 ms-3">
                                 <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
@@ -732,7 +732,7 @@
                         </div>
                         <div class="d-flex align-items-center position-relative false">
                             <div class="avatar avatar-2xl status-offline">
-                                <img class="rounded-circle" src="../../../assets/img/team/5.jpg" alt="" />
+                                <img class="rounded-circle" src="{{ asset('assets/img/team/5.jpg')}}" alt="" />
                             </div>
                             <div class="flex-1 ms-3">
                                 <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900"
