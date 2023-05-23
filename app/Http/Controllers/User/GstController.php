@@ -25,11 +25,11 @@ class GstController extends Controller {
         return view('user.pages.gst.details')->with($data);
     }
     public function register_form() {
-        $data['images'] = Documents::where('gst_type_val', '1')->get();
-        $data['firm_images'] = Documents::where(['gst_type_val' => '2', 'for_multiple' => null])->get();
-        $data['firm_partner_images'] = Documents::where(['gst_type_val' => '2', 'for_multiple' => 'Partner'])->get();
-        $data['company_images'] = Documents::where(['gst_type_val' => '3', 'for_multiple' => null])->get();
-        $data['company_director_images'] = Documents::where(['gst_type_val' => '3', 'for_multiple' => 'Director'])->get();
+        $data['images'] = Documents::where(['for_multiple' => 'GST'])->get();
+        $data['firm_images'] = Documents::where(['for_multiple' => 'GST Firm'])->get();
+        $data['firm_partner_images'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
+        $data['company_images'] = Documents::where(['for_multiple' => "'GST Company"])->get();
+        $data['company_director_images'] = Documents::where(['for_multiple' => 'GST Company Director'])->get();
         return view('user.pages.gst.form')->with($data);
     }
     public function uploadAllImages($request, $userId, $gst_type_val, $folderName) {
@@ -58,8 +58,9 @@ class GstController extends Controller {
     public function storeIndividual(Request $request) {
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
-        $folderName = 'uploads/users/Gst/'.$useName.'/Individual';
-        $data = $this->uploadAllImages($request, $userId, 1, $folderName);
+        $folderName = 'uploads/users/'.$useName.'/Gst/Individual';
+        $data = Helper :: uploadImagesNew($request, $userId, $folderName,'GST');
+        // $data = $this->uploadAllImages($request, $userId, 1, $folderName);
         $data['user_id'] = $userId;
         $data['email_id'] = $request['email_id'];
         $data['gst_type'] = $request['gst_type'];
@@ -75,8 +76,9 @@ class GstController extends Controller {
         $userId = auth()->user()->id;
         $dataon ='partners'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
-            $folderName = 'uploads/users/Gst/'.$useName.'/Firm';
-            $data =  $this->uploadAllImages($request,$userId,2,$folderName);
+            $folderName = 'uploads/users/'.$useName.'/Gst/Firm';
+            $data = Helper :: uploadImagesNew($request, $userId, $folderName,'GST Firm');
+            // $data =  $this->uploadAllImages($request,$userId,2,$folderName);
             $data['user_id'] = $userId;
             $data['email_id'] = $request['email_id'];
             $data['gst_type'] = $request['gst_type'];
@@ -89,8 +91,10 @@ class GstController extends Controller {
             $partners = $request->input('partners');
             UserPartner::where(['user_id' => $userId])->delete();
             foreach ($partners as $key => $ps) {
-                $folderName = 'uploads/users/Gst/'.$useName.'/Firm/Partners';
-                $partner =  $this->uploadPartnerImages($request, $key, $userId, 2, $folderName,$dataon,1);
+                $folderName = 'uploads/users/'.$useName.'/Gst/Firm/Partners';
+               
+                $partner = Helper :: uploadAddMultipleImages($request, $key,  $userId, $folderName, $dataon, 'GST Firm Partner');
+                // $partner =  $this->uploadPartnerImages($request, $key, $userId,   $folderName,$dataon,'GST Firm Partner');
                 $partner['user_gst_id'] =  $lastInsertedId;
                 $partner['user_id'] =  $userId;
                 $partner['partner_email'] = $ps['email'];
@@ -136,8 +140,9 @@ class GstController extends Controller {
             $userId = auth()->user()->id;
             $dataon ='directors'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
-            $folderName = 'uploads/users/Gst/'.$useName.'/Company';
-            $data =  $this->uploadAllImages($request,$userId,2,$folderName);
+            $folderName = 'uploads/users/'.$useName.'/Gst/Company';
+            $data = Helper :: uploadImagesNew($request, $userId, $folderName,'GST Company');
+            // $data =  $this->uploadAllImages($request,$userId,2,$folderName);
             $data['user_id'] = $userId;
             $data['email_id'] = $request['email_id'];
             $data['gst_type'] = $request['gst_type'];
@@ -150,8 +155,9 @@ class GstController extends Controller {
             $directors = $request->input('directors');
             UserDirector::where(['user_id' => $userId])->delete();
             foreach ($directors as $key => $ds) {
-                $folderName = 'uploads/users/Gst/'.$useName.'/Company/Directors';
-                $director =  $this->uploadPartnerImages($request, $key, $userId, 3, $folderName,$dataon,2);
+                $folderName = 'uploads/users/'.$useName.'/Gst/Company/Directors';
+                $director = Helper :: uploadAddMultipleImages($request, $key,  $userId, $folderName, $dataon, 'GST Company Director');
+                // $director =  $this->uploadPartnerImages($request, $key, $userId, 3, $folderName,$dataon,2);
                 $director['user_gst_id'] =  $lastInsertedId;
                 $director['user_id'] =  $userId;
                 $director['director_email'] = $ds['email'];
@@ -171,29 +177,21 @@ class GstController extends Controller {
     public function copyOfReturns(Request $request){
         $userId = auth()->user()->id;
         $useGstId = UserGstDetail::select('id')->whereIn('status',[3])->where('user_id',$userId)->get();
- 
         foreach($useGstId as $gstId){
           $userGstId = $gstId->id;
           $data['copyofreturns']['trade_name'] =  $gstId->trade_name;
           $data['copyofreturns']['gst_number'] =  $gstId->gst_number;
           $data['copyofreturns'][$userGstId]=  CopyOfReturns::where('user_gst_id', $userGstId )->get()->toArray();
-            
         }
-      
-        
         return view('user.pages.gst.copy_of_returns')->with($data);
     }
 
      public function queryRaised(Request $request){
-          $userId = auth()->user()->id;
-          $gstid = $request->gstid; 
-          
-          $useName = trim(auth()->user()->name).'-'.$userId; 
-          $folderName = 'uploads/users/'.$useName.'/Gst/AdditionalImg';
-           
-          $img = Helper :: uploadImagesNormal($request, $userId, $folderName);
- 
-      
+         $userId = auth()->user()->id;
+         $gstid = $request->gstid; 
+         $useName = trim(auth()->user()->name).'-'.$userId; 
+         $folderName = 'uploads/users/'.$useName.'/Gst/AdditionalImg';
+         $img = Helper :: uploadImagesNormal($request, $userId, $folderName);
          $datas = UserGstDetail::find($gstid);
          $datas->last_update_by = 'user'; 
          $datas->last_update_by_id =  $userId;
