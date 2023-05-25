@@ -191,7 +191,7 @@ class GstController extends Controller {
          $gstid = $request->gstid; 
          $useName = trim(auth()->user()->name).'-'.$userId; 
          $folderName = 'uploads/users/'.$useName.'/Gst/AdditionalImg';
-         $img = Helper :: uploadImagesNormal($request, $userId, $folderName);
+         $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'additional_img');
          $datas = UserGstDetail::find($gstid);
          $datas->last_update_by = 'user'; 
          $datas->last_update_by_id =  $userId;

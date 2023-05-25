@@ -77,12 +77,13 @@ class Helper
         return $data;
     }
 
-    public static function uploadImagesNormal($request, $userId, $folderName){
+    public static function uploadImagesNormal($request, $userId, $folderName,$name){
         $userFolder = $folderName;
         if (!File::exists($userFolder)) {
             File::makeDirectory($userFolder, 0777, true, true);
         }
-        $keyname = 'additional_img';
+        $keyname = $name ? $name :  'additional_img';
+   
          if ($request->hasFile($keyname)) {
                 $images = $request->file($keyname);
              

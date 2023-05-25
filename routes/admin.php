@@ -27,10 +27,21 @@ Route::group([
             Route::get('all', 'UserController@index')->name('index');
             Route::get('ajax', 'UserController@ajax')->name('ajax');
             Route::get('show/{id}', 'UserController@show'); // ->where('id', '[0-9]+');
-            Route::post('change_status', 'UserController@change_status')->name('change_status');
+            // Route::post('change_status', 'UserController@change_status')->name('change_status');
             Route::post('delete', 'UserController@delete')->name('delete');
+
+            // Route::get('gst/details/{id}', 'UserGstController@index')->name('gstDetails');
+
+
         });
+        Route::group(['prefix' => 'user', 'as' => 'user.',], function () {
+            Route::get('gst/details/{id}', 'UserGstController@index')->name('gstDetails');
+             Route::post('gst/change_status', 'UserGstController@change_status')->name('change_status');
+        });
+         
+         
     });
+   
 
     // for moderators
     Route::group([
@@ -56,4 +67,3 @@ Route::group([
     });
 
 });
-

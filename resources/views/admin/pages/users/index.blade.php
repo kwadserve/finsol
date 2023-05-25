@@ -31,6 +31,7 @@
                                                     <th class="sort" data-sort="name">Name</th>
                                                     <th class="sort" data-sort="email">Email</th>
                                                     <th class="sort" data-sort="age">Status</th>
+                                                    <th class="sort" data-sort="age">GST</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="list">
@@ -39,6 +40,9 @@
                                                     <td class="name">{{$user['name']}}</td>
                                                     <td class="email">{{$user['email']}}</td>
                                                     <td class="age">{{$user['status']}}</td>
+                                                    <td class="gst"><a
+                                                            href="{{ URL('/admin/user/gst/details/'.$user['id'] )}}">GST</a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

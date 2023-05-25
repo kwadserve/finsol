@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
                                     @if(isset($userGstDetails))
-                                    @if($userGstDetails->status =='2')
+                                    @if($userGstDetails->status == '3')
                                     <div class="col-lg-4">
                                         <div onclick="location.href='{{route('gst.copy_of_returns')}}'" type="button">
                                             <div class="card card-span h-100">
@@ -80,7 +80,7 @@
 
                                 <div class="row mt-4 g-3">
                                     @if(isset($userGstDetails))
-                                    @if($userGstDetails->status =='2')
+                                    @if($userGstDetails->status =='3')
                                     <div class="col-lg-4">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobg topcurves">

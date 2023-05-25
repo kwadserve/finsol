@@ -32,6 +32,7 @@ class UserGstDetail extends Authenticatable
         'last_updated_by',
         'last_update_by_id',
         'additional_img',
+        'approved_img',
         'note'
     ];
 
