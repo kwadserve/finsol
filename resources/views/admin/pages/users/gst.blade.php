@@ -34,8 +34,10 @@
                                                     <th scope="col">Trade Name</th>
                                                     <th scope="col">GST Number</th>
                                                     <th scope="col">Type</th>
+                                                    <th scope="col">Admin Note</th>
+                                                    <th scope="col">User Note</th>
                                                     <th scope="col">Status</th>
-                                                    <th scope="col">Note</th>
+                                                    <th scope="col">Note/Approve</th>
                                                 </tr>
                                             </thead>
 
@@ -44,9 +46,7 @@
                                                 @foreach($usersGst as $detail)
                                                 <tr class="align-middle" data-toggle="collapse"
                                                     data-target="#{{$detail->gst_type}}" class="accordion-toggle">
-                                                    <!-- <td><button class="btn btn-default btn-xs"><span
-                                                                                class="glyphicon glyphicon-eye-open"></span></button>
-                                                                    </td> -->
+                                                  
                                                     <td class="text-nowrap">
                                                         <div class="align-items-center">
 
@@ -55,10 +55,11 @@
                                                         </div>
                                                     </td>
 
-                                                    <td class="text-nowrap">{{$detail->gst_number}}</td>
+                                                    <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'--'}}</td>
 
-                                                    <td class="text-nowrap">{{$detail->gst_type}}</td>
-
+                                                    <td class="text-nowrap">{{($detail->gst_type)?$detail->gst_type:'NA'}}</td>
+                                                    <td class="text-nowrap">{{($detail->admin_note)?$detail->admin_note:'NA'}}</td>
+                                                    <td class="text-nowrap">{{($detail->user_note)?$detail->user_note:'NA'}}</td>
                                                     <td>
                                                         @if($detail->status == 2)
                                                         <div><span
@@ -70,6 +71,15 @@
 
                                                         @else
                                                         @if($detail->status == 3)
+                                                        <div><span
+                                                                class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
+                                                                Updated<span class="ms-1 fas fa-stream"
+                                                                    data-fa-transform="shrink-2"></span></span>
+
+                                                        </div>
+
+                                                        @else
+                                                        @if($detail->status == 4)
                                                         <span
                                                             class="badge badge rounded-pill d-block p-2 badge-subtle-success">Approved<span
                                                                 class="ms-1 fas fa-check"
@@ -83,35 +93,42 @@
                                                         </span>
                                                         @endif
                                                         @endif
-
+                                                        @endif
                                                     </td>
 
-                                                    @if($detail->status == 1)
-                                                    <td>
-                                                        <button class="btn  btn-xs  btn-block" title="Add Note"
-                                                            type="button" data-toggle="modal"
-                                                            data-item="{{ $detail->id }}" data-target="#myNoteModal">Add
+                                                    @if($detail->status == 1 || $detail->status == 3)
+                                                    <td colspan=6>
+                                                        <span class="btn  btn-xs" title="Add Note"
+                                                            type="button"  onclick="openNoteModal({{ $detail->id }})"
+                                                           href="{{ url('gst/statusview/'.$detail->id) }}" data-target="#myNoteModal">
                                                             Note<span class="glyphicon glyphicon-eye-open ms-1"></span>
-                                                        </button>
-                                                    </td>
-                                                    @else @if($detail->status == 2)
-                                                    <td>
-                                                        <button class="btn  btn-xs btn-block" title="Change Status"
-                                                            type="button" data-toggle="modal"
-                                                            data-item="{{ $detail->id }}"
-                                                            data-target="#myApprovedModal">Change To
+                                                        </span> 
+
+                                                       
+
+
+                                                        @if($detail->status == 3)
+                                                        | <span class="btn  btn-xs  " title="Change Status"
+                                                            type="button" data-toggle="modal"  onclick="openApproveModal({{ $detail->id }})"
+                                                             
+                                                            data-target="#myApprovedModal"> 
                                                             Approve<span
                                                                 class="glyphicon glyphicon-eye-open ms-1"></span>
-                                                        </button>
-                                                    </td>
+                                                        </span>
+                                                        @else @if($detail->status == 4)
+                                                     
+                                                        <span><NA/span>
+                                                     
+                                                    @endif
 
 
-                                                    @else @if($detail->status == 3)
-                                                    <td>
-                                                        NA
+                                                    @endif
+                                                    
                                                     </td>
-                                                    @endif
-                                                    @endif
+                                                     
+
+
+                                                     
                                                     @endif
 
 
@@ -147,8 +164,6 @@
                                     </div>
                                 </div>
 
-
-
                             </div>
                             <div class="col-auto ps-0">
                                 <div class="echart-bar-weekly-sales h-100"></div>
@@ -165,89 +180,61 @@
 <!-- ===============================================-->
 @endsection
 
-
+@include('admin.pages.users.modal')
 
 <!-- {{--@push('custom_scripts)--}} -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous">
+ 
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous">
-</script>
+ 
 <!-- {{--@endpush--}} -->
 
-
-
-
+ 
 <script>
-// $(document).on("click", ".btn-block", function() {
-//     var itemid = $(this).val('data-item');
-//     console.log(Object.keys(JSON.stringify(itemid)));
-//     $("#gstid").val(itemid)
-// });
-</script>
-
-<!-- ADD Note Modal -->
-<div id="myNoteModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <form action="{{ url('admin/user/gst/change_status') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                </div>
-                <div class="modal-body">
-                    <p>
-                        <input type="hidden" name="userid" value="{{request()->segment(5)}}" />
-                        <input type="hidden" id="gstid" name="gstid" value="" />
-                        <input type="hidden" name="type" value="note" />
-                    <div class="mb-3">
-                        <label>Enter Your Query:</label>
-                        <textarea name="note" style="height:90px;width:100%"></textarea>
-                    </div>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
-
-    </div>
-</div>
+                                                            
+                                                            function openNoteModal(itemId) {
+                                                                // Make an AJAX GET request to fetch the item details
+                                                                $.ajax({
+                                                                    url: '/admin/gst/statusview/' + itemId,
+                                                                    type: 'GET',
+                                                                    success: function (data) {
+                                                                        
+                                                                        // $('#myNoteModal .modal-body').html(data);
+                                                                        $('#myNoteModal').modal('show');
+                                                                        $('#myNoteModal #userid').val(data.user_id);
+                                                                        $('#myNoteModal #gstid').val(data.id);
+                                                                        $('#myNoteModal #tradename').val(data.trade_name);
+                                                                        $('#myNoteModal #type').val('note');
+                                                              
+                                                                    },
+                                                                    error: function (xhr) {
+                                                                        // Handle error cases
+                                                                        console.log(xhr.responseText);
+                                                                    }
+                                                                });
+                                                            }
 
 
-<!-- ADD Note Modal -->
-<div id="myApprovedModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <form action="{{ url('admin/user/gst/change_status') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                </div>
-                <div class="modal-body">
-                    <p>
-                        <input type="hidden" name="userid" value="{{request()->segment(5)}}" />
-                        <input type="hidden" name="gstid" value="{{$detail->id}}" />
-                        <input type="hidden" name="type" value="approve" />
-                        <input type="text" name="gst_number" value="" placeholder="Enter the Gst Number" />
-                    <div class="mb-3">
-                        <label>Upload Doc:</label>
-                        <input type="file" name="approved_img[]" id="image-upload" class="myfrm form-control"
-                            multiple />
-                    </div>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </form>
-        </div>
+                                                            function openApproveModal(itemId) {
+                                                                // Make an AJAX GET request to fetch the item details
+                                                                $.ajax({
+                                                                    url: '/admin/gst/statusview/' + itemId,
+                                                                    type: 'GET',
+                                                                    success: function (data) {
+                                
+                                                                        $('#myApprovedModal').modal('show');
+                                                                        $('#myApprovedModal #userid').val(data.user_id);
+                                                                        $('#myApprovedModal #gstid').val(data.id);
+                                                                        $('#myApprovedModal #type').val('approve');
+                                                                    },
+                                                                    error: function (xhr) {
+                                                                        // Handle error cases
+                                                                        console.log(xhr.responseText);
+                                                                    }
+                                                                });
+                                                            }
+                                                        </script>
 
-    </div>
-</div>
+

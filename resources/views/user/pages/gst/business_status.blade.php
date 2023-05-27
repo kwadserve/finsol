@@ -48,13 +48,13 @@
                                                         <table class="table table-condensed table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <!-- <th scope="col"></th> -->
+                                                                     
                                                                     <th scope="col">Trade Name</th>
                                                                     <th scope="col">GST Number</th>
+                                                                    <th scope="col">Admin Note</th>
                                                                     <th scope="col">Type</th>
                                                                     <th scope="col">Status</th>
-                                                                    <th scope="col">Download</th>
-                                                                    <th scope="col">Note</th>
+                                                                     
 
                                                                 </tr>
                                                             </thead>
@@ -76,25 +76,47 @@
                                                                         </div>
                                                                     </td>
 
-                                                                    <td class="text-nowrap">{{$detail->gst_number}}</td>
-
+                                                                    <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'NA'}}</td>
+                                                                    <td class="text-nowrap">{{($detail->admin_note)?$detail->admin_note:'NA'}}</</td>
                                                                     <td class="text-nowrap">New GST Registration</td>
 
-                                                                    <td>
+                                                                    <td colspan=7>
                                                                         @if($detail->status == 2)
+                                                                           <span
+                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
+                                                                            Raised - Click here <span class="ms-1 fas fa-stream"
+                                                                                data-fa-transform="shrink-2"></span>
+                                                                            </span>  
+
+                                                                                 
+                                                                        @else
+                                                                        @if($detail->status == 3)
                                                                         <span
                                                                             class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
-                                                                            Raised<span class="ms-1 fas fa-stream"
+                                                                            Updated<span class="ms-1 fas fa-stream"
                                                                                 data-fa-transform="shrink-2"></span></span>
 
 
                                                                         @else
-                                                                        @if($detail->status == 3)
+                                                                        @if($detail->status == 4)
 
                                                                         <span
                                                                             class="badge badge rounded-pill d-block p-2 badge-subtle-success">Approved<span
                                                                                 class="ms-1 fas fa-check"
                                                                                 data-fa-transform="shrink-2"></span></span>
+
+     
+                                                                                <form action="{{ route('approvedFile') }}" method="POST">
+                                                                                    @csrf
+                                                                                    
+                                                                                        <input type="hidden" name="files" value="{{ $detail->approved_img }}">
+                                                                                    
+                                                                                      <button class="btn btn-xs mt-1 ml-4" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
+                                                                                </form>
+
+ 
+                                                                                 
+
 
                                                                         @else
                                                                         <span
@@ -103,36 +125,19 @@
                                                                                 data-fa-transform="shrink-2">
                                                                             </span>
                                                                         </span>
+
+
+                                                                         
+
+
                                                                         @endif
                                                                         @endif
-
-                                                                    </td>
-
-                                                                    <td class="text-nowrap">
-                                                                        @if($detail->status == 3)
-                                                                        <button class="btn btn-link p-0" type="button"
-                                                                            data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top"
-                                                                            title="download"><span
-                                                                                class="text-500 fas fa-download"></span></button>
                                                                         @endif
                                                                     </td>
 
-                                                                    <td>
-                                                                        @if($detail->status == 2)
-                                                                        @if($detail->last_update_by == 'user')
-                                                                        <button
-                                                                            class="btn btn-secondary btn-xs">Note<span
-                                                                                class="glyphicon glyphicon-eye-open ms-1 fas fa-check"></span>
-                                                                        </button>
-                                                                        @else
-                                                                        <button
-                                                                            class="btn btn-secondary btn-xs">Note<span
-                                                                                class="glyphicon glyphicon-eye-open ms-1 fas fa-times-circle fa-w-16 text-danger"></span>
-                                                                        </button>
-                                                                        @endif
-                                                                        @endif
-                                                                    </td>
+                                                                     
+
+                                                                     
                                                                 </tr>
                                                                 @if($detail->status == 2)
                                                                 <tr>
@@ -156,12 +161,15 @@
                                                                                     <div class="mb-3"><label
                                                                                             class="form-label"
                                                                                             for="note">
-                                                                                            {{$detail->note}}
+                                                                                            {{$detail->admin_note}}
                                                                                         </label> </div>
 
+                                                                                        <label>Enter Your Suggestion:</label>
+                        <textarea name="user_note" style="height:90px;width:100%"></textarea>
+ 
                                                                                     <input type="hidden" name="gstid"
                                                                                         value="{{$detail->id}}" />
-                                                                                    <div class="mb-3">
+                                                                                    <div class="mt-3">
                                                                                         <label>Upload Required
                                                                                             doc:</label>
                                                                                         <input type="file"
@@ -171,10 +179,14 @@
                                                                                             multiple />
                                                                                     </div>
 
-                                                                                    <div class="mb-3">
+                                                                                    <div class="mt-3">
                                                                                         <button
                                                                                             class="btn btn-primary me-1 mb-1"
                                                                                             type="submit">Save</button>
+
+                                                                                            <button
+                                                                                            class="btn btn-primary me-1 mb-1"
+                                                                                            type="reset">Cancel</button>
                                                                                     </div>
                                                                                 </form>
                                                                             </div>

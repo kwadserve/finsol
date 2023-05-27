@@ -21,7 +21,7 @@ if (isFluid) {
                         class="toggle-line"></span></span></button>
         </div><a class="navbar-brand" href="index-2.html">
             <div class="d-flex align-items-center py-3"><img class="me-2"
-                    src="../../../assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span
+                    src="{{asset('assets/img/icons/spot-illustrations/falcon.png')}}" alt="" width="40" /><span
                     class="font-sans-serif">falcon</span></div>
         </a>
     </div>
@@ -658,7 +658,7 @@ if (isFluid) {
                     class="toggle-line"></span></span></button>
         <a class="navbar-brand me-1 me-sm-3" href="index-2.html">
             <div class="d-flex align-items-center"><img class="me-2"
-                    src="../../../assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span
+                    src="{{asset('assets/img/icons/spot-illustrations/falcon.png')}}" alt="" width="40" /><span
                     class="font-sans-serif">falcon</span></div>
         </a>
         <ul class="navbar-nav align-items-center d-none d-lg-block">

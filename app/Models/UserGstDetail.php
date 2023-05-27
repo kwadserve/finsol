@@ -33,7 +33,8 @@ class UserGstDetail extends Authenticatable
         'last_update_by_id',
         'additional_img',
         'approved_img',
-        'note'
+        'admin_note',
+        'user_note'
     ];
 
 }

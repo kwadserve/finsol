@@ -27,10 +27,24 @@ class UserGstController extends Controller
             'mobile_linked_aadhar',
             'status',
             'gst_type',
+            'gst_number',
+            'admin_note',
+            'user_note',
             'id'
         )->where('user_id',$userId)->orderBy('id', 'DESC')->get();
        
         return view('admin.pages.users.gst')->with($data);
+    }
+
+
+    public function statusview($item_id){
+         
+
+        if($item_id){
+        $singleGst = UserGstDetail::find($item_id);
+         return $singleGst; 
+        //return view('admin.pages.users.modal')->with($data);
+        }
     }
 
     public function ajax()
@@ -39,6 +53,9 @@ class UserGstController extends Controller
             'name',
             'image',
             'status',
+            'gst_number',
+            'admin_note',
+            'user_note',
             'email',
             'id'
         )->orderBy('id', 'DESC');
@@ -92,15 +109,14 @@ class UserGstController extends Controller
          
          $datas = UserGstDetail::find($gstid);
          $datas->last_update_by = 'admin'; 
-         $datas->status = 3; 
+         $datas->status = 4;  // Approved
          $datas->gst_number =  $request->gst_number;  
-        //  $datas->last_update_by_id =  $userId;
          $datas->approved_img = $img['approved_img'];
          $datas->save();
         } else {
          $gstid = $request->gstid; 
          $datas = UserGstDetail::find($gstid);
-         $datas->note = $request->note; 
+         $datas->admin_note = $request->admin_note; 
          $datas->last_update_by = 'admin'; 
          $datas->status = 2; 
          $datas->save();

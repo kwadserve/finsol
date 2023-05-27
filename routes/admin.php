@@ -38,8 +38,10 @@ Route::group([
             Route::get('gst/details/{id}', 'UserGstController@index')->name('gstDetails');
              Route::post('gst/change_status', 'UserGstController@change_status')->name('change_status');
         });
-         
-         
+
+        Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
+       
+        
     });
    
 

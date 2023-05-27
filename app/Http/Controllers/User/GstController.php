@@ -10,18 +10,21 @@ use App\Models\UserPartner;
 use App\Models\UserDirector;
 use App\Models\CopyOfReturns;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Response;
 use DB; 
+ 
 
 class GstController extends Controller {
     public function __construct() {
         $this->middleware('auth');
     }
     public function index() {
-       // \DB::enableQueryLog();
+        //  \DB::enableQueryLog();
         $userId = auth()->user()->id;
-        $data['userGstDetails'] = UserGstDetail::whereIn('status',[2,3])->orWhere('id',$userId)->get()->first();
-      //   dd(\DB::getQueryLog());
-        // dd($data);
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3])->where('user_id',$userId)->get()->first();
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[4])->where('user_id',$userId)->get()->first();
+        //   dd(\DB::getQueryLog());
+        //   dd($data);
         return view('user.pages.gst.details')->with($data);
     }
     public function register_form() {
@@ -65,7 +68,7 @@ class GstController extends Controller {
         $data['email_id'] = $request['email_id'];
         $data['gst_type'] = $request['gst_type'];
         $data['trade_name'] = $request['trade_name'];
-        $data['status'] = 1 ; //1- Under Process/2- Query Raised/3-Approved
+        $data['status'] = 1 ; //1- Under Process/2- Query Raised/ 3- Query Updated, 4-Approved
         $matchthese = ['user_id' => $userId, 'gst_type' => 'Individual'];
         UserGstDetail::where($matchthese)->delete();
         UserGstDetail::updateOrCreate($matchthese, $data);
@@ -170,20 +173,25 @@ class GstController extends Controller {
 
     public function businessStatus(Request $request){
         $userId = auth()->user()->id;
-        $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3])->where('user_id',$userId)->get();
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->get();
         return view('user.pages.gst.business_status')->with($data);
     }
 
+    public function uploadDocuments(Request $request){
+        echo "coming soon"; 
+    }
+
     public function copyOfReturns(Request $request){
-        $userId = auth()->user()->id;
-        $useGstId = UserGstDetail::select('id')->whereIn('status',[3])->where('user_id',$userId)->get();
-        foreach($useGstId as $gstId){
-          $userGstId = $gstId->id;
-          $data['copyofreturns']['trade_name'] =  $gstId->trade_name;
-          $data['copyofreturns']['gst_number'] =  $gstId->gst_number;
-          $data['copyofreturns'][$userGstId]=  CopyOfReturns::where('user_gst_id', $userGstId )->get()->toArray();
-        }
-        return view('user.pages.gst.copy_of_returns')->with($data);
+        echo "coming soon"; 
+        // $userId = auth()->user()->id;
+        // $useGstId = UserGstDetail::select('id')->whereIn('status',[3])->where('user_id',$userId)->get();
+        // foreach($useGstId as $gstId){
+        //   $userGstId = $gstId->id;
+        //   $data['copyofreturns']['trade_name'] =  $gstId->trade_name;
+        //   $data['copyofreturns']['gst_number'] =  $gstId->gst_number;
+        //   $data['copyofreturns'][$userGstId]=  CopyOfReturns::where('user_gst_id', $userGstId )->get()->toArray();
+        // }
+        // return view('user.pages.gst.copy_of_returns')->with($data);
     }
 
      public function queryRaised(Request $request){
@@ -191,12 +199,33 @@ class GstController extends Controller {
          $gstid = $request->gstid; 
          $useName = trim(auth()->user()->name).'-'.$userId; 
          $folderName = 'uploads/users/'.$useName.'/Gst/AdditionalImg';
-         $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'additional_img');
+         $name='additional_img';
+         $img = Helper :: uploadImagesNormal($request, $userId, $folderName, $name);
+        
          $datas = UserGstDetail::find($gstid);
+         $datas->user_note = $request->user_note; 
+         $datas->status = 3; // Query Updated      
          $datas->last_update_by = 'user'; 
          $datas->last_update_by_id =  $userId;
          $datas->additional_img = $img['additional_img'];
          $datas->save();
          return redirect('/gst/business')->with('success', 'Uploaded the Document!');
+     }
+
+
+     public function approvedFile(Request $request){
+        $fileName = $request->input('files'); 
+        $userId = auth()->user()->id;
+        $useName = trim(auth()->user()->name).'-'.$userId; 
+        $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$fileName;  
+        if (File::exists($filePath)) {
+            $headers = [
+                // 'Content-Type' => 'application/pdf',
+                'Content-Type' => 'image/jpeg',
+            ];
+            return Response::download($filePath, $fileName,$headers);
+        } else {
+            abort(404);
+        }
      }
 }

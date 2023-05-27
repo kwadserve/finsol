@@ -82,11 +82,11 @@ class Helper
         if (!File::exists($userFolder)) {
             File::makeDirectory($userFolder, 0777, true, true);
         }
-        $keyname = $name ? $name :  'additional_img';
-   
+          $keyname =  $name;
+         $data[$keyname]=[];
+          
          if ($request->hasFile($keyname)) {
                 $images = $request->file($keyname);
-             
                 $related_imgs = [];
                 foreach ($images as $index => $image) {
                     $newName = ($index + 1) . '_' .mt_rand(2000,9000). $userId . '.' . $image->getClientOriginalExtension();
