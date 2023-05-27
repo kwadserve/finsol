@@ -18,6 +18,8 @@ Route::group([
     Route::post('register', 'RegisterController@register')->name('register');
     Route::get('register/activate/{token}', 'RegisterController@confirm')->name('email_confirm');
 
+   
+
     // Password Reset Routes...
     Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
     Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
@@ -27,6 +29,8 @@ Route::group([
 });
 
 Route::get('home', 'UserController@index')->name('home');
+Route::get('settings', 'UserController@settings')->name('settings');
+Route::get('settings/update', 'UserController@settingsUpdate')->name('settings.update');
 
 // GST DETAILS
 Route::get('gst', 'GstController@index')->name('gst');
@@ -37,7 +41,12 @@ Route::post('gst/company', 'GstController@storeCompany')->name('gst.company');
 Route::get('gst/business', 'GstController@businessStatus')->name('gst.business_status');
 Route::get('gst/copyofreturns', 'GstController@copyOfReturns')->name('gst.copy_of_returns');
 Route::post('gst/queryraised', 'GstController@queryRaised')->name('gst.query_raised');
+Route::get('gst/uploaddocuments', 'GstController@uploadDocuments')->name('gst.uploaddocuments');
+Route::post('userSettings', 'GstController@userSettings')->name('userSettings');
 Route::post('gst/download/approved/file', 'GstController@approvedFile')->name('approvedFile');
+Route::post('gst/gettradename', 'GstController@getTradeName')->name('gst.gettradename');
+Route::post('gst/uploaddocumentscreate', 'GstController@uploadDocumentsCreate')->name('gst.uploaddocumentscreate');
+
 //PAN DETAILS 
 Route::get('pan/register', 'PanController@register_form')->name('pan.register_form');
 Route::post('pan/register', 'PanController@storePan')->name('pan.register');

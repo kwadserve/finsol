@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\UserSetting;
 
 class UserController extends Controller
 {
@@ -15,5 +16,11 @@ class UserController extends Controller
     {
         
         return view('user.home');
+    }
+
+    public function settings(){
+        $userId = auth()->user()->id;
+        $data['settings'] = UserSetting::where('user_id',$userId)->get(); 
+        return view('user.pages.settings.uploaddoc');
     }
 }

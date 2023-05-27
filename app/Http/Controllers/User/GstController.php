@@ -9,6 +9,7 @@ use App\Models\Documents;
 use App\Models\UserPartner;
 use App\Models\UserDirector;
 use App\Models\CopyOfReturns;
+use App\Models\UserGstUploadDocument;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Response;
 use DB; 
@@ -177,12 +178,64 @@ class GstController extends Controller {
         return view('user.pages.gst.business_status')->with($data);
     }
 
+    public function uploadMonthly(Request $request){
+        
+    }
+
+    public function uploadQuarterly(Request $request){
+            }
+
+    public function uploadDocumentsCreate(Request $request){
+        if($request->input('gstnumber') && $request->input('doc_type')=='Monthly'){
+         $gstId = $request->input('gstid');  
+        $userId = auth()->user()->id;
+        $useName = trim(auth()->user()->name).'-'.$userId; 
+        $folderName = 'uploads/users/'.$useName.'/Gst/UploadDocuments/Monthly';
+        $data = Helper :: uploadImagesNormal($request, $userId, $folderName,'documents');
+        $data['gst_id'] =  $gstId;
+        $data['user_id'] =  $userId;
+        $data['year'] = $request->input('year');
+        $data['month'] = $request->input('month');
+        $matchthese = ['user_id'=>$userId, 'doc_type'=>'Monthly', 'gst_id' => $gstId  ];
+        UserGstUploadDocument::where($matchthese)->delete();
+        $lastInsertedId =  UserGstUploadDocument::updateOrCreate($matchthese, $data)->id;
+        $msg = 'Monthly - Upload Documents Successfully Updated!'; 
+        
+         } else    if($request->input('gstnumber') && $request->input('doc_type')=='Quarterly'){
+        $gstId = $request->input('gstid');  
+        $userId = auth()->user()->id;
+        $useName = trim(auth()->user()->name).'-'.$userId; 
+        $folderName = 'uploads/users/'.$useName.'/Gst/UploadDocuments/Quarterly';
+        $data = Helper :: uploadImagesNormal($request, $userId, $folderName,'documents');
+        $data['gst_id'] =  $gstId;
+        $data['user_id'] =  $userId;
+        $data['year'] = $request->input('year');
+        $data['quarter'] = $request->input('quarter');
+        $matchthese = ['user_id'=>$userId, 'doc_type'=>'Quarterly', 'gst_id' => $gstId  ];
+        UserGstUploadDocument::where($matchthese)->delete();
+        $lastInsertedId =  UserGstUploadDocument::updateOrCreate($matchthese, $data)->id;
+        $msg = 'Quarterly - Upload Documents Successfully Updated!'; 
+      
+         } 
+         return redirect('/gst/uploaddocuments')->with('success', $msg); 
+  
+    }
+
     public function uploadDocuments(Request $request){
-        echo "coming soon"; 
+        $userId = auth()->user()->id;
+        $data['gstNumbers'] =  UserGstDetail::select('gst_number')->whereNotNull('gst_number')->where('user_id',$userId)->get();
+        return view('user.pages.gst.uploadDocuments.index')->with($data);
+    }
+
+    public function getTradeName(Request $request){
+        $userId = auth()->user()->id;
+        $gstNumber = $request->input('gst');
+        $tradeName = UserGstDetail::select('id', 'trade_name')->where(['user_id'=>$userId,'gst_number'=>$gstNumber])->get()->first();
+        return response()->json($tradeName);
     }
 
     public function copyOfReturns(Request $request){
-        echo "coming soon"; 
+       // echo "coming soon"; 
         // $userId = auth()->user()->id;
         // $useGstId = UserGstDetail::select('id')->whereIn('status',[3])->where('user_id',$userId)->get();
         // foreach($useGstId as $gstId){
@@ -191,7 +244,8 @@ class GstController extends Controller {
         //   $data['copyofreturns']['gst_number'] =  $gstId->gst_number;
         //   $data['copyofreturns'][$userGstId]=  CopyOfReturns::where('user_gst_id', $userGstId )->get()->toArray();
         // }
-        // return view('user.pages.gst.copy_of_returns')->with($data);
+        $data['message'] = "";
+       return view('user.pages.gst.copy_of_returns')->with($data);
     }
 
      public function queryRaised(Request $request){

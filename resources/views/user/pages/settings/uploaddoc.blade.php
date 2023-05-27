@@ -1,0 +1,66 @@
+@extends('user.layouts.app')
+@section('content')
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main" id="top">
+    <div class="container" data-layout="container">
+        @include('user.partials.header')
+        <div class="content">
+            @include('user.partials.aside')
+            <div class="row g-3">
+                <div class="col-md-12 col-xxl-3">
+                    <div class="card h-md-100 ecommerce-card-min-width">
+                         <!-- <section> begin ============================-->
+              <section class="text-center">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">User <font color="#ec465f">Settings
+                        </font>
+                      </h1>
+                       
+                    </div>
+
+
+                    <!-------Upload documents open------>
+
+
+                    <div class="row g-0">
+                      <div class="col-xl-12">
+
+                         
+
+                        <div class="card-body">
+                          
+                        <label> Upload Document Settings: </label>
+                        <input type="checkbox" name="doc_type" value="Monthly"/>Monthly
+                        <input type="checkbox" name="doc_type" value="Quarterly"/>Quarterly
+                        </div>
+
+
+                      </div>
+                    </div>
+
+                    <!-------Upload Documents Close----->
+
+
+                  </div>
+                </div><!-- end of .container-->
+              </section><!-- <section> close ============================-->
+              <!-- ============================================-->
+                        
+
+
+
+                </div>
+            </div>
+            @include('user.partials.footer')
+        </div>
+    </div>
+    </div>
+</main><!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+@endsection
+ 

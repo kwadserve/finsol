@@ -81,7 +81,8 @@
                                 <div class="row mt-4 g-3">
                                     @if(isset($userGstDetails))
                                     @if($userGstDetails->status =='4')
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4"> 
+                                    <div onclick="location.href='{{route('gst.uploaddocuments')}}'" type="button">
                                         <div class="card card-span h-100">
                                             <div class="roundlogobg topcurves">
                                                 <h2 class="roundtext">Upload Documents</h2>
@@ -90,6 +91,7 @@
                                                 <p>Upload Documents</p>
                                             </div>
                                         </div>
+                                    </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="card card-span h-100">
