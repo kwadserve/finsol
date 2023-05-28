@@ -9,6 +9,7 @@ use App\Models\Documents;
 use App\Models\UserPartner;
 use App\Models\UserDirector;
 use App\Models\CopyOfReturns;
+use App\Models\UserSetting;
 use App\Models\UserGstUploadDocument;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Response;
@@ -223,6 +224,8 @@ class GstController extends Controller {
 
     public function uploadDocuments(Request $request){
         $userId = auth()->user()->id;
+        $data['settings'] = UserSetting::select('value')->where(['user_id' => $userId, 'type'=>'Upload Document', 'status'=>1])->get();
+        
         $data['gstNumbers'] =  UserGstDetail::select('gst_number')->whereNotNull('gst_number')->where('user_id',$userId)->get();
         return view('user.pages.gst.uploadDocuments.index')->with($data);
     }

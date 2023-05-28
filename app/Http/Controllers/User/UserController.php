@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function settings(){
         $userId = auth()->user()->id;
-        $data['settings'] = UserSetting::where('user_id',$userId)->get(); 
-        return view('user.pages.settings.uploaddoc');
+        $data['settings'] = UserSetting::where(['user_id' => $userId, 'type'=>'Upload Document'])->get();
+        return view('user.pages.settings.uploaddoc')->with($data);
     }
 }

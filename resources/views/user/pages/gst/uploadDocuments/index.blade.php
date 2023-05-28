@@ -45,21 +45,33 @@
                             aria-labelledby="tab-dom-61c83f7c-d9df-458a-94bd-f4e645b55d13"
                             id="dom-61c83f7c-d9df-458a-94bd-f4e645b55d13">
                             <ul class="nav nav-pills" id="pill-myTab" role="tablist">
+                              
+                              @foreach($settings as $setting)
+                              @if($setting->value==1)
                               <li class="nav-item"><a class="nav-link active" id="pill-home-tab" data-bs-toggle="tab"
                                   href="#pill-tab-home" role="tab" aria-controls="pill-tab-home"
                                   aria-selected="true">Monthly</a>
                               </li>
+                              @endif
+
+                              @if($setting->value==2)
                               <li class="nav-item"><a class="nav-link" id="pill-profile-tab" data-bs-toggle="tab"
                                   href="#pill-tab-profile" role="tab" aria-controls="pill-tab-profile"
                                   aria-selected="false">Quarterly</a></li>
-
+                                   
+                              @endif
+                              @endforeach
                             </ul>
                             <div class="tab-content mt-3" id="pill-myTabContent">
                              
                              <!------------------tab 1----------------->
+                             
                              @include('user.pages.gst.uploadDocuments.monthly')
+                              
                             <!------------Tab 2 ------------>
+                            
                              @include('user.pages.gst.uploadDocuments.quarterly')
+                              
                             </div>
                           </div>
                         </div>

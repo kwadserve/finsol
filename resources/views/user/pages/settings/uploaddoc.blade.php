@@ -34,8 +34,34 @@
                         <div class="card-body">
                           
                         <label> Upload Document Settings: </label>
-                        <input type="checkbox" name="doc_type" value="Monthly"/>Monthly
-                        <input type="checkbox" name="doc_type" value="Quarterly"/>Quarterly
+                         
+                       
+                        @foreach($settings as $setting)
+                      
+                        @if($setting->status==1)
+                        @if($setting->value==1)
+                        <input type="checkbox" name="doc_type" value="1" checked="checked" />Monthly
+                        @endif
+                        @if($setting->value==2)
+                        <input type="checkbox" name="doc_type" value="2" checked="checked"/>Quarterly  
+                        @endif
+                        @endif
+                        
+                        
+                       
+
+
+                        @if($setting->status==0)
+                        @if($setting->value==1)
+                        <input type="checkbox" name="doc_type" value="1"  />Monthly
+                        @endif
+                        @if($setting->value==2)
+                        <input type="checkbox" name="doc_type" value="2"  />Quarterly  
+                        @endif
+                        @endif
+                       
+
+                        @endforeach
                         </div>
 
 
