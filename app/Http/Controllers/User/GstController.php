@@ -192,9 +192,10 @@ class GstController extends Controller {
         $data['user_id'] =  $userId;
         $data['year'] = $request->input('year');
         $data['month'] = $request->input('month');
-        $matchthese = ['user_id'=>$userId, 'doc_type'=>'Monthly', 'gst_id' => $gstId  ];
-        UserGstUploadDocument::where($matchthese)->delete();
-        $lastInsertedId =  UserGstUploadDocument::updateOrCreate($matchthese, $data)->id;
+        $data['doc_type'] = 'Monthly';
+        // $matchthese = ['user_id'=>$userId, 'doc_type'=>'Monthly', 'gst_id' => $gstId, 'year' =>$request->input('year')  ];
+        // UserGstUploadDocument::where($matchthese)->delete();
+        $lastInsertedId =  UserGstUploadDocument::updateOrCreate($data)->id;
         $msg = 'Monthly - Upload Documents Successfully Updated!'; 
         
          } else    if($request->input('gstnumber') && $request->input('doc_type')=='Quarterly'){
@@ -207,9 +208,10 @@ class GstController extends Controller {
         $data['user_id'] =  $userId;
         $data['year'] = $request->input('year');
         $data['quarter'] = $request->input('quarter');
-        $matchthese = ['user_id'=>$userId, 'doc_type'=>'Quarterly', 'gst_id' => $gstId  ];
-        UserGstUploadDocument::where($matchthese)->delete();
-        $lastInsertedId =  UserGstUploadDocument::updateOrCreate($matchthese, $data)->id;
+        $data['doc_type'] = 'Quarterly';
+        // $matchthese = ['user_id'=>$userId, 'doc_type'=>'Quarterly', 'gst_id' => $gstId  ];
+        // UserGstUploadDocument::where($matchthese)->delete();
+        $lastInsertedId =  UserGstUploadDocument::updateOrCreate($data)->id;
         $msg = 'Quarterly - Upload Documents Successfully Updated!'; 
       
          } 

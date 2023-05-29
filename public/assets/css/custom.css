@@ -63,9 +63,30 @@
 }
 
 .rowmarg {
-    margin-bottom: 6rem!impor;
+    margin-bottom: 6rem!important;
 }
 
 .bg-card-gradient {
     background-color: #2b3467;
+}
+
+
+.cardimgwidth {
+    width: 3rem!important;
+}
+
+.logoimgwidth {
+    width: 7rem!important;
+}
+
+.logincolor {
+    color: #fff;
+}
+
+.bluecolor {
+    color:#2a3468
+}
+
+.bgfilter {
+    filter: brightness(0.5);
 }

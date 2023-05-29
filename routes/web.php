@@ -12,6 +12,7 @@ Route::group([
     Route::get('login', 'LoginController@showLoginForm')->name('login_page');
     Route::post('login', 'LoginController@login')->name('login');
     Route::post('logout', 'LoginController@logout')->name('logout');
+    Route::get('logout', 'LoginController@logout')->name('logout_page');
 
     // Registration Routes...
     Route::get('register', 'RegisterController@showRegistrationForm')->name('register_page');

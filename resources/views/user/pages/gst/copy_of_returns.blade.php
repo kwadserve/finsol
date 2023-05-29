@@ -70,7 +70,7 @@
                                                 $endYear = $currentYear;
                                             @endphp
                                             <option value="">Select Year</option>
-                                            @for ($year = $startYear; $year <= $endYear; $year++)
+                                            @for ($year = $endYear; $year >= $startYear; $year--)
                                                 <option value="{{ $year }}"  @if($selectedyear == $year) selected @endif >{{ $year }}</option>
                                             @endfor
                                         </select>
@@ -234,7 +234,7 @@
         $('#formtype').find('option').not(':first').remove();
         if(gstValue) {
         $.ajax({
-            url: '/gst/getformtype',
+            url: 'https://kwad.in/finsolproject/public/gst/getformtype',
             type: 'POST',
             data: {
                 gst: gstValue
@@ -272,7 +272,7 @@
      $('#gstyear').find('option').not(':first').remove();
      if(gstValue) {
      $.ajax({
-         url: '/gst/getyear',
+         url: 'https://kwad.in/finsolproject/public/gst/getyear',
          type: 'POST',
          data: {
              gst: gstValue,
@@ -318,7 +318,7 @@ function getMonth() {
      $('#gstmonth').find('option').not(':first').remove();
      if(gstValue) {
      $.ajax({
-         url: '/gst/getmonth',
+         url: 'https://kwad.in/finsolproject/public/gst/getmonth',
          type: 'POST',
          data: {
              gst: gstValue,
@@ -358,7 +358,7 @@ function getMonth() {
      $('#gstquarter').find('option').not(':first').remove();
      if(gstValue) {
         $.ajax({
-         url: '/gst/getquarter',
+         url: 'https://kwad.in/finsolproject/public/gst/getquarter',
          type: 'POST',
          data: {
              gst: gstValue,

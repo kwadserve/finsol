@@ -10,7 +10,7 @@
                                       <div class="mb-3">
                                       <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
                                           GST Number</label>
-                                        <select name="gstnumber" class="form-select" id="gstSelect2" required="required" onClick="getTradeName2()"
+                                        <select name="gstnumber" class="form-select" id="gstSelect2" required="required" onChange="getTradeName2()"
                                           aria-label="Default select example">
                                           <option value="">GST Number</option>
                                            @foreach ($gstNumbers  as $key => $numbers)
@@ -27,7 +27,7 @@
                                         <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Trade
                                           Name of
                                           the
-                                          Business</label><input required="" class="form-control tradeName2" type="text"
+                                          Business</label><input required="" class="form-control tradeName2" type="text" disabled
                                           name="name" placeholder="Legal Name of Business"
                                           id="form-wizard-progress-wizard-legalname"
                                           data-wizard-validate-legal-name="true" />
@@ -50,7 +50,7 @@
                                                 $endYear = $currentYear;
                                             @endphp
                                             <option value="">Select Year</option>
-                                            @for ($year = $startYear; $year <= $endYear; $year++)
+                                            @for ($year = $endYear; $year >= $startYear; $year--)
                                                 <option value="{{ $year }}">{{ $year }}</option>
                                             @endfor
                                         </select>

@@ -105,14 +105,14 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                               <script>
     function getTradeName2() {
-    
+       
         var gstValue = $('#gstSelect2').val();
         $('.tradeName2').val('')
         $('.gstid2').val('')
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         if(gstValue) {
         $.ajax({
-            url: '/gst/gettradename',
+            url: 'https://kwad.in/finsolproject/public/gst/gettradename',
             type: 'POST',
             data: {
                 gst: gstValue
@@ -135,12 +135,13 @@
     }
 
     function getTradeName() {
+       
         var gstValue = $('#gstSelect').val();
         $('.tradeName').val('')
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         if(gstValue) {
         $.ajax({
-            url: '/gst/gettradename',
+            url: 'https://kwad.in/finsolproject/public/gst/gettradename',
             type: 'POST',
             data: {
                 gst: gstValue
