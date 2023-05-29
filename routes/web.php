@@ -40,12 +40,19 @@ Route::post('gst/firm', 'GstController@storeFirm')->name('gst.firm');
 Route::post('gst/company', 'GstController@storeCompany')->name('gst.company');
 Route::get('gst/business', 'GstController@businessStatus')->name('gst.business_status');
 Route::get('gst/copyofreturns', 'GstController@copyOfReturns')->name('gst.copy_of_returns');
+Route::post('gst/copyofreturns', 'GstController@copyOfReturns')->name('gst.copy_of_returns.filter');
 Route::post('gst/queryraised', 'GstController@queryRaised')->name('gst.query_raised');
 Route::get('gst/uploaddocuments', 'GstController@uploadDocuments')->name('gst.uploaddocuments');
 Route::post('userSettings', 'GstController@userSettings')->name('userSettings');
 Route::post('gst/download/approved/file', 'GstController@approvedFile')->name('approvedFile');
 Route::post('gst/gettradename', 'GstController@getTradeName')->name('gst.gettradename');
 Route::post('gst/uploaddocumentscreate', 'GstController@uploadDocumentsCreate')->name('gst.uploaddocumentscreate');
+
+Route::post('gst/getformtype', 'GstController@getFormType')->name('gst.getformtype');
+Route::post('gst/getyear', 'GstController@getYear')->name('gst.getyear');
+Route::post('gst/getmonth', 'GstController@getMonth')->name('gst.getmonth');
+Route::post('gst/getquarter', 'GstController@getQuarter')->name('gst.getquarter');
+Route::post('gst/download/copyofreturns/file', 'GstController@copyofreturnsFile')->name('copyofreturnsFile');
 
 //PAN DETAILS 
 Route::get('pan/register', 'PanController@register_form')->name('pan.register_form');

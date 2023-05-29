@@ -25,16 +25,20 @@
                                  </div>
 
                                  <!------ GST options drop ------->
-
+<form action="{{ route('gst.copy_of_returns.filter') }}" method="POST">
+    @csrf
                                  <div class="mt-1 row g-2">
-                                     <div class="col-3">
+                                     <div class="col-4">
                                          <div class="mb-3">
-                                             <label class="form-label"
-                                                 for="form-wizard-progress-wizard-legalnamename">GST
-                                                 Number</label><input required="" class="form-control" type="text"
-                                                 name="gst_number" placeholder="Gst Number"
-                                                 id="form-wizard-progress-wizard-legalname"
-                                                 data-wizard-validate-legal-name="true" />
+                                         <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
+                                          GST Number</label>
+                                        <select name="gstnumber" class="form-select" id="gstSelect" required="required" onChange="getFormType()"
+                                          aria-label="Default select example">
+                                          <option value="">GST Number</option>
+                                           @foreach ($gstNumbers  as $key => $numbers)
+                                                <option value="{{ ($numbers->gst_number)  }}"  @if($selectedgstNumber == $numbers->gst_number) selected @endif >{{ $numbers->gst_number }}</option>
+                                            @endforeach
+                                        </select>
                                              <div class="invalid-feedback">Please provide GST Number
                                              </div>
                                          </div>
@@ -43,48 +47,72 @@
                                      <div class="col-3">
                                          <div class="mb-3">
                                              <label class="form-label"
-                                                 for="form-wizard-progress-wizard-legalnamename">Year</label>
-                                             <select class="form-control" id="year" name="year">
-                                                 <option value="0">Select Year</option>
-                                                 @for($i = date('Y'); $i >= 2020; $i--)
-                                                 <option value="{{ $i }}">{{ $i }}</option>
-                                                 @endfor
+                                                 for="form-wizard-progress-wizard-legalnamename">Form Type</label>
+                                             <select class="form-control" id="formtype" name="formtype"  onChange="getYear()">
+                                                 <option value="0">Select Form</option>
+                                                 @foreach($formtypes as $form)
+                                                 <option value="{{ $form->type }}"  @if($selectedformtype == $form->type) selected @endif >{{ $form->type }}</option>
+                                                 @endforeach
                                              </select>
                                              <div class="invalid-feedback">Please provide Year
                                              </div>
                                          </div>
                                      </div>
 
-                                     <div class="col-3">
+                                     <div class="col-4">
                                          <div class="mb-3">
-                                             <label class="form-label"
-                                                 for="form-wizard-progress-wizard-legalnamename">Month/Quarter</label>
-                                             <select class="form-control" id="month" name="month">
-                                                 <option value="0">Select Month/Quarter</option>
-                                                 <option value="1">January</option>
-                                                 <option value="2">February</option>
-                                                 <option value="3">March</option>
-                                                 <option value="4">April</option>
-                                                 <option value="5">May</option>
-                                                 <option value="6">June</option>
-                                                 <option value="7">July</option>
-                                                 <option value="8">August</option>
-                                                 <option value="9">September</option>
-                                                 <option value="10">October</option>
-                                                 <option value="11">November</option>
-                                                 <option value="12">December</option>
-                                                 <option value="Q1">1st Quarter</option>
-                                                 <option value="Q2">2nd Quarter</option>
-                                                 <option value="Q3">3rd Quarter</option>
-                                                 <option value="Q4">4th Quarter</option>
-                                             </select>
+                                         <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
+                                          Year</label>
+                                          <select class="form-select" required="required" id="gstyear" name="year" aria-label="Default select example" onchange="getMonth()">
+                                            @php
+                                                $currentYear = date('Y');
+                                                $startYear = $currentYear - 10;
+                                                $endYear = $currentYear;
+                                            @endphp
+                                            <option value="">Select Year</option>
+                                            @for ($year = $startYear; $year <= $endYear; $year++)
+                                                <option value="{{ $year }}"  @if($selectedyear == $year) selected @endif >{{ $year }}</option>
+                                            @endfor
+                                        </select>
+                                             <div class="invalid-feedback">Please provide Year
+                                             </div>
+                                         </div>
+                                     </div>
+                                </div>
+
+                                <div class="mt-1 row g-2">
+
+                                     <div class="col-4">
+                                         <div class="mb-3">
+                                         <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
+                                          Month</label>
+                                        
+                                        <select class="form-select"   id="gstmonth" name="month" onchange="getQuarter()"  >
+                                        <option value="">Select Month</option>
+                                            @for ($month = 1; $month <= 12; $month++)
+                                                <option value="{{ $month }}"  @if($selectedmonth == $month) selected @endif >{{ date('F', mktime(0, 0, 0, $month, 1)) }}</option>
+                                            @endfor
+                                        </select>
                                              <div class="invalid-feedback">Please provide Month Or Quarter
                                              </div>
                                          </div>
                                      </div>
 
+                                    <div class="col-3">
+                                        <div class="mb-3">
+                                        <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
+                                          Quarter</label>
+                                          <select class="form-select"  id="gstquarter"  name="quarter" >
+                                          <option value="">Select Quarter</option>
+                                        @for ($quarter = 1; $quarter <= 4; $quarter++)
+                                            <option value="{{ $quarter }}"  @if($selectedquarter == $quarter) selected @endif >{{ 'Q'.$quarter }}</option>
+                                        @endfor
+                                        </select>
+                                        </div>
+                                    </div>
 
-                                     <div class="col-3">
+
+                                     <div class="col-4">
                                          <div class="mb-3">
                                              <label class="form-label">Find</label>
                                              <input class="form-control btn btn-primary" type="submit" name="submit"
@@ -92,12 +120,16 @@
                                          </div>
                                      </div>
 
-                                 </div>
+                                </div>
+
+</form>
+
 
 
 
                                  <div class="table-responsive scrollbar">
                                      <br><br>
+                                    
                                      <table class="table table-hover table-striped overflow-hidden">
                                          <thead>
                                              <tr>
@@ -111,73 +143,65 @@
 
                                              </tr>
                                          </thead>
+                                         @if($items) 
                                          <tbody>
+                                            @if (count($items)>0)
+                                            @foreach($items as $item)
                                              <tr class="align-middle">
+                                           
                                                  <td class="text-nowrap">
                                                      <div class="align-items-center">
-
-                                                         <div class="ms-2">Ricky Antony</div>
+                                                         <div class="ms-2">{{$item->trade_name}}</div>
                                                      </div>
                                                  </td>
-                                                 <td class="text-nowrap">27BNRPG2461A1Z2</td>
-
-                                                 <td class="text-nowrap">2022</td>
-                                                 <td class="text-nowrap">January</td>
-                                                 <td class="text-nowrap">-</td>
-                                                 <td><span class="badge badge-subtle-success">GSTR-01</span></td>
-
-                                                 <td class="text-nowrap"><button class="btn btn-link p-0" type="button"
-                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                         title="download"><span
-                                                             class="text-500 fas fa-download"></span></button></td>
-
-                                             </tr>
-
-                                             <tr class="align-middle">
+                                                 <td class="text-nowrap">{{$item->gst_number}}</td>
+                                                 <td class="text-nowrap">{{$item->year}}</td>
+                                                 <td class="text-nowrap">{{$item->month}}</td>
+                                                 <td class="text-nowrap">{{$item->quarter}}</td>
+                                                 @php
+                                                 if($item->form_type=='GSTR1'|| $item->form_type=='GSTR2A'){
+                                                 $css = 'badge-subtle-success';
+                                                 }
+                                                  else  
+                                                  if($item->form_type=='GSTR2B'||$item->form_type=='GSTR2X') {
+                                                 $css = 'badge-subtle-warning';
+                                                   } else  
+                                                  if($item->form_type=='GSTR9'||$item->form_type=='GSTR9C') {
+                                                 $css = 'badge-subtle-info';
+                                                   }
+                                                  
+                                                @endphp
+                                                
+                                                 <td><span class="badge {{ $css }}">{{$item->form_type}}</span></td>
                                                  <td class="text-nowrap">
-                                                     <div class="align-items-center">
 
-                                                         <div class="ms-2">Ricky Antony</div>
-                                                     </div>
-                                                 </td>
-                                                 <td class="text-nowrap">27BNRPG2461A1Z2</td>
-
-                                                 <td class="text-nowrap">2022</td>
-                                                 <td class="text-nowrap">-</td>
-                                                 <td class="text-nowrap">January - April</td>
-                                                 <td><span class="badge badge-subtle-warning">GSTR-2B</span></td>
-
-                                                 <td class="text-nowrap"><button class="btn btn-link p-0" type="button"
+                                                 
+                                                 <form action="{{ route('copyofreturnsFile') }}" method="POST">
+                                                                                    @csrf
+                                                                                    
+                                                                                        <input type="hidden" name="files" value="{{ $item->documents }}">
+                                                                                    
+                                                                                        <button class="btn btn-link p-0" type="submit"
                                                          data-bs-toggle="tooltip" data-bs-placement="top"
                                                          title="download"><span
-                                                             class="text-500 fas fa-download"></span></button></td>
+                                                             class="text-500 fas fa-download"></span>
+                                                    </button>
+                                                                                </form>
 
-                                             </tr>
-
-
-                                             <tr class="align-middle">
-                                                 <td class="text-nowrap">
-                                                     <div class="align-items-center">
-
-                                                         <div class="ms-2">Ricky Antony</div>
-                                                     </div>
+                                                    
                                                  </td>
-                                                 <td class="text-nowrap">27BNRPG2461A1Z2</td>
-
-                                                 <td class="text-nowrap">2022</td>
-                                                 <td class="text-nowrap">January</td>
-                                                 <td class="text-nowrap">-</td>
-                                                 <td><span class="badge badge-subtle-info">GSTR-2A</span></td>
-
-                                                 <td class="text-nowrap"><button class="btn btn-link p-0" type="button"
-                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                         title="download"><span
-                                                             class="text-500 fas fa-download"></span></button></td>
-
                                              </tr>
-
+                                            @endforeach 
+                                            @else 
+                                            <tr class="align-middle">
+                                            <td colspan="7"><b>No records found....</b></td>
+                                             </tr>
+                                             @endif
                                          </tbody>
+                                         @endif
+                                         
                                      </table>
+                                    
                                      <br><br>
                                  </div>
 
@@ -200,3 +224,170 @@
  <!--    End of Main Content-->
  <!-- ===============================================-->
  @endsection
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                              <script>
+    function getFormType() {
+     
+        var gstValue = $('#gstSelect').val();
+        var csrfToken = $('meta[name="csrf-token"]').attr('content');
+        $('#formtype').find('option').not(':first').remove();
+        if(gstValue) {
+        $.ajax({
+            url: '/gst/getformtype',
+            type: 'POST',
+            data: {
+                gst: gstValue
+            },
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            },
+            success: function(response) {
+ 
+                var len = response.length;
+                for( var i = 0; i<len; i++){
+                           var type = response[i]['form_type'];
+                            
+
+                           $("#formtype").append("<option value='"+ type +"' >"+ type +"</option>");
+
+                     }
+                // Handle the response from the server
+                 
+                
+            },
+            error: function(xhr, status, error) {
+                // Handle any errors that occur during the AJAX request
+                console.error(error);
+            }
+        });
+      }
+    }
+
+    function getYear() {
+     
+     var gstValue = $('#gstSelect').val();
+     var formType = $('#formtype').val();
+     var csrfToken = $('meta[name="csrf-token"]').attr('content');
+     $('#gstyear').find('option').not(':first').remove();
+     if(gstValue) {
+     $.ajax({
+         url: '/gst/getyear',
+         type: 'POST',
+         data: {
+             gst: gstValue,
+             formtype:formType
+         },
+         headers: {
+             'X-CSRF-TOKEN': csrfToken
+         },
+         success: function(response) {
+
+             var len = response.length;
+             for( var i = 0; i<len; i++){
+                        var year = response[i]['year'];
+                        $("#gstyear").append("<option value='"+ year +"' >"+ year +"</option>");
+
+                  }
+             // Handle the response from the server
+              
+             
+         },
+         error: function(xhr, status, error) {
+             // Handle any errors that occur during the AJAX request
+             console.error(error);
+         }
+     });
+   }
+
+ 
+
+   
+
+ }
+
+
+ 
+
+function getMonth() {
+     
+     var gstValue = $('#gstSelect').val();
+     var formType = $('#formtype').val();
+     var gstyear = $('#gstyear').val();
+     var csrfToken = $('meta[name="csrf-token"]').attr('content');
+     $('#gstmonth').find('option').not(':first').remove();
+     if(gstValue) {
+     $.ajax({
+         url: '/gst/getmonth',
+         type: 'POST',
+         data: {
+             gst: gstValue,
+             formtype:formType,
+             gstyear:gstyear
+         },
+         headers: {
+             'X-CSRF-TOKEN': csrfToken
+         },
+         success: function(response) {
+ 
+             var len = response.length;
+             for( var i = 0; i<len; i++){
+                        var month = response[i]['month'];
+                        $("#gstmonth").append("<option value='"+ month +"' >"+ month +"</option>");
+
+                  }
+             // Handle the response from the server
+              
+             
+         },
+         error: function(xhr, status, error) {
+             // Handle any errors that occur during the AJAX request
+             console.error(error);
+         }
+     });
+     }
+    }
+
+   
+    function getQuarter() {
+        var gstValue = $('#gstSelect').val();
+     var formType = $('#formtype').val();
+     var gstyear = $('#gstyear').val();
+     var gstmonth = $('#gstmonth').val();
+     var csrfToken = $('meta[name="csrf-token"]').attr('content');
+     $('#gstquarter').find('option').not(':first').remove();
+     if(gstValue) {
+        $.ajax({
+         url: '/gst/getquarter',
+         type: 'POST',
+         data: {
+             gst: gstValue,
+             formtype:formType,
+             gstyear:gstyear,
+             gstmonth:gstmonth
+         },
+         headers: {
+             'X-CSRF-TOKEN': csrfToken
+         },
+         success: function(response) {
+ 
+             var len = response.length;
+             for( var i = 0; i<len; i++){
+                        var quarter = response[i]['quarter'];
+                        $("#gstquarter").append("<option value='"+ quarter +"' >"+ quarter +"</option>");
+
+                  }
+             // Handle the response from the server
+              
+             
+         },
+         error: function(xhr, status, error) {
+             // Handle any errors that occur during the AJAX request
+             console.error(error);
+         }
+     });
+     }
+
+    }
+   
+</script>

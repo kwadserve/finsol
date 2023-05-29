@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: May 27, 2023 at 10:31 PM
+-- Generation Time: May 29, 2023 at 01:12 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.4.0
 
@@ -61,10 +61,12 @@ CREATE TABLE IF NOT EXISTS `copy_of_returns` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `user_gst_id` int(11) NOT NULL,
+  `trade_name` varchar(300) NOT NULL,
+  `gst_number` varchar(100) DEFAULT NULL,
   `year` int(11) DEFAULT NULL,
   `month` varchar(30) DEFAULT NULL,
   `quarter` varchar(30) DEFAULT NULL,
-  `type` varchar(30) DEFAULT NULL,
+  `form_type` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `documents` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
@@ -73,11 +75,11 @@ CREATE TABLE IF NOT EXISTS `copy_of_returns` (
 -- Dumping data for table `copy_of_returns`
 --
 
-INSERT INTO `copy_of_returns` (`id`, `user_id`, `user_gst_id`, `year`, `month`, `quarter`, `type`, `documents`) VALUES
-(1, 1, 39, 2022, 'January', 'January-April', 'GSTR-01', '2323.jpg'),
-(2, 1, 39, 2023, 'January', 'January-April', 'GSTR-01', '2323.jpg'),
-(3, 1, 39, 2020, 'January', 'January-April', 'GSTR-01', '2323.jpg'),
-(4, 1, 39, 2020, 'January', 'January-April', 'GSTR-01', '2323.jpg');
+INSERT INTO `copy_of_returns` (`id`, `user_id`, `user_gst_id`, `trade_name`, `gst_number`, `year`, `month`, `quarter`, `form_type`, `documents`) VALUES
+(1, 1, 39, 'laasasd', '123123123123', 2022, 'January', 'Q1', 'GSTR1', '2323.jpeg'),
+(2, 1, 39, 'laasasd', '123123123123', 2023, 'January', 'Q2', 'GSTR2X', '2324.jpg'),
+(3, 1, 40, 'laasasd', '123123123123', 2023, 'January', 'Q3', 'GSTR2X', '2325.jpg'),
+(4, 1, 40, '', '123131', 2020, 'January', 'Q4', 'GSTR2X', '2323.jpg');
 
 -- --------------------------------------------------------
 
@@ -198,6 +200,33 @@ INSERT INTO `documents` (`id`, `doc_name`, `doc_key_name`, `filename`, `status`,
 (90, 'Spaceman signature', 'comp_sign_spaceman_img', 'comp_sign_spaceman', 1, 9, 0, 'COMPANY Signatory', 4, '2023-04-27 22:48:37', '2023-04-27 22:48:37'),
 (91, 'Declaration', 'comp_sign_declare_img', 'comp_sign_declare', 1, 9, 0, 'COMPANY Signatory', 5, '2023-04-27 22:48:40', '2023-04-27 22:48:40'),
 (92, 'Attorney and affidavit (Formet Attached)', 'comp_sign_aff_img', 'comp_sign_aff', 1, 9, 0, 'COMPANY Signatory', 6, '2023-05-01 22:27:06', '2023-05-01 22:27:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gst_form_type`
+--
+
+DROP TABLE IF EXISTS `gst_form_type`;
+CREATE TABLE IF NOT EXISTS `gst_form_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `gst_form_type`
+--
+
+INSERT INTO `gst_form_type` (`id`, `type`, `created_at`) VALUES
+(1, 'GSTR1', '2023-05-28 13:22:45'),
+(2, 'GSTR2A', '2023-05-28 13:22:45'),
+(3, 'GSTR2B', '2023-05-28 13:24:06'),
+(4, 'GSTR2X', '2023-05-28 13:24:06'),
+(5, 'GSTR9', '2023-05-28 13:24:45'),
+(6, 'GSTR9C', '2023-05-28 13:24:45');
 
 -- --------------------------------------------------------
 
@@ -675,15 +704,15 @@ CREATE TABLE IF NOT EXISTS `users_gst_upload_documents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `gst_id` int(11) NOT NULL,
-  `doc_type` varchar(30) DEFAULT 'Quarterly',
+  `doc_type` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT 'Quarterly',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `documents` varchar(500) NOT NULL,
+  `documents` varchar(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `year` int(30) NOT NULL,
-  `month` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `quarter` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `month` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `quarter` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users_gst_upload_documents`
@@ -858,18 +887,19 @@ DROP TABLE IF EXISTS `user_settings`;
 CREATE TABLE IF NOT EXISTS `user_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `type` varchar(11) NOT NULL,
-  `value` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `type` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `value` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_settings`
 --
 
 INSERT INTO `user_settings` (`id`, `user_id`, `type`, `value`, `status`) VALUES
-(1, 1, 'Upload Docu', '[1,2]', 1);
+(1, 1, 'Upload Document', '1', 1),
+(2, 1, 'Upload Document', '2', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,6 +10,7 @@ use App\Models\UserPartner;
 use App\Models\UserDirector;
 use App\Models\CopyOfReturns;
 use App\Models\UserSetting;
+use App\Models\GstFormType;
 use App\Models\UserGstUploadDocument;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Response;
@@ -178,13 +179,7 @@ class GstController extends Controller {
         $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->get();
         return view('user.pages.gst.business_status')->with($data);
     }
-
-    public function uploadMonthly(Request $request){
-        
-    }
-
-    public function uploadQuarterly(Request $request){
-            }
+ 
 
     public function uploadDocumentsCreate(Request $request){
         if($request->input('gstnumber') && $request->input('doc_type')=='Monthly'){
@@ -238,19 +233,85 @@ class GstController extends Controller {
     }
 
     public function copyOfReturns(Request $request){
-       // echo "coming soon"; 
-        // $userId = auth()->user()->id;
-        // $useGstId = UserGstDetail::select('id')->whereIn('status',[3])->where('user_id',$userId)->get();
-        // foreach($useGstId as $gstId){
-        //   $userGstId = $gstId->id;
-        //   $data['copyofreturns']['trade_name'] =  $gstId->trade_name;
-        //   $data['copyofreturns']['gst_number'] =  $gstId->gst_number;
-        //   $data['copyofreturns'][$userGstId]=  CopyOfReturns::where('user_gst_id', $userGstId )->get()->toArray();
-        // }
-        $data['message'] = "";
-       return view('user.pages.gst.copy_of_returns')->with($data);
+     
+       $userId = auth()->user()->id;
+       $formtypes = GstFormType::select('type')->get();
+       $gstNumbers =  UserGstDetail::select('gst_number')->whereNotNull('gst_number')->where('user_id',$userId)->get();
+       $items=[];
+       $selectedgstNumber=""; $selectedformtype="";  $selectedyear=""; $selectedmonth=""; $selectedquarter="";
+       if ($request->method() == 'POST') {
+        
+            $selectedgstNumber = $request->input('gstnumber');
+            $selectedformtype = $request->input('formtype');
+            $selectedyear = $request->input('year');
+            $selectedmonth = $request->input('month');
+            $selectedquarter = $request->input('quarter');
+
+            $query = CopyOfReturns::query();
+            if ($selectedgstNumber) {
+                $query->where('gst_number', 'LIKE', '%'.$selectedgstNumber.'%');
+            }
+            
+            if ($selectedformtype) {
+                $query->where('form_type', $selectedformtype);
+            }
+
+            if ($selectedyear) {
+                $query->where('year', $selectedyear);
+            }
+
+            if ($selectedmonth) {
+                $query->where('month', $selectedmonth);
+            }
+
+            if ($selectedquarter) {
+                $query->where('quarter', $selectedquarter);
+            }
+            
+            $items = $query->get();
+         
+       }
+ 
+       return view('user.pages.gst.copy_of_returns',compact('gstNumbers','formtypes','items', 
+       'selectedgstNumber','selectedformtype','selectedyear','selectedmonth','selectedquarter' ));
     }
 
+    public function getFormType(Request $request){
+        
+        $userId = auth()->user()->id;
+        $gstNumber = $request->input('gst');
+        $getFormType = CopyOfReturns::select('form_type')->where(['user_id'=>$userId,'gst_number'=>$gstNumber])->distinct('form_type')->get();
+        return response()->json($getFormType);
+    }
+
+    public function getYear(Request $request){
+        $userId = auth()->user()->id;
+        $gstNumber = $request->input('gst');
+        $form_type = $request->input('formtype');
+        $getYear = CopyOfReturns::select('year')->where(['user_id'=>$userId,'gst_number'=>$gstNumber, 'form_type'=>$form_type])->distinct('year')->get();
+        return response()->json($getYear);
+    }
+
+
+    public function getMonth(Request $request){
+        $userId = auth()->user()->id;
+        $gstNumber = $request->input('gst');
+        $form_type = $request->input('formtype');
+        $getYear = $request->input('gstyear');
+        $getMonth = CopyOfReturns::select('month')->where(['user_id'=>$userId,'gst_number'=>$gstNumber, 'form_type'=>$form_type,'year'=>$getYear])->distinct('month')->get();
+        return response()->json(($getMonth));
+    }
+
+    
+    public function getQuarter(Request $request){
+        $userId = auth()->user()->id;
+        $gstNumber = $request->input('gst');
+        $form_type = $request->input('formtype');
+        $getYear = $request->input('gstyear');
+        $getmonth = $request->input('gstmonth');
+        $getQuarter = CopyOfReturns::select('quarter')->where(['user_id'=>$userId,'gst_number'=>$gstNumber, 'form_type'=>$form_type, 'year'=> $getYear,'month'=>$getmonth])->distinct('quarter')->get();
+        return response()->json($getQuarter);
+    }
      public function queryRaised(Request $request){
          $userId = auth()->user()->id;
          $gstid = $request->gstid; 
@@ -282,6 +343,25 @@ class GstController extends Controller {
             ];
             return Response::download($filePath, $fileName,$headers);
         } else {
+            abort(404);
+        }
+     }
+
+
+     public function copyofreturnsFile(Request $request){
+        $fileName = $request->input('files'); 
+        $userId = auth()->user()->id;
+        $useName = trim(auth()->user()->name).'-'.$userId; 
+       $filePath = 'uploads/users/'.$useName.'/Gst/CopyOfReturns/'.$fileName;  
+     
+        if (File::exists($filePath)) {
+            $headers = [
+                // 'Content-Type' => 'application/pdf',
+                'Content-Type' => 'image/jpeg',
+            ];
+            return Response::download($filePath, $fileName,$headers);
+        } else {
+            echo "File not found"; 
             abort(404);
         }
      }
