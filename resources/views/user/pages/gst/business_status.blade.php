@@ -1,5 +1,8 @@
 @extends('user.layouts.app')
 @section('content')
+@php
+use App\Models\UserGstDetail;
+@endphp
 <!-- ===============================================-->
 <!--    Main Content-->
 <!-- ===============================================-->
@@ -265,94 +268,61 @@
                                                                 data-bs-dismiss="alert" aria-label="Close"></button>
                                                         </div>
                                                         @endif
+
+                                                        @if (session('filenotexist'))
+                                                        <div class="alert alert-danger border-2 d-flex align-items-center"
+                                                            role="alert">
+                                                            <div class="bg-danger me-3 icon-item"><span
+                                                                    class="fas fa-check-circle text-white fs-3"></span>
+                                                            </div>
+                                                            <p class="mb-0 flex-1">{{ session('filenotexist') }}</p>
+                                                            <button class="btn-close" type="button"
+                                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                                        @endif
                                                         <table class="table table-condensed table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                     
-                                                                    <th scope="col">Trade Name</th>
                                                                     <th scope="col">GST Number</th>
-                                                                    <th scope="col">Admin Note</th>
-                                                                    <th scope="col">Type</th>
-                                                                    <th scope="col">Status</th>
-                                                                     
-
+                                                                    <th scope="col">Document Type</th>
+                                                                    <th scope="col">Year</th>
+                                                                    <th scope="col">Month</th>
+                                                                    <th scope="col">Quarter</th>
+                                                                    <th scope="col">File Download</th>
                                                                 </tr>
                                                             </thead>
 
                                                             <tbody>
-                                                                @if($userGstDetails)
-                                                                @foreach($userGstDetails as $detail)
+                                                                @if($userUploadeDocuments)
+                                                                @foreach($userUploadeDocuments as $doc)
+                                                                @php
+                                                                $gstDetail = UserGstDetail::find($doc->gst_id);
+                                                                 
+                                                                @endphp
                                                                 <tr class="align-middle" data-toggle="collapse"
                                                                     data-target="#{{$detail->gst_type}}"
                                                                     class="accordion-toggle">
                                                                     <!-- <td><button class="btn btn-default btn-xs"><span
                                                                                 class="glyphicon glyphicon-eye-open"></span></button>
                                                                     </td> -->
-                                                                    <td class="text-nowrap">
-                                                                        <div class="align-items-center">
+                                                                    <td class="text-nowrap">{{($gstDetail->gst_number)?$gstDetail->gst_number:'NA'}}</td>
+                                                                    <td class="text-nowrap"> {{$doc->doc_type}} </td>
 
-                                                                            <div class="ms-2">{{$detail->trade_name}}
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-
-                                                                    <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'NA'}}</td>
-                                                                    <td class="text-nowrap">{{($detail->admin_note)?$detail->admin_note:'NA'}}</</td>
-                                                                    <td class="text-nowrap">New GST Registration</td>
+            
+                                                                    <td class="text-nowrap">{{($doc->year)?$doc->year:'NA'}}</</td>
+                                                                     
+                                                                    <td class="text-nowrap">{{($doc->month)?   date('F', mktime(0, 0, 0, $doc->month, 1))   :'NA'}}</</td>
+                                                                     
+                                                                    <td class="text-nowrap">{{($doc->quarter)?$doc->quarter:'NA'}}</</td>
 
                                                                     <td colspan=7>
-                                                                        @if($detail->status == 2)
-                                                                           <span
-                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
-                                                                            Raised - Click here <span class="ms-1 fas fa-stream"
-                                                                                data-fa-transform="shrink-2"></span>
-                                                                            </span>  
-
-                                                                                 
-                                                                        @else
-                                                                        @if($detail->status == 3)
-                                                                        <span
-                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
-                                                                            Updated<span class="ms-1 fas fa-stream"
-                                                                                data-fa-transform="shrink-2"></span></span>
-
-
-                                                                        @else
-                                                                        @if($detail->status == 4)
-
-                                                                        <span
-                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-success">Approved<span
-                                                                                class="ms-1 fas fa-check"
-                                                                                data-fa-transform="shrink-2"></span></span>
-
-     
-                                                                                <form action="{{ route('approvedFile') }}" method="POST">
+                                                                    <form action="{{ route('uploadDocumentFile') }}" method="POST">
                                                                                     @csrf
                                                                                     
-                                                                                        <input type="hidden" name="files" value="{{ $detail->approved_img }}">
-                                                                                    
+                                                                                      <input type="hidden" name="files" value="{{ $doc->documents }}">
+                                                                                      <input type="hidden" name="doc_type" value="{{ $doc->doc_type }}">
                                                                                       <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
                                                                                 </form>
-
- 
-                                                                                 
-
-
-                                                                        @else
-                                                                        <span
-                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-primary">Processing
-                                                                            <span class="ms-1 fas fa-redo"
-                                                                                data-fa-transform="shrink-2">
-                                                                            </span>
-                                                                        </span>
-
-
-                                                                         
-
-
-                                                                        @endif
-                                                                        @endif
-                                                                        @endif
                                                                     </td>
 
                                                                      
@@ -471,3 +441,9 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous">
 </script>
+<script>
+        window.onload = function() {
+            var errorMessage = document.querySelector('.alert-danger');
+            errorMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+    </script>

@@ -177,6 +177,7 @@ class GstController extends Controller {
     public function businessStatus(Request $request){
         $userId = auth()->user()->id;
         $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->get();
+        $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->get();
         return view('user.pages.gst.business_status')->with($data);
     }
  
@@ -349,6 +350,37 @@ class GstController extends Controller {
         }
      }
 
+     public function uploadDocumentFile(Request $request){
+        $files = $request->input('files'); 
+        $commaValues = explode(",", $files);
+        $userId = auth()->user()->id;
+        $doc_type = $request->doc_type;
+        $useName = trim(auth()->user()->name).'-'.$userId; 
+        $zipName = $doc_type.'-'.$useName.'.zip';
+        $zip = new \ZipArchive();
+        $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        if (count($commaValues) > 1) {
+            foreach ($commaValues as $file) {
+                $filePath = 'uploads/users/'.$useName.'/Gst/UploadDocuments/'.$doc_type.'/'.$file;  
+                if (File::exists($filePath)) {
+                $fileContents = file_get_contents(public_path($filePath));
+                $zip->addFromString(basename($file), $fileContents);
+                }else {
+                    return redirect('/gst/business')->with('danger', 'File Not Exist!');
+                }
+            }
+        } else {
+            $filePath = 'uploads/users/'.$useName.'/Gst/UploadDocuments/'.$doc_type.'/'.$files; 
+            if (File::exists($filePath)) { 
+            $fileContents = file_get_contents(public_path($filePath));
+            $zip->addFromString(basename($files), $fileContents); 
+            } else {
+            return redirect('/gst/business')->with('filenotexist', 'File Not Exist!');
+            }  
+        }
+        $zip->close();
+        return response()->download($zipName)->deleteFileAfterSend(true);
+     }
 
      public function copyofreturnsFile(Request $request){
         $fileName = $request->input('files'); 
