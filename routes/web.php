@@ -48,6 +48,8 @@ Route::post('userSettings', 'GstController@userSettings')->name('userSettings');
 Route::post('gst/download/approved/file', 'GstController@approvedFile')->name('approvedFile');
 Route::post('gst/gettradename', 'GstController@getTradeName')->name('gst.gettradename');
 Route::post('gst/uploaddocumentscreate', 'GstController@uploadDocumentsCreate')->name('gst.uploaddocumentscreate');
+Route::post('gst/download/uploaddocument/file', 'GstController@uploadDocumentFile')->name('uploadDocumentFile');
+
 
 Route::post('gst/getformtype', 'GstController@getFormType')->name('gst.getformtype');
 Route::post('gst/getyear', 'GstController@getYear')->name('gst.getyear');
