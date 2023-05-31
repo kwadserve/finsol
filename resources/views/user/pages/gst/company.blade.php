@@ -23,7 +23,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="bootstrap-wizard-validation-wizard-email">Email
                         of your
-                        company</label><input class="form-control" type="email" name="email_id"
+                        company</label><input class="form-control" type="email" disabled name="email_id"
                         placeholder="Email address" value="{{Auth::user()->email}}"
                         pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$" required="required"
                         id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true" />

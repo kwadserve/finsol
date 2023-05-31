@@ -37429,3 +37429,11 @@ html[data-bs-theme=dark] .bg-priority-low:checked {
 .input-search-width {
     width: 13.75rem
 }
+
+
+
+
+.bsgstdwbtn {
+    width:100%;
+    border-radius:2rem;
+}
