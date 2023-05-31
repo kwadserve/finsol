@@ -36,11 +36,17 @@ Route::group([
         });
         Route::group(['prefix' => 'user', 'as' => 'user.',], function () {
             Route::get('gst/details/{id}', 'UserGstController@index')->name('gstDetails');
-             Route::post('gst/change_status', 'UserGstController@change_status')->name('change_status');
+            Route::post('gst/change_status', 'UserGstController@change_status')->name('change_status');
+            Route::get('profile/{id}', 'UserGstController@profile')->name('user-profile'); 
+            Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
+            Route::get('gst/uploaddocuments/{id}', 'UserUploadDocumentsController@index')->name('useruploaddocuments');  
+            Route::post('gst/download/uploaddocument/file/{id}', 'UserUploadDocumentsController@adminuserUploadDocumentFile')->name('adminuserUploadDocumentFile');
+
+
         });
 
-        Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
-       
+        // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
+        
         
     });
    
@@ -51,7 +57,7 @@ Route::group([
     ], function () {
         // users
         Route::group(['prefix' => 'users', 'as' => 'users.',], function () {
-            Route::get('all', 'UserController@index')->name('index');
+            Route::get('all', 'UserController@index')->name('users-all');
         });
     });
 

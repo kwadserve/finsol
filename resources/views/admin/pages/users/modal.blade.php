@@ -23,7 +23,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default close " data-dismiss="modal"  onclick="closeModal1()">Close</button>
                 </div>
             </form>
         </div>
@@ -59,10 +59,20 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"  onclick="closeModal2()">Close</button>
                 </div>
             </form>
         </div>
 
     </div>
 </div>
+
+<script>
+    function closeModal1() {
+        $('#myApprovedModal').modal('hide');
+    }
+
+    function closeModal2() {
+        $('#myNoteModal').modal('hide');
+    }
+</script>

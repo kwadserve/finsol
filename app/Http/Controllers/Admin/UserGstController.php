@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
 use App\Models\User;
+ 
 use App\Helpers\Helper as Helper;
 
 class UserGstController extends Controller
@@ -20,8 +21,26 @@ class UserGstController extends Controller
         // View::share('nav', 'users');
     }
 
-    public function index($userId)
+    public function index(Request $request, $userId)
     {
+        $url =   $request->url();
+        $parsedUrl = parse_url($url);
+        $baseUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
+
+if (isset($parsedUrl['port'])) {
+    $baseUrl .= ':' . $parsedUrl['port'];
+}
+$pathSegments = explode('/', trim($parsedUrl['path'], '/'));
+if( $parsedUrl['host'] =='localhost'){
+$baseSegment = implode('/', array_slice($pathSegments, 0, 1));
+} else {
+    $baseSegment = implode('/', array_slice($pathSegments, 0, 3));
+}
+
+   $baseURL = $baseUrl . '/' . $baseSegment;  
+
+       
+        $data['routeurl'] = $baseURL;
         $data['usersGst'] = UserGstDetail::select(
             'trade_name',
             'mobile_linked_aadhar',
@@ -34,6 +53,12 @@ class UserGstController extends Controller
         )->where('user_id',$userId)->orderBy('id', 'DESC')->get();
        
         return view('admin.pages.users.gst')->with($data);
+    }
+
+    public function profile($userId)
+    {
+        $data['userId'] = $userId; 
+        return view('admin.pages.users.profile')->with($data);
     }
 
 

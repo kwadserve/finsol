@@ -193,11 +193,11 @@
 
  
 <script>
-                                                            
+                                                         var urlpath="{{ $routeurl }}";
                                                             function openNoteModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url: '/admin/gst/statusview/' + itemId,
+                                                                    url: urlpath+'/user/gst/statusview/' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
                                                                         
@@ -220,7 +220,7 @@
                                                             function openApproveModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url: '/admin/gst/statusview/' + itemId,
+                                                                    url:  urlpath+'/user/gst/statusview/' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
                                 
