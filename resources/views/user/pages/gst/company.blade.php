@@ -23,7 +23,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="bootstrap-wizard-validation-wizard-email">Email
                         of your
-                        company</label><input class="form-control" type="email" disabled name="email_id"
+                        company</label><input class="form-control" type="email"   name="email_id"
                         placeholder="Email address" value="{{Auth::user()->email}}"
                         pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$" required="required"
                         id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true" />
@@ -63,7 +63,7 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label class="form-label" for="bootstrap-wizard-validation-wizard-email">Directors
-                        Email</label><input class="form-control" type="email" name="directors[0][email]"
+                        Email</label><input class="form-control" required="required" type="email" name="directors[0][email]"
                         placeholder="Email address" pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
                         id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true" />
                     <div class="invalid-feedback">You must add email</div>
@@ -74,7 +74,7 @@
                     <label class="form-label" for="form-wizard-progress-wizard-addregnum">Directors
                         Mobile number
                         registered with aadhar</label><input class="form-control" type="text"
-                        name="directors[0][mobile]" placeholder="Enter Registration No"
+                        name="directors[0][mobile]"  required="required" placeholder="Enter Registration No"
                         id="form-wizard-progress-wizard-addregnum" />
                     <div class="invalid-feedback">Please provide Mobile
                         number</div>

@@ -23,7 +23,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="bootstrap-wizard-validation-wizard-email">Email
                         of your
-                        firm</label><input class="form-control" type="email" disabled name="email_id" placeholder="Email address"
+                        firm</label><input class="form-control" type="email"   name="email_id" placeholder="Email address"
                         pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$" required="required"
                         value="{{Auth::user()->email}}" id="bootstrap-wizard-validation-wizard-email"
                         data-wizard-validate-email="true" />
@@ -62,7 +62,7 @@
             <div class="col-6">
                 <div class="mb-3">
                     <label class="form-label" for="bootstrap-wizard-validation-wizard-email">Partner/Member
-                        Email</label><input class="form-control" type="email" name="partners[0][email]"
+                        Email</label><input class="form-control"  required="required" type="email" name="partners[0][email]"
                         placeholder="Email address" pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
                         id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true" />
                     <div class="invalid-feedback">You must add email</div>
@@ -72,7 +72,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="form-wizard-progress-wizard-addregnum">Partner/Member
                         Mobile number
-                        registered with aadhar</label><input class="form-control" type="text" name="partners[0][mobile]"
+                        registered with aadhar</label><input class="form-control" type="text"  required="required" name="partners[0][mobile]"
                         placeholder="Enter Registration No" id="form-wizard-progress-wizard-addregnum" />
                     <div class="invalid-feedback">Please provide Mobile
                         number</div>

@@ -77,7 +77,7 @@
                                       <h6 class="detailspadding mb-0">Upload documents to file returns</h6>
                                     </div>
                                     <div class="col-12">
-                                    <input type="file" name="documents[]" class="form-control" multiple /> 
+                                    <input type="file" name="documents[]" required="required" class="form-control" multiple /> 
                                       <!-- <div class="bg-light">
                                         <div class="tab-content">
                                           <div class="tab-pane preview-tab-pane active" role="tabpanel"

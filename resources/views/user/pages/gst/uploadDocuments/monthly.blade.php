@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="col-12">
                                       <div class="bg-light">
-                                         <input type="file" name="documents[]" class="form-control" multiple /> 
+                                         <input type="file" name="documents[]" required="required" class="form-control" multiple /> 
                                           <!-- <div class="tab-content">
                                           <div class="tab-pane preview-tab-pane active" role="tabpanel"
                                             aria-labelledby="tab-dom-77cd7e82-0ae3-4189-b6e8-f4e60ff78ac7"
