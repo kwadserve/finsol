@@ -68,7 +68,7 @@ class GstController extends Controller {
         $data = Helper :: uploadImagesNew($request, $userId, $folderName,'GST');
         // $data = $this->uploadAllImages($request, $userId, 1, $folderName);
         $data['user_id'] = $userId;
-        $data['email_id'] = $request['email_id'];
+        $data['email_id'] = auth()->user()->email; //$request['email_id'];
         $data['gst_type'] = $request['gst_type'];
         $data['trade_name'] = $request['trade_name'];
         $data['status'] = 1 ; //1- Under Process/2- Query Raised/ 3- Query Updated, 4-Approved
@@ -86,7 +86,7 @@ class GstController extends Controller {
             $data = Helper :: uploadImagesNew($request, $userId, $folderName,'GST Firm');
             // $data =  $this->uploadAllImages($request,$userId,2,$folderName);
             $data['user_id'] = $userId;
-            $data['email_id'] = $request['email_id'];
+            $data['email_id'] = auth()->user()->email; //$request['email_id'];
             $data['gst_type'] = $request['gst_type'];
             $data['trade_name'] = $request['trade_name'];
             $data['status'] = 1 ;
@@ -150,7 +150,7 @@ class GstController extends Controller {
             $data = Helper :: uploadImagesNew($request, $userId, $folderName,'GST Company');
             // $data =  $this->uploadAllImages($request,$userId,2,$folderName);
             $data['user_id'] = $userId;
-            $data['email_id'] = $request['email_id'];
+            $data['email_id'] = auth()->user()->email; //$request['email_id'];
             $data['gst_type'] = $request['gst_type'];
             $data['trade_name'] = $request['trade_name'];
             $data['status'] = 1 ;

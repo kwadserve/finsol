@@ -137,12 +137,13 @@ class Helper
         }
         $allimages = Documents::where(['for_multiple' => $for_multiple])->get();
           $data=[];
+        
         foreach ($allimages as $img) {
             if ($request->file($dataon)) {
                 $keyname = $img['doc_key_name'];
                 // $imgName = str_replace(' ', '', $img['filename']);
                $images = $request->file($dataon)[$key];
-                $related_imgs = [];
+               $related_imgs = [];
                 if (isset($images[$keyname])) {
                     foreach ($images[$keyname] as $index => $p) {
                         $newName =  ($index + 1) . '_' .($key).'_'. mt_rand(2000,9000) . '.' . $p->getClientOriginalExtension();
@@ -150,9 +151,8 @@ class Helper
                         $related_imgs[] = $newName; 
                     }
                 }
-                
+                $data[$keyname] =  implode(',', $related_imgs);
             }
-          $data[$keyname] =  implode(',', $related_imgs);
         } 
         return $data;
     }
