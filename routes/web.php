@@ -45,10 +45,14 @@ Route::post('gst/copyofreturns', 'GstController@copyOfReturns')->name('gst.copy_
 Route::post('gst/queryraised', 'GstController@queryRaised')->name('gst.query_raised');
 Route::get('gst/uploaddocuments', 'GstController@uploadDocuments')->name('gst.uploaddocuments');
 Route::post('userSettings', 'GstController@userSettings')->name('userSettings');
-Route::post('gst/download/approved/file', 'GstController@approvedFile')->name('approvedFile');
+
 Route::post('gst/gettradename', 'GstController@getTradeName')->name('gst.gettradename');
 Route::post('gst/uploaddocumentscreate', 'GstController@uploadDocumentsCreate')->name('gst.uploaddocumentscreate');
+
+Route::post('gst/download/approved/file', 'GstController@approvedFile')->name('approvedFile');
 Route::post('gst/download/uploaddocument/file', 'GstController@uploadDocumentFile')->name('uploadDocumentFile');
+Route::post('gst/download/raised/file', 'GstController@raisedFile')->name('raisedFile');
+
 
 
 Route::post('gst/getformtype', 'GstController@getFormType')->name('gst.getformtype');

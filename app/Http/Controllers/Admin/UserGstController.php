@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Models\UserGstDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -49,6 +50,8 @@ $baseSegment = implode('/', array_slice($pathSegments, 0, 1));
             'gst_number',
             'admin_note',
             'user_note',
+            'user_id',
+            'additional_img',
             'id'
         )->where('user_id',$userId)->orderBy('id', 'DESC')->get();
        
@@ -124,28 +127,71 @@ $baseSegment = implode('/', array_slice($pathSegments, 0, 1));
 
      public function change_status(Request $request){ 
          $userId =  $request->userid;
-        if($request->type == 'approve'){
-        
-         $gstid = $request->gstid; 
          $userDetails = User::find($userId);
          $useName = $userDetails->name.'-'.$userId;
+         $gstid = $request->gstid; 
+        if($request->type == 'approve'){
+        
+            $validatedData = $request->validate([
+                'gst_number' => 'required',
+            ]);
+
          $folderName = 'uploads/users/'.$useName.'/Gst/ApprovedImg';
          $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
          
          $datas = UserGstDetail::find($gstid);
          $datas->last_update_by = 'admin'; 
          $datas->status = 4;  // Approved
+         $datas->trade_name = ($request->trade_name)??$request->trade_name; 
          $datas->gst_number =  $request->gst_number;  
          $datas->approved_img = $img['approved_img'];
          $datas->save();
         } else {
-         $gstid = $request->gstid; 
+
+          
+         $folderName = 'uploads/users/'.$useName.'/Gst/RaisedImg';
+         $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+ 
          $datas = UserGstDetail::find($gstid);
          $datas->admin_note = $request->admin_note; 
          $datas->last_update_by = 'admin'; 
+         $datas->raised_img = $img['raised_img'];
          $datas->status = 2; 
          $datas->save();
         }
         return redirect('admin/user/gst/details/'.$userId)->with('success', 'Uploaded the Document!'); 
+     }
+
+     public function additionalFile(Request $request, $userId){
+        $files = $request->input('files'); 
+        $commaValues = explode(",", $files);
+        $userDetails = User::find($userId);
+   
+        
+        $useName = trim($userDetails->name).'-'.$userId; 
+        $zipName = "QueryUpdatedFile-".$useName.'.zip';
+        $zip = new \ZipArchive();
+        $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        if (count($commaValues) > 1) {
+            foreach ($commaValues as $file) {
+                $filePath = 'uploads/users/'.$useName.'/Gst/AdditionalImg/'.$file;  
+                if (File::exists($filePath)) {
+                $fileContents = file_get_contents(public_path($filePath));
+                $zip->addFromString(basename($file), $fileContents);
+                }else {
+                    return redirect('user/gst/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
+                }
+            }
+        } else {
+            $filePath = 'uploads/users/'.$useName.'/Gst/AdditionalImg/'.$files;  
+            if (File::exists($filePath)) { 
+            $fileContents = file_get_contents(public_path($filePath));
+            $zip->addFromString(basename($files), $fileContents); 
+            } else {
+            return redirect('user/gst/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
+            }  
+        }
+        $zip->close();
+        return response()->download($zipName)->deleteFileAfterSend(true);
      }
 }

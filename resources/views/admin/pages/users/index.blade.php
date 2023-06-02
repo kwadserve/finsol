@@ -25,6 +25,15 @@
                                 <div id="tableExample"
                                     data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                                     <div class="table-responsive scrollbar">
+                                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
                                         <table class="table table-bordered table-striped fs--1 mb-0">
                                             <thead class="bg-200 text-900">
                                                 <tr>

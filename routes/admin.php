@@ -41,8 +41,8 @@ Route::group([
             Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
             Route::get('gst/uploaddocuments/{id}', 'UserUploadDocumentsController@index')->name('useruploaddocuments');  
             Route::post('gst/download/uploaddocument/file/{id}', 'UserUploadDocumentsController@adminuserUploadDocumentFile')->name('adminuserUploadDocumentFile');
-
-
+            Route::post('gst/download/additional/file/{id}', 'UserGstController@additionalFile')->name('additionalFile');
+            
         });
 
         // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');

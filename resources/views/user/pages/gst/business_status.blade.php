@@ -48,12 +48,27 @@ use App\Models\UserGstDetail;
                                                                 data-bs-dismiss="alert" aria-label="Close"></button>
                                                         </div>
                                                         @endif
+
+                                                        @if (session('raisedfilenotexist'))
+                                                        <div class="alert alert-danger border-2 d-flex align-items-center"
+                                                            role="alert">
+                                                            <div class="bg-danger me-3 icon-item"><span
+                                                                    class="fas fa-check-circle text-white fs-3"></span>
+                                                            </div>
+                                                            <p class="mb-0 flex-1">{{ session('raisedfilenotexist') }}</p>
+                                                            <button class="btn-close" type="button"
+                                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                                        @endif
+
+                                                        
                                                         <table class="table table-condensed table-striped">
                                                             <thead>
                                                                 <tr>
                                                                      
                                                                     <th scope="col">Trade Name</th>
                                                                     <th scope="col">GST Number</th>
+                                                                    <th scope="col">GST Type</th>
                                                                     <th scope="col">Admin Note</th>
                                                                     <th scope="col">Type</th>
                                                                     <th scope="col">Status</th>
@@ -79,8 +94,9 @@ use App\Models\UserGstDetail;
                                                                         </div>
                                                                     </td>
 
-                                                                    <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'NA'}}</td>
-                                                                    <td class="text-nowrap">{{($detail->admin_note)?$detail->admin_note:'NA'}}</</td>
+                                                                    <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'-'}}</td>
+                                                                    <td class="text-nowrap">{{($detail->gst_type)?$detail->gst_type:'-'}}</td>
+                                                                    <td class="text-nowrap">{{($detail->admin_note)?$detail->admin_note:'-'}}</</td>
                                                                     <td class="text-nowrap">New GST Registration</td>
 
                                                                     <td colspan=7>
@@ -90,7 +106,15 @@ use App\Models\UserGstDetail;
                                                                             Raised - Click here <span class="ms-1 fas fa-stream"
                                                                                 data-fa-transform="shrink-2"></span>
                                                                             </span>  
-
+                                                                            @if($detail->raised_img!="")
+                                                                            <form action="{{ route('raisedFile') }}" method="POST">
+                                                                                    @csrf
+                                                                                    
+                                                                                        <input type="hidden" name="files" value="{{ $detail->raised_img }}">
+                                                                                    
+                                                                                      <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
+                                                                                </form>
+@endif
                                                                                  
                                                                         @else
                                                                         @if($detail->status == 3)
@@ -108,7 +132,7 @@ use App\Models\UserGstDetail;
                                                                                 class="ms-1 fas fa-check"
                                                                                 data-fa-transform="shrink-2"></span></span>
 
-     
+     @if($detail->approved_img!="")
                                                                                 <form action="{{ route('approvedFile') }}" method="POST">
                                                                                     @csrf
                                                                                     
@@ -116,7 +140,7 @@ use App\Models\UserGstDetail;
                                                                                     
                                                                                       <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
                                                                                 </form>
-
+@endif
  
                                                                                  
 
@@ -305,15 +329,15 @@ use App\Models\UserGstDetail;
                                                                     <!-- <td><button class="btn btn-default btn-xs"><span
                                                                                 class="glyphicon glyphicon-eye-open"></span></button>
                                                                     </td> -->
-                                                                    <td class="text-nowrap">{{($gstDetail->gst_number)?$gstDetail->gst_number:'NA'}}</td>
+                                                                    <td class="text-nowrap">{{($gstDetail->gst_number)?$gstDetail->gst_number:'-'}}</td>
                                                                     <td class="text-nowrap"> {{$doc->doc_type}} </td>
 
             
-                                                                    <td class="text-nowrap">{{($doc->year)?$doc->year:'NA'}}</</td>
+                                                                    <td class="text-nowrap">{{($doc->year)?$doc->year:'-'}}</</td>
                                                                      
-                                                                    <td class="text-nowrap">{{($doc->month)?   date('F', mktime(0, 0, 0, $doc->month, 1))   :'NA'}}</</td>
+                                                                    <td class="text-nowrap">{{($doc->month)?   date('F', mktime(0, 0, 0, $doc->month, 1))   :'-'}}</</td>
                                                                      
-                                                                    <td class="text-nowrap">{{($doc->quarter)?$doc->quarter:'NA'}}</</td>
+                                                                    <td class="text-nowrap">{{($doc->quarter)?$doc->quarter:'-'}}</</td>
 
                                                                     <td colspan=7>
                                                                     <form action="{{ route('uploadDocumentFile') }}" method="POST">
@@ -355,7 +379,7 @@ use App\Models\UserGstDetail;
                                                                                         </label> </div>
 
                                                                                         <label>Enter Your Suggestion:</label>
-                        <textarea name="user_note" style="height:90px;width:100%"></textarea>
+                        <textarea name="user_note" required="required" style="height:90px;width:100%"></textarea>
  
                                                                                     <input type="hidden" name="gstid"
                                                                                         value="{{$detail->id}}" />

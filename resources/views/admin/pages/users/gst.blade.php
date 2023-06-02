@@ -25,8 +25,18 @@
                                 <div id="tableExample"
                                     data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                                     <div class="table-responsive scrollbar">
-
-
+                                    @if (session('additionalfilenotexist'))
+                                                        <div class="alert alert-danger border-2 d-flex align-items-center"
+                                                            role="alert">
+                                                            <div class="bg-danger me-3 icon-item"><span
+                                                                    class="fas fa-check-circle text-white fs-3"></span>
+                                                            </div>
+                                                            <p class="mb-0 flex-1">{{ session('raisedfilenotexist') }}</p>
+                                                            <button class="btn-close" type="button"
+                                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                                        @endif
+                                     
                                         <table class="table table-bordered table-striped fs--1 mb-0">
                                             <thead class="bg-200 text-900">
                                                 <tr>
@@ -75,6 +85,15 @@
                                                                 class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
                                                                 Updated<span class="ms-1 fas fa-stream"
                                                                     data-fa-transform="shrink-2"></span></span>
+                                                             @if($detail->additional_img!="")        
+                                                         <form action="{{ url('admin/user/gst/download/additional/file/' . $detail->user_id) }}" method="POST">
+                                                                                    @csrf
+                                                                                    
+                                                                                        <input type="hidden" name="files" value="{{ $detail->additional_img }}">
+                                                                                    
+                                                                                      <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
+                                                                                </form>
+                                                                                @endif
 
                                                         </div>
 
@@ -104,10 +123,13 @@
                                                             Note<span class="glyphicon glyphicon-eye-open ms-1"></span>
                                                         </span> 
 
-                                                       
+
+                                                                             
 
 
                                                         @if($detail->status == 3)
+                                                         
+                                                       
                                                         | <span class="btn  btn-xs  " title="Change Status"
                                                             type="button" data-toggle="modal"  onclick="openApproveModal({{ $detail->id }})"
                                                              
@@ -117,7 +139,7 @@
                                                         </span>
                                                         @else @if($detail->status == 4)
                                                      
-                                                        <span><NA/span>
+                                                        <span>NA</span>
                                                      
                                                     @endif
 
@@ -205,7 +227,7 @@
                                                                         $('#myNoteModal').modal('show');
                                                                         $('#myNoteModal #userid').val(data.user_id);
                                                                         $('#myNoteModal #gstid').val(data.id);
-                                                                        $('#myNoteModal #tradename').val(data.trade_name);
+                                                                       
                                                                         $('#myNoteModal #type').val('note');
                                                               
                                                                     },
@@ -227,6 +249,7 @@
                                                                         $('#myApprovedModal').modal('show');
                                                                         $('#myApprovedModal #userid').val(data.user_id);
                                                                         $('#myApprovedModal #gstid').val(data.id);
+                                                                        $('#myApprovedModal #tradename').val(data.trade_name);
                                                                         $('#myApprovedModal #type').val('approve');
                                                                     },
                                                                     error: function (xhr) {

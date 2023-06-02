@@ -25,7 +25,7 @@ class GstController extends Controller {
         //  \DB::enableQueryLog();
         $userId = auth()->user()->id;
         $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->get()->first();
-         $data['userGstDetails'] = UserGstDetail::whereIn('status',[4])->where('user_id',$userId)->get()->first();
+         $data['userGstApprovedDetails'] = UserGstDetail::whereIn('status',[4])->where('user_id',$userId)->get()->first();
         //   dd(\DB::getQueryLog());
         //   dd($data);
         return view('user.pages.gst.details')->with($data);
@@ -34,7 +34,7 @@ class GstController extends Controller {
         $data['images'] = Documents::where(['for_multiple' => 'GST'])->get();
         $data['firm_images'] = Documents::where(['for_multiple' => 'GST Firm'])->get();
         $data['firm_partner_images'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
-        $data['company_images'] = Documents::where(['for_multiple' => "'GST Company"])->get();
+        $data['company_images'] = Documents::where(['for_multiple' => "GST Company"])->get();
         $data['company_director_images'] = Documents::where(['for_multiple' => 'GST Company Director'])->get();
         return view('user.pages.gst.form')->with($data);
     }
@@ -73,7 +73,9 @@ class GstController extends Controller {
         $data['trade_name'] = $request['trade_name'];
         $data['status'] = 1 ; //1- Under Process/2- Query Raised/ 3- Query Updated, 4-Approved
         $matchthese = ['user_id' => $userId, 'gst_type' => 'Individual'];
-        UserGstDetail::where($matchthese)->delete();
+        $checkMatched =  UserGstDetail::where($matchthese)->get();
+        if($checkMatched)   
+        return redirect('/gst/register')->with('error', 'User as  Registered Before as an Individual!');
         UserGstDetail::updateOrCreate($matchthese, $data);
         return redirect('/gst/register')->with('success', 'Registered as Individual successfully!');;
     }
@@ -176,8 +178,8 @@ class GstController extends Controller {
 
     public function businessStatus(Request $request){
         $userId = auth()->user()->id;
-        $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->get();
-        $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->get();
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('user.pages.gst.business_status')->with($data);
     }
  
@@ -222,7 +224,7 @@ class GstController extends Controller {
 
     public function uploadDocuments(Request $request){
         $userId = auth()->user()->id;
-        $data['settings'] = UserSetting::select('value')->where(['user_id' => $userId, 'type'=>'Upload Document', 'status'=>1])->get();
+        $data['settings'] = UserSetting::select('value')->where(['user_id' => $userId, 'type'=>'Upload Document', 'status'=>1])->orderBy('id', 'DESC')->get();
         
         $data['gstNumbers'] =  UserGstDetail::select('gst_number')->whereNotNull('gst_number')->where('user_id',$userId)->get();
         return view('user.pages.gst.uploadDocuments.index')->with($data);
@@ -322,32 +324,65 @@ class GstController extends Controller {
          $folderName = 'uploads/users/'.$useName.'/Gst/AdditionalImg';
          $name='additional_img';
          $img = Helper :: uploadImagesNormal($request, $userId, $folderName, $name);
-        
+       
          $datas = UserGstDetail::find($gstid);
+        
          $datas->user_note = $request->user_note; 
          $datas->status = 3; // Query Updated      
          $datas->last_update_by = 'user'; 
          $datas->last_update_by_id =  $userId;
-         $datas->additional_img = $img['additional_img'];
+         $datas->additional_img = $img['additional_img']; 
          $datas->save();
          return redirect('/gst/business')->with('success', 'Uploaded the Document!');
      }
 
 
      public function approvedFile(Request $request){
-        $fileName = $request->input('files'); 
+
+        $files = $request->input('files'); 
+        $commaValues = explode(",", $files);
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
-        $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$fileName;  
-        if (File::exists($filePath)) {
-            $headers = [
-                // 'Content-Type' => 'application/pdf',
-                'Content-Type' => 'image/jpeg',
-            ];
-            return Response::download($filePath, $fileName,$headers);
+        $zipName = 'QueryApprovedFile-'.$useName.'.zip';
+        $zip = new \ZipArchive();
+        $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        if (count($commaValues) > 1) {
+            foreach ($commaValues as $file) {
+                $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$file;  
+                if (File::exists($filePath)) {
+                $fileContents = file_get_contents(public_path($filePath));
+                $zip->addFromString(basename($file), $fileContents);
+                }else {
+                    return redirect('/gst/business')->with('approvedfilenotexist', 'File Not Exist!');
+                }
+            }
         } else {
-            abort(404);
+            $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$files; 
+            if (File::exists($filePath)) { 
+            $fileContents = file_get_contents(public_path($filePath));
+            $zip->addFromString(basename($files), $fileContents); 
+            } else {
+            return redirect('/gst/business')->with('approvedfilenotexist', 'File Not Exist!');
+            }  
         }
+        $zip->close();
+        return response()->download($zipName)->deleteFileAfterSend(true);
+     
+
+
+        // $fileName = $request->input('files'); 
+        // $userId = auth()->user()->id;
+        // $useName = trim(auth()->user()->name).'-'.$userId; 
+        // $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$fileName;  
+        // if (File::exists($filePath)) {
+        //     $headers = [
+        //         // 'Content-Type' => 'application/pdf',
+        //         'Content-Type' => 'image/jpeg',
+        //     ];
+        //     return Response::download($filePath, $fileName,$headers);
+        // } else {
+        //     abort(404);
+        // }
      }
 
      public function uploadDocumentFile(Request $request){
@@ -398,5 +433,36 @@ class GstController extends Controller {
             echo "File not found"; 
             abort(404);
         }
+     }
+
+     public function raisedFile(Request $request){
+        $files = $request->input('files'); 
+        $commaValues = explode(",", $files);
+        $userId = auth()->user()->id;
+        $useName = trim(auth()->user()->name).'-'.$userId; 
+        $zipName = 'QueryRaisedFile-'.$useName.'.zip';
+        $zip = new \ZipArchive();
+        $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        if (count($commaValues) > 1) {
+            foreach ($commaValues as $file) {
+                $filePath = 'uploads/users/'.$useName.'/Gst/RaisedImg/'.$file;  
+                if (File::exists($filePath)) {
+                $fileContents = file_get_contents(public_path($filePath));
+                $zip->addFromString(basename($file), $fileContents);
+                }else {
+                    return redirect('/gst/business')->with('raisedfilenotexist', 'File Not Exist!');
+                }
+            }
+        } else {
+            $filePath = 'uploads/users/'.$useName.'/Gst/RaisedImg/'.$files; 
+            if (File::exists($filePath)) { 
+            $fileContents = file_get_contents(public_path($filePath));
+            $zip->addFromString(basename($files), $fileContents); 
+            } else {
+            return redirect('/gst/business')->with('raisedfilenotexist', 'File Not Exist!');
+            }  
+        }
+        $zip->close();
+        return response()->download($zipName)->deleteFileAfterSend(true);
      }
 }
