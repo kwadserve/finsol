@@ -73,9 +73,7 @@ class GstController extends Controller {
         $data['trade_name'] = $request['trade_name'];
         $data['status'] = 1 ; //1- Under Process/2- Query Raised/ 3- Query Updated, 4-Approved
         $matchthese = ['user_id' => $userId, 'gst_type' => 'Individual'];
-        $checkMatched =  UserGstDetail::where($matchthese)->get();
-        if($checkMatched)   
-        return redirect('/gst/register')->with('error', 'User as  Registered Before as an Individual!');
+        UserGstDetail::where($matchthese)->delete();
         UserGstDetail::updateOrCreate($matchthese, $data);
         return redirect('/gst/register')->with('success', 'Registered as Individual successfully!');;
     }

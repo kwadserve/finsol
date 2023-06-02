@@ -36,6 +36,18 @@
                                     aria-label="Close"></button>
                             </div>
                             @endif
+
+                            <!-- @if (session('existerror'))
+                            <div class="alert alert-danger border-2 d-flex align-items-center" role="alert">
+                                <div class="bg-danger me-3 icon-item"><span
+                                        class="fas fa-check-circle text-white fs-3"></span>
+                                </div>
+                                <p class="mb-0 flex-1">{{ session('existerror') }}</p>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            @endif -->
+
                             <div class="tab-content">
                                 <div class="tab-pane preview-tab-pane active" role="tabpanel"
                                     aria-labelledby="tab-dom-61c83f7c-d9df-458a-94bd-f4e645b55d13"
