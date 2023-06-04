@@ -36,6 +36,11 @@ Route::get('settings/update', 'UserController@settingsUpdate')->name('settings.u
 // GST DETAILS
 Route::get('gst', 'GstController@index')->name('gst');
 Route::get('gst/register', 'GstController@register_form')->name('gst.register_form');
+
+Route::get('gst/existing_register', 'GstController@existing_register_form')->name('gst.existing_register_form');
+Route::post('gst/existing', 'GstController@storeExistingRegister')->name('gst.existing');
+
+
 Route::post('gst/individual', 'GstController@storeIndividual')->name('gst.individual');
 Route::post('gst/firm', 'GstController@storeFirm')->name('gst.firm');
 Route::post('gst/company', 'GstController@storeCompany')->name('gst.company');

@@ -38,6 +38,25 @@ class GstController extends Controller {
         $data['company_director_images'] = Documents::where(['for_multiple' => 'GST Company Director'])->get();
         return view('user.pages.gst.form')->with($data);
     }
+
+    public function existing_register_form(){
+        return view('user.pages.gst.existing_form');
+    }
+
+    public function storeExistingRegister(Request $request){
+        $userId = auth()->user()->id;
+        $useName = trim(auth()->user()->name).'-'.$userId;
+        $data['user_id'] = $userId;
+        $data['trade_name'] = $request['trade_name'];
+        $data['email_id'] = $request['email_id'];
+        $data['gst_number'] = $request['gst_number'];
+        $data['gst_id'] = $request['gst_id'];
+        $data['gst_password'] = $request['gst_password'];
+ 
+        UserGstDetail::Create($data);
+        return redirect('/gst/existing_register')->with('success', 'Existing Registered successfully!');
+    }
+
     public function uploadAllImages($request, $userId, $gst_type_val, $folderName) {
         $userFolder = $folderName;
         if (!File::exists($userFolder)) {

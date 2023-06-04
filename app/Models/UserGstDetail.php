@@ -35,7 +35,10 @@ class UserGstDetail extends Authenticatable
         'approved_img',
         'raised_img',
         'admin_note',
-        'user_note'
+        'user_note',
+        'gst_id',
+        'gst_password',
+        'gst_number'
     ];
 
 }

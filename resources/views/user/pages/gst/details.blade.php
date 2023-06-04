@@ -60,7 +60,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if(isset($userGstApprovedDetails))
+                                    <div class="col-lg-4">
+                                        <div onclick="location.href='{{route('gst.existing_register_form')}}'" type="button">
+                                            <div class="card card-span h-100">
+                                                <div class="roundlogobg topcurves">
+                                                    <h2 class="roundtext">Existing Registration</h2>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p>Existing Registration for GST </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    
+                                </div>
+
+                                <div class="row mt-4 g-3">
+
+                                @if(isset($userGstApprovedDetails))
                                     @if($userGstApprovedDetails->status == '4')
                                     <div class="col-lg-4">
                                         <div onclick="location.href='{{route('gst.copy_of_returns')}}'" type="button">
@@ -76,9 +95,8 @@
                                     </div>
                                     @endif
                                     @endif
-                                </div>
 
-                                <div class="row mt-4 g-3">
+
                                     @if(isset($userGstApprovedDetails))
                                     @if($userGstApprovedDetails->status =='4')
                                     <div class="col-lg-4"> 
