@@ -42,6 +42,9 @@ Route::group([
             Route::get('gst/uploaddocuments/{id}', 'UserUploadDocumentsController@index')->name('useruploaddocuments');  
             Route::post('gst/download/uploaddocument/file/{id}', 'UserUploadDocumentsController@adminuserUploadDocumentFile')->name('adminuserUploadDocumentFile');
             Route::post('gst/download/additional/file/{id}', 'UserGstController@additionalFile')->name('additionalFile');
+
+            // Upload Documents make it approve 
+            Route::get('gst/change_approve/{id}', 'UserUploadDocumentsController@change_approve')->name('change_approve');
             
         });
 

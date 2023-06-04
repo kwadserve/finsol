@@ -170,5 +170,25 @@ class Helper
     }
 
 
+    public static function getBaseUrl($request){
+        $url =   $request->url();
+        $parsedUrl = parse_url($url);
+        $baseUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'];
 
+if (isset($parsedUrl['port'])) {
+    $baseUrl .= ':' . $parsedUrl['port'];
+}
+$pathSegments = explode('/', trim($parsedUrl['path'], '/'));
+if( $parsedUrl['host'] =='localhost'){
+$baseSegment = implode('/', array_slice($pathSegments, 0, 1));
+} else {
+    $baseSegment = implode('/', array_slice($pathSegments, 0, 3));
+}
+
+  return  $baseURL = $baseUrl . '/' . $baseSegment;  
+    
+
+
+
+}
 }

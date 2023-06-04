@@ -747,7 +747,7 @@ if (isFluid) {
                             </h6><a class="dropdown-item px-x1 py-2" href="pages/user/profile.html">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-l status-online me-2">
-                                        <img class="rounded-circle" src="../../../assets/img/team/1.jpg" alt="" />
+                                        <img class="rounded-circle" src="assets/img/team/1.jpg" alt="" />
                                     </div>
                                     <div class="flex-1">
                                         <h6 class="mb-0 title">Anna Karinina</h6>

@@ -177,19 +177,22 @@ class GstController extends Controller {
     public function businessStatus(Request $request){
         $userId = auth()->user()->id;
         $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.gst.business_status')->with($data);
     }
  
 
     public function uploadDocumentsCreate(Request $request){
-        if($request->input('gstnumber') && $request->input('doc_type')=='Monthly'){
-         $gstId = $request->input('gstid');  
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
+        $gstId = UserGstDetail::where('gst_number',$request->input('gstnumber'))->where('user_id',$userId)->first();
+ 
+        if($request->input('gstnumber') && $request->input('doc_type')=='Monthly'){
+        // $gstId = $request->input('gstid');  
+       
         $folderName = 'uploads/users/'.$useName.'/Gst/UploadDocuments/Monthly';
         $data = Helper :: uploadImagesNormal($request, $userId, $folderName,'documents');
-        $data['gst_id'] =  $gstId;
+        $data['gst_id'] =  $gstId->id;
         $data['user_id'] =  $userId;
         $data['year'] = $request->input('year');
         $data['month'] = $request->input('month');
@@ -200,12 +203,11 @@ class GstController extends Controller {
         $msg = 'Monthly - Upload Documents Successfully Updated!'; 
         
          } else    if($request->input('gstnumber') && $request->input('doc_type')=='Quarterly'){
-        $gstId = $request->input('gstid');  
-        $userId = auth()->user()->id;
+      
         $useName = trim(auth()->user()->name).'-'.$userId; 
         $folderName = 'uploads/users/'.$useName.'/Gst/UploadDocuments/Quarterly';
         $data = Helper :: uploadImagesNormal($request, $userId, $folderName,'documents');
-        $data['gst_id'] =  $gstId;
+        $data['gst_id'] =  $gstId->id;
         $data['user_id'] =  $userId;
         $data['year'] = $request->input('year');
         $data['quarter'] = $request->input('quarter');
@@ -221,6 +223,8 @@ class GstController extends Controller {
     }
 
     public function uploadDocuments(Request $request){
+        $data['routeUrl'] = Helper::getBaseUrl($request);
+      
         $userId = auth()->user()->id;
         $data['settings'] = UserSetting::select('value')->where(['user_id' => $userId, 'type'=>'Upload Document', 'status'=>1])->orderBy('id', 'DESC')->get();
         

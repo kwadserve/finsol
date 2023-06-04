@@ -22,8 +22,24 @@ class UserUploadDocumentsController extends Controller
 
     public function index(Request $request, $userId)
     {
+        $data['routeUrl'] = Helper::getBaseUrl($request); 
         $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.uploaddocuments')->with($data);
+    }
+
+    public function change_approve(Request $request,  $docId){
+        
+        if(isset($docId)){
+           
+            $UserGstUploadDocument =  UserGstUploadDocument::find($docId);
+            $userid =  $UserGstUploadDocument->user_id; 
+            $UserGstUploadDocument->status = 2; //Approve Upload Documents
+            $UserGstUploadDocument->save();
+            return 1; 
+            // return redirect('admin/user/gst/uploaddocuments/'.$userId)->with('success', 'Approved the Document Successfuly!'); 
+        }
+        
+       
     }
 
     public function adminuserUploadDocumentFile(Request $request, $userId){

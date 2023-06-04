@@ -68,7 +68,7 @@ use App\Models\UserGstDetail;
                                                                      
                                                                     <th scope="col">Trade Name</th>
                                                                     <th scope="col">GST Number</th>
-                                                                    <th scope="col">GST Type</th>
+                                                                    <!-- <th scope="col">GST Type</th> -->
                                                                     <th scope="col">Admin Note</th>
                                                                     <th scope="col">Type</th>
                                                                     <th scope="col">Status</th>
@@ -94,9 +94,9 @@ use App\Models\UserGstDetail;
                                                                         </div>
                                                                     </td>
 
-                                                                    <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'-'}}</td>
-                                                                    <td class="text-nowrap">{{($detail->gst_type)?$detail->gst_type:'-'}}</td>
-                                                                    <td class="text-nowrap">{{($detail->admin_note)?$detail->admin_note:'-'}}</</td>
+                                                                    <td class="text-nowrap">{{isset($detail->gst_number)?$detail->gst_number:'-'}}</td>
+                                                                    <!-- <td class="text-nowrap">{{isset($detail->gst_type)?$detail->gst_type:'-'}}</td> -->
+                                                                    <td class="" style="font-size: 12px;">{{isset($detail->admin_note)?$detail->admin_note:'-'}}</</td>
                                                                     <td class="text-nowrap">New GST Registration</td>
 
                                                                     <td colspan=7>
@@ -308,11 +308,12 @@ use App\Models\UserGstDetail;
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">GST Number</th>
+                                                                    <th scope="col">Trade Name</th>
                                                                     <th scope="col">Document Type</th>
                                                                     <th scope="col">Year</th>
                                                                     <th scope="col">Month</th>
                                                                     <th scope="col">Quarter</th>
-                                                                    <th scope="col">File Download</th>
+                                                                    <th scope="col">Status</th>
                                                                 </tr>
                                                             </thead>
 
@@ -323,13 +324,12 @@ use App\Models\UserGstDetail;
                                                                 $gstDetail = UserGstDetail::find($doc->gst_id);
                                                                  
                                                                 @endphp
-                                                                <tr class="align-middle" data-toggle="collapse"
-                                                                    data-target="#{{$detail->gst_type}}"
-                                                                    class="accordion-toggle">
+                                                                <tr class="align-justify">
                                                                     <!-- <td><button class="btn btn-default btn-xs"><span
                                                                                 class="glyphicon glyphicon-eye-open"></span></button>
                                                                     </td> -->
-                                                                    <td class="text-nowrap">{{($gstDetail->gst_number)?$gstDetail->gst_number:'-'}}</td>
+                                                                    <td class="text-nowrap">{{isset($gstDetail->gst_number)?$gstDetail->gst_number:'-'}}</td>
+                                                                    <td class="text-nowrap"> {{isset($gstDetail->trade_name)?$gstDetail->trade_name:'-'}} </td>
                                                                     <td class="text-nowrap"> {{$doc->doc_type}} </td>
 
             
@@ -339,7 +339,7 @@ use App\Models\UserGstDetail;
                                                                      
                                                                     <td class="text-nowrap">{{($doc->quarter)?$doc->quarter:'-'}}</</td>
 
-                                                                    <td colspan=7>
+                                                                    <!-- <td colspan=7>
                                                                     <form action="{{ route('uploadDocumentFile') }}" method="POST">
                                                                                     @csrf
                                                                                     
@@ -347,75 +347,68 @@ use App\Models\UserGstDetail;
                                                                                       <input type="hidden" name="doc_type" value="{{ $doc->doc_type }}">
                                                                                       <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
                                                                                 </form>
+                                                                    </td> -->
+
+                                                                    <td class="text-nowrap">
+                                                                        @if($doc->status==1)
+                                                                        <span
+                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-primary">Processing
+                                                                            <span class="ms-1 fas fa-redo"
+                                                                                data-fa-transform="shrink-2">
+                                                                            </span>
+                                                                        </span>
+                                                                        @else
+                                                                        <span
+                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-success">Approved<span
+                                                                                class="ms-1 fas fa-check"
+                                                                                data-fa-transform="shrink-2">
+                                                                            </span>
+                                                                        </span>
+                                                                        @endif
+
                                                                     </td>
 
                                                                      
 
                                                                      
                                                                 </tr>
-                                                                @if($detail->status == 2)
-                                                                <tr>
-                                                                    <td colspan="6" class="hiddenRow">
-                                                                        <div id="{{$detail->gst_type}}"
-                                                                            class="accordian-body collapse">
-                                                                            <!-- {{$detail->gst_type}} -->
-                                                                            <br /><br />
-                                                                            <div class="col">
-                                                                                <form class="needs-validation"
-                                                                                    novalidate="novalidate"
-                                                                                    action="{{route('gst.query_raised')}}"
-                                                                                    method="post"
-                                                                                    enctype="multipart/form-data">
-                                                                                    @csrf
-                                                                                    <span
-                                                                                        class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
-                                                                                        Raised
-                                                                                    </span>
-                                                                                    <br />
-                                                                                    <div class="mb-3"><label
-                                                                                            class="form-label"
-                                                                                            for="note">
-                                                                                            {{$detail->admin_note}}
-                                                                                        </label> </div>
-
-                                                                                        <label>Enter Your Suggestion:</label>
-                        <textarea name="user_note" required="required" style="height:90px;width:100%"></textarea>
- 
-                                                                                    <input type="hidden" name="gstid"
-                                                                                        value="{{$detail->id}}" />
-                                                                                    <div class="mt-3">
-                                                                                        <label>Upload Required
-                                                                                            doc:</label>
-                                                                                        <input type="file"
-                                                                                            name="additional_img[]"
-                                                                                            id="image-upload"
-                                                                                            class="myfrm form-control"
-                                                                                            multiple />
-                                                                                    </div>
-
-                                                                                    <div class="mt-3">
-                                                                                        <button
-                                                                                            class="btn btn-primary me-1 mb-1"
-                                                                                            type="submit">Save</button>
-
-                                                                                            <button
-                                                                                            class="btn btn-primary me-1 mb-1"
-                                                                                            type="reset">Cancel</button>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                            <br />
-                                                                        </div>
-                                                                    </td>
-
-
-                                                                </tr>
-                                                                @endif
+                                                           
 
                                                                 @endforeach
                                                                 @endif
                                                             </tbody>
+                                                            
+        
                                                         </table>
+                                                        <!-- {{ $userUploadeDocuments->links() }}                                                                                         -->
+       <div class="text-right">
+            @if($userUploadeDocuments->onFirstPage())
+                <span class="btn btn-sm disabled">First</span>
+            @else
+                <a href="{{ $userUploadeDocuments->url(1) }}" class="btn  btn-sm">First</a>
+            @endif
+
+            @if($userUploadeDocuments->onFirstPage())
+                <span class="btn  btn-sm disabled">Previous</span>
+            @else
+                <a href="{{ $userUploadeDocuments->previousPageUrl() }}" class="btn  btn-sm">Previous</a>
+            @endif
+        
+            @if($userUploadeDocuments->hasMorePages())
+                <a href="{{ $userUploadeDocuments->nextPageUrl() }}" class="btn  btn-sm">Next</a>
+            @else
+                <span class="btn  btn-sm disabled">Next</span>
+            @endif
+
+            @if($userUploadeDocuments->hasMorePages())
+                <a href="{{ $userUploadeDocuments->url($userUploadeDocuments->lastPage()) }}" class="btn  btn-sm">Last</a>
+            @else
+                <span class="btn  btn-sm disabled">Last</span>
+            @endif
+        <div>
+     
+
+
                                                     </div>
 
                                                 </div>

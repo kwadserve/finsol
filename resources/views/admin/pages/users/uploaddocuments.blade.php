@@ -28,7 +28,7 @@ use App\Models\UserGstDetail;
                                 <div id="tableExample"
                                     data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                                     <div class="table-responsive scrollbar">
-
+                                    <div id="alert-dd"></div>
 
                                         <table class="table table-bordered table-striped fs--1 mb-0">
                                             <thead class="bg-200 text-900">
@@ -39,6 +39,7 @@ use App\Models\UserGstDetail;
                                                                     <th scope="col">Year</th>
                                                                     <th scope="col">Month</th>
                                                                     <th scope="col">Quarter</th>
+                                                                    <th scope="col">Status</th>
                                                                     <th scope="col">File Download</th>
                                                 </tr>
                                             </thead>
@@ -66,6 +67,37 @@ use App\Models\UserGstDetail;
                                                                     <td class="text-nowrap">{{($doc->month)?   date('F', mktime(0, 0, 0, $doc->month, 1))   :'NA'}}</</td>
                                                                      
                                                                     <td class="text-nowrap">{{($doc->quarter)?$doc->quarter:'NA'}}</</td>
+                                                                    <td class="text-nowrap"> 
+                                                                        @if($doc->status==1)
+                                                                         <div>
+                                                                            <span
+                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-primary">Processing
+                                                                            <span class="ms-1 fas fa-redo"
+                                                                                data-fa-transform="shrink-2">
+                                                                            </span>
+            
+                                                                        </span>  
+                                                                        <br/> 
+                                                                        <span
+                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-secondary"   onClick="changeApprove({{ $doc->id }})">Make it Approve
+                                                                            <span class="ms-1 fa fa-cog"
+                                                                                data-fa-transform="shrink-2">
+                                                                            </span>
+                                                                        </span>   
+                                                                    
+                                                                    </div>
+                                                                        
+                                                                        
+                                                                        @else 
+                                                                        <span
+                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-success">Approved<span
+                                                                                class="ms-1 fas fa-check"
+                                                                                data-fa-transform="shrink-2">
+                                                                            </span>
+                                                                        </span>
+                                                                       
+                                                                        @endif
+                                                                    </td>
 
                                                                     <td colspan=7>
                                                                     <form action="{{ url('admin/user/gst/download/uploaddocument/file/' . $doc->user_id) }}" method="POST">
@@ -126,7 +158,38 @@ use App\Models\UserGstDetail;
 <!--    End of Main Content-->
 <!-- ===============================================-->
 @endsection
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+ 
+
+
+<script>
+                                                         var urlpath="{{ $routeUrl }}";
+                                                            function changeApprove(itemId) {
+                                                                // Make an AJAX GET request to fetch the item details
+                                                                $.ajax({
+                                                                    url: urlpath+'/user/gst/change_approve/' + itemId,
+                                                                    type: 'GET',
+                                                                    success: function (data) {
+                                                                        if(data==1){ 
+                                                                            var html = '<div class="alert alert-success" id="alert-dd">Approved the Document Successfuly!</div>'
+                                                                            $('#alert-dd').html(html);
+                                                                            setTimeout(function() {
+                                                                                $(".alert-success").fadeOut("slow", function() {
+                                                                                    $(this).remove();
+                                                                                    location.reload();
+                                                                                });
+                                                                            }, 2000);
+                                                                        }
+                                                                    },
+                                                                    error: function (xhr) {
+                                                                        // Handle error cases
+                                                                        console.log(xhr.responseText);
+                                                                    }
+                                                                });
+                                                            }
 
  
+                                                        </script>
+
 
 

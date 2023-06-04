@@ -98,8 +98,10 @@
 <!-- ===============================================-->
 @endsection
 
+                                                           
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                               <script>
+                                var urlpath="{{ $routeUrl }}";
     function getTradeName2() {
        
         var gstValue = $('#gstSelect2').val();
@@ -108,7 +110,7 @@
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         if(gstValue) {
         $.ajax({
-            url: 'https://kwad.in/finsolproject/public/gst/gettradename',
+            url:  urlpath+'/gettradename',
             type: 'POST',
             data: {
                 gst: gstValue
@@ -137,7 +139,7 @@
         var csrfToken = $('meta[name="csrf-token"]').attr('content');
         if(gstValue) {
         $.ajax({
-            url: 'https://kwad.in/finsolproject/public/gst/gettradename',
+            url:   urlpath+'/gettradename',
             type: 'POST',
             data: {
                 gst: gstValue

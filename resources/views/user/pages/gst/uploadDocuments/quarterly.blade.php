@@ -17,7 +17,7 @@
                                                 <option value="{{ $numbers->gst_number }}">{{ $numbers->gst_number }}</option>
                                             @endforeach
                                         </select>
-                                        <input type="hidden" name="gstid" value="" class="gstid2" />
+                                         
                                         <input type="hidden" name="doc_type" value="Quarterly"  />
                                         <div class="invalid-feedback">Please select GST Number</div>
                                       </div>
@@ -64,9 +64,11 @@
 
                                           <select class="form-select" required="required" name="quarter">
                                           <option value="">Select Quarter</option>
-    @for ($quarter = 1; $quarter <= 4; $quarter++)
-        <option value="{{ $quarter }}">{{ 'Q'.$quarter }}</option>
-    @endfor
+     
+     <option value="{{ 'January-March' }}">{{ 'January-March' }}</option>
+     <option value="{{ 'April-June'  }}">{{ 'April-June'  }}</option>
+     <option value="{{ 'July-September' }}">{{ 'July-September' }}</option>
+     <option value="{{ 'October-December' }}">{{ 'October-December' }}</option>
 </select>
 
                                         
