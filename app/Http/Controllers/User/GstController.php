@@ -51,8 +51,8 @@ class GstController extends Controller {
         $data['email_id'] = $request['email_id'];
         $data['gst_number'] = $request['gst_number'];
         $data['gst_id'] = $request['gst_id'];
+        $data['status'] = 1;
         $data['gst_password'] = $request['gst_password'];
- 
         UserGstDetail::Create($data);
         return redirect('/gst/existing_register')->with('success', 'Existing Registered successfully!');
     }

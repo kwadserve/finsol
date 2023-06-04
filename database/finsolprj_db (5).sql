@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: Jun 04, 2023 at 07:39 PM
+-- Generation Time: Jun 04, 2023 at 07:47 PM
 -- Server version: 8.0.18
 -- PHP Version: 7.4.0
 
@@ -698,16 +698,7 @@ CREATE TABLE IF NOT EXISTS `users_gst_details` (
 INSERT INTO `users_gst_details` (`id`, `user_id`, `gst_number`, `email_id`, `gst_type`, `mobile_linked_aadhar`, `trade_name`, `pancard_img`, `aadharcard_img`, `voterid_or_passport_img`, `drivinglicence_img`, `userphoto_img`, `rentalagreement_img`, `electricitybill_img`, `municipallandreceipt_img`, `aadharpan_landlord_img`, `moa_img`, `aoa_img`, `status`, `admin_note`, `user_note`, `additional_img`, `approved_img`, `raised_img`, `last_update_by`, `last_update_by_id`, `gst_id`, `gst_password`, `created_at`, `updated_at`) VALUES
 (48, 1, NULL, 'test@gmail.com', 'Company', NULL, 'company', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 'dasdasd', '', '', '', NULL, 'admin', NULL, NULL, NULL, '2023-05-27 15:02:38', '2023-05-27 09:32:38'),
 (82, 1, NULL, 'test@gmail.com', 'Individual', NULL, 'Krishna Enterprises112sss', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, '2023-06-04 14:04:28', '2023-06-04 14:04:28'),
-(56, 1, NULL, 'test12@gmail.com', 'Firm', NULL, 'test trade name', '1_32371.jpg', '1_84011.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, '2023-05-31 08:39:09', '2023-05-31 08:39:09'),
-(61, 3, NULL, 'lavanya@gmail.com', 'Company', NULL, 'Krishna Enterprises', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, '2023-06-01 03:53:03', '2023-06-01 03:53:03'),
-(63, 4, NULL, 'swati33@gmail.com', 'Firm', NULL, 'Krishna Enterprises', NULL, '1_48544.pdf', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, '2023-06-01 12:02:09', '2023-06-01 12:02:09'),
-(74, 4, '123123123', 'swati@gmail.com', 'Company', NULL, 'Krishna Enterprises112', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 'daddasd', 'rewerwre', '', '', '', 'admin', 4, NULL, NULL, '2023-06-02 08:04:54', '2023-06-02 02:34:54'),
-(76, 4, '2313123', 'swatiaaa@gmail.com', 'Individual', NULL, 'Krishna', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 'sadasdasdasd', 'sasdads', '1_54694.jpeg', '1_37774.jpg', '1_53924.jpeg', 'admin', 4, NULL, NULL, '2023-06-02 08:13:17', '2023-06-02 02:43:17'),
-(77, 1, NULL, 'test@gmail.com', NULL, NULL, 'Krishna Enterprises12', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, '2023-06-04 13:45:00', '2023-06-04 13:45:00'),
-(78, 1, NULL, 'tesqwqwt@gmail.com', NULL, NULL, 'Krishna Enterprisesqwqwqw', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, '2023-06-04 13:46:52', '2023-06-04 13:46:52'),
-(79, 1, NULL, 'test@gmail.com', NULL, NULL, 'Krishna Enterprises112', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, '234234234', '324234', '2023-06-04 13:56:10', '2023-06-04 13:56:10'),
-(80, 1, NULL, 'test@gmail.com', NULL, NULL, 'Krishna Enterprisesqwqwqw', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, '324234', 'secret', '2023-06-04 13:58:49', '2023-06-04 13:58:49'),
-(81, 1, '12121212', 'test@gmail.com', NULL, NULL, 'Krishna Enterprises123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, '1212122', 'secret', '2023-06-04 14:01:39', '2023-06-04 14:01:39');
+(56, 1, NULL, 'test12@gmail.com', 'Firm', NULL, 'test trade name', '1_32371.jpg', '1_84011.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, NULL, '', NULL, NULL, '', NULL, NULL, NULL, '2023-05-31 08:39:09', '2023-05-31 08:39:09');
 
 -- --------------------------------------------------------
 
