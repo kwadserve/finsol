@@ -28,6 +28,7 @@
 
                     <div class="row g-0">
                       <div class="col-xl-12">
+                          <div class="card-body" bis_skin_checked="1">
 
                       @if (session('success'))
                             <div class="alert alert-success border-2 d-flex align-items-center" role="alert">
@@ -73,6 +74,7 @@
                         </div>
 
 
+                      </div>
                       </div>
                     </div>
 

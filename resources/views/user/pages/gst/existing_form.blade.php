@@ -67,7 +67,7 @@
             </div>
             <div class="col-4">
                 <div class="mb-3">
-                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">Gst
+                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">GST
                         number
                         of firm</label><input class="form-control" required="" type="text" name="gst_number"
                         placeholder="Enter Registration No" id="form-wizard-progress-wizard-addregnum" />
@@ -79,10 +79,10 @@
 
             <div class="col-4">
                 <div class="mb-3">
-                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">Gst
+                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">GST Portal User
                         Id </label><input class="form-control" required="" type="text" name="gst_id"
                         placeholder="GST Id" id="form-wizard-progress-wizard-addregnum" />
-                    <div class="invalid-feedback">Please provide GST 
+                    <div class="invalid-feedback">Please provide GST Portal User
                         Id</div>
                 </div>
             </div>
@@ -90,10 +90,10 @@
 
             <div class="col-4">
                 <div class="mb-3">
-                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">Gst
+                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">GST Portal
                         Password </label><input class="form-control" required="" type="password" name="gst_password"
                         placeholder="GST Password" id="form-wizard-progress-wizard-addregnum" />
-                    <div class="invalid-feedback">Please provide GST 
+                    <div class="invalid-feedback">Please provide GST Portal
                         Password</div>
                 </div>
             </div>

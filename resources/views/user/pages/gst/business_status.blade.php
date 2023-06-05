@@ -31,6 +31,7 @@ use App\Models\UserGstDetail;
                                 <!------ GST options drop ------->
 
                                 <div class="row mt-2 g-3">
+                                    <div class="card-body" bis_skin_checked="1">
 
                                     <div class="table-responsive scrollbar">
                                         <div class="container">
@@ -238,6 +239,7 @@ use App\Models\UserGstDetail;
 
 
 
+                                    </div>
                                     </div>
                                 </div>
 

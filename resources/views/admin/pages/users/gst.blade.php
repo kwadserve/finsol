@@ -68,8 +68,8 @@
                                                     <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'--'}}</td>
 
                                                     <td class="text-nowrap">{{($detail->gst_type)?$detail->gst_type:'NA'}}</td>
-                                                    <td class="text-nowrap">{{($detail->admin_note)?$detail->admin_note:'NA'}}</td>
-                                                    <td class="text-nowrap">{{($detail->user_note)?$detail->user_note:'NA'}}</td>
+                                                    <td>{{($detail->admin_note)?$detail->admin_note:'NA'}}</td>
+                                                    <td>{{($detail->user_note)?$detail->user_note:'NA'}}</td>
                                                     <td>
                                                         @if($detail->status == 2)
                                                         <div><span
@@ -117,7 +117,7 @@
 
                                                     @if($detail->status == 1 || $detail->status == 3)
                                                     <td colspan=6>
-                                                        <span class="btn  btn-xs" title="Add Note"
+                                                        <span class="btn btn-info mt-1 mb-1 btn-xs" title="Add Note"
                                                             type="button"  onclick="openNoteModal({{ $detail->id }})"
                                                            href="{{ url('gst/statusview/'.$detail->id) }}" data-target="#myNoteModal">
                                                             Note<span class="glyphicon glyphicon-eye-open ms-1"></span>
@@ -130,7 +130,7 @@
                                                         @if($detail->status == 3)
                                                          
                                                        
-                                                        | <span class="btn  btn-xs  " title="Change Status"
+                                                         <span class="btn btn-success mt-1 mb-1 btn-xs  " title="Change Status"
                                                             type="button" data-toggle="modal"  onclick="openApproveModal({{ $detail->id }})"
                                                              
                                                             data-target="#myApprovedModal"> 

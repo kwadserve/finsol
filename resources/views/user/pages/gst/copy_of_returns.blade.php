@@ -44,7 +44,7 @@
                                          </div>
                                      </div>
 
-                                     <div class="col-3">
+                                     <div class="col-4">
                                          <div class="mb-3">
                                              <label class="form-label"
                                                  for="form-wizard-progress-wizard-legalnamename">Form Type</label>
@@ -98,7 +98,7 @@
                                          </div>
                                      </div>
 
-                                    <div class="col-3">
+                                    <div class="col-4">
                                         <div class="mb-3">
                                         <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
                                           Quarter</label>
