@@ -42,13 +42,27 @@
             <h6 class="detailspadding mb-0">Details of your Existing Business</h6>
         </div>
         <div class="mt-1 row g-2">
+        
+        @error('gst_number')
+                            <div class="alert alert-danger border-2 d-flex align-items-center"
+                                                            role="alert">
+                                                            <div class="bg-danger me-3 icon-item"><span
+                                                                    class="fas fa-check-circle text-white fs-3"></span>
+                                                            </div>
+                                                            <p class="mb-0 flex-1">{{ $message }}</p>
+                                                            <button class="btn-close" type="button"
+                                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                <!-- <span style="color:red">{{ $message }}</span> -->
+                            @enderror
+
             <div class="col-4">
                 <div class="mb-3">
                     <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Trade
                         Name of
                         the
                         Business</label><input required="" class="form-control" type="text" name="trade_name"
-                        placeholder="Trade Name of Business" id="form-wizard-progress-wizard-legalname"
+                        placeholder="Trade Name of Business" value="{{old('trade_name')}}" id="form-wizard-progress-wizard-legalname"
                         data-wizard-validate-legal-name="true" />
                     <div class="invalid-feedback">Please provide Trade Name
                     </div>
@@ -67,12 +81,13 @@
             </div>
             <div class="col-4">
                 <div class="mb-3">
+             
                     <label class="form-label" for="form-wizard-progress-wizard-addregnum">GST
                         number
-                        of firm</label><input class="form-control" required="" type="text" name="gst_number"
-                        placeholder="Enter Registration No" id="form-wizard-progress-wizard-addregnum" />
+                        of firm</label><input class="form-control" required="" type="text" value="{{old('gst_number')}}" name="gst_number"
+                        placeholder="Enter GST No" id="form-wizard-progress-wizard-addregnum" />
                     <div class="invalid-feedback">Please provide GST 
-                        number</div>
+                        number  </div>
                 </div>
             </div>
 
@@ -80,9 +95,9 @@
             <div class="col-4">
                 <div class="mb-3">
                     <label class="form-label" for="form-wizard-progress-wizard-addregnum">GST Portal User
-                        Id </label><input class="form-control" required="" type="text" name="gst_id"
+                        Id </label><input class="form-control" value="{{old('gst_id')}}" required="" type="text" name="gst_id"
                         placeholder="GST Id" id="form-wizard-progress-wizard-addregnum" />
-                    <div class="invalid-feedback">Please provide GST Portal User
+                    <div class="invalid-feedback">Please provide GST Portal User 
                         Id</div>
                 </div>
             </div>

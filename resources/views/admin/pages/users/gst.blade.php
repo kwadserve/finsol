@@ -67,7 +67,7 @@
 
                                                     <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'--'}}</td>
 
-                                                    <td class="text-nowrap">{{($detail->gst_type)?$detail->gst_type:'NA'}}</td>
+                                                    <td class="text-nowrap">{{($detail->type)?$detail->type:'NA'}}</td>
                                                     <td>{{($detail->admin_note)?$detail->admin_note:'NA'}}</td>
                                                     <td>{{($detail->user_note)?$detail->user_note:'NA'}}</td>
                                                     <td>

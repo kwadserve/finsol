@@ -98,7 +98,7 @@ use App\Models\UserGstDetail;
                                                                     <td class="text-nowrap">{{isset($detail->gst_number)?$detail->gst_number:'-'}}</td>
                                                                     <!-- <td class="text-nowrap">{{isset($detail->gst_type)?$detail->gst_type:'-'}}</td> -->
                                                                     <td class="" style="font-size: 12px;">{{isset($detail->admin_note)?$detail->admin_note:'-'}}</</td>
-                                                                    <td class="text-nowrap">New GST Registration</td>
+                                                                    <td class="text-nowrap">{{isset($detail->type)?$detail->type:'-'}}</td>
 
                                                                     <td colspan=7>
                                                                         @if($detail->status == 2)

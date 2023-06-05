@@ -44,14 +44,21 @@ class GstController extends Controller {
     }
 
     public function storeExistingRegister(Request $request){
+        $messages = [
+            'gst_number.unique' => 'The GST Number is already exists.',
+        ];
+        $validatedData = $request->validate([
+            'gst_number' => 'required|unique:users_gst_details',
+        ],$messages);
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId;
         $data['user_id'] = $userId;
         $data['trade_name'] = $request['trade_name'];
         $data['email_id'] = $request['email_id'];
         $data['gst_number'] = $request['gst_number'];
+        $data['type'] = 'Existing GST registration'; 
         $data['gst_id'] = $request['gst_id'];
-        $data['status'] = 1;
+        $data['status'] = 4;
         $data['gst_password'] = $request['gst_password'];
         UserGstDetail::Create($data);
         return redirect('/gst/existing_register')->with('success', 'Existing Registered successfully!');
@@ -80,7 +87,18 @@ class GstController extends Controller {
         }
         return $data;
     }
+    public function validateform($request){
+        $gstType = $request['gst_type']; 
+        $messages = [
+            'gst_type.unique' => 'You have already applies for GST New Registration as '.$gstType,
+        ];
+         $validatedData = $request->validate([
+            'gst_type' => 'required|unique:users_gst_details',
+        ],$messages);
+    }
     public function storeIndividual(Request $request) {
+        
+        $this->validateform($request);
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
         $folderName = 'uploads/users/'.$useName.'/Gst/Individual';
@@ -97,7 +115,7 @@ class GstController extends Controller {
         return redirect('/gst/register')->with('success', 'Registered as Individual successfully!');;
     }
     public function storeFirm(Request $request) {
-   
+        $this->validateform($request);
         $userId = auth()->user()->id;
         $dataon ='partners'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
@@ -162,6 +180,7 @@ class GstController extends Controller {
  
     
     public function storeCompany(Request $request) {
+            $this->validateform($request);
             $userId = auth()->user()->id;
             $dataon ='directors'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 

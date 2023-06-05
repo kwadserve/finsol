@@ -32,6 +32,7 @@ class UserGstController extends Controller
             'mobile_linked_aadhar',
             'status',
             'gst_type',
+            'type',
             'gst_number',
             'admin_note',
             'user_note',
