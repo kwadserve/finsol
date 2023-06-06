@@ -87,17 +87,30 @@ class GstController extends Controller {
         }
         return $data;
     }
+
+    protected function checkExist($value){
+        $userId = auth()->user()->id;
+        $matchthese = ['user_id' => $userId, 'gst_type' => $value];
+        $result = UserGstDetail::where($matchthese)->get();
+        if(count($result)>0){
+            return true;
+        } 
+    }
     public function validateform($request){
+        
         $gstType = $request['gst_type']; 
-        $messages = [
-            'gst_type.unique' => 'You have already applies for GST New Registration as '.$gstType,
-        ];
+      
          $validatedData = $request->validate([
-            'gst_type' => 'required|unique:users_gst_details',
-        ],$messages);
+            'gst_type' => ['required', function ($attribute, $value, $fail) {
+                $messages = 'You have already applies for GST New Registration as '.$value;
+                $isExist = $this->checkExist($value);
+                if ($isExist) {
+                    $fail($messages);
+                }
+            },],
+        ]);
     }
     public function storeIndividual(Request $request) {
-        
         $this->validateform($request);
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
