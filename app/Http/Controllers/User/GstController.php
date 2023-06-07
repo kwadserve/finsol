@@ -291,7 +291,7 @@ class GstController extends Controller {
     }
 
     public function copyOfReturns(Request $request){
-     
+       $routeUrl = Helper::getBaseUrl($request);
        $userId = auth()->user()->id;
        $formtypes = GstFormType::select('type')->get();
        $gstNumbers =  UserGstDetail::select('gst_number')->whereNotNull('gst_number')->where('user_id',$userId)->get();
@@ -331,7 +331,7 @@ class GstController extends Controller {
        }
  
        return view('user.pages.gst.copy_of_returns',compact('gstNumbers','formtypes','items', 
-       'selectedgstNumber','selectedformtype','selectedyear','selectedmonth','selectedquarter' ));
+       'selectedgstNumber','selectedformtype','selectedyear','selectedmonth','selectedquarter','routeUrl' ));
     }
 
     public function getFormType(Request $request){
@@ -370,6 +370,8 @@ class GstController extends Controller {
         $getQuarter = CopyOfReturns::select('quarter')->where(['user_id'=>$userId,'gst_number'=>$gstNumber, 'form_type'=>$form_type, 'year'=> $getYear,'month'=>$getmonth])->distinct('quarter')->get();
         return response()->json($getQuarter);
     }
+
+
      public function queryRaised(Request $request){
          $userId = auth()->user()->id;
          $gstid = $request->gstid; 

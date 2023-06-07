@@ -45,6 +45,10 @@ Route::group([
 
             // Upload Documents make it approve 
             Route::get('gst/change_approve/{id}', 'UserUploadDocumentsController@change_approve')->name('change_approve');
+
+
+            Route::get('gst/copyofreturns/{id}', 'Copyofreturns\CopyofreturnsController@index')->name('copyofreturnslist');  
+            Route::post('gst/download/copyofreturns/file/{id}', 'Copyofreturns\CopyofreturnsController@adminusercopyofreturnsFile')->name('adminusercopyofreturnsFile');
             
         });
 

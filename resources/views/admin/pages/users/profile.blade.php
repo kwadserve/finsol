@@ -44,9 +44,9 @@
   <div class="col-sm-3">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">PAN Overview</h5>
+        <h5 class="card-title">Copy of Returns</h5>
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">PAN</a>
+        <a href="{{ URL('/admin/user/gst/copyofreturns/'.$userId )}}" class="btn btn-primary">Copy of Returns</a>
       </div>
     </div>
   </div>

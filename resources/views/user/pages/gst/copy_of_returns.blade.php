@@ -104,9 +104,10 @@
                                           Quarter</label>
                                           <select class="form-select"  id="gstquarter"  name="quarter" >
                                           <option value="">Select Quarter</option>
-                                        @for ($quarter = 1; $quarter <= 4; $quarter++)
-                                            <option value="{{ $quarter }}"  @if($selectedquarter == $quarter) selected @endif >{{ 'Q'.$quarter }}</option>
-                                        @endfor
+                                          <option value="{{ 'January-March' }}">{{ 'January-March' }}</option>
+     <option value="{{ 'April-June'  }}">{{ 'April-June'  }}</option>
+     <option value="{{ 'July-September' }}">{{ 'July-September' }}</option>
+     <option value="{{ 'October-December' }}">{{ 'October-December' }}</option>
                                         </select>
                                         </div>
                                     </div>
@@ -227,6 +228,7 @@
 
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                               <script>
+     var urlpath="{{ $routeUrl }}";                            
     function getFormType() {
      
         var gstValue = $('#gstSelect').val();
@@ -234,7 +236,7 @@
         $('#formtype').find('option').not(':first').remove();
         if(gstValue) {
         $.ajax({
-            url: 'https://kwad.in/finsolproject/public/gst/getformtype',
+            url: urlpath+'/getformtype',
             type: 'POST',
             data: {
                 gst: gstValue
@@ -272,7 +274,7 @@
      $('#gstyear').find('option').not(':first').remove();
      if(gstValue) {
      $.ajax({
-         url: 'https://kwad.in/finsolproject/public/gst/getyear',
+         url: urlpath+'/getyear',
          type: 'POST',
          data: {
              gst: gstValue,
@@ -318,7 +320,7 @@ function getMonth() {
      $('#gstmonth').find('option').not(':first').remove();
      if(gstValue) {
      $.ajax({
-         url: 'https://kwad.in/finsolproject/public/gst/getmonth',
+         url: urlpath+'/getmonth',
          type: 'POST',
          data: {
              gst: gstValue,
@@ -358,7 +360,7 @@ function getMonth() {
      $('#gstquarter').find('option').not(':first').remove();
      if(gstValue) {
         $.ajax({
-         url: 'https://kwad.in/finsolproject/public/gst/getquarter',
+         url: urlpath+'/getquarter',
          type: 'POST',
          data: {
              gst: gstValue,
