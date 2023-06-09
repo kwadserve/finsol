@@ -51,6 +51,7 @@ Route::group([
             Route::post('gst/download/copyofreturns/file/{id}', 'CopyofreturnsController@adminusercopyofreturnsFile')->name('adminusercopyofreturnsFile');
             Route::post('gst/gettradename', 'CopyofreturnsController@getTradeName')->name('gettradename');
             Route::post('gst/copyofreturns/create/{id}', 'CopyofreturnsController@create')->name('copyofreturns.create');
+            Route::get('gst/copyofreturns/delete/{id}', 'CopyofreturnsController@delete')->name('copyofreturns.delete');
         });
 
         // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');

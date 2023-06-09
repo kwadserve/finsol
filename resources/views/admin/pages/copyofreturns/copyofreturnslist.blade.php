@@ -48,7 +48,28 @@
                         <div class="row">
                      
                             <div class="col-12">
-                             
+                            @if (session('success_delete'))
+                            <div class="alert alert-success border-2 d-flex align-items-center" role="alert">
+                                <div class="bg-success me-3 icon-item"><span
+                                        class="fas fa-check-circle text-white fs-3"></span>
+                                </div>
+                                <p class="mb-0 flex-1">{{ session('success_delete') }}</p>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            @endif
+
+                            @if (session('filenotexist'))
+                            <div class="alert alert-danger border-2 d-flex align-items-center" role="alert">
+                                <div class="bg-danger me-3 icon-item"><span
+                                        class="fas fa-check-circle text-white fs-3"></span>
+                                </div>
+                                <p class="mb-0 flex-1">{{ session('filenotexist') }}</p>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            @endif
+
                             @include('admin.pages.copyofreturns.list')
                             </div>
                             <div class="col-auto ps-0">

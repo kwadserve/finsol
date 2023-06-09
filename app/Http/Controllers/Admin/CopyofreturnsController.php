@@ -54,12 +54,20 @@ class CopyofreturnsController extends Controller
         if($request->doc_type=='Monthly'){
             $data['month'] = isset($request->month)?$request->month:'';
         } else {
-            $data['quarter'] =  isset($request->month) ? $request->quarter:'';
+            $data['quarter'] =  isset($request->quarter) ? $request->quarter:'';
         }
         $lastInsertedId =  CopyOfReturns::Create($data)->id;
-        $msg = $request->input('doc_type').' Copy of return Successfully Updated!'; 
+        $msg = $request->input('doc_type').' Copy of return Successfully Added!'; 
          return redirect('/admin/user/gst/copyofreturns/'.$userId)->with('success', $msg); 
   
+    }
+    public function delete($cpyd, Request $request){
+        $split  = explode('-',$cpyd);
+        $cpydId =  $split[0];
+        $userId =  $split[1];
+      $cpyof = CopyOfReturns::where('id',$cpydId)->delete();
+      $msg =  ' Deleted Successfully!'; 
+     return redirect('/admin/user/gst/copyofreturns/'.$userId)->with('success_delete', $msg); 
     }
 
     public function adminusercopyofreturnsFile(Request $request, $userId)
@@ -68,82 +76,38 @@ class CopyofreturnsController extends Controller
         $commaValues = explode(",", $files);
         $userDetails = User::find($userId);
    
-        $doc_type = $request->doc_type;
+        $form_type = $request->form_type;
         $useName = trim($userDetails->name).'-'.$userId; 
-        $zipName = $doc_type.'-'.$useName.'.zip';
+        $zipName = $form_type.'-'.$useName.'.zip';
         $zip = new \ZipArchive();
         $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
         if (count($commaValues) > 1) {
             foreach ($commaValues as $file) {
-                $filePath = 'uploads/users/'.$useName.'/Gst/UploadDocuments/'.$doc_type.'/'.$file;  
+                $filePath = 'uploads/users/'.$useName.'/Gst/CopyOfReturns/'.$file;  
                 if (File::exists($filePath)) {
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('user/gst/uploaddocuments/'.$userId)->with('danger', 'File Not Exist!');
+                    return redirect('/admin/user/gst/copyofreturns/'.$userId)->with('filenotexist', 'File Not Exist!');
                 }
             }
         } else {
-            $filePath = 'uploads/users/'.$useName.'/Gst/UploadDocuments/'.$doc_type.'/'.$files;  
+              $filePath = 'uploads/users/'.$useName.'/Gst/CopyOfReturns/'.$files;  
+         
             if (File::exists($filePath)) { 
             $fileContents = file_get_contents(public_path($filePath));
             $zip->addFromString(basename($files), $fileContents); 
             } else {
-            return redirect('user/gst/uploaddocuments/'.$userId)->with('filenotexist', 'File Not Exist!');
+            return redirect('/admin/user/gst/copyofreturns/'.$userId)->with('filenotexist', 'File Not Exist!');
             }  
         }
         $zip->close();
         return response()->download($zipName)->deleteFileAfterSend(true);
     }
 
-    // public function change_approve(Request $request,  $docId){
-        
-    //     if(isset($docId)){
-           
-    //         $UserGstUploadDocument =  UserGstUploadDocument::find($docId);
-    //         $userid =  $UserGstUploadDocument->user_id; 
-    //         $UserGstUploadDocument->status = 2; //Approve Upload Documents
-    //         $UserGstUploadDocument->save();
-    //         return 1; 
-    //         // return redirect('admin/user/gst/uploaddocuments/'.$userId)->with('success', 'Approved the Document Successfuly!'); 
-    //     }
-        
-       
-    // }
-
-    // public function adminuserUploadDocumentFile(Request $request, $userId){
-    //     $files = $request->input('files'); 
-    //     $commaValues = explode(",", $files);
-    //     $userDetails = User::find($userId);
-   
-    //     $doc_type = $request->doc_type;
-    //     $useName = trim($userDetails->name).'-'.$userId; 
-    //     $zipName = $doc_type.'-'.$useName.'.zip';
-    //     $zip = new \ZipArchive();
-    //     $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
-    //     if (count($commaValues) > 1) {
-    //         foreach ($commaValues as $file) {
-    //             $filePath = 'uploads/users/'.$useName.'/Gst/UploadDocuments/'.$doc_type.'/'.$file;  
-    //             if (File::exists($filePath)) {
-    //             $fileContents = file_get_contents(public_path($filePath));
-    //             $zip->addFromString(basename($file), $fileContents);
-    //             }else {
-    //                 return redirect('user/gst/uploaddocuments/'.$userId)->with('danger', 'File Not Exist!');
-    //             }
-    //         }
-    //     } else {
-    //         $filePath = 'uploads/users/'.$useName.'/Gst/UploadDocuments/'.$doc_type.'/'.$files;  
-    //         if (File::exists($filePath)) { 
-    //         $fileContents = file_get_contents(public_path($filePath));
-    //         $zip->addFromString(basename($files), $fileContents); 
-    //         } else {
-    //         return redirect('user/gst/uploaddocuments/'.$userId)->with('filenotexist', 'File Not Exist!');
-    //         }  
-    //     }
-    //     $zip->close();
-    //     return response()->download($zipName)->deleteFileAfterSend(true);
-    // }
  
+
+     
  
    
 }

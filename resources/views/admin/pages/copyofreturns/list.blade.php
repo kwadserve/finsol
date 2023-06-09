@@ -44,11 +44,15 @@ use App\Models\UserGstDetail;
                                                                     <form action="{{ url('admin/user/gst/download/copyofreturns/file/' . $list->user_id) }}" method="POST">
                                                                                     @csrf
                                                                                       <input type="hidden" name="files" value="{{ $list->documents }}">
-                                                                                      <input type="hidden" name="doc_type" value="{{ $list->form_type }}">
+                                                                                      <input type="hidden" name="form_type" value="{{ $list->form_type }}">
                                                                                       <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
                                                                                 </form>
                                                                     </td>
-                                                                    <td><button class="btn btn-sm">Delete</button></td>
+                                                                    @php
+                                                                    $id = $list->id.'-'.$list->user_id;
+                                                                    @endphp
+
+                                                                    <td><a href="{{ url('admin/user/gst/copyofreturns/delete/'.$id)}}"><button class="btn btn-sm">Delete</button></a></td>
                                                                 </tr>
                                                                 @endforeach
                                                                 @endif
