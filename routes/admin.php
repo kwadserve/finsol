@@ -47,9 +47,10 @@ Route::group([
             Route::get('gst/change_approve/{id}', 'UserUploadDocumentsController@change_approve')->name('change_approve');
 
 
-            Route::get('gst/copyofreturns/{id}', 'Copyofreturns\CopyofreturnsController@index')->name('copyofreturnslist');  
-            Route::post('gst/download/copyofreturns/file/{id}', 'Copyofreturns\CopyofreturnsController@adminusercopyofreturnsFile')->name('adminusercopyofreturnsFile');
-            
+            Route::get('gst/copyofreturns/{id}', 'CopyofreturnsController@index')->name('copyofreturnslist');  
+            Route::post('gst/download/copyofreturns/file/{id}', 'CopyofreturnsController@adminusercopyofreturnsFile')->name('adminusercopyofreturnsFile');
+            Route::post('gst/gettradename', 'CopyofreturnsController@getTradeName')->name('gettradename');
+            Route::post('gst/copyofreturns/create/{id}', 'CopyofreturnsController@create')->name('copyofreturns.create');
         });
 
         // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');

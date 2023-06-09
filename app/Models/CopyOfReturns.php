@@ -14,10 +14,12 @@ class CopyOfReturns extends Authenticatable
     protected $fillable = [
         'user_id',
         'user_gst_id',
+        'trade_name',
+        'gst_number',
+        'form_type',
         'year',
         'month',
         'quarter',
-        'type',
         'documents'
     ];
 
