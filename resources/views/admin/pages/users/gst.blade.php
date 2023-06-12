@@ -46,6 +46,7 @@
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Admin Note</th>
                                                     <th scope="col">User Note</th>
+                                                    <th scope="col">Details</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Note/Approve</th>
                                                 </tr>
@@ -70,6 +71,7 @@
                                                     <td class="text-nowrap">{{($detail->type)?$detail->type:'NA'}}</td>
                                                     <td>{{($detail->admin_note)?$detail->admin_note:'NA'}}</td>
                                                     <td>{{($detail->user_note)?$detail->user_note:'NA'}}</td>
+                                                    <td><a href="{{ url('admin/user/gsttype/details/'.$detail->id) }}">Details</a></td>
                                                     <td>
                                                         @if($detail->status == 2)
                                                         <div><span

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
 use App\Helpers\Helper as Helper;
 use App\Models\User;
- 
+use App\Models\Documents; 
  
 
 class UserGstController extends Controller
@@ -48,6 +48,14 @@ class UserGstController extends Controller
     {
         $data['userId'] = $userId; 
         return view('admin.pages.users.profile')->with($data);
+    }
+
+    
+    public function gstProfile($gstId)
+    {
+        $data['gstDetails'] = UserGstDetail::find($gstId);
+        $data['gstIndividualDocuments'] = Documents::where(['for_multiple' => 'GST'])->get();
+        return view('admin.pages.users.gst.gstprofile')->with($data);
     }
 
 
