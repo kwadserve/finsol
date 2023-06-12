@@ -75,15 +75,29 @@
         <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
 
           <ul class="navbar-nav ms-auto">
+              
+              <li class="nav-item dropdown"><a class="nav-link logincolor" href="#about" role="button"
+                aria-haspopup="true" aria-expanded="false">About</a>
+                </li>
+                
+                 <li class="nav-item dropdown"><a class="nav-link logincolor" href="#services" role="button"
+                aria-haspopup="true" aria-expanded="false">Services</a>
+                </li>
+                
+                  <li class="nav-item dropdown"><a class="nav-link logincolor" href="#contact" role="button"
+                aria-haspopup="true" aria-expanded="false">Contact</a>
+                </li>
 
             @auth
-            <li class="nav-item dropdown"><a class="nav-link logincolor" href="{{ route('logout_page') }}" role="button"
-                aria-haspopup="true" aria-expanded="false">Logout</a>
+            <li class="nav-item dropdown"><a class="nav-link logincolor" href="{{ route('home') }}" role="button"
+                aria-haspopup="true" aria-expanded="false">Dashboard</a>
                 @else
             <li class="nav-item dropdown"><a class="nav-link logincolor" href="{{ route('login_page') }}" role="button"
                 aria-haspopup="true" aria-expanded="false">Login</a>
             </li>
             @endauth
+            
+              
 
 
           </ul>
@@ -124,7 +138,7 @@
 
     <!-- ============================================-->
     <!-- <section> begin ============================-->
-    <section>
+    <section id="about">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-8 col-xl-7 col-xxl-6">
@@ -185,9 +199,9 @@
         <div class="container">
           <div class="row justify-content-center text-center">
             <div class="col-lg-8">
-              <p class="fs-3 fs-sm-4 text-white">Client satisfaction is not just our goal; it's our commitment. We go above and beyond to understand our clients' unique needs, provide personalized solutions, and deliver exceptional service. Our measure of success lies in the satisfaction and success of our clients.</p><button
+              <p class="fs-3 fs-sm-4 text-white">Client satisfaction is not just our goal; it's our commitment. We go above and beyond to understand our clients' unique needs, provide personalized solutions, and deliver exceptional service. Our measure of success lies in the satisfaction and success of our clients.</p><a  href="{{ route('register_page') }}"><button
                 class="btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-0 py-2" type="button">Start your
-                Journey</button>
+                Journey</button></a>
             </div>
           </div>
         </div><!-- end of .container-->
@@ -199,7 +213,7 @@
 
     <!-- ============================================-->
     <!-- <section> begin ============================-->
-    <section class="bg-light text-center">
+    <section class="bg-light text-center" id="services">
       <div class="container">
         <div class="row">
           <div class="col">
@@ -220,7 +234,7 @@
                       ensuring that
                       your business is set up legally and efficiently. We handle all the necessary paperwork and
                       registrations, saving you time and providing peace of mind.</p>
-                    <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button>
+                    <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
 
                   </div>
                 </div>
@@ -242,7 +256,7 @@
                       ensure accurate and timely filing of your GST returns, helping you navigate the regulations and
                       avoid
                       penalties. Stay compliant with GST and focus on growing your business.</p>
-                    <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button>
+                   <a  href="{{ route('register_page') }}"> <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
                   </div>
                 </div>
               </div>
@@ -259,9 +273,9 @@
                     <p class="lead">Tax season can be stressful, but our income tax services make it hassle-free. Our
                       knowledgeable
                       professionals will assist you in preparing and filing your income tax returns, maximizing your
-                      deductions and minimizing your tax liability. Let us handle your taxes so you can enjoy peace of
+                      deductions and minimizing your tax liability. Let us handle your taxes and enjoy peace of
                       mind.</p>
-                    <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button>
+                    <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
 
                   </div>
                 </div>
@@ -280,7 +294,7 @@
                   company compliance services help you meet all the necessary requirements, from annual filings to
                   corporate governance. We'll ensure that your company operates within the legal framework, minimizing
                   risks and ensuring smooth operations.</p>
-                <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button>
+                <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
               </div>
             </div>
           </div>
@@ -293,7 +307,7 @@
                   services provide expert guidance and support in finding the right financial solutions for you. From
                   business loans to personal mortgages, we work with you to navigate the lending landscape and secure
                   the funds you need.</p>
-                <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button>
+               <a  href="{{ route('register_page') }}"> <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
               </div>
             </div>
           </div>
@@ -307,7 +321,7 @@
                   services help you obtain the necessary licenses and accreditations to meet industry standards and
                   regulatory requirements. We guide you through the certification process, ensuring your business stands
                   out in the market.</p>
-                <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button>
+                <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
               </div>
             </div>
           </div>
@@ -381,9 +395,9 @@
         <div class="row justify-content-center text-center">
           <div class="col-lg-8">
             <p class="fs-3 fs-sm-4 text-white">We prioritize client satisfaction and strive to build long-lasting
-              relationships based on trust and integrity.</p><button
+              relationships based on trust and integrity.</p><a  href="{{ route('register_page') }}"><button
               class="btn btn-outline-light border-2 rounded-pill btn-lg mt-4 fs-0 py-2" type="button">Start your
-              Journey</button>
+              Journey</button></a>
           </div>
         </div>
       </div><!-- end of .container-->
@@ -394,7 +408,7 @@
 
     <!-- ============================================-->
     <!-- <section> begin ============================-->
-    <section class="bg-dark pt-8 pb-4" data-bs-theme="light">
+    <section class="bg-dark pt-8 pb-4" data-bs-theme="light" id="contact">
       <div class="container">
         <div class="position-absolute btn-back-to-top bg-dark"><a class="text-600" href="#banner"
             data-bs-offset-top="0"><span class="fas fa-chevron-up" data-fa-transform="rotate-45"></span></a></div>
@@ -425,20 +439,20 @@
                   
                 </ul>
               </div>
-              <div class="col-6 col-md-6">
+              <div class="col-6 col-md-3">
                 <h5 class="text-uppercase text-white opacity-85 mb-3">Services</h5>
                 <ul class="list-unstyled">
-                  <li class="mb-1"><a class="link-600" href="#!">Business Registration</a></li>
+                  <li class="mb-1"><a class="link-600" href="#!">Registration</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">GST Filing</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Income Tax</a></li>
-                  <li class="mb-1"><a class="link-600" href="#!">Company Compliances</a></li>
+                  <li class="mb-1"><a class="link-600" href="#!">Compliances</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Loans</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Certifications</a></li>
                  
                 </ul>
               </div>
               <div class="col-6 col-md-3">
-                <h5 class="text-uppercase text-white opacity-85 mb-3">&nbsp;</h5>
+              <h5 class="text-uppercase text-white opacity-85 mb-3">Services</h5>
                 <ul class="list-unstyled">
                   <li class="mb-1"><a class="link-600" href="#!">Legal</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Auditing</a></li>
@@ -446,6 +460,17 @@
                   <li class="mb-1"><a class="link-600" href="#!">Compliances</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Reports</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Taxation</a></li>
+                 
+                </ul>
+              </div>
+                <div class="col-6 col-md-3">
+                <h5 class="text-uppercase text-white opacity-85 mb-3">Contact</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-1"><a class="link-600" href="#!">contact@finsol.in</a></li>
+                  <li class="mb-1"><a class="link-600" href="#!">+91 - 6203324932</a></li>
+                  <li class="mb-1"><a class="link-600" href="#!">+91 - 9798995769</a></li>
+                  <li class="mb-1"><a class="link-600" href="#!"> 1234 NW Lane, St. Robert, MO 65584, New York</a></li>
+                 
                  
                 </ul>
               </div>

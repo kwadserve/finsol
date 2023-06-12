@@ -23,7 +23,7 @@
                                     <!--/.bg-holder-->
                                     <div class="z-1 position-relative"><a
                                             class="link-light mb-4 font-sans-serif fs-4 d-inline-block fw-bolder"
-                                            href="../../../index-2.html">Finsol</a>
+                                            href="#">Finsol</a>
                                         <p class="opacity-75 text-white">Save money and Save time with India’s largest
                                             tax and financial
                                             services software platform Sampurna Suvidha Kendra</p>
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="mt-3 mb-4 mt-md-4 mb-md-5" data-bs-theme="light">
                                     <p class="text-white">Don't have an account?<br><a
-                                            class="text-decoration-underline link-light" href="register.html">Get
+                                            class="text-decoration-underline link-light" href="#">Get
                                             started!</a></p>
                                     <p class="mb-0 mt-4 mt-md-5 fs--1 fw-semi-bold text-white opacity-75">Read our <a
                                             class="text-decoration-underline text-white" href="#!">terms</a> and <a
