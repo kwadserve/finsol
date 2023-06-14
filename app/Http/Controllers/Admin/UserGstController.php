@@ -11,7 +11,8 @@ use Yajra\DataTables\DataTables;
 use App\Helpers\Helper as Helper;
 use App\Models\User;
 use App\Models\Documents; 
- 
+use App\Models\UserPartner;
+use App\Models\UserDirector;
 
 class UserGstController extends Controller
 {
@@ -55,6 +56,19 @@ class UserGstController extends Controller
     {
         $data['gstDetails'] = UserGstDetail::find($gstId);
         $data['gstIndividualDocuments'] = Documents::where(['for_multiple' => 'GST'])->get();
+     
+        $data['gstFirmDocuments'] = Documents::where(['for_multiple' => 'GST Firm'])->get();
+        $data['gstFirmPartnersDocuments'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
+
+
+        $data['gstCompanyDocuments'] = Documents::where(['for_multiple' => 'GST Company'])->get();
+        $data['gstCompanyDirectorsDocuments'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
+
+
+        $data['gstFirmPartners'] = UserPartner :: where(['user_gst_id' => $gstId])->get();
+     
+        $data['gstCompanyDirectors'] = UserDirector :: where(['user_gst_id' => $gstId])->get();
+
         return view('admin.pages.users.gst.gstprofile')->with($data);
     }
 
