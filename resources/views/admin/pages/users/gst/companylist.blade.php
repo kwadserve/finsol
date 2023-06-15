@@ -19,9 +19,20 @@ foreach ($gstCompanyDocuments as $row){
 ?>  
         <div class="col-md-<?php echo $bootstrapColWidth; ?>">
         <h6>{{$row->doc_name}}</h6> 
-        <div class="thumbnail">
-        <a class=" justify-content-between ms-auto" href="#!">Download</a>
-        </div>
+        @php 
+          $keyname =$row->doc_key_name;
+          @endphp
+
+        <form action="{{ url('admin/user/gst/files/'.$gstDetails->user_id) }}" method="POST">
+          @csrf
+  
+          
+              <input type="hidden" name="files" value="{{$gstDetails[$keyname] }}">
+              <input type="hidden" name="gst_type" value="{{ $gstDetails->gst_type }}">
+              <input type="hidden" name="gst_id" value="{{ $gstDetails->id }}">  
+          
+            <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
+       </form>
         <br/>
         </div>
 <?php
@@ -64,9 +75,20 @@ foreach ($gstCompanyDirectorsDocuments as $row){
 ?>  
         <div class="col-md-<?php echo $bootstrapColWidth1; ?>">
         <h6>{{$row->doc_name}}</h6> 
-        <div class="thumbnail">
-        <a class=" justify-content-between ms-auto" href="#!">Download</a>
-        </div>
+        @php 
+          $keyname =$row->doc_key_name;
+          @endphp
+
+        <form action="{{ url('admin/user/gst/files/'.$gstDetails->user_id) }}" method="POST">
+          @csrf
+  
+          
+              <input type="hidden" name="files" value="{{$director[$keyname] }}">
+              <input type="hidden" name="gst_type" value="{{ $gstDetails->gst_type }}">
+              <input type="hidden" name="gst_id" value="{{ $gstDetails->id }}">  
+          
+            <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
+       </form>
         <br/>
         </div>
 <?php

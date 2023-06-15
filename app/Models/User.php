@@ -33,4 +33,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected function getUserDocumentsPath($userId,$type){
+       $userDetails  = User::find($userId); 
+       $folderName = $userDetails->name.'-'.$userDetails->id.'/Gst/'; 
+       $path =  $folderName.$type.'/'; 
+       return $path; 
+    }
 }
+
+  

@@ -1,4 +1,4 @@
-<div class="col-lg-4 ps-lg-2">
+ 
               <div class="sticky-sidebar top-navbar-height">
                 <div class="card overflow-hidden">
                   <div class="card-header">
@@ -60,7 +60,20 @@
 
                 @if($gstDetails->gst_type == 'Firm')
 
-                @include('admin.pages.users.gst.partners')
+                <div class="card">
+  <div class="card-body">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-6 col-lg-12 text-center"></div>
+      <div class="col-md-6 col-lg-12">
+        <div class="row row-cols-1 g-0">
+          <div class="col text-center">
+          <h4>{{($gstFirmPartners) ? count($gstFirmPartners):'0'}} Partners</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
  
 
 @endif
@@ -68,7 +81,20 @@
 
 @if($gstDetails->gst_type == 'Company')
 
-                @include('admin.pages.users.gst.company')
+<div class="card">
+  <div class="card-body">
+    <div class="row g-3 align-items-center">
+      <div class="col-md-6 col-lg-12 text-center"></div>
+      <div class="col-md-6 col-lg-12">
+        <div class="row row-cols-1 g-0">
+          <div class="col text-center">
+            <h4>{{($gstCompanyDirectors) ? count($gstCompanyDirectors):'0'}} Companies</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
  
 
 @endif
@@ -79,8 +105,6 @@
 
               
 
-            </div>
-
-
+         
 
            

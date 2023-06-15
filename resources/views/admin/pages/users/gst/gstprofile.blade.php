@@ -19,17 +19,22 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
-
+                                <div class="col-lg-4 ps-lg-2">
+                                  @include('admin.pages.users.gst.section2')
+                                  </div>
                                  <!------------------section 1----------------->
-                                 @include('admin.pages.users.gst.section1')
+                                 <div class="col-lg-8 pe-lg-2">
+                                 @include('admin.pages.users.gst.individuallist')
+                                 @include('admin.pages.users.gst.firmlist')
+                                 @include('admin.pages.users.gst.companylist')
+                                </div>
 
                                   <!------------------section 2----------------->
-                                  @include('admin.pages.users.gst.section2')
+                                 
 
                                    <!------------------section 3----------------->
                                   
-                                 @include('admin.pages.users.gst.partnerslist')
-                                 @include('admin.pages.users.gst.companylist')
+                             
 
                                  
            

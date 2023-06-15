@@ -1,9 +1,6 @@
-@php 
-use App\Models\User;
- 
-@endphp
 
-<div class="col-lg-8 pe-lg-2">
+
+ 
               <div class="card mb-3">
                 <div class="card-header">
                   <h5 class="mb-0">GST Details</h5>
@@ -16,9 +13,6 @@ use App\Models\User;
                       
                 </div>
               </div>
-              <div class="card mb-3">
-
-
               @if (session('filenotexistsection1'))
                             <div class="alert alert-danger border-2 d-flex align-items-center" role="alert">
                                 <div class="bg-danger me-3 icon-item"><span
@@ -29,7 +23,11 @@ use App\Models\User;
                                     aria-label="Close"></button>
                             </div>
                             @endif
+              @if($gstDetails->gst_type == 'Individual')
+              <div class="card mb-3">
 
+
+            
                 <div class="card-header">
                   <h5 class="mb-0">Basic Individual Documents</h5>
                 </div>
@@ -81,5 +79,8 @@ foreach ($gstIndividualDocuments as $row){
 
                 
                 </div>
+                @endif
               </div>
-            </div>
+           
+
+            

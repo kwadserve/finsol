@@ -56,6 +56,7 @@ Route::group([
 
             // gst profile details 
             Route::get('gsttype/details/{id}', 'UserGstController@gstProfile')->name('gstTypeDetails'); 
+            Route::post('gst/files/{id}', 'UserGstController@downloadGstFile')->name('downloadGstFile');
         });
 
         // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
