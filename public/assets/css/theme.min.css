@@ -34637,12 +34637,11 @@ a[href].bg-200:focus {
     left: 50%;
     -webkit-transform: translate3d(-50%, -50%, 0);
     transform: translate3d(-50%, -50%, 0);
-    width: 5rem;
-    height: 5rem;
+   padding:1rem;
     background-color: var(--falcon-card-span-img-bg);
     -webkit-box-shadow: var(--falcon-card-span-img-box-shadow);
     box-shadow: var(--falcon-card-span-img-box-shadow);
-    border-radius: 50%;
+    border-radius: 10%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

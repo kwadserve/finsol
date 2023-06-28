@@ -1,4 +1,4 @@
-<div class="offcanvas offcanvas-end settings-panel border-0" id="settings-offcanvas" tabindex="-1"
+<!-- <div class="offcanvas offcanvas-end settings-panel border-0" id="settings-offcanvas" tabindex="-1"
     aria-labelledby="settings-offcanvas">
     <div class="offcanvas-header settings-panel-header bg-shape">
         <div class="z-1 py-1" data-bs-theme="light">
@@ -142,4 +142,4 @@
         <small
             class="text-uppercase text-primary fw-bold bg-primary-subtle py-2 pe-2 ps-1 rounded-end">customize</small>
     </div>
-</a>
+</a> -->

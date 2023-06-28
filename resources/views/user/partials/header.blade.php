@@ -18,8 +18,8 @@
     <div class="collapse navbggrad navbar-collapse" id="navbarVerticalCollapse">
         <div class="navbar-vertical-content navbggrad scrollbar">
             <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
-                <li class="nav-item">
-                    <!-- parent pages-->
+               <!-- <li class="nav-item">
+                   
                     <a class="nav-link" href="#dashboard" role="button"
                         data-bs-toggle="collapse" aria-expanded="true" aria-controls="dashboard">
                         <div class="d-flex align-items-center"><span class="nav-link-icon"><span
@@ -27,76 +27,424 @@
                                 class="nav-link-text ps-1">Dashboard</span></div>
                     </a>
                     
-                </li>
-                <li class="nav-item">
-                    <!-- label-->
-                    <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                        <div class="col-auto navbar-vertical-label">Services</div>
-                        <div class="col ps-0">
-                            <hr class="mb-0 navbar-vertical-divider" />
-                        </div>
-                    </div><!-- parent pages--><a class="nav-link" href="app/calendar.html" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-calendar-alt"></span></span><span
-                                class="nav-link-text ps-1">GST</span></div>
-                    </a><!-- parent pages--><a class="nav-link" href="app/chat.html" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-comments"></span></span><span class="nav-link-text ps-1">Legal</span>
-                        </div>
-                    </a><!-- parent pages--><a class="nav-link" href="#email" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="email">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-envelope-open"></span></span><span
-                                class="nav-link-text ps-1">Income Tax</span></div>
-                    </a>
-                    <!-- parent pages-->
-                    <a class="nav-link" href="#events" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="events">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-calendar-day"></span></span><span
-                                class="nav-link-text ps-1">Companies Act</span></div>
-                    </a>
-                    <!-- parent pages-->
-                    <a class="nav-link" href="#e-commerce" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-commerce">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-shopping-cart"></span></span><span class="nav-link-text ps-1">EPF/ESIC</span>
-                        </div>
-                    </a>
-                    <!-- parent pages-->
-                    <a class="nav-link" href="#e-learning" role="button"
-                        data-bs-toggle="collapse" aria-expanded="false" aria-controls="e-learning">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-graduation-cap"></span></span><span class="nav-link-text ps-1">Trade Mark</span><span class="badge rounded-pill ms-2 badge-subtle-success">New</span>
-                        </div>
-                    </a>
-                    <!-- parent pages-->
-                    <a class="nav-link" href="app/kanban.html" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fab fa-trello"></span></span><span class="nav-link-text ps-1">ISO/ISI/BSI</span>
-                        </div>
-                    
-                    
-                </li>
-                <li class="nav-item">
-                    <!-- label-->
-                    <div class="row navbar-vertical-label-wrapper mt-3 mb-2">
-                        <div class="col-auto navbar-vertical-label">Payments</div>
-                        <div class="col ps-0">
-                            <hr class="mb-0 navbar-vertical-divider" />
-                        </div>
-                    </div><!-- parent pages--><a class="nav-link" href="pages/starter.html" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-flag"></span></span><span class="nav-link-text ps-1">Initiate Payment</span>
-                        </div>
-                    </a><!-- parent pages--><a class="nav-link" href="pages/landing.html" role="button">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-globe"></span></span><span class="nav-link-text ps-1">Track Payments</span>
-                        </div>
-                    </a>
-                    <!-- parent pages-->
-                    
-                </li>
+                </li> -->
+                  <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#registration" role="button"
+                              data-bs-toggle="collapse" aria-expanded="true" aria-controls="registration">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="fas fa-chart-pie"></span></span><span class="nav-link-text ps-1">Registration</span></div>
+                           </a>
+                           <ul class="nav collapse show" id="registration">
+                                <li class="nav-item">
+                                 <a class="nav-link" href="#">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{{route('pan.register_form')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">PAN</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{{route('tan.register_form')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">TAN</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{{route('gst')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">GST</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{{route('epf.register_form')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">EPF</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{{route('esic.register_form')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ESIC</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{{route('trademark.register_form')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Trade Mark</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/saas.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Company</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Partnership</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                                  <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">HUF</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/crm.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Trust/NGO</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/e-commerce.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Udamy</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/lms.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Import Export Code</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/project-management.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Labour Licence</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/saas.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Shop and Establishment</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ISO</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                               <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ISI</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                               <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">FSSAI License</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              
+                           </ul>
+                        </li>
+                        <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#gstact" role="button"
+                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="gstact">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="fas fa-graduation-cap"></span></span><span class="nav-link-text ps-1">GST Act</span></div>
+                           </a>
+                           <ul class="nav collapse" id="gstact">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="{{route('gst')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                               <li class="nav-item">
+                                 <a class="nav-link" href="{{route('gst.business_status')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Status</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">New Registration</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Exisitng Registration</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Upload Documents</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Copy of Returns</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Hearing & Appeal</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                             
+                      
+                           </ul>
+                        </li>
+                        <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#itact" role="button"
+                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="itact">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="fas fa-envelope-open"></span></span><span class="nav-link-text ps-1">IT Act</span></div>
+                           </a>
+                           <ul class="nav collapse" id="itact">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ITR</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">TDS/TCS Returns</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Tax Audit</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                           
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Hearing & Appeal</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                             
+                      
+                           </ul>
+                        </li>
+                        <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#companiesact" role="button"
+                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="companiesact">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="fas fa-calendar-day"></span></span><span class="nav-link-text ps-1">Companies Act</span></div>
+                           </a>
+                           <ul class="nav collapse" id="companiesact">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Statutory Audit</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">DIN KYC</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">AOC-4</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">MGT-7</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ADT-1</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                               <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Minutes</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              
+                             
+                      
+                           </ul>
+                        </li>
+                        <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#legalwork" role="button"
+                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="legalwork">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="fab fa-trello"></span></span><span class="nav-link-text ps-1">Legal Work</span></div>
+                           </a>
+                           <ul class="nav collapse" id="legalwork">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Income Tax</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">GST</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">MCA</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">IPC</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">NI Act</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                             
+                              
+                             
+                      
+                           </ul>
+                        </li>
+                         <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#loan" role="button"
+                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="loan">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="fas fa-ticket-alt"></span></span><span class="nav-link-text ps-1">Loan & Finance</span></div>
+                           </a>
+                           <ul class="nav collapse" id="loan">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Estimated/Projected</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">CMA</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Project Report</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                            
+                              
+                             
+                      
+                           </ul>
+                        </li>
+                         <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#certification" role="button"
+                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="certification">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="far fa-window-restore"></span></span><span class="nav-link-text ps-1">Certification</span></div>
+                           </a>
+                           <ul class="nav collapse" id="certification">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">CA Certificate</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Networth</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Turnover Certificate</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                            
+                              
+                             
+                      
+                           </ul>
+                        </li>
+                        <li class="nav-item">
+                           <!-- parent pages-->
+                           <a class="nav-link dropdown-indicator" href="#payments" role="button"
+                              data-bs-toggle="collapse" aria-expanded="false" aria-controls="payments">
+                              <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                 class="fas fa-shopping-cart"></span></span><span class="nav-link-text ps-1">Payments</span></div>
+                           </a>
+                           <ul class="nav collapse" id="payments">
+                              <li class="nav-item">
+                                 <a class="nav-link" href="dashboard/analytics.html">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Payment History</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                             
+                      
+                           </ul>
+                        </li>
+                
+               
                 
                 
             </ul>
@@ -253,12 +601,12 @@
                 <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
                     aria-labelledby="navbarDropdownUser">
                     <div class="bg-white dark__bg-1000 rounded-2 py-2">
-                        <a class="dropdown-item fw-bold text-warning" href="#!"><span
-                                class="fas fa-crown me-1"></span><span>Go Pro</span></a>
-                        <div class="dropdown-divider"></div>
+                       <!-- <a class="dropdown-item fw-bold text-warning" href="#!"><span
+                                class="fas fa-crown me-1"></span><span>Go Pro</span></a> 
+                        <div class="dropdown-divider"></div> -->
                         <a class="dropdown-item" href="#!">Settings</a>
                         <a class="dropdown-item" href="#!">Profile &amp; account</a>
-                        <a class="dropdown-item" href="#!">Support</a>
+                        
                         <div class="dropdown-divider"></div>
                         
                         <!-- <a class="dropdown-item" href="pages/authentication/card/logout.html">Logoutdd</a> -->
