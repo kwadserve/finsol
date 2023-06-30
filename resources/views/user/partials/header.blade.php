@@ -79,13 +79,13 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/saas.html">
+                                 <a class="nav-link" href="{{route('company.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Company</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                 <a class="nav-link" href="{{route('partnership.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Partnership</span></div>
                                  </a>
                                  <!-- more inner pages-->

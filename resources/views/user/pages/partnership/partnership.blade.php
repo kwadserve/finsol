@@ -1,15 +1,15 @@
- <form class="needs-validation" novalidate="novalidate" action="{{route('company.register')}}" method="post"
+ <form class="needs-validation" novalidate="novalidate" action="{{route('partnership.register')}}" method="post"
      enctype="multipart/form-data">
      @csrf
 
 
      <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-         <h6 class="detailspadding mb-0">Details of your Company</h6>
+         <h6 class="detailspadding mb-0">Details your Partnership</h6>
      </div>
      <div class="col-6">
 
-         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Company
-         </label><input class="form-control" type="text" name="email_id" placeholder="Name of Company"
+         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of firm
+         </label><input class="form-control" type="text" name="email_id" placeholder="Name of Firm"
              required="required" />
 
      </div>
@@ -23,7 +23,7 @@
              </div>
          </div>
          @endforeach
-            <!---- to be made dynamic ---->
+           <!---- to be made dynamic ---->
           <div class="col-6">
              <div class="mb-3">
                  <label>Company Pan Card : <span style="color:red;">(to be made dynamic)</span></label>
@@ -33,9 +33,6 @@
          </div>
             <!---- to be made dynamic ---->
      </div>
-     
-  
-    
 
      <div class="mt-1 row g-2" id="companysignatoryGroup">
          <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
@@ -83,7 +80,7 @@
      <div class="col-4">
          <div class="mb-3">
              <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
-             <p>Amount : ₹15000 (Inclusive of Government Challan)</p>
+             <p>Amount : ₹1500 (Fee - ₹1500 + Stamp Duty will be charged seperatly as per government norms)</p>
          </div>
      </div>
  </form>

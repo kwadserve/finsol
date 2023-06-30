@@ -4,7 +4,7 @@
          @csrf
          <input type="hidden" name="epf_type" value="Company" />
          <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-             <h6 class="detailspadding mb-0">Details Required for of your Business</h6>
+             <h6 class="detailspadding mb-0">Details of your Business</h6>
          </div>
          <div class="mt-1 row g-2">
              @foreach ($epf_company_images as $keyname => $image)
@@ -20,13 +20,13 @@
 
          <div class="mt-1 row g-2" id="epfsignatoryGroup">
              <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                 <h6 class="detailspadding mb-0">Upload documents of Add Signatory</h6>
+                 <h6 class="detailspadding mb-0">Upload documents of Signatory</h6>
              </div>
              <div class="col-6">
                  <div class="mb-3">
                      <label class="form-label" for="bootstrap-wizard-validation-wizard-email">
                          Email</label><input class="form-control" type="email" name="epfsignatory[0][email]"
-                         placeholder="Email address"
+                         placeholder="Email address" required="required"
                          pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
                          id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true" />
                      <div class="invalid-feedback">You must add email</div>
@@ -37,7 +37,7 @@
                      <label class="form-label" for="form-wizard-progress-wizard-addregnum">
                          Mobile number
                          registered with aadhar</label><input class="form-control" type="text"
-                         name="epfsignatory[0][mobile]" placeholder="Enter Registration No"
+                         name="epfsignatory[0][mobile]" required="required" placeholder="Enter Mobile No"
                          id="form-wizard-progress-wizard-addregnum" />
                      <div class="invalid-feedback">Please provide Mobile
                          number</div>
@@ -64,7 +64,8 @@
          <br />
          <div class="col-4">
              <div class="mb-3">
-                 <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                 <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
+                      <p>Amount : ₹1500</p>
              </div>
          </div>
      </form>

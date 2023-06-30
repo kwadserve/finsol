@@ -16,7 +16,7 @@
                             Registration</span><span
                             class="border position-absolute top-50 translate-middle-y w-100 start-0 z-n1"></span>
                     </h5>
-                    <p class="mb-0">You can easily show your stats content by using these cards.</p>
+                    <p class="mb-0">Get your TAN number quickly with Finsol</p>
                 </div>
             </div>
             <div class="row g-0">
@@ -60,7 +60,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                                                 Number linked with Aadhar</label><input class="form-control" required=""
-                                                type="text" name="mobile_number" placeholder="Enter Registration No"
+                                                type="text" name="mobile_number" placeholder="Enter Mobile No"
                                                 id="form-wizard-progress-wizard-addregnum" />
                                             <div class="invalid-feedback">Please provide Mobile
                                                 number</div>
@@ -83,7 +83,8 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                                            <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
+                                             <p>Amount : ₹200</p>
                                         </div>
                                     </div>
                                 </div>
