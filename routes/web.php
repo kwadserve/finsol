@@ -111,3 +111,13 @@ Route::post('trust', 'TrustController@storeTrust')->name('trust.register');
 //Udamy Registration DETAILS 
 Route::get('udamy/register', 'UdamyController@register_form')->name('udamy.register_form');
 Route::post('udamy/register', 'UdamyController@storeUdamy')->name('udamy.register');
+
+
+//Import Export Code registration DETAILS 
+Route::get('importexport/register', 'ImportexportController@register_form')->name('importexport.register_form');
+Route::post('importexport/register', 'ImportexportController@storeImportexport')->name('importexport.register');
+
+
+//Labour License registration DETAILS 
+Route::get('labour/register', 'LabourController@register_form')->name('labour.register_form');
+Route::post('labour/register', 'LabourController@storeLabour')->name('labour.register');

@@ -109,13 +109,13 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/lms.html">
+                                 <a class="nav-link" href="{{route('importexport.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Import Export Code</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/project-management.html">
+                                 <a class="nav-link" href="{{route('labour.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Labour Licence</span></div>
                                  </a>
                                  <!-- more inner pages-->
