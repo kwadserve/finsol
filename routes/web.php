@@ -66,6 +66,12 @@ Route::post('gst/getmonth', 'GstController@getMonth')->name('gst.getmonth');
 Route::post('gst/getquarter', 'GstController@getQuarter')->name('gst.getquarter');
 Route::post('gst/download/copyofreturns/file', 'GstController@copyofreturnsFile')->name('copyofreturnsFile');
 
+// Registration Dashboard details for all forms 
+Route::get('dashboard', 'DashboardController@index')->name('form_dashboard');
+Route::post('form/download/raised/file', 'DashboardController@raisedFile')->name('form_raisedFile');
+Route::post('form/download/approved/file', 'DashboardController@approvedFile')->name('form_approvedFile');
+Route::post('form/queryraised', 'DashboardController@queryRaised')->name('form.query_raised');
+
 //PAN DETAILS 
 Route::get('pan/register', 'PanController@register_form')->name('pan.register_form');
 Route::post('pan/register', 'PanController@storePan')->name('pan.register');
@@ -95,7 +101,7 @@ Route::post('trademark/others', 'TradeMarkController@storeTrademarkOthers')->nam
 //Company Regitration DETAILS 
 Route::get('company/register', 'CompanyController@register_form')->name('company.register_form');
 Route::post('company', 'CompanyController@storeCompany')->name('company.register');
-
+ 
 //Partnership Regitration DETAILS 
 Route::get('partnership/register', 'PartnershipController@register_form')->name('partnership.register_form');
 Route::post('partnership', 'PartnershipController@storePartnership')->name('partnership.register');

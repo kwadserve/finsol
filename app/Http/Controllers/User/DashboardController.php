@@ -3,59 +3,51 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\UserPanDetail;
+use App\Models\UserGstDetail;
+use App\Models\UserTanDetail;
+use App\Models\UserGstUploadDocument;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
  
-class PanController  extends Controller {
+class DashboardController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
     }
-    public function index() {
-        echo "asdads"; 
-      //  return view('user.pages.gst.details');
-    }
-    public function register_form() {
-     
-        $data['panimages'] = Documents::where('for_multiple', 'PAN')->get();
-        return view('user.pages.pan.panform')->with($data);
-    }
-  
-    public function storePan(Request $request) {
-         
+    public function index(Request $request) {
         $userId = auth()->user()->id;
-        $useName = trim(auth()->user()->name).'-'.$userId; 
-        $folderName = 'uploads/users/'.$useName.'/Pan';
-        $data = Helper :: uploadImagesNew($request, $userId, $folderName,'PAN');
-        $data['user_id'] = $userId;
-        $data['email_id'] = $request['email_id'];
-        $data['name_of_pan'] = $request['pan_name'];
-        $data['mobile_number'] = $request['mobile_number'];
-        $matchthese = ['user_id' => $userId];
-        // UserPanDetail::where($matchthese)->delete();
-        UserPanDetail::updateOrCreate($data);
-        return redirect('/pan/register')->with('success', 'Registered Pan successfully!');
+        $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userPanDetails'] = UserPanDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userTanDetails'] = UserTanDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
+        return view('user.pages.dashboard.dashboard')->with($data);  
     }
 
-
+    
     public function queryRaised(Request $request){
         $userId = auth()->user()->id;
-        $gstid = $request->gstid; 
+        $formType = $request->form_type;
+        $id ="";
+        if($formType =='Pan'){
+            $id = $request->id;
+        }
+       
+        if($id) {
         $useName = trim(auth()->user()->name).'-'.$userId; 
-        $folderName = 'uploads/users/'.$useName.'/Gst/AdditionalImg';
+        $folderName = 'uploads/users/'.$useName.'/'.$formType.'/AdditionalImg';
         $name='additional_img';
         $img = Helper :: uploadImagesNormal($request, $userId, $folderName, $name);
-      
-        $datas = UserGstDetail::find($gstid);
-       
-        $datas->user_note = $request->user_note; 
-        $datas->status = 3; // Query Updated      
-        $datas->last_update_by = 'user'; 
-        $datas->last_update_by_id =  $userId;
-        $datas->additional_img = $img['additional_img']; 
-        $datas->save();
-        return redirect('/gst/business')->with('success', 'Uploaded the Document!');
+        if($formType =='Pan'){
+            $datas = UserPanDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+        return redirect('/dashboard')->with('success', 'Uploaded the Document!');
+       }  
     }
-
 
     public function approvedFile(Request $request){
 
@@ -87,22 +79,6 @@ class PanController  extends Controller {
        }
        $zip->close();
        return response()->download($zipName)->deleteFileAfterSend(true);
-    
-
-
-       // $fileName = $request->input('files'); 
-       // $userId = auth()->user()->id;
-       // $useName = trim(auth()->user()->name).'-'.$userId; 
-       // $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$fileName;  
-       // if (File::exists($filePath)) {
-       //     $headers = [
-       //         // 'Content-Type' => 'application/pdf',
-       //         'Content-Type' => 'image/jpeg',
-       //     ];
-       //     return Response::download($filePath, $fileName,$headers);
-       // } else {
-       //     abort(404);
-       // }
     }
 
     public function raisedFile(Request $request){
@@ -135,5 +111,6 @@ class PanController  extends Controller {
         $zip->close();
         return response()->download($zipName)->deleteFileAfterSend(true);
     }
-
+ 
+     
 }

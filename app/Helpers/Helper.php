@@ -92,7 +92,8 @@ class Helper
         }
             $keyname =  $name;  
             $data[$keyname] = "";
-          if ($request->hasFile($keyname)) {
+        //   if ($request->hasFile($keyname)) {
+            if ($request->file($keyname)) {
                 $images = $request->file($keyname);
                 $related_imgs = [];
                 foreach ($images as $index => $image) {

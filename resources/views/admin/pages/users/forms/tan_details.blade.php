@@ -1,49 +1,16 @@
-@extends('admin.layouts.admin')
-
-{{--@push('custom_styles')--}}
-{{--@endpush--}}
-
-@section('content')
-<!-- ===============================================-->
-<!--    Main Content-->
-<!-- ===============================================-->
-<main class="main" id="top">
-    <div class="container" data-layout="container">
-        @include('admin.partials.aside')
-        <div class="row g-3 mb-3">
-
-            <div class="col-md-12 col-xxl-3">
-
-
-                <div class="card h-md-100 ecommerce-card-min-width">
-                    <div class="card-header pb-0">
-                        <h6 class="mb-0 mt-2 d-flex align-items-center">List of User GST Details</h6>
-                    </div>
-                    <div class="card-body d-flex flex-column justify-content-end">
-                        <div class="row">
+@if($usersPan) 
+<div class="row">  <h5>PAN Form Details</h5>
                             <div class="col-12">
                                 <div id="tableExample"
                                     data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                                     <div class="table-responsive scrollbar">
-                                    @if (session('additionalfilenotexist_gst'))
+                                    @if (session('additionalfilenotexist_pan'))
                                                         <div class="alert alert-danger border-2 d-flex align-items-center"
                                                             role="alert">
                                                             <div class="bg-danger me-3 icon-item"><span
                                                                     class="fas fa-check-circle text-white fs-3"></span>
                                                             </div>
-                                                            <p class="mb-0 flex-1">{{ session('additionalfilenotexist_gst') }}</p>
-                                                            <button class="btn-close" type="button"
-                                                                data-bs-dismiss="alert" aria-label="Close"></button>
-                                                        </div>
-                                                        @endif
-
-                                                        @if (session('approvedfilenotexist_gst'))
-                                                        <div class="alert alert-danger border-2 d-flex align-items-center"
-                                                            role="alert">
-                                                            <div class="bg-danger me-3 icon-item"><span
-                                                                    class="fas fa-check-circle text-white fs-3"></span>
-                                                            </div>
-                                                            <p class="mb-0 flex-1">{{ session('approvedfilenotexist_gst') }}</p>
+                                                            <p class="mb-0 flex-1">{{ session('additionalfilenotexist_pan') }}</p>
                                                             <button class="btn-close" type="button"
                                                                 data-bs-dismiss="alert" aria-label="Close"></button>
                                                         </div>
@@ -53,8 +20,8 @@
                                             <thead class="bg-200 text-900">
                                                 <tr>
                                                     <!-- <th scope="col"></th> -->
-                                                    <th scope="col">Trade Name</th>
-                                                    <th scope="col">GST Number</th>
+                                                    
+                                                    <th scope="col">Email Id</th>
                                                     <th scope="col">Type</th>
                                                     <th scope="col">Admin Note</th>
                                                     <th scope="col">User Note</th>
@@ -65,20 +32,12 @@
                                             </thead>
 
                                             <tbody class="list">
-                                                @if($usersGst)
-                                                @foreach($usersGst as $detail)
-                                                <tr class="align-middle" data-toggle="collapse"
-                                                    data-target="#{{$detail->gst_type}}" class="accordion-toggle">
-                                                  
-                                                    <td class="text-nowrap">
-                                                        <div class="align-items-center">
+                                                @if($usersPan)
+                                                @foreach($usersPan as $detail)
+                                                <tr class="align-middle" data-toggle="collapse"  class="accordion-toggle">
+                         
 
-                                                            <div class="ms-2">{{$detail->trade_name}}
-                                                            </div>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="text-nowrap">{{($detail->gst_number)?$detail->gst_number:'--'}}</td>
+                                                    <td class="text-nowrap">{{($detail->email_id)?$detail->email_id:'--'}}</td>
 
                                                     <td class="text-nowrap">{{($detail->type)?$detail->type:'NA'}}</td>
                                                     <td>{{($detail->admin_note)?$detail->admin_note:'NA'}}</td>
@@ -100,7 +59,7 @@
                                                                 Updated<span class="ms-1 fas fa-stream"
                                                                     data-fa-transform="shrink-2"></span></span>
                                                              @if($detail->additional_img!="")        
-                                                         <form action="{{ url('admin/user/gst/download/additional/file/' . $detail->user_id) }}" method="POST">
+                                                         <form action="{{ url('admin/user/forms/download/additional/file/' . $detail->user_id) }}" method="POST">
                                                                                     @csrf
                                                                                     
                                                                                         <input type="hidden" name="files" value="{{ $detail->additional_img }}">
@@ -113,20 +72,10 @@
 
                                                         @else
                                                         @if($detail->status == 4)
-                                                    <div>    <span
+                                                        <span
                                                             class="badge badge rounded-pill d-block p-2 badge-subtle-success">Approved<span
                                                                 class="ms-1 fas fa-check"
                                                                 data-fa-transform="shrink-2"></span></span>
-                                                                @if($detail->approved_img!="")        
-                                                         <form action="{{ url('admin/user/gst/download/approved/file/' . $detail->user_id) }}" method="POST">
-                                                                                    @csrf
-                                                                                    
-                                                                                        <input type="hidden" name="files" value="{{ $detail->approved_img }}">
-                                                                                    
-                                                                                      <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
-                                                                                </form>
-                                                                                @endif
-</div>
 
                                                         @else
                                                         <span
@@ -142,36 +91,27 @@
                                                     @if($detail->status == 1 || $detail->status == 3)
                                                     <td colspan=6 style="display:flex;">
                                                         <span class="btn btn-info ml-1 mb-1 btn-sm" title="Add Note"
-                                                            type="button"  onclick="openNoteModal({{ $detail->id }})"
-                                                           href="{{ url('gst/statusview/'.$detail->id) }}" data-target="#myNoteModal">
+                                                            type="button"  onclick="openPanNoteModal({{ $detail->id }})"
+                                                           href="{{ url('forms/statusview/'.$detail->id) }}" data-target="#myPanNoteModal">
                                                             Note<span class="glyphicon glyphicon-eye-open ms-1"></span>
                                                         </span> 
 
-
-                                                                             
-
-
-                                                        
-                                                         
-                                                       
+ 
                                                          <span class="btn btn-success ml-1 mb-1 btn-sm  " title="Change Status"
-                                                            type="button" data-toggle="modal"  onclick="openApproveModal({{ $detail->id }})"
+                                                            type="button" data-toggle="modal"  onclick="openPanApproveModal({{ $detail->id }})"
                                                              
-                                                            data-target="#myApprovedModal"> 
+                                                            data-target="#myPanApprovedModal"> 
                                                             Approve<span
                                                                 class="glyphicon glyphicon-eye-open ms-1"></span>
                                                         </span>
-
-
-
                                                         @else @if($detail->status == 4)
                                                      
                                                         <span>NA</span>
                                                      
-                                                    @endif
-
-
                                                    
+
+
+                                                    @endif
                                                     
                                                     </td>
                                                      
@@ -218,45 +158,21 @@
                                 <div class="echart-bar-weekly-sales h-100"></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @include('admin.partials.footer')
-    </div>
-</main><!-- ===============================================-->
-<!--    End of Main Content-->
-<!-- ===============================================-->
-@endsection
 
-@include('admin.pages.users.modal')
+                        @endif
 
-<!-- {{--@push('custom_scripts)--}} -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    crossorigin="anonymous">
- 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">
-</script>
- 
-<!-- {{--@endpush--}} -->
-
- 
-<script>
+                        <script>
                                                          var urlpath="{{ $routeurl }}";
-                                                            function openNoteModal(itemId) {
+                                                            function openPanNoteModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url: urlpath+'/user/gst/statusview/' + itemId,
+                                                                    url: urlpath+'/user/forms/statusview' +'?pan=' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
-                                                                        
-                                                                        // $('#myNoteModal .modal-body').html(data);
-                                                                        $('#myNoteModal').modal('show');
-                                                                        $('#myNoteModal #userid').val(data.user_id);
-                                                                        $('#myNoteModal #gstid').val(data.id);
-                                                                       
-                                                                        $('#myNoteModal #type').val('note');
-                                                              
+                                                                        $('#myPanNoteModal').modal('show');
+                                                                        $('#myPanNoteModal #userid').val(data.user_id);
+                                                                        $('#myPanNoteModal #panid').val(data.id);
+                                                                        $('#myPanNoteModal #routeis').val('pan');
                                                                     },
                                                                     error: function (xhr) {
                                                                         // Handle error cases
@@ -266,18 +182,17 @@
                                                             }
 
 
-                                                            function openApproveModal(itemId) {
+                                                            function openPanApproveModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url:  urlpath+'/user/gst/statusview/' + itemId,
+                                                                    url:  urlpath+'/user/forms/statusview' +'?pan=' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
                                 
-                                                                        $('#myApprovedModal').modal('show');
-                                                                        $('#myApprovedModal #userid').val(data.user_id);
-                                                                        $('#myApprovedModal #gstid').val(data.id);
-                                                                        $('#myApprovedModal #tradename').val(data.trade_name);
-                                                                        $('#myApprovedModal #type').val('approve');
+                                                                        $('#myPanApprovedModal').modal('show');
+                                                                        $('#myPanApprovedModal #userid').val(data.user_id);
+                                                                        $('#myPanApprovedModal #panid').val(data.id);
+                                                                        $('#myPanApprovedModal #type').val('approve');
                                                                     },
                                                                     error: function (xhr) {
                                                                         // Handle error cases
@@ -286,5 +201,3 @@
                                                                 });
                                                             }
                                                         </script>
-
-
