@@ -7,6 +7,17 @@
             <h6 class="detailspadding mb-0">Details of your Business</h6>
         </div>
         <div class="mt-1 row g-2">
+            
+               <!-- to be connected to backend --->
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name
+                                         </label><input class="form-control" type="text" name="#" placeholder="Name"
+                                             required="required" />
+                                             <div class="invalid-feedback">Please provide a name</div>
+                                        </div>
+                                     </div>
+                                     <!-- to be connected to backend --->
 
             <div class="col-6">
                 <div class="mb-3">

@@ -100,3 +100,14 @@ Route::post('company', 'CompanyController@storeCompany')->name('company.register
 Route::get('partnership/register', 'PartnershipController@register_form')->name('partnership.register_form');
 Route::post('partnership', 'PartnershipController@storePartnership')->name('partnership.register');
 
+//HUF Regitration DETAILS 
+Route::get('huf/register', 'HufController@register_form')->name('huf.register_form');
+Route::post('huf', 'HufController@storeHuf')->name('huf.register');
+
+//Trust Regitration DETAILS 
+Route::get('trust/register', 'TrustController@register_form')->name('trust.register_form');
+Route::post('trust', 'TrustController@storeTrust')->name('trust.register');
+
+//Udamy Registration DETAILS 
+Route::get('udamy/register', 'UdamyController@register_form')->name('udamy.register_form');
+Route::post('udamy/register', 'UdamyController@storeUdamy')->name('udamy.register');

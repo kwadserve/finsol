@@ -91,19 +91,19 @@
                                  <!-- more inner pages-->
                               </li>
                                   <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('huf.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">HUF</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/crm.html">
+                                 <a class="nav-link" href="{{route('trust.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Trust/NGO</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/e-commerce.html">
+                                 <a class="nav-link" href="{{route('udamy.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Udamy</span></div>
                                  </a>
                                  <!-- more inner pages-->

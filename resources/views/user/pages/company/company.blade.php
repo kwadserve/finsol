@@ -6,13 +6,41 @@
      <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
          <h6 class="detailspadding mb-0">Details of your Company</h6>
      </div>
-     <div class="col-6">
-
-         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Company
-         </label><input class="form-control" type="text" name="email_id" placeholder="Name of Company"
-             required="required" />
-
-     </div>
+     
+          <!-- to be connected to backend --->
+          <div class="mt-1 row g-2">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Business
+                                         </label><input class="form-control" type="text" name="#" placeholder="Name of Business"
+                                             required="required" />
+                                             <div class="invalid-feedback">Please provide name of Business</div>
+                                        </div>
+                                     </div>
+                                     
+                                     <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="bootstrap-wizard-validation-wizard-email">Business
+                        Email</label><input class="form-control" type="email" name="email_id"
+                        placeholder="Email address" pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
+                        required="required" id="bootstrap-wizard-validation-wizard-email"
+                        data-wizard-validate-email="true" />
+                    <div class="invalid-feedback">You must add email</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
+                        number
+                        registered with aadhar</label><input class="form-control" required="" type="text"
+                        name="mobile_number" placeholder="Enter Mobile No"
+                        id="form-wizard-progress-wizard-addregnum" />
+                    <div class="invalid-feedback">Please provide Mobile
+                        number</div>
+                </div>
+            </div>
+            </div>
+                                     <!-- to be connected to backend --->
      <div class="mt-1 row g-2">
          @foreach ($company_images as $keyname => $image)
          <div class="col-6">
@@ -23,15 +51,7 @@
              </div>
          </div>
          @endforeach
-            <!---- to be made dynamic ---->
-          <div class="col-6">
-             <div class="mb-3">
-                 <label>Company Pan Card : <span style="color:red;">(to be made dynamic)</span></label>
-                 <input type="file" name="{{$image['doc_key_name']}}[]" id="image-upload" class="myfrm form-control"
-                     multiple />
-             </div>
-         </div>
-            <!---- to be made dynamic ---->
+       
      </div>
      
   
@@ -39,7 +59,7 @@
 
      <div class="mt-1 row g-2" id="companysignatoryGroup">
          <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-             <h6 class="detailspadding mb-0">Upload documents of Signatory</h6>
+             <h6 class="detailspadding mb-0">Upload documents of Director</h6>
          </div>
          <div class="col-6">
              <div class="mb-3">
@@ -74,7 +94,7 @@
      </div>
      <div class="mt-1 row g-2">
          <button class="addcompanysignatory btn btn-primary me-1 mb-1" type="button">
-             <span class="fas fa-plus me-1" data-fa-transform="shrink-3"></span>Add Signatory
+             <span class="fas fa-plus me-1" data-fa-transform="shrink-3"></span>Add Director
          </button>
      </div>
 
@@ -94,7 +114,7 @@ var companysignatoryIndex = 0;
 $('.addcompanysignatory').click(function() {
     companysignatoryIndex++;
     $(this).before(
-        '<div class="mt-1 row g-2" id="companysignatoryGroup"> <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2"> <h6 class="detailspadding mb-0">Upload documents of Add Signatory</h6> </div> <div class="col-6"> <div class="mb-3"> <label class="form-label" for="bootstrap-wizard-validation-wizard-email"> Email</label><input class="form-control" type="email" name="companysignatory[' +
+        '<div class="mt-1 row g-2" id="companysignatoryGroup"> <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2"> <h6 class="detailspadding mb-0">Upload documents Director</h6> </div> <div class="col-6"> <div class="mb-3"> <label class="form-label" for="bootstrap-wizard-validation-wizard-email"> Email</label><input class="form-control" type="email" name="companysignatory[' +
         companysignatoryIndex +
         '][email]" placeholder="Email address" pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$" id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true"> <div class="invalid-feedback">You must add email</div> </div> </div> <div class="col-6"> <div class="mb-3"> <label class="form-label" for="form-wizard-progress-wizard-addregnum"> Mobile number registered with aadhar</label><input class="form-control" type="text" name="companysignatory[' +
         companysignatoryIndex +
@@ -110,7 +130,7 @@ $('.addcompanysignatory').click(function() {
         companysignatoryIndex +
         '][company_sign_declare_img][]" id="image-upload" class="myfrm form-control" multiple=""> </div> </div> <div class="col-4 mb-3"> <div class="mb-3"> <label> Attorney and affidavit (Formet Attached)  :</label> <!-- required="required" --> <input type="file" name="companysignatory[' +
         companysignatoryIndex +
-        '][comp_sign_declare_img][]" id="image-upload" class="myfrm form-control" multiple=""> </div> </div> <div class="mt-1 row g-2"> <button class="deletecompanysignatory btn btn-outline-primary me-1 mb-1" type="button"><span class="fas fa-trash me-1" data-fa-transform="shrink-3"></span> Delete Signatory </button> </div></div>'
+        '][comp_sign_declare_img][]" id="image-upload" class="myfrm form-control" multiple=""> </div> </div> <div class="mt-1 row g-2"> <button class="deletecompanysignatory btn btn-outline-primary me-1 mb-1" type="button"><span class="fas fa-trash me-1" data-fa-transform="shrink-3"></span> Delete Director </button> </div></div>'
 
 
     );

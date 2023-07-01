@@ -12,18 +12,18 @@
                 <span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i
                         class="fa-inverse fa-stack-1x text-primary fas fa-check-double"></i></span>
                 <div class="col">
-                    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">New Tan
+                    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">New Udamy
                             Registration</span><span
                             class="border position-absolute top-50 translate-middle-y w-100 start-0 z-n1"></span>
                     </h5>
-                    <p class="mb-0">Get your TAN number quickly with Finsol</p>
+                    <p class="mb-0">Get your Udamy registration done quickly with Finsol</p>
                 </div>
             </div>
             <div class="row g-0">
                 <div class="col-xl-12">
                     <div class="card mb-3">
-                      <!--  <div class="card-header">
-                             <h6 class="mb-0">Select the Registration type</h6> 
+                        <!-- <div class="card-header">
+                             <h6 class="mb-0">Get yourself a New PAN Card</h6> 
                         </div> -->
                         <div class="card-body">
                             @if (session('success'))
@@ -36,23 +36,23 @@
                                     aria-label="Close"></button>
                             </div>
                             @endif
-                            <form class="needs-validation" novalidate="novalidate" action="{{route('tan.register')}}"
+                            <form class="needs-validation" novalidate="novalidate" action="{{route('pan.register')}}"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
+
                                 <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                                    <h6 class="detailspadding mb-0">Personal/Entity Details</h6>
+                                    <h6 class="detailspadding mb-0">Personal Details</h6>
                                 </div>
                                 <div class="mt-1 row g-2">
-                                    <!-- to be connected to backend --->
+                                    
                                     <div class="col-6">
-                                        <div class="mb-3">
-                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name for TAN
-                                         </label><input class="form-control" type="text" name="#" placeholder="Name for TAN"
-                                             required="required" />
-                                             <div class="invalid-feedback">Please provide name TAN</div>
-                                        </div>
-                                     </div>
-                                     <!-- to be connected to backend --->
+        <div class="mb-3">
+         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Business
+         </label><input class="form-control" type="text" name="email_id" placeholder="Name of Business"
+             required="required" />
+             <div class="invalid-feedback">Please provide name of Business</div>
+        </div>
+     </div>
 
                                     <div class="col-6">
                                         <div class="mb-3">
@@ -70,31 +70,38 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                                                 Number linked with Aadhar</label><input class="form-control" required=""
-                                                type="text" name="mobile_number" placeholder="Enter Mobile No"
+                                                type="text" name="mobile_number" placeholder="Enter Registration No"
                                                 id="form-wizard-progress-wizard-addregnum" />
                                             <div class="invalid-feedback">Please provide Mobile
                                                 number</div>
                                         </div>
                                     </div>
                                     <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                                        <h6 class="detailspadding mb-0">Upload documents required for Pan </h6>
+                                        <h6 class="detailspadding mb-0">Upload documents required for Udamy Registration </h6>
                                     </div>
                                     <div class="row g-2 ">
-                                        @foreach ($tanimages as $keyname => $image)
+                                       
                                         <div class="col-6 mb-3">
                                             <div class="mb-3">
-                                                <label>{{$image['doc_name']}} Upload :</label>
+                                                <label>PAN Card</label>
                                                 <!-- required="required"  -->
-                                                <input type="file" name="{{$image['doc_key_name']}}[]" id="image-upload"
+                                                <input type="file" name="#" id="image-upload"
                                                     class="myfrm form-control" multiple />
                                             </div>
                                         </div>
-                                        @endforeach
+                                         <div class="col-6 mb-3">
+                                            <div class="mb-3">
+                                                <label>Aadhar Card</label>
+                                                <!-- required="required"  -->
+                                                <input type="file" name="#" id="image-upload"
+                                                    class="myfrm form-control" multiple />
+                                            </div>
+                                        </div>
+                                       
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
-                                             <p>Amount : ₹200</p>
+                                            <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
                                         </div>
                                     </div>
                                 </div>
