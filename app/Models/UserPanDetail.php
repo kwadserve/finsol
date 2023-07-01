@@ -14,6 +14,8 @@ class UserPanDetail extends Authenticatable
     protected $fillable = [
         'user_id',
         'email_id',
+        'name_of_pan',
+        'pan_number',
         'mobile_number',
         'pan_aadhar_voterid_passport_img',
         'pan_driving_license',

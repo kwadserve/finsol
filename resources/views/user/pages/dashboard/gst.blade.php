@@ -1,4 +1,4 @@
-<b>GST</b><hr/>
+@if(count($userGstDetails)>0)<b>GST Details</b><hr/>
 <table class="table table-condensed table-striped">
                                                             <thead>
                                                                 <tr>
@@ -166,3 +166,4 @@
                                                                 @endif
                                                             </tbody>
                                                         </table>
+                                                        @endif

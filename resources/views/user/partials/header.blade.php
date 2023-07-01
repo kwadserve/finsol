@@ -37,7 +37,7 @@
                            </a>
                            <ul class="nav collapse show" id="registration">
                                 <li class="nav-item">
-                                 <a class="nav-link" href="#">
+                                 <a class="nav-link" href="{{route('form_dashboard')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
                                  </a>
                                  <!-- more inner pages-->

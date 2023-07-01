@@ -1,8 +1,8 @@
-<b>PAN</b><hr/>
+@if(count($userPanDetails)>0)<b>PAN Details</b><hr/>
 <table class="table table-condensed table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                    <th scope="col">Name</th>
+                                                                <th scope="col">Name for Pan Id</th>
                                                                     <th scope="col">Email Id</th>
                                                                     <th scope="col">Mobile Number</th>
                                                                    
@@ -20,8 +20,6 @@
                                                                 <tr class="align-middle" data-toggle="collapse"
                                                                     data-target="#{{$detail->type}}"
                                                                     class="accordion-toggle">
-
-                                                                    <td class="text-nowrap">{{isset($detail->name_of_pan)?$detail->name_of_pan:'-'}}</td>
                                                                      
                                                                     <td class="text-nowrap">
                                                                         <div class="align-items-center">
@@ -171,3 +169,4 @@
                                                         </table>
 
                                                         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+                                                        @endif
