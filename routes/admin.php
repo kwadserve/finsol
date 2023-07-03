@@ -42,6 +42,7 @@ Route::group([
             Route::get('gst/uploaddocuments/{id}', 'UserUploadDocumentsController@index')->name('useruploaddocuments');  
             Route::post('gst/download/uploaddocument/file/{id}', 'UserUploadDocumentsController@adminuserUploadDocumentFile')->name('adminuserUploadDocumentFile');
             Route::post('gst/download/additional/file/{id}', 'UserGstController@additionalFile')->name('additionalFile');
+            Route::post('gst/download/approved/file/{id}', 'UserGstController@approvedFile')->name('approvedFile');
 
             // Upload Documents make it approve 
             Route::get('gst/change_approve/{id}', 'UserUploadDocumentsController@change_approve')->name('change_approve');
@@ -57,6 +58,14 @@ Route::group([
             // gst profile details 
             Route::get('gsttype/details/{id}', 'UserGstController@gstProfile')->name('gstTypeDetails'); 
             Route::post('gst/files/{id}', 'UserGstController@downloadGstFile')->name('downloadGstFile');
+
+            // Display all form related to this user 
+            Route::get('forms/dashboard/details/{id}', 'FormsDashboardController@index')->name('form_dashboard');
+            Route::post('forms/change_status', 'FormsDashboardController@change_status')->name('form_dashboard_change_status');
+            Route::get('forms/statusview', 'FormsDashboardController@statusview')->name('form_statusView');
+            Route::post('forms/additional/file/{id}', 'FormsDashboardController@additionalFile')->name('form_additionalFile');
+            Route::post('forms/approved/file/{id}', 'FormsDashboardController@approvedFile')->name('form_approvedFile');
+            Route::get('forms/details/{id}', 'FormsDashboardController@allProfile')->name('allformProfile'); 
         });
 
         // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');

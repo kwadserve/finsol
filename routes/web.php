@@ -66,6 +66,12 @@ Route::post('gst/getmonth', 'GstController@getMonth')->name('gst.getmonth');
 Route::post('gst/getquarter', 'GstController@getQuarter')->name('gst.getquarter');
 Route::post('gst/download/copyofreturns/file', 'GstController@copyofreturnsFile')->name('copyofreturnsFile');
 
+// Registration Dashboard details for all forms 
+Route::get('dashboard', 'DashboardController@index')->name('form_dashboard');
+Route::post('form/download/raised/file', 'DashboardController@raisedFile')->name('form_raisedFile');
+Route::post('form/download/approved/file', 'DashboardController@approvedFile')->name('form_approvedFile');
+Route::post('form/queryraised', 'DashboardController@queryRaised')->name('form.query_raised');
+
 //PAN DETAILS 
 Route::get('pan/register', 'PanController@register_form')->name('pan.register_form');
 Route::post('pan/register', 'PanController@storePan')->name('pan.register');
@@ -95,3 +101,29 @@ Route::post('trademark/others', 'TradeMarkController@storeTrademarkOthers')->nam
 //Company Regitration DETAILS 
 Route::get('company/register', 'CompanyController@register_form')->name('company.register_form');
 Route::post('company', 'CompanyController@storeCompany')->name('company.register');
+ 
+//Partnership Regitration DETAILS 
+Route::get('partnership/register', 'PartnershipController@register_form')->name('partnership.register_form');
+Route::post('partnership', 'PartnershipController@storePartnership')->name('partnership.register');
+
+//HUF Regitration DETAILS 
+Route::get('huf/register', 'HufController@register_form')->name('huf.register_form');
+Route::post('huf', 'HufController@storeHuf')->name('huf.register');
+
+//Trust Regitration DETAILS 
+Route::get('trust/register', 'TrustController@register_form')->name('trust.register_form');
+Route::post('trust', 'TrustController@storeTrust')->name('trust.register');
+
+//Udamy Registration DETAILS 
+Route::get('udamy/register', 'UdamyController@register_form')->name('udamy.register_form');
+Route::post('udamy/register', 'UdamyController@storeUdamy')->name('udamy.register');
+
+
+//Import Export Code registration DETAILS 
+Route::get('importexport/register', 'ImportexportController@register_form')->name('importexport.register_form');
+Route::post('importexport/register', 'ImportexportController@storeImportexport')->name('importexport.register');
+
+
+//Labour License registration DETAILS 
+Route::get('labour/register', 'LabourController@register_form')->name('labour.register_form');
+Route::post('labour/register', 'LabourController@storeLabour')->name('labour.register');

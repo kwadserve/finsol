@@ -1,49 +1,17 @@
-@extends('admin.layouts.admin')
+@if($usersGst) 
 
-{{--@push('custom_styles')--}}
-{{--@endpush--}}
-
-@section('content')
-<!-- ===============================================-->
-<!--    Main Content-->
-<!-- ===============================================-->
-<main class="main" id="top">
-    <div class="container" data-layout="container">
-        @include('admin.partials.aside')
-        <div class="row g-3 mb-3">
-
-            <div class="col-md-12 col-xxl-3">
-
-
-                <div class="card h-md-100 ecommerce-card-min-width">
-                    <div class="card-header pb-0">
-                        <h6 class="mb-0 mt-2 d-flex align-items-center">List of User GST Details</h6>
-                    </div>
-                    <div class="card-body d-flex flex-column justify-content-end">
-                        <div class="row">
+ <h5>GST Form Details</h5>
                             <div class="col-12">
                                 <div id="tableExample"
                                     data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                                     <div class="table-responsive scrollbar">
-                                    @if (session('additionalfilenotexist_gst'))
+                                    @if (session('additionalfilenotexist'))
                                                         <div class="alert alert-danger border-2 d-flex align-items-center"
                                                             role="alert">
                                                             <div class="bg-danger me-3 icon-item"><span
                                                                     class="fas fa-check-circle text-white fs-3"></span>
                                                             </div>
-                                                            <p class="mb-0 flex-1">{{ session('additionalfilenotexist_gst') }}</p>
-                                                            <button class="btn-close" type="button"
-                                                                data-bs-dismiss="alert" aria-label="Close"></button>
-                                                        </div>
-                                                        @endif
-
-                                                        @if (session('approvedfilenotexist_gst'))
-                                                        <div class="alert alert-danger border-2 d-flex align-items-center"
-                                                            role="alert">
-                                                            <div class="bg-danger me-3 icon-item"><span
-                                                                    class="fas fa-check-circle text-white fs-3"></span>
-                                                            </div>
-                                                            <p class="mb-0 flex-1">{{ session('approvedfilenotexist_gst') }}</p>
+                                                            <p class="mb-0 flex-1">{{ session('raisedfilenotexist') }}</p>
                                                             <button class="btn-close" type="button"
                                                                 data-bs-dismiss="alert" aria-label="Close"></button>
                                                         </div>
@@ -113,20 +81,10 @@
 
                                                         @else
                                                         @if($detail->status == 4)
-                                                    <div>    <span
+                                                        <span
                                                             class="badge badge rounded-pill d-block p-2 badge-subtle-success">Approved<span
                                                                 class="ms-1 fas fa-check"
                                                                 data-fa-transform="shrink-2"></span></span>
-                                                                @if($detail->approved_img!="")        
-                                                         <form action="{{ url('admin/user/gst/download/approved/file/' . $detail->user_id) }}" method="POST">
-                                                                                    @csrf
-                                                                                    
-                                                                                        <input type="hidden" name="files" value="{{ $detail->approved_img }}">
-                                                                                    
-                                                                                      <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
-                                                                                </form>
-                                                                                @endif
-</div>
 
                                                         @else
                                                         <span
@@ -140,8 +98,8 @@
                                                     </td>
 
                                                     @if($detail->status == 1 || $detail->status == 3)
-                                                    <td colspan=6 style="display:flex;">
-                                                        <span class="btn btn-info ml-1 mb-1 btn-sm" title="Add Note"
+                                                    <td colspan=6>
+                                                        <span class="btn btn-info mt-1 mb-1 btn-xs" title="Add Note"
                                                             type="button"  onclick="openNoteModal({{ $detail->id }})"
                                                            href="{{ url('gst/statusview/'.$detail->id) }}" data-target="#myNoteModal">
                                                             Note<span class="glyphicon glyphicon-eye-open ms-1"></span>
@@ -151,19 +109,16 @@
                                                                              
 
 
-                                                        
+                                                        @if($detail->status == 3)
                                                          
                                                        
-                                                         <span class="btn btn-success ml-1 mb-1 btn-sm  " title="Change Status"
+                                                         <span class="btn btn-success mt-1 mb-1 btn-xs  " title="Change Status"
                                                             type="button" data-toggle="modal"  onclick="openApproveModal({{ $detail->id }})"
                                                              
                                                             data-target="#myApprovedModal"> 
                                                             Approve<span
                                                                 class="glyphicon glyphicon-eye-open ms-1"></span>
                                                         </span>
-
-
-
                                                         @else @if($detail->status == 4)
                                                      
                                                         <span>NA</span>
@@ -171,7 +126,7 @@
                                                     @endif
 
 
-                                                   
+                                                    @endif
                                                     
                                                     </td>
                                                      
@@ -217,31 +172,10 @@
                             <div class="col-auto ps-0">
                                 <div class="echart-bar-weekly-sales h-100"></div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @include('admin.partials.footer')
-    </div>
-</main><!-- ===============================================-->
-<!--    End of Main Content-->
-<!-- ===============================================-->
-@endsection
+                       
+                        @endif
 
-@include('admin.pages.users.modal')
-
-<!-- {{--@push('custom_scripts)--}} -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    crossorigin="anonymous">
- 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">
-</script>
- 
-<!-- {{--@endpush--}} -->
-
- 
-<script>
+                        <script>
                                                          var urlpath="{{ $routeurl }}";
                                                             function openNoteModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
@@ -285,6 +219,4 @@
                                                                     }
                                                                 });
                                                             }
-                                                        </script>
-
-
+                                                        </script>                     

@@ -4,8 +4,42 @@
          @csrf
          <input type="hidden" name="esic_type" value="Company" />
          <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-             <h6 class="detailspadding mb-0">Details Required for of your Business</h6>
+             <h6 class="detailspadding mb-0">Details of your Business</h6>
          </div>
+          <!-- to be connected to backend --->
+          <div class="mt-1 row g-2">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Business
+                                         </label><input class="form-control" type="text" name="#" placeholder="Name of Business"
+                                             required="required" />
+                                             <div class="invalid-feedback">Please provide name of Business</div>
+                                        </div>
+                                     </div>
+                                     
+                                     <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="bootstrap-wizard-validation-wizard-email">Business
+                        Email</label><input class="form-control" type="email" name="email_id"
+                        placeholder="Email address" pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
+                        required="required" id="bootstrap-wizard-validation-wizard-email"
+                        data-wizard-validate-email="true" />
+                    <div class="invalid-feedback">You must add email</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
+                        number
+                        registered with aadhar</label><input class="form-control" required="" type="text"
+                        name="mobile_number" placeholder="Enter Mobile No"
+                        id="form-wizard-progress-wizard-addregnum" />
+                    <div class="invalid-feedback">Please provide Mobile
+                        number</div>
+                </div>
+            </div>
+            </div>
+                                     <!-- to be connected to backend --->
          <div class="mt-1 row g-2">
              @foreach ($esic_company_images as $keyname => $image)
              <div class="col-6">
@@ -20,7 +54,7 @@
 
          <div class="mt-1 row g-2" id="esicsignatoryGroup">
              <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                 <h6 class="detailspadding mb-0">Upload documents of Add Signatory</h6>
+                 <h6 class="detailspadding mb-0">Upload documents of Signatory</h6>
              </div>
              <div class="col-6">
                  <div class="mb-3">
@@ -37,7 +71,7 @@
                      <label class="form-label" for="form-wizard-progress-wizard-addregnum">
                          Mobile number
                          registered with aadhar</label><input class="form-control" type="text"
-                         name="esicsignatory[0][mobile]" placeholder="Enter Registration No"
+                         name="esicsignatory[0][mobile]" placeholder="Enter Mobile No"
                          id="form-wizard-progress-wizard-addregnum" />
                      <div class="invalid-feedback">Please provide Mobile
                          number</div>
@@ -64,7 +98,8 @@
          <br />
          <div class="col-4">
              <div class="mb-3">
-                 <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                 <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
+                 <p>Amount : ₹1000</p>
              </div>
          </div>
      </form>

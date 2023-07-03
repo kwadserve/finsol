@@ -35,7 +35,7 @@
                     <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                         number
                         of company</label><input class="form-control" required="" type="text"
-                        name="mobile_linked_aadhar" placeholder="Enter Registration No"
+                        name="mobile_linked_aadhar" placeholder="Enter Mobile No"
                         id="form-wizard-progress-wizard-addregnum" />
                     <div class="invalid-feedback">Please provide Mobile
                         number</div>
@@ -102,8 +102,9 @@
         <br />
         <div class="col-4">
             <div class="mb-3">
-                <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
             </div>
+                 <p>Amount : ₹1000</p>
         </div>
     </form>
 </div>

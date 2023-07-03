@@ -37,7 +37,7 @@
                            </a>
                            <ul class="nav collapse show" id="registration">
                                 <li class="nav-item">
-                                 <a class="nav-link" href="#">
+                                 <a class="nav-link" href="{{route('form_dashboard')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
                                  </a>
                                  <!-- more inner pages-->
@@ -79,43 +79,43 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/saas.html">
+                                 <a class="nav-link" href="{{route('company.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Company</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                 <a class="nav-link" href="{{route('partnership.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Partnership</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                                   <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('huf.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">HUF</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/crm.html">
+                                 <a class="nav-link" href="{{route('trust.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Trust/NGO</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/e-commerce.html">
+                                 <a class="nav-link" href="{{route('udamy.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Udamy</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/lms.html">
+                                 <a class="nav-link" href="{{route('importexport.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Import Export Code</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/project-management.html">
+                                 <a class="nav-link" href="{{route('labour.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Labour Licence</span></div>
                                  </a>
                                  <!-- more inner pages-->

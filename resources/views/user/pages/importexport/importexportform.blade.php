@@ -13,11 +13,11 @@
                         class="fa-inverse fa-stack-1x text-primary fas fa-check-double"></i></span>
                 <div class="col">
                     <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">New
-                            Company
+                          Import Export Code
                             Registration</span><span
                             class="border position-absolute top-50 translate-middle-y w-100 start-0 z-n1"></span>
                     </h5>
-                    <p class="mb-0">Get your Company registered quickly with Finsol</p>
+                    <p class="mb-0">Get your Import Export code registered quickly with Finsol</p>
                 </div>
             </div>
             <div class="row g-0">
@@ -37,7 +37,7 @@
                             @endif
 
                             <div class="tab-content">
-                                @include('user.pages.company.company')
+                                @include('user.pages.importexport.importexport')
                             </div>
                         </div>
                     </div>

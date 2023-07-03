@@ -13,15 +13,13 @@ use App\Models\User;
 use App\Models\Documents; 
 use App\Models\UserPartner;
 use App\Models\UserDirector;
+use App\Models\UserPanDetail;
 
-class UserGstController extends Controller
+class FormsDashboardController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
-
-        // View::share('action', 'no_add');
-        // View::share('nav', 'users');
     }
 
     public function index(Request $request, $userId)
@@ -29,7 +27,8 @@ class UserGstController extends Controller
        
         $data['routeurl'] =  Helper::getBaseUrl($request);  
         $data['usersGst'] = UserGstDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        return view('admin.pages.users.gst')->with($data);
+        $data['usersPan'] = UserPanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
     public function profile($userId)
@@ -39,24 +38,13 @@ class UserGstController extends Controller
     }
 
     
-    public function gstProfile($gstId)
+    public function allProfile($Id)
     {
-        $data['gstDetails'] = UserGstDetail::find($gstId);
-        $data['gstIndividualDocuments'] = Documents::where(['for_multiple' => 'GST'])->get();
+        $data['panDetails'] = UserPanDetail::find($Id);
+        $data['panDocuments'] = Documents::where(['for_multiple' => 'PAN'])->get();
      
-        $data['gstFirmDocuments'] = Documents::where(['for_multiple' => 'GST Firm'])->get();
-        $data['gstFirmPartnersDocuments'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
-
-
-        $data['gstCompanyDocuments'] = Documents::where(['for_multiple' => 'GST Company'])->get();
-        $data['gstCompanyDirectorsDocuments'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
-
-
-        $data['gstFirmPartners'] = UserPartner :: where(['user_gst_id' => $gstId])->get();
-     
-        $data['gstCompanyDirectors'] = UserDirector :: where(['user_gst_id' => $gstId])->get();
-
-        return view('admin.pages.users.gst.gstprofile')->with($data);
+       
+        return view('admin.pages.users.forms.all_profiles')->with($data);
     }
 
     public function downloadGstFile(Request $request, $userId)
@@ -102,15 +90,16 @@ class UserGstController extends Controller
         return response()->download($zipName)->deleteFileAfterSend(true);
     }
 
-
-    public function statusview($item_id){
-         
-
-        if($item_id){
-        $singleGst = UserGstDetail::find($item_id);
-         return $singleGst; 
-        //return view('admin.pages.users.modal')->with($data);
-        }
+    // get information based on all forms 
+    public function statusview(Request $request){
+        $queryParam = $request->all(); 
+        $param =  key($queryParam); 
+         switch($param){
+            case "pan" : $panId = $queryParam[$param]; 
+                  return UserPanDetail::find($panId); 
+                break; 
+            default : break; 
+         }
     }
 
     public function ajax()
@@ -142,11 +131,11 @@ class UserGstController extends Controller
     }
 
     
-
+    // Delete Row 
     public function delete(Request $request)
     {
         $item_id = $request->get('item_id');
-        $item = UserGstDetail::find($item_id);
+        $item = UserPanDetail::find($item_id);
 
         if(empty($item)) {
             return response()->json([
@@ -163,105 +152,102 @@ class UserGstController extends Controller
         }
     }
 
+     // change note to quary raised, and query updated to approve 
      public function change_status(Request $request){ 
          $userId =  $request->userid;
          $userDetails = User::find($userId);
          $useName = $userDetails->name.'-'.$userId;
-         $gstid = $request->gstid; 
-        if($request->type == 'approve'){
-        
-            $validatedData = $request->validate([
-                'gst_number' => 'required',
-            ]);
-
-         $folderName = 'uploads/users/'.$useName.'/Gst/ApprovedImg';
-         $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+         $route = $request->routeis;  
          
-         $datas = UserGstDetail::find($gstid);
-         $datas->last_update_by = 'admin'; 
-         $datas->status = 4;  // Approved
-         $datas->trade_name = ($request->trade_name)??$request->trade_name; 
-         $datas->gst_number =  $request->gst_number;  
-         $datas->approved_img = $img['approved_img'];
-         $datas->save();
-        } else {
-
-          
-         $folderName = 'uploads/users/'.$useName.'/Gst/RaisedImg';
-         $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
- 
-         $datas = UserGstDetail::find($gstid);
-         $datas->admin_note = $request->admin_note; 
-         $datas->last_update_by = 'admin'; 
-         $datas->raised_img = $img['raised_img'];
-         $datas->status = 2; 
-         $datas->save();
-        }
-        return redirect('admin/user/gst/details/'.$userId)->with('success', 'Uploaded the Document!'); 
+       switch($route){
+          case "pan" : 
+            $folderNameChange =  ($request->type == 'approve') ? '/Pan/ApprovedImg' :'/Pan/RaisedImg' ;
+            $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+            $panid = $request->panid;
+            $datas = UserPanDetail::find($panid);
+            $status = ($request->type == 'approve') ? 4 : 2; 
+            $datas->last_update_by = 'admin'; 
+            $datas->status = $status;  // Approved
+             if($request->type == 'approve') {
+                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                $datas->name_of_pan =   $request->name_of_pan;
+                $datas->pan_number =  $request->pan_number;  
+                $datas->approved_img = $img['approved_img'];
+             } else {
+                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                $datas->admin_note = $request->admin_note; 
+                $datas->raised_img = $img['raised_img'];
+             }
+            $datas->save();
+            break; 
+          default : break; 
+       }
+       return redirect('admin/user/forms/dashboard/details/'.$userId)->with('success', 'Uploaded the Document!'); 
      }
 
+     // download quary updated file 
      public function additionalFile(Request $request, $userId){
         $files = $request->input('files'); 
         $commaValues = explode(",", $files);
         $userDetails = User::find($userId);
-   
+        $formType = $request->form_type; 
         
         $useName = trim($userDetails->name).'-'.$userId; 
-        $zipName = "QueryUpdatedFile-".$useName.'.zip';
+        $zipName = $formType."QueryUpdatedFile-".$useName.'.zip';
         $zip = new \ZipArchive();
         $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
         if (count($commaValues) > 1) {
             foreach ($commaValues as $file) {
-                $filePath = 'uploads/users/'.$useName.'/Gst/AdditionalImg/'.$file;  
+                $filePath = 'uploads/users/'.$useName.'/'.$formType.'/'.'AdditionalImg/'.$file;  
                 if (File::exists($filePath)) {
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('admin/user/gst/details/'.$userId)->with('additionalfilenotexist_gst', 'File Not Exist!');
+                    return redirect('admin/user/forms/dashboard/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
                 }
             }
         } else {
-            $filePath = 'uploads/users/'.$useName.'/Gst/AdditionalImg/'.$files;  
+              $filePath = 'uploads/users/'.$useName.'/'.$formType.'/'.'AdditionalImg/'.$files;    
             if (File::exists($filePath)) { 
             $fileContents = file_get_contents(public_path($filePath));
             $zip->addFromString(basename($files), $fileContents); 
             } else {
-            return redirect('admin/user/gst/details/'.$userId)->with('additionalfilenotexist_gst', 'File Not Exist!');
+            return redirect('admin/user/forms/dashboard/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
             }  
         }
         $zip->close();
         return response()->download($zipName)->deleteFileAfterSend(true);
      }
 
+     // download approved file for admin
      public function approvedFile(Request $request, $userId){
-        
+      
         $files = $request->input('files'); 
         $commaValues = explode(",", $files);
         $userDetails = User::find($userId);
-   
+        $formType = $request->form_type; 
         
         $useName = trim($userDetails->name).'-'.$userId; 
-        $zipName = "GstApprovedFile-".$useName.'.zip';
+        $zipName = $formType."ApprovedFile-".$useName.'.zip';
         $zip = new \ZipArchive();
         $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
-        
         if (count($commaValues) > 1) {
             foreach ($commaValues as $file) {
-                $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$file;  
+                $filePath = 'uploads/users/'.$useName.'/'.$formType.'/'.'ApprovedImg/'.$file;  
                 if (File::exists($filePath)) {
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('admin/user/gst/details/'.$userId)->with('approvedfilenotexist_gst', 'File Not Exist!');
+                    return redirect('admin/user/forms/dashboard/details/'.$userId)->with('approvedfilenotexist', 'File Not Exist!');
                 }
             }
         } else {
-              $filePath = 'uploads/users/'.$useName.'/Gst/ApprovedImg/'.$files;   
+            $filePath = 'uploads/users/'.$useName.'/'.$formType.'/'.'ApprovedImg/'.$files;   
             if (File::exists($filePath)) { 
             $fileContents = file_get_contents(public_path($filePath));
             $zip->addFromString(basename($files), $fileContents); 
             } else {
-            return redirect('admin/user/gst/details/'.$userId)->with('approvedfilenotexist_gst', 'File Not Exist!');
+            return redirect('admin/user/forms/dashboard/details/'.$userId)->with('approvedfilenotexist', 'File Not Exist!');
             }  
         }
         $zip->close();

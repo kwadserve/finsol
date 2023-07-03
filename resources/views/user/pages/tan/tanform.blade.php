@@ -16,7 +16,7 @@
                             Registration</span><span
                             class="border position-absolute top-50 translate-middle-y w-100 start-0 z-n1"></span>
                     </h5>
-                    <p class="mb-0">You can easily show your stats content by using these cards.</p>
+                    <p class="mb-0">Get your TAN number quickly with Finsol</p>
                 </div>
             </div>
             <div class="row g-0">
@@ -40,9 +40,19 @@
                                 method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                                    <h6 class="detailspadding mb-0">Personal Details</h6>
+                                    <h6 class="detailspadding mb-0">Personal/Entity Details</h6>
                                 </div>
                                 <div class="mt-1 row g-2">
+                                    <!-- to be connected to backend --->
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name for TAN
+                                         </label><input class="form-control" type="text" name="#" placeholder="Name for TAN"
+                                             required="required" />
+                                             <div class="invalid-feedback">Please provide name TAN</div>
+                                        </div>
+                                     </div>
+                                     <!-- to be connected to backend --->
 
                                     <div class="col-6">
                                         <div class="mb-3">
@@ -60,7 +70,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                                                 Number linked with Aadhar</label><input class="form-control" required=""
-                                                type="text" name="mobile_number" placeholder="Enter Registration No"
+                                                type="text" name="mobile_number" placeholder="Enter Mobile No"
                                                 id="form-wizard-progress-wizard-addregnum" />
                                             <div class="invalid-feedback">Please provide Mobile
                                                 number</div>
@@ -83,7 +93,8 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                                            <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
+                                             <p>Amount : ₹200</p>
                                         </div>
                                     </div>
                                 </div>

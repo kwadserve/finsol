@@ -7,6 +7,30 @@
             <h6 class="detailspadding mb-0">Details of your Business</h6>
         </div>
         <div class="mt-1 row g-2">
+            
+             <!-- to be connected to backend --->
+        
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Trademark
+                                         </label><input class="form-control" type="text" name="#" placeholder="Name of Trademark"
+                                             required="required" />
+                                             <div class="invalid-feedback">Please provide name of Trademark</div>
+                                        </div>
+                                     </div>
+                                     <div class="col-6">
+                                        <div class="mb-3">
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Individual/Business
+                                         </label><input class="form-control" type="text" name="#" placeholder="Name of Individual/Business"
+                                             required="required" />
+                                             <div class="invalid-feedback">Please provide name of Individual/Business</div>
+                                        </div>
+                                     </div>
+                                     
+                                     
+                                     
+               
+                                     <!-- to be connected to backend --->
 
             <div class="col-6">
                 <div class="mb-3">
@@ -23,7 +47,7 @@
                     <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                         number
                         registered with aadhar</label><input class="form-control" required="" type="text"
-                        name="mobile_number" placeholder="Enter Registration No"
+                        name="mobile_number" placeholder="Enter Mobile No"
                         id="form-wizard-progress-wizard-addregnum" />
                     <div class="invalid-feedback">Please provide Mobile
                         number</div>
@@ -47,7 +71,8 @@
             </div>
             <div class="col-4">
                 <div class="mb-3">
-                    <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                    <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
+                    <p>Amount : ₹7000 (Fee - ₹2500 + Gov Challan - ₹4500)</p>
                 </div>
             </div>
         </div>

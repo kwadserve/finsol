@@ -16,7 +16,7 @@
                             Registration</span><span
                             class="border position-absolute top-50 translate-middle-y w-100 start-0 z-n1"></span>
                     </h5>
-                    <p class="mb-0">You can easily show your stats content by using these cards.</p>
+                    <p class="mb-0">Get your GST registration done quicly with Finsol.</p>
                 </div>
             </div>
             <div class="row g-0">
