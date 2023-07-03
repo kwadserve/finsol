@@ -13,13 +13,7 @@ class EpfController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
     }
-    public function index() {
-        echo "Detail page";
-        // $data['epf_company_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => null])->get();
-        // $data['epf_company_signatory_images'] = Documents::where(['gst_type_val' => '6', 'for_multiple' => 'EPF Signatory'])->get();
-        // return view('user.pages.epf.epfform')->with($data);
-    }
-
+   
     public function register_form() {
         $data['epf_company_images'] = Documents::where(['for_multiple' => 'EPF Company'])->get();
         $data['epf_company_signatory_images'] = Documents::where(['for_multiple' => 'EPF Signatory'])->get();
@@ -36,9 +30,13 @@ class EpfController  extends Controller {
             $data = Helper :: uploadImagesNew($request, $userId,  $folderName,  'EPF Company');
             $data['user_id'] = $userId;
             $data['epf_type'] = $request['epf_type'];
-            $matchthese = ['user_id'=>$userId, 'epf_type'=>'Company'];
-            UserEpfDetail::where($matchthese)->delete();
-            $lastInsertedId =  UserEpfDetail::updateOrCreate($matchthese, $data)->id;
+            $data['epf_mobile'] = $request['mobile_number'];
+            $data['name_of_epf'] = $request['epf_name'];
+            $data['epf_email'] = $request['email_id'];
+          
+            // $matchthese = ['user_id'=>$userId, 'epf_type'=>'Company'];
+            // UserEpfDetail::where($matchthese)->delete();
+            $lastInsertedId =  UserEpfDetail::Create($data)->id;
         if ($request->has('epfsignatory')) {
             $epfsignatory = $request->input('epfsignatory');
             UserEpfSignatory::where(['user_id' => $userId])->delete();
@@ -65,9 +63,11 @@ class EpfController  extends Controller {
         $data['epf_email'] = $request['email_id'];
         $data['epf_mobile'] = $request['mobile_number'];
         $data['epf_type'] = $request['epf_type'];
-        $matchthese = ['user_id' => $userId, 'epf_type' => 'Others'];
-        UserEpfDetail::where($matchthese)->delete();
-        UserEpfDetail::updateOrCreate($matchthese, $data);
+        $data['name_of_epf'] = $request['epf_name'];
+        // var_dump($data); exit; 
+        // $matchthese = ['user_id' => $userId, 'epf_type' => 'Others'];
+        // UserEpfDetail::where($matchthese)->delete();
+        UserEpfDetail::Create($data);
         return redirect('/epf/register')->with('success', 'Registered EPF Others successfully!');;
     }
 

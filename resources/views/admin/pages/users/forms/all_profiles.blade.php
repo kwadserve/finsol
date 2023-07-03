@@ -35,6 +35,7 @@
                                                         @endif
                                  @include('admin.pages.users.forms.profile.pan_profile')
                                  @include('admin.pages.users.forms.profile.tan_profile')
+                                 @include('admin.pages.users.forms.profile.epf_profile')
                                  </div>
 
                                  

@@ -15,6 +15,8 @@ use App\Models\UserPartner;
 use App\Models\UserDirector;
 use App\Models\UserPanDetail;
 use App\Models\UserTanDetail;
+use App\Models\UserEpfDetail;
+use App\Models\UserEpfSignatory;
 
 class FormsDashboardController extends Controller
 {
@@ -30,6 +32,7 @@ class FormsDashboardController extends Controller
         $data['usersGst'] = UserGstDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersPan'] = UserPanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTan'] = UserTanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersEpf'] = UserEpfDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -47,6 +50,14 @@ class FormsDashboardController extends Controller
 
         $data['tanDetails'] = UserTanDetail::find($Id);
         $data['tanDocuments'] = Documents::where(['for_multiple' => 'TAN'])->get();
+     
+        $data['epfDetails'] = UserEpfDetail::find($Id);
+        $data['epfDocuments'] = Documents::where(['for_multiple' => 'EPF Company'])->get();
+        $data['epfSignatory'] = UserEpfSignatory :: where(['user_epf_id' => $Id])->get();
+        $data['epfSignatoryDocuments'] = Documents::where(['for_multiple' => 'EPF Signatory'])->get();
+
+
+       
      
        
         return view('admin.pages.users.forms.all_profiles')->with($data);
@@ -148,9 +159,9 @@ class FormsDashboardController extends Controller
             if($formtype=="tan"){
                  
                 $details = UserTanDetail::find($id); 
-                $content =  '<label>Pan Number</label>
+                $content =  '<label>Tan Number</label>
                 <input type="text" class="form-control"  required="required" name=tan_number" value="" placeholder="Enter the Tan Number" />
-                <label>Name of Pan</label>
+                <label>Name of Tan</label>
                 <input type="text"  required="required" class="form-control" id="nameoftan" name="name_of_tan" value="'.$details->name_of_tan.'"  placeholder="Name of Tan" />';
                  
                
@@ -162,7 +173,16 @@ class FormsDashboardController extends Controller
                 <label>Name of Pan</label>
                 <input type="text"  required="required" class="form-control"  name="name_of_pan" value="'.$details->name_of_pan.'" placeholder="Name of Pan" />';
                  
-                  }
+                  } 
+                  else if($formtype=="epf"){
+                 
+                    $details = UserEpfDetail::find($id);
+                    $content = '<label>Epf Number</label>
+                    <input type="text" class="form-control"  required="required" name=pan_number" value="" placeholder="Enter the Epf Number" />
+                    <label>Name of Epf</label>
+                    <input type="text"  required="required" class="form-control"  name="name_of_epf" value="'.$details->name_of_epf.'" placeholder="Name of Epf" />';
+                     
+                      } 
 
  
         if(isset($details)){
@@ -300,6 +320,27 @@ class FormsDashboardController extends Controller
                  }
                 $datas->save();
                 break; 
+
+                case "epf" : 
+                    $folderNameChange =  ($request->type == 'approve') ? '/Epf/ApprovedImg' :'/Epf/RaisedImg' ;
+                    $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                    $epfid = $request->id;
+                    $datas = UserEpfDetail::find($epfid);
+                    $status = ($request->type == 'approve') ? 4 : 2; 
+                    $datas->last_update_by = 'admin'; 
+                    $datas->status = $status;  // Approved
+                     if($request->type == 'approve') {
+                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                        $datas->name_of_epf =   $request->name_of_epf;
+                        $datas->epf_number =  $request->epf_number;  
+                        $datas->approved_img = $img['approved_img'];
+                     } else {
+                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                        $datas->admin_note = $request->admin_note; 
+                        $datas->raised_img = $img['raised_img'];
+                     }
+                    $datas->save();
+                    break; 
 
 
           default : break; 

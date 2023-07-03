@@ -77,7 +77,7 @@ use App\Models\UserGstDetail;
                                                         @include('user.pages.dashboard.gst')
                                                         @include('user.pages.dashboard.pan')
                                                         @include('user.pages.dashboard.tan')
-                                               
+                                                        @include('user.pages.dashboard.epf')
                                                     </div>
 
                                                 </div>

@@ -21,6 +21,7 @@
                      
                        @include('admin.pages.users.forms.pan_details'); 
                        @include('admin.pages.users.forms.tan_details'); 
+                       @include('admin.pages.users.forms.epf_details'); 
                     </div>
                 </div>
             </div>

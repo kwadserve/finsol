@@ -12,7 +12,7 @@
                                     <div class="col-6">
                                         <div class="mb-3">
                                          <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name
-                                         </label><input class="form-control" type="text" name="#" placeholder="Name"
+                                         </label><input class="form-control" type="text" name="epf_name" placeholder="Name"
                                              required="required" />
                                              <div class="invalid-feedback">Please provide a name</div>
                                         </div>

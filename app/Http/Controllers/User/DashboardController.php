@@ -5,10 +5,12 @@ use App\Http\Controllers\Controller;
 use App\Models\UserPanDetail;
 use App\Models\UserGstDetail;
 use App\Models\UserTanDetail;
+use App\Models\UserEpfDetail;
 use App\Models\UserGstUploadDocument;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
+
  
 class DashboardController  extends Controller {
     public function __construct() {
@@ -19,7 +21,8 @@ class DashboardController  extends Controller {
         $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userPanDetails'] = UserPanDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userTanDetails'] = UserTanDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
+        $data['userEpfDetails'] = UserEpfDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+       // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  
     }
  
@@ -43,6 +46,15 @@ class DashboardController  extends Controller {
         } 
         if($formType =='Tan'){
             $datas = UserTanDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+        if($formType =='Epf'){
+            $datas = UserEpfDetail::find($id);
             $datas->user_note = $request->user_note; 
             $datas->status = 3; // Query Updated      
             $datas->last_update_by = 'user'; 

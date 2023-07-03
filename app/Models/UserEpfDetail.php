@@ -14,6 +14,8 @@ class UserEpfDetail extends Authenticatable
     protected $fillable = [
         'user_id',
         'epf_email',
+        'name_of_epf',
+        'epf_number',
         'epf_mobile',
         'epf_type',
         'epf_pan_img',
@@ -25,7 +27,16 @@ class UserEpfDetail extends Authenticatable
         'epf_oth_aadhar_img',
         'epf_oth_pan_img',
         'epf_oth_photo_img',
-        'epf_oth_spaceman_img'
+        'epf_oth_spaceman_img',
+        'status',
+        'last_updated_by',
+        'last_update_by_id',
+        'additional_img',
+        'approved_img',
+        'raised_img',
+        'admin_note',
+        'user_note',
+        'type'
     ];
 
 }

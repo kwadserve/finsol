@@ -133,9 +133,8 @@ class Helper
                         $related_imgs[] = $newName; 
                     }
                 }
-                
+                $data[$keyname] =  implode(',', $related_imgs);
             }
-          $data[$keyname] =  implode(',', $related_imgs);
         } 
         return $data;
     }
