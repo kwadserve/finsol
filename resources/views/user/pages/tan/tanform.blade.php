@@ -47,7 +47,7 @@
                                     <div class="col-6">
                                         <div class="mb-3">
                                          <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name for TAN
-                                         </label><input class="form-control" type="text" name="#" placeholder="Name for TAN"
+                                         </label><input class="form-control" type="text" name="tan_name" placeholder="Name for TAN"
                                              required="required" />
                                              <div class="invalid-feedback">Please provide name TAN</div>
                                         </div>

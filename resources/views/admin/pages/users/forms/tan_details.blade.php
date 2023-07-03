@@ -1,16 +1,16 @@
-@if($usersPan) 
-<div class="row">  <h5>PAN Form Details</h5>
+@if($usersTan) 
+<div class="row">  <h5>TAN Form Details</h5>
                             <div class="col-12">
                                 <div id="tableExample"
                                     data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                                     <div class="table-responsive scrollbar">
-                                    @if (session('additionalfilenotexist_pan'))
+                                    @if (session('additionalfilenotexist_tan'))
                                                         <div class="alert alert-danger border-2 d-flex align-items-center"
                                                             role="alert">
                                                             <div class="bg-danger me-3 icon-item"><span
                                                                     class="fas fa-check-circle text-white fs-3"></span>
                                                             </div>
-                                                            <p class="mb-0 flex-1">{{ session('additionalfilenotexist_pan') }}</p>
+                                                            <p class="mb-0 flex-1">{{ session('additionalfilenotexist_tan') }}</p>
                                                             <button class="btn-close" type="button"
                                                                 data-bs-dismiss="alert" aria-label="Close"></button>
                                                         </div>
@@ -32,17 +32,17 @@
                                             </thead>
 
                                             <tbody class="list">
-                                                @if($usersPan)
-                                                @foreach($usersPan as $detail)
+                                                @if($usersTan)
+                                                @foreach($usersTan as $detail)
                                                 <tr class="align-middle" data-toggle="collapse"  class="accordion-toggle">
                          
 
                                                     <td class="text-nowrap">{{($detail->email_id)?$detail->email_id:'--'}}</td>
 
-                                                    <td class="text-nowrap">{{($detail->type)?$detail->type:'NA'}}</td>
-                                                    <td>{{($detail->admin_note)?$detail->admin_note:'NA'}}</td>
-                                                    <td>{{($detail->user_note)?$detail->user_note:'NA'}}</td>
-                                                    <td><a href="{{ url('admin/user/gsttype/details/'.$detail->id) }}">Details</a></td>
+                                                    <td class="text-nowrap">{{($detail->type)?$detail->type:'--'}}</td>
+                                                    <td>{{($detail->admin_note)?$detail->admin_note:'--'}}</td>
+                                                    <td>{{($detail->user_note)?$detail->user_note:'--'}}</td>
+                                                    <td><a href="{{ url('admin/user/forms/details/'.$detail->id) }}">Details</a></td>
                                                     <td>
                                                         @if($detail->status == 2)
                                                         <div><span
@@ -77,6 +77,16 @@
                                                                 class="ms-1 fas fa-check"
                                                                 data-fa-transform="shrink-2"></span></span>
 
+                                                                @if($detail->approved_img!="")        
+                                                                     <form action="{{ url('admin/user/forms/approved/file/' . $detail->user_id) }}" method="POST">
+                                                                                    @csrf
+                                                                                        <input type="hidden" name="form_type" value="Tan">
+                                                                                        <input type="hidden" name="files" value="{{ $detail->approved_img }}">
+                                                                                    
+                                                                                      <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
+                                                                                </form>
+                                                                                @endif
+
                                                         @else
                                                         <span
                                                             class="badge badge rounded-pill d-block p-2 badge-subtle-primary">Processing
@@ -91,16 +101,16 @@
                                                     @if($detail->status == 1 || $detail->status == 3)
                                                     <td colspan=6 style="display:flex;">
                                                         <span class="btn btn-info ml-1 mb-1 btn-sm" title="Add Note"
-                                                            type="button"  onclick="openPanNoteModal({{ $detail->id }})"
-                                                           href="{{ url('forms/statusview/'.$detail->id) }}" data-target="#myPanNoteModal">
+                                                            type="button"  onclick="openTanNoteModal({{ $detail->id }})"
+                                                           href="{{ url('forms/statusview/'.$detail->id) }}" data-target="#myTanNoteModal">
                                                             Note<span class="glyphicon glyphicon-eye-open ms-1"></span>
                                                         </span> 
 
  
                                                          <span class="btn btn-success ml-1 mb-1 btn-sm  " title="Change Status"
-                                                            type="button" data-toggle="modal"  onclick="openPanApproveModal({{ $detail->id }})"
+                                                            type="button" data-toggle="modal"  onclick="openTanApproveModal({{ $detail->id }})"
                                                              
-                                                            data-target="#myPanApprovedModal"> 
+                                                            data-target="#myTanApprovedModal"> 
                                                             Approve<span
                                                                 class="glyphicon glyphicon-eye-open ms-1"></span>
                                                         </span>
@@ -163,16 +173,14 @@
 
                         <script>
                                                          var urlpath="{{ $routeurl }}";
-                                                            function openPanNoteModal(itemId) {
+                                                            function openTanNoteModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url: urlpath+'/user/forms/statusview' +'?pan=' + itemId,
+                                                                    url: urlpath+'/user/forms/statusview' +'?for=note&formtype=tan&id=' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
-                                                                        $('#myPanNoteModal').modal('show');
-                                                                        $('#myPanNoteModal #userid').val(data.user_id);
-                                                                        $('#myPanNoteModal #panid').val(data.id);
-                                                                        $('#myPanNoteModal #routeis').val('pan');
+                                                                        $('#myCommonNoteModal').modal('show');
+                                                                        $('#note-modal-body-div').html(data.modalBody);
                                                                     },
                                                                     error: function (xhr) {
                                                                         // Handle error cases
@@ -182,17 +190,15 @@
                                                             }
 
 
-                                                            function openPanApproveModal(itemId) {
+                                                            function openTanApproveModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url:  urlpath+'/user/forms/statusview' +'?pan=' + itemId,
+                                                                    url:  urlpath+'/user/forms/statusview' +'?for=approve&formtype=tan&id=' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
                                 
-                                                                        $('#myPanApprovedModal').modal('show');
-                                                                        $('#myPanApprovedModal #userid').val(data.user_id);
-                                                                        $('#myPanApprovedModal #panid').val(data.id);
-                                                                        $('#myPanApprovedModal #type').val('approve');
+                                                                        $('#myCommonApprovedModal').modal('show');
+                                                                        $('#approve-modal-body-div').html(data.modalBody);
                                                                     },
                                                                     error: function (xhr) {
                                                                         // Handle error cases

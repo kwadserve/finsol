@@ -1,12 +1,11 @@
-<b>TAN</b><hr/>
+@if(count($userTanDetails)>0)<b>TAN Details</b><hr/>
 <table class="table table-condensed table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                     
+                                                                    <th scope="col">Name</th>
                                                                     <th scope="col">Email Id</th>
                                                                     <th scope="col">Mobile Number</th>
-                                                                    <!-- <th scope="col">GST Type</th> -->
-                                                                    <th scope="col">A Note</th>
+                                                                   
                                                                     <th scope="col">Type</th>
                                                                     <th scope="col">Status</th>
                                                                      
@@ -20,7 +19,9 @@
                                                                 <tr class="align-middle" data-toggle="collapse"
                                                                     data-target="#{{$detail->type}}"
                                                                     class="accordion-toggle">
-                                                                     
+
+                                                                    <td class="text-nowrap">{{isset($detail->name_of_tan)?$detail->name_of_tan:'-'}}</td>
+
                                                                     <td class="text-nowrap">
                                                                         <div class="align-items-center">
 
@@ -30,21 +31,19 @@
                                                                     </td>
 
                                                                     <td class="text-nowrap">{{isset($detail->mobile_number)?$detail->mobile_number:'-'}}</td>
-                                                                    <!-- <td class="text-nowrap">{{isset($detail->gst_type)?$detail->gst_type:'-'}}</td> -->
-                                                                    <td class="" style="font-size: 12px;">{{isset($detail->admin_note)?$detail->admin_note:'-'}}</</td>
                                                                     <td class="text-nowrap">{{isset($detail->type)?$detail->type:'-'}}</td>
 
                                                                     <td colspan=7>
                                                                         @if($detail->status == 2)
                                                                            <span
-                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
+                                                                            class="badge badge rounded-pill d-block p-2 badge-subtle-warning"  data-bs-target="#collapseContent2">Query
                                                                             Raised - Click here <span class="ms-1 fas fa-stream"
                                                                                 data-fa-transform="shrink-2"></span>
                                                                             </span>  
                                                                             @if($detail->raised_img!="")
-                                                                            <form action="{{ route('raisedFile') }}" method="POST">
+                                                                            <form action="{{ route('form_web_raisedFile') }}" method="POST">
                                                                                     @csrf
-                                                                                    
+                                                                                        <input type="hidden" name="form_type" value="Tan">
                                                                                         <input type="hidden" name="files" value="{{ $detail->raised_img }}">
                                                                                     
                                                                                       <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
@@ -68,9 +67,9 @@
                                                                                 data-fa-transform="shrink-2"></span></span>
 
      @if($detail->approved_img!="")
-                                                                                <form action="{{ route('approvedFile') }}" method="POST">
+                                                                                <form action="{{ route('form_web_approvedFile') }}" method="POST">
                                                                                     @csrf
-                                                                                    
+                                                                                    <input type="hidden" name="form_type" value="Tan">
                                                                                         <input type="hidden" name="files" value="{{ $detail->approved_img }}">
                                                                                     
                                                                                       <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
@@ -103,15 +102,14 @@
                                                                 </tr>
                                                                 @if($detail->status == 2)
                                                                 <tr>
-                                                                    <td colspan="6" class="hiddenRow">
-                                                                        <div id="{{$detail->gst_type}}"
-                                                                            class="accordian-body collapse">
+                                                                    <td colspan="6" class="hiddenRow2">
+                                                                        <div id="collapseContent2" class="accordian-body collapse">
                                                                             <!-- {{$detail->gst_type}} -->
                                                                             <br /><br />
                                                                             <div class="col">
                                                                                 <form class="needs-validation"
                                                                                     novalidate="novalidate"
-                                                                                    action="{{route('gst.query_raised')}}"
+                                                                                    action="{{route('form.query_raised')}}"
                                                                                     method="post"
                                                                                     enctype="multipart/form-data">
                                                                                     @csrf
@@ -128,8 +126,8 @@
 
                                                                                         <label>Enter Your Suggestion:</label>
                         <textarea name="user_note" style="height:90px;width:100%"></textarea>
- 
-                                                                                    <input type="hidden" name="gstid"
+                        <input type="hidden" name="form_type"  value="Tan" />
+                                                                                    <input type="hidden" name="id"
                                                                                         value="{{$detail->id}}" />
                                                                                     <div class="mt-3">
                                                                                         <label>Upload Required
@@ -164,3 +162,4 @@
                                                                 @endif
                                                             </tbody>
                                                         </table>
+@endif

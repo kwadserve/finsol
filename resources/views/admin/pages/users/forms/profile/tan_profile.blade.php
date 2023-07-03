@@ -1,15 +1,17 @@
 
 
- 
+@if($tanDetails)
+
+                  
               <div class="card mb-3">
                 <div class="card-header">
-                  <h5 class="mb-0">PAN Details</h5>
+                  <h5 class="mb-0">TAN Details</h5>
                 </div>
                 <div class="card-body bg-light row">
-                    <div class="col-lg-6 mb-3"> <label class="form-label" for="gst-type">Name of Pan : </label>{{$panDetails->name_of_pan}}</div>
-                    <div class="col-lg-6 mb-3"> <label class="form-label" for="pan-number">PAN Number : </label>{{$panDetails->pan_number}}</div>
-                    <div class="col-lg-6 mb-3"> <label class="form-label" for="mobile">Mobile : </label>{{$panDetails->mobile_number}}</div>
-                    <div class="col-lg-6 mb-3"> <label class="form-label" for="email1">Email : </label>{{$panDetails->email_id}}</div>
+                    <div class="col-lg-6 mb-3"> <label class="form-label" for="gst-type">Name of Tan : </label>{{$tanDetails->name_of_tan}}</div>
+                    <div class="col-lg-6 mb-3"> <label class="form-label" for="pan-number">TAN Number : </label>{{$tanDetails->tan_number}}</div>
+                    <div class="col-lg-6 mb-3"> <label class="form-label" for="mobile">Mobile : </label>{{$tanDetails->mobile_number}}</div>
+                    <div class="col-lg-6 mb-3"> <label class="form-label" for="email1">Email : </label>{{$tanDetails->email_id}}</div>
                       
                 </div>
               </div>
@@ -23,13 +25,13 @@
                                     aria-label="Close"></button>
                             </div>
                             @endif
-              @if($panDetails->type == 'New PAN Registration')
+              @if($tanDetails->type == 'New TAN Registration')
               <div class="card mb-3">
 
 
             
                 <div class="card-header">
-                  <h5 class="mb-0">PAN Documents</h5>
+                  <h5 class="mb-0">TAN Documents</h5>
                 </div>
                 <div class="card-body bg-light">
 
@@ -42,7 +44,7 @@ $bootstrapColWidth = 12 / $numOfCols;
 ?>
 <div class="row">
 <?php
-foreach ($panDocuments as $row){
+foreach ($tanDocuments as $row){
 ?>  
         <div class="col-md-<?php echo $bootstrapColWidth; ?>">
         <h6>{{$row->doc_name}}</h6> 
@@ -51,14 +53,13 @@ foreach ($panDocuments as $row){
           $keyname =$row->doc_key_name;
           @endphp
 
-        <form action="{{ url('admin/user/pan/files/'.$panDetails->user_id) }}" method="POST">
+        <form action="{{ url('admin/user/files/'.$tanDetails->user_id) }}" method="POST">
           @csrf
   
           
-              <input type="hidden" name="files" value="{{$panDetails[$keyname] }}">
-              <input type="hidden" name="gst_type" value="{{ $panDetails->gst_type }}">
-              <input type="hidden" name="id" value="{{ $panDetails->id }}">  
-              <input type="hidden" name="form_type" value="Pan">  
+              <input type="hidden" name="files" value="{{$tanDetails[$keyname]}}">
+              <input type="hidden" name="id" value="{{ $tanDetails->id }}">  
+              <input type="hidden" name="form_type" value="Tan">  
           
             <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
        </form>
@@ -83,5 +84,5 @@ foreach ($panDocuments as $row){
                 @endif
               </div>
            
-
+@endif
             

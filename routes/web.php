@@ -68,8 +68,8 @@ Route::post('gst/download/copyofreturns/file', 'GstController@copyofreturnsFile'
 
 // Registration Dashboard details for all forms 
 Route::get('dashboard', 'DashboardController@index')->name('form_dashboard');
-Route::post('form/download/raised/file', 'DashboardController@raisedFile')->name('form_raisedFile');
-Route::post('form/download/approved/file', 'DashboardController@approvedFile')->name('form_approvedFile');
+Route::post('form/download/raised/file', 'DashboardController@raisedFile')->name('form_web_raisedFile');
+Route::post('form/download/approved/file', 'DashboardController@approvedFile')->name('form_web_approvedFile');
 Route::post('form/queryraised', 'DashboardController@queryRaised')->name('form.query_raised');
 
 //PAN DETAILS 

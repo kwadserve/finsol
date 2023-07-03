@@ -14,6 +14,7 @@ use App\Models\Documents;
 use App\Models\UserPartner;
 use App\Models\UserDirector;
 use App\Models\UserPanDetail;
+use App\Models\UserTanDetail;
 
 class FormsDashboardController extends Controller
 {
@@ -28,6 +29,7 @@ class FormsDashboardController extends Controller
         $data['routeurl'] =  Helper::getBaseUrl($request);  
         $data['usersGst'] = UserGstDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersPan'] = UserPanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersTan'] = UserTanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -42,9 +44,51 @@ class FormsDashboardController extends Controller
     {
         $data['panDetails'] = UserPanDetail::find($Id);
         $data['panDocuments'] = Documents::where(['for_multiple' => 'PAN'])->get();
+
+        $data['tanDetails'] = UserTanDetail::find($Id);
+        $data['tanDocuments'] = Documents::where(['for_multiple' => 'TAN'])->get();
      
        
         return view('admin.pages.users.forms.all_profiles')->with($data);
+    }
+
+    public function allProfileDocDownload(Request $request, $userId){
+         
+        $files = $request->input('files'); 
+        $id = $request->input('id'); 
+        $commaValues = explode(",", $files);
+        $formType = $request->input('form_type'); 
+        $userDetails = User::find($userId);
+        $useName = trim($userDetails->name).'-'.$userId; 
+        $zipName = $formType.'-'.$useName.'.zip';
+        $folderPath = 'uploads/users/'.$useName.'/'.$formType.'/'; 
+        $zip = new \ZipArchive();
+        $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
+        if (count($commaValues) > 1) {
+            foreach ($commaValues as $file) {
+                $filePath = $folderPath.$file;  
+                if (File::exists($filePath)) {
+                $fileContents = file_get_contents(public_path($filePath));
+                $zip->addFromString(basename($file), $fileContents);
+                }else {
+                    return redirect('/admin/user/forms/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                }
+            }
+        } else {
+            if(!empty($files)) {
+                $filePath =  $folderPath.$files;   
+                if (File::exists($filePath)) { 
+                $fileContents = file_get_contents(public_path($filePath));
+                $zip->addFromString(basename($files), $fileContents); 
+                } else {
+                return redirect('/admin/user/forms/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                }  
+            } else  {
+                return redirect('/admin/user/forms/details/'.$id)->with('filenotexist', 'File Not Exist!');
+            }
+        }
+        $zip->close();
+        return response()->download($zipName)->deleteFileAfterSend(true);
     }
 
     public function downloadGstFile(Request $request, $userId)
@@ -90,8 +134,64 @@ class FormsDashboardController extends Controller
         return response()->download($zipName)->deleteFileAfterSend(true);
     }
 
-    // get information based on all forms 
     public function statusview(Request $request){
+       $for = $request['for'];
+       $formtype = $request['formtype'];
+       $id = $request['id'];  
+       $details="";
+        $modalBody =""; 
+        $content ="";
+       
+        try{            
+        if($formtype){ 
+            
+            if($formtype=="tan"){
+                 
+                $details = UserTanDetail::find($id); 
+                $content =  '<label>Pan Number</label>
+                <input type="text" class="form-control"  required="required" name=tan_number" value="" placeholder="Enter the Tan Number" />
+                <label>Name of Pan</label>
+                <input type="text"  required="required" class="form-control" id="nameoftan" name="name_of_tan" value="'.$details->name_of_tan.'"  placeholder="Name of Tan" />';
+                 
+               
+            }  else if($formtype=="pan"){
+                 
+                $details = UserPanDetail::find($id);
+                $content = '<label>Pan Number</label>
+                <input type="text" class="form-control"  required="required" name=pan_number" value="" placeholder="Enter the Pan Number" />
+                <label>Name of Pan</label>
+                <input type="text"  required="required" class="form-control"  name="name_of_pan" value="'.$details->name_of_pan.'" placeholder="Name of Pan" />';
+                 
+                  }
+
+ 
+        if(isset($details)){
+            if($for ==='note'){
+                $modalBody = 
+                '<input type="hidden" name="userid" id="userid" value="'.$details->user_id.'" />
+                <input type="hidden" id="id" name="id" value="'.$details->id.'" />
+                <input type="hidden" name="routeis" id="routeis" value="'.$formtype.'" />
+                <input type="hidden" name="type" value="note" />';
+                } else {
+                 $modalBody = 
+                 '<input type="hidden" name="userid" id="userid" value="'.$details->user_id.'" />
+                 <input type="hidden" id="id" name="id" value="'.$details->id.'" />
+                 <input type="hidden" name="routeis" value="'.$formtype.'" />
+                 <input type="hidden" name="type" value="approve" />';
+
+                 $modalBody .=  $content; 
+                }
+            }
+            return response()->json(['modalBody' => $modalBody]);
+        }
+    }  catch (\Exception $e) {
+        // Log::error('An error occurred: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'An error occurred. Please try again later.');
+    }
+    }
+
+    // get information based on all forms 
+    public function statusviewold(Request $request){
         $queryParam = $request->all(); 
         $param =  key($queryParam); 
          switch($param){
@@ -163,7 +263,7 @@ class FormsDashboardController extends Controller
           case "pan" : 
             $folderNameChange =  ($request->type == 'approve') ? '/Pan/ApprovedImg' :'/Pan/RaisedImg' ;
             $folderName =  'uploads/users/'.$useName.$folderNameChange; 
-            $panid = $request->panid;
+            $panid = $request->id;
             $datas = UserPanDetail::find($panid);
             $status = ($request->type == 'approve') ? 4 : 2; 
             $datas->last_update_by = 'admin'; 
@@ -180,6 +280,28 @@ class FormsDashboardController extends Controller
              }
             $datas->save();
             break; 
+            case "tan" : 
+                $folderNameChange =  ($request->type == 'approve') ? '/Tan/ApprovedImg' :'/Tan/RaisedImg' ;
+                $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                $tanid = $request->id;
+                $datas = UserTanDetail::find($tanid);
+                $status = ($request->type == 'approve') ? 4 : 2; 
+                $datas->last_update_by = 'admin'; 
+                $datas->status = $status;  // Approved
+                 if($request->type == 'approve') {
+                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                    $datas->name_of_tan =   $request->name_of_tan;
+                    $datas->tan_number =  $request->tan_number;  
+                    $datas->approved_img = $img['approved_img'];
+                 } else {
+                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                    $datas->admin_note = $request->admin_note; 
+                    $datas->raised_img = $img['raised_img'];
+                 }
+                $datas->save();
+                break; 
+
+
           default : break; 
        }
        return redirect('admin/user/forms/dashboard/details/'.$userId)->with('success', 'Uploaded the Document!'); 

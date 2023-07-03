@@ -199,13 +199,15 @@
                                                             function openPanNoteModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url: urlpath+'/user/forms/statusview' +'?pan=' + itemId,
+                                                                    //url: urlpath+'/user/forms/statusview' +'?pan=' + itemId,
+                                                                    url: urlpath+'/user/forms/statusview' +'?for=note&formtype=pan&id=' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
-                                                                        $('#myPanNoteModal').modal('show');
-                                                                        $('#myPanNoteModal #userid').val(data.user_id);
-                                                                        $('#myPanNoteModal #panid').val(data.id);
-                                                                        $('#myPanNoteModal #routeis').val('pan');
+                                                                        $('#myCommonNoteModal').modal('show');
+                                                                        $('#note-modal-body-div').html(data.modalBody);
+                                                                        // $('#myPanNoteModal #userid').val(data.user_id);
+                                                                        // $('#myPanNoteModal #panid').val(data.id);
+                                                                        // $('#myPanNoteModal #routeis').val('pan');
                                                                     },
                                                                     error: function (xhr) {
                                                                         // Handle error cases
@@ -218,15 +220,17 @@
                                                             function openPanApproveModal(itemId) {
                                                                 // Make an AJAX GET request to fetch the item details
                                                                 $.ajax({
-                                                                    url:  urlpath+'/user/forms/statusview' +'?pan=' + itemId,
+                                                                    // url:  urlpath+'/user/forms/statusview' +'?pan=' + itemId,
+                                                                    url: urlpath+'/user/forms/statusview' +'?for=approve&formtype=pan&id=' + itemId,
                                                                     type: 'GET',
                                                                     success: function (data) {
                                 
-                                                                        $('#myPanApprovedModal').modal('show');
-                                                                        $('#myPanApprovedModal #userid').val(data.user_id);
-                                                                        $('#myPanApprovedModal #panid').val(data.id);
-                                                                        $('#myPanApprovedModal #nameofpan').val(data.name_of_pan);
-                                                                        $('#myPanApprovedModal #type').val('approve');
+                                                                        $('#myCommonApprovedModal').modal('show');
+                                                                        $('#approve-modal-body-div').html(data.modalBody);
+                                                                        // $('#myPanApprovedModal #userid').val(data.user_id);
+                                                                        // $('#myPanApprovedModal #panid').val(data.id);
+                                                                        // $('#myPanApprovedModal #nameofpan').val(data.name_of_pan);
+                                                                        // $('#myPanApprovedModal #type').val('approve');
                                                                     },
                                                                     error: function (xhr) {
                                                                         // Handle error cases

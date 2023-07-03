@@ -22,7 +22,19 @@
                                  
                                  <!------------------section 1----------------->
                                  <div class="col-lg-12 pe-lg-2">
-                                 @include('admin.pages.users.forms.pan_profile')
+                                 @if (session('filenotexist'))
+                                                        <div class="alert alert-danger border-2 d-flex align-items-center"
+                                                            role="alert">
+                                                            <div class="bg-danger me-3 icon-item"><span
+                                                                    class="fas fa-check-circle text-white fs-3"></span>
+                                                            </div>
+                                                            <p class="mb-0 flex-1">{{ session('filenotexist') }}</p>
+                                                            <button class="btn-close" type="button"
+                                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                                        @endif
+                                 @include('admin.pages.users.forms.profile.pan_profile')
+                                 @include('admin.pages.users.forms.profile.tan_profile')
                                  </div>
 
                                  
@@ -47,6 +59,17 @@
 @endsection
 
  
-
+<script>
+ $(document).ready(function() {
+        setTimeout(function() {
+            $(".alert-success").fadeOut("slow", function() {
+                $(this).remove();
+            });
+            $(".alert-danger").fadeOut("slow", function() {
+                $(this).remove();
+            });
+        }, 3000);
+    }); 
+</script>
  
 

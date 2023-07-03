@@ -26,10 +26,11 @@ class TanController  extends Controller {
         $data = Helper :: uploadImagesNew($request, $userId, $folderName, 'TAN');
         $data['user_id'] = $userId;
         $data['email_id'] = $request['email_id'];
+        $data['name_of_tan'] = $request['tan_name'];
         $data['mobile_number'] = $request['mobile_number'];
         $matchthese = ['user_id' => $userId];
-        UserTanDetail::where($matchthese)->delete();
-        UserTanDetail::updateOrCreate($matchthese, $data);
+        // UserTanDetail::where($matchthese)->delete();
+        UserTanDetail::Create($data);
         return redirect('/tan/register')->with('success', 'Registered Tan successfully!');
     }
      

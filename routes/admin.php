@@ -65,7 +65,9 @@ Route::group([
             Route::get('forms/statusview', 'FormsDashboardController@statusview')->name('form_statusView');
             Route::post('forms/additional/file/{id}', 'FormsDashboardController@additionalFile')->name('form_additionalFile');
             Route::post('forms/approved/file/{id}', 'FormsDashboardController@approvedFile')->name('form_approvedFile');
-            Route::get('forms/details/{id}', 'FormsDashboardController@allProfile')->name('allformProfile'); 
+            Route::get('forms/details/{id}', 'FormsDashboardController@allProfile')->name('allformProfile');
+            
+            Route::post('files/{id}', 'FormsDashboardController@allProfileDocDownload')->name('allprofiledocdownload'); 
         });
 
         // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');

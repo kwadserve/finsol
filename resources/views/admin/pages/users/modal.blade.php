@@ -69,10 +69,8 @@
 
     </div>
 </div>
-
-
-
-<div id="myPanNoteModal" class="modal fade" role="dialog">
+ 
+<div id="myCommonNoteModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
     
         <div class="modal-content">
@@ -82,10 +80,9 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <input type="hidden" name="userid" id="userid" value="" />
-                        <input type="hidden" id="panid" name="panid" value="" />
-                        <input type="hidden" name="routeis" id="routeis" value="pan" />
-                        <input type="hidden" name="type" value="note" />
+                    <div id="note-modal-body-div">
+     
+                    </div>
                        <div class="mb-3">
                         <label>Enter Your Query:</label>
                         <textarea name="admin_note" required="required" style="height:90px;width:100%"></textarea>
@@ -107,7 +104,7 @@
     </div>
 </div>
 
-<div id="myPanApprovedModal" class="modal fade" role="dialog">
+<div id="myCommonApprovedModal" class="modal fade" role="dialog">
     <div class="modal-dialog"> 
         <div class="modal-content">
             <form action="{{ url('admin/user/forms/change_status') }}" method="post" enctype="multipart/form-data">
@@ -116,15 +113,10 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <input type="hidden" name="userid" id="userid" value="{{request()->segment(5)}}" />
-                        <input type="hidden" id="panid" name="panid" value="" />
-                        <input type="hidden" name="routeis" value="pan" />
-                        <input type="hidden" name="type" value="approve" />
+                    <div id="approve-modal-body-div">
+     
+                    </div>
                       
-                        <label>Pan Number</label>
-                        <input type="text" class="form-control"  required="required" name="pan_number" value="" placeholder="Enter the Pan Number" />
-                        <label>Name of Pan</label>
-                        <input type="text"  required="required" class="form-control" id="nameofpan" name="name_of_pan" value="" placeholder="Name of Pan" />
                     <div class="mb-3">
                         <label>Upload Doc:</label>
                         <input type="file" name="approved_img[]" id="image-upload" class="myfrm form-control"
@@ -142,14 +134,15 @@
     </div>
 </div>
 
+
 <script>
     function closeModal1() {
         $('#myApprovedModal').modal('hide');
-        $('#myPanApprovedModal').modal('hide');
+        $('#myCommonApprovedModal').modal('hide');  
     }
 
     function closeModal2() {
         $('#myNoteModal').modal('hide');
-        $('#myPanNoteModal').modal('hide');
+        $('#myCommonNoteModal').modal('hide');
     }
 </script>

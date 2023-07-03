@@ -62,9 +62,21 @@ use App\Models\UserGstDetail;
                                                         </div>
                                                         @endif
 
+                                                        @if (session('approvedfilenotexist'))
+                                                        <div class="alert alert-danger border-2 d-flex align-items-center"
+                                                            role="alert">
+                                                            <div class="bg-danger me-3 icon-item"><span
+                                                                    class="fas fa-check-circle text-white fs-3"></span>
+                                                            </div>
+                                                            <p class="mb-0 flex-1">{{ session('approvedfilenotexist') }}</p>
+                                                            <button class="btn-close" type="button"
+                                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        </div>
+                                                        @endif
+
                                                         @include('user.pages.dashboard.gst')
                                                         @include('user.pages.dashboard.pan')
-                                                       
+                                                        @include('user.pages.dashboard.tan')
                                                
                                                     </div>
 
@@ -108,6 +120,9 @@ use App\Models\UserGstDetail;
     padding: 0 !important;
 }
 
+.hiddenRow2 {
+    padding: 0 !important;
+}
 </style>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"

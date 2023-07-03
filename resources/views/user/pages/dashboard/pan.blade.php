@@ -2,7 +2,7 @@
 <table class="table table-condensed table-striped">
                                                             <thead>
                                                                 <tr>
-                                                                <th scope="col">Name for Pan Id</th>
+                                                                <th scope="col">Name</th>
                                                                     <th scope="col">Email Id</th>
                                                                     <th scope="col">Mobile Number</th>
                                                                    
@@ -20,6 +20,8 @@
                                                                 <tr class="align-middle" data-toggle="collapse"
                                                                     data-target="#{{$detail->type}}"
                                                                     class="accordion-toggle">
+
+                                                                    <td class="text-nowrap">{{isset($detail->name_of_pan)?$detail->name_of_pan:'-'}}</td>
                                                                      
                                                                     <td class="text-nowrap">
                                                                         <div class="align-items-center">
@@ -41,7 +43,7 @@
                                                                                 data-fa-transform="shrink-2"></span>
                                                                             </span>  
                                                                             @if($detail->raised_img!="")
-                                                                            <form action="{{ route('form_raisedFile') }}" method="POST">
+                                                                            <form action="{{ route('form_web_raisedFile') }}" method="POST">
                                                                                     @csrf
                                                                                         <input type="hidden" name="form_type" value="Pan">
                                                                                         <input type="hidden" name="files" value="{{ $detail->raised_img }}">
@@ -67,7 +69,7 @@
                                                                                 data-fa-transform="shrink-2"></span></span>
 
      @if($detail->approved_img!="")
-                                                                                <form action="{{ route('form_approvedFile') }}" method="POST">
+                                                                                <form action="{{ route('form_web_approvedFile') }}" method="POST">
                                                                                     @csrf
                                                                                         <input type="hidden" name="form_type" value="Pan">
                                                                                         <input type="hidden" name="files" value="{{ $detail->approved_img }}">
@@ -119,13 +121,13 @@
                                                                                         Raised
                                                                                     </span>
                                                                                     <br />
-                                                                                    <!-- <div class="mb-3">
+                                                                                    <div class="mb-3">
                                                                                         <label
                                                                                             class="form-label"
                                                                                             for="note">
                                                                                             {{$detail->admin_note}}
                                                                                         </label> 
-                                                                                    </div> -->
+                                                                                    </div>
 
                                                                                         <label>Enter Your Suggestion:</label>
                         <textarea name="user_note" style="height:90px;width:100%"></textarea>
