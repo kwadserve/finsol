@@ -103,7 +103,7 @@
                                                                 @if($detail->status == 2)
                                                                 <tr>
                                                                     <td colspan="6" class="hiddenRow2">
-                                                                        <div id="collapseContent2" class="accordian-body collapse">
+                                                                        <div id="{{$detail->type}}" class="accordian-body collapse">
                                                                             <!-- {{$detail->gst_type}} -->
                                                                             <br /><br />
                                                                             <div class="col">

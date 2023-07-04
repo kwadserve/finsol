@@ -230,6 +230,13 @@ use App\Models\UserGstDetail;
                                                                 @endif
                                                             </tbody>
                                                         </table>
+                                                        
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        
+                                                       
+                                                        
                                                     </div>
 
                                                 </div>
