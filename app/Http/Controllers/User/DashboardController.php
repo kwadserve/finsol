@@ -6,6 +6,8 @@ use App\Models\UserPanDetail;
 use App\Models\UserGstDetail;
 use App\Models\UserTanDetail;
 use App\Models\UserEpfDetail;
+use App\Models\UserEsicDetail;
+use App\Models\UserTrademarkDetail;
 use App\Models\UserGstUploadDocument;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
@@ -18,10 +20,19 @@ class DashboardController  extends Controller {
     }
     public function index(Request $request) {
         $userId = auth()->user()->id;
+       
         $data['userGstDetails'] = UserGstDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+       
         $data['userPanDetails'] = UserPanDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+       
         $data['userTanDetails'] = UserTanDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+       
         $data['userEpfDetails'] = UserEpfDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
+        $data['userEsicDetails'] = UserEsicDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        
+        $data['userTrademarkDetails'] = UserTrademarkDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  
     }
@@ -55,6 +66,26 @@ class DashboardController  extends Controller {
         } 
         if($formType =='Epf'){
             $datas = UserEpfDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+
+        if($formType =='Esic'){
+            $datas = UserEsicDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+
+        if($formType =='Trademark'){
+            $datas = UserTrademarkDetail::find($id);
             $datas->user_note = $request->user_note; 
             $datas->status = 3; // Query Updated      
             $datas->last_update_by = 'user'; 

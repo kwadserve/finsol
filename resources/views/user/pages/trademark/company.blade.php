@@ -11,7 +11,7 @@
                                     <div class="col-6">
                                         <div class="mb-3">
                                          <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Trademark
-                                         </label><input class="form-control" type="text" name="#" placeholder="Name of Trademark"
+                                         </label><input class="form-control" type="text" name="name_of_trademark" placeholder="Name of Trademark"
                                              required="required" />
                                              <div class="invalid-feedback">Please provide name of Trademark</div>
                                         </div>
@@ -21,7 +21,7 @@
                                     <div class="col-6">
                                         <div class="mb-3">
                                          <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Business
-                                         </label><input class="form-control" type="text" name="#" placeholder="Name of Business"
+                                         </label><input class="form-control" type="text" name="name_of_business" placeholder="Name of Business"
                                              required="required" />
                                              <div class="invalid-feedback">Please provide name of Business</div>
                                         </div>

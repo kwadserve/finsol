@@ -33,9 +33,12 @@ class ESICController  extends Controller {
             $data = Helper :: uploadImagesNew($request, $userId, $folderName, 'ESIC Company');
             $data['user_id'] = $userId;
             $data['esic_type'] = $request['esic_type'];
-            $matchthese = ['user_id'=>$userId, 'esic_type'=>'Company'];
-            UserEsicDetail::where($matchthese)->delete();
-            $lastInsertedId =  UserEsicDetail::updateOrCreate($matchthese, $data)->id;
+            $data['name_of_esic'] = $request['name_of_esic'];
+            $data['esic_email']= $request['email_id'];
+            $data['esic_mobile']= $request['mobile_number'];
+            // $matchthese = ['user_id'=>$userId, 'esic_type'=>'Company'];
+            // UserEsicDetail::where($matchthese)->delete();
+            $lastInsertedId =  UserEsicDetail::Create($data)->id;
         if ($request->has('esicsignatory')) {
             $esicsignatory = $request->input('esicsignatory');
             UserEsicSignatory::where(['user_id' => $userId])->delete();
@@ -62,9 +65,12 @@ class ESICController  extends Controller {
         $data['esic_email'] = $request['email_id'];
         $data['esic_mobile'] = $request['mobile_number'];
         $data['esic_type'] = $request['esic_type'];
-        $matchthese = ['user_id' => $userId, 'esic_type' => 'Others'];
-        UserEsicDetail::where($matchthese)->delete();
-        UserEsicDetail::updateOrCreate($matchthese, $data);
+        $data['esic_email']= $request['email_id'];
+        $data['esic_mobile']= $request['mobile_number'];
+        $data['name_of_esic'] = $request['name_of_esic'];
+        // $matchthese = ['user_id' => $userId, 'esic_type' => 'Others'];
+        // UserEsicDetail::where($matchthese)->delete();
+        UserEsicDetail::updateOrCreate($data);
         return redirect('/esic/register')->with('success', 'Registered ESIC Others successfully!');;
     }
 

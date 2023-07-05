@@ -17,6 +17,10 @@ use App\Models\UserPanDetail;
 use App\Models\UserTanDetail;
 use App\Models\UserEpfDetail;
 use App\Models\UserEpfSignatory;
+use App\Models\UserEsicDetail;
+use App\Models\UserEsicSignatory;
+use App\Models\UserTrademarkDetail;
+use App\Models\UserTrademarkSignatory;
 
 class FormsDashboardController extends Controller
 {
@@ -33,6 +37,9 @@ class FormsDashboardController extends Controller
         $data['usersPan'] = UserPanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTan'] = UserTanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersEpf'] = UserEpfDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
+        $data['usersEsic'] = UserEsicDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersTrademark'] = UserTrademarkDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -56,10 +63,22 @@ class FormsDashboardController extends Controller
         $data['epfSignatory'] = UserEpfSignatory :: where(['user_epf_id' => $Id])->get();
         $data['epfSignatoryDocuments'] = Documents::where(['for_multiple' => 'EPF Signatory'])->get();
 
+        $data['esicDetails'] = UserEsicDetail::find($Id);
+        $data['esicDocuments'] = Documents::where(['for_multiple' => 'ESIC Company'])->get();
+        $data['esicSignatory'] = UserEsicSignatory :: where(['user_esic_id' => $Id])->get();
+        $data['esicSignatoryDocuments'] = Documents::where(['for_multiple' => 'ESIC Signatory'])->get();
+        $data['esicOthers'] = UserEsicSignatory :: where(['user_esic_id' => $Id])->get();
+        $data['esicOthersDocuments'] = Documents::where(['for_multiple' => 'ESIC Others'])->get();
 
-       
-     
-       
+
+        $data['trademarkDetails'] = UserTrademarkDetail::find($Id);
+        $data['trademarkDocuments'] = Documents::where(['for_multiple' => 'TRADEMARK Company'])->get();
+        $data['trademarkSignatory'] = UserTrademarkSignatory :: where(['user_trademark_id' => $Id])->get();
+        $data['trademarkSignatoryDocuments'] = Documents::where(['for_multiple' => 'TRADEMARK Signatory'])->get();
+        $data['trademarkOthers'] = UserTrademarkSignatory :: where(['user_trademark_id' => $Id])->get();
+        $data['trademarkOthersDocuments'] = Documents::where(['for_multiple' => 'TRADEMARK Others'])->get();
+
+
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
 
@@ -183,6 +202,26 @@ class FormsDashboardController extends Controller
                     <input type="text"  required="required" class="form-control"  name="name_of_epf" value="'.$details->name_of_epf.'" placeholder="Name of Epf" />';
                      
                       } 
+
+                      else if($formtype=="esic"){
+                 
+                        $details = UserEsicDetail::find($id);
+                        $content = '<label>ESIC Number</label>
+                        <input type="text" class="form-control"  required="required" name=esic_number" value="" placeholder="Enter the Esic Number" />
+                        <label>Name of Esic</label>
+                        <input type="text"  required="required" class="form-control"  name="name_of_esic" value="'.$details->name_of_esic.'" placeholder="Name of Esic" />';
+                         
+                          } 
+
+                          else if($formtype=="trademark"){
+                 
+                            $details = UserTrademarkDetail::find($id);
+                            $content = '<label>Trademark Number</label>
+                            <input type="text" class="form-control"  required="required" name=trademark_number" value="" placeholder="Enter the Trademark Number" />
+                            <label>Name of Trademark</label>
+                            <input type="text"  required="required" class="form-control"  name="name_of_trademark" value="'.$details->name_of_trademark.'" placeholder="Name of Trademark" />';
+                             
+                              } 
 
  
         if(isset($details)){
@@ -341,6 +380,48 @@ class FormsDashboardController extends Controller
                      }
                     $datas->save();
                     break; 
+
+                    case "esic" : 
+                        $folderNameChange =  ($request->type == 'approve') ? '/Esic/ApprovedImg' :'/Esic/RaisedImg' ;
+                        $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                        $esicid = $request->id;
+                        $datas = UserEsicDetail::find($esicid);
+                        $status = ($request->type == 'approve') ? 4 : 2; 
+                        $datas->last_update_by = 'admin'; 
+                        $datas->status = $status;  // Approved
+                         if($request->type == 'approve') {
+                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                            $datas->name_of_esic =   $request->name_of_esic;
+                            $datas->esic_number =  $request->esic_number;  
+                            $datas->approved_img = $img['approved_img'];
+                         } else {
+                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                            $datas->admin_note = $request->admin_note; 
+                            $datas->raised_img = $img['raised_img'];
+                         }
+                        $datas->save();
+                        break; 
+
+                        case "trademark" : 
+                            $folderNameChange =  ($request->type == 'approve') ? '/Trademark/ApprovedImg' :'/Trademark/RaisedImg' ;
+                            $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                            $trademarkid = $request->id;
+                            $datas = UserTrademarkDetail::find($trademarkid);
+                            $status = ($request->type == 'approve') ? 4 : 2; 
+                            $datas->last_update_by = 'admin'; 
+                            $datas->status = $status;  // Approved
+                             if($request->type == 'approve') {
+                                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                $datas->name_of_trademark =   $request->name_of_trademark;
+                                $datas->trademark_number =  $request->trademark_number;  
+                                $datas->approved_img = $img['approved_img'];
+                             } else {
+                                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                $datas->admin_note = $request->admin_note; 
+                                $datas->raised_img = $img['raised_img'];
+                             }
+                            $datas->save();
+                            break; 
 
 
           default : break; 

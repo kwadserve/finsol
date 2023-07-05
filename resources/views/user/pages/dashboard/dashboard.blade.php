@@ -78,6 +78,8 @@ use App\Models\UserGstDetail;
                                                         @include('user.pages.dashboard.pan')
                                                         @include('user.pages.dashboard.tan')
                                                         @include('user.pages.dashboard.epf')
+                                                        @include('user.pages.dashboard.esic')
+                                                        @include('user.pages.dashboard.trademark')
                                                     </div>
 
                                                 </div>

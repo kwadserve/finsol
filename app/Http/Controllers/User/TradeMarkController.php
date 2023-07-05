@@ -33,9 +33,14 @@ class TradeMarkController  extends Controller {
             $data = Helper :: uploadImagesNew($request, $userId, $folderName, 'TRADEMARK Company');
             $data['user_id'] = $userId;
             $data['trademark_type'] = $request['trademark_type'];
-            $matchthese = ['user_id'=>$userId, 'trademark_type'=>'Company'];
-            UserTrademarkDetail::where($matchthese)->delete();
-            $lastInsertedId =  UserTrademarkDetail::updateOrCreate($matchthese, $data)->id;
+            // $matchthese = ['user_id'=>$userId, 'trademark_type'=>'Company'];
+            // UserTrademarkDetail::where($matchthese)->delete();
+            $data['name_of_trademark'] = $request['name_of_trademark'];
+            $data['trademark_email'] = $request['email_id'];
+            $data['trademark_mobile'] = $request['mobile_number'];
+            $data['name_of_business'] = $request['name_of_business'];
+            
+            $lastInsertedId =  UserTrademarkDetail::updateOrCreate($data)->id;
         if ($request->has('trademarksignatory')) {
             $trademarksignatory = $request->input('trademarksignatory');
             UserTrademarkSignatory::where(['user_id' => $userId])->delete();
@@ -62,9 +67,11 @@ class TradeMarkController  extends Controller {
         $data['trademark_email'] = $request['email_id'];
         $data['trademark_mobile'] = $request['mobile_number'];
         $data['trademark_type'] = $request['trademark_type'];
-        $matchthese = ['user_id' => $userId, 'trademark_type' => 'Others'];
-        UserTrademarkDetail::where($matchthese)->delete();
-        UserTrademarkDetail::updateOrCreate($matchthese, $data);
+        $data['name_of_trademark'] = $request['name_of_trademark'];
+        $data['name_of_business'] = $request['name_of_business'];
+        // $matchthese = ['user_id' => $userId, 'trademark_type' => 'Others'];
+        // UserTrademarkDetail::where($matchthese)->delete();
+        UserTrademarkDetail::updateOrCreate($data);
         return redirect('/trademark/register')->with('success', 'Registered TRADEMARK Others successfully!');;
     }
 

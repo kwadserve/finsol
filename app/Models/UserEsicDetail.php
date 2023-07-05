@@ -14,6 +14,8 @@ class UserEsicDetail extends Authenticatable
     protected $fillable = [
         'user_id',
         'esic_email',
+        'name_of_esic',
+        'esic_number',
         'esic_mobile',
         'esic_type',
         'esic_pan_img',
@@ -25,7 +27,16 @@ class UserEsicDetail extends Authenticatable
         'esic_oth_aadhar_img',
         'esic_oth_pan_img',
         'esic_oth_photo_img',
-        'esic_oth_spaceman_img'
+        'esic_oth_spaceman_img',
+        'status',
+        'last_updated_by',
+        'last_update_by_id',
+        'additional_img',
+        'approved_img',
+        'raised_img',
+        'admin_note',
+        'user_note',
+        'type'
     ];
 
 }

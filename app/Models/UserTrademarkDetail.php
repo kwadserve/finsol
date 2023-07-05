@@ -13,6 +13,9 @@ class UserTrademarkDetail extends Authenticatable
  
     protected $fillable = [
         'user_id',
+        'trademark_number',
+        'name_of_business',
+        'name_of_trademark',
         'trademark_email',
         'trademark_mobile',
         'trademark_type',
@@ -27,7 +30,16 @@ class UserTrademarkDetail extends Authenticatable
         'trademark_logo_img',
         'trademark_aff_img',
         'trademark_oth_photo_img',
-        'trademark_oth_spaceman_img'
+        'trademark_oth_spaceman_img',
+        'status',
+        'last_updated_by',
+        'last_update_by_id',
+        'additional_img',
+        'approved_img',
+        'raised_img',
+        'admin_note',
+        'user_note',
+        'type'
     ];
 
 }

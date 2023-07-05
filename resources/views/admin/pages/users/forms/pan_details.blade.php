@@ -139,7 +139,7 @@
                                                         </span>
                                                         @else @if($detail->status == 4)
                                                      
-                                                        <span>NA</span>
+                                                        <span></span>
                                                      
                                                    
 

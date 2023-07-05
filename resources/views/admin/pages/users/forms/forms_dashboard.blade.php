@@ -19,9 +19,12 @@
                     </div>
                     <div class="card-body d-flex flex-column justify-content-end">
                      
-                       @include('admin.pages.users.forms.pan_details'); 
-                       @include('admin.pages.users.forms.tan_details'); 
-                       @include('admin.pages.users.forms.epf_details'); 
+                       @include('admin.pages.users.forms.pan_details') 
+                       @include('admin.pages.users.forms.tan_details') 
+                       @include('admin.pages.users.forms.epf_details')
+
+                       @include('admin.pages.users.forms.esic_details')
+                       @include('admin.pages.users.forms.trademark_details')
                     </div>
                 </div>
             </div>
