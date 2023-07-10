@@ -21,6 +21,8 @@ use App\Models\UserEsicDetail;
 use App\Models\UserEsicSignatory;
 use App\Models\UserTrademarkDetail;
 use App\Models\UserTrademarkSignatory;
+use App\Models\UserCompanyDetail;
+use App\Models\UserCompanySignatory;
 
 class FormsDashboardController extends Controller
 {
@@ -40,6 +42,7 @@ class FormsDashboardController extends Controller
 
         $data['usersEsic'] = UserEsicDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTrademark'] = UserTrademarkDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersCompany'] = UserCompanyDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -79,6 +82,11 @@ class FormsDashboardController extends Controller
         $data['trademarkOthersDocuments'] = Documents::where(['for_multiple' => 'TRADEMARK Others'])->get();
 
 
+        $data['companyDetails'] = UserCompanyDetail::find($Id);
+        $data['companyDocuments'] = Documents::where(['for_multiple' => 'COMPANY'])->get();
+        $data['companyDirector'] = UserCompanySignatory :: where(['user_comp_id' => $Id])->get();
+        $data['companyDirectorDocuments'] = Documents::where(['for_multiple' => 'COMPANY Signatory'])->get();
+   
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
 
@@ -222,6 +230,15 @@ class FormsDashboardController extends Controller
                             <input type="text"  required="required" class="form-control"  name="name_of_trademark" value="'.$details->name_of_trademark.'" placeholder="Name of Trademark" />';
                              
                               } 
+                              else if($formtype=="company"){
+                 
+                                $details = UserCompanyDetail::find($id);
+                                $content = '<label>Company Number</label>
+                                <input type="text" class="form-control"  required="required" name=company_number" value="" placeholder="Enter the Company Number" />
+                                <label>Name of Company</label>
+                                <input type="text"  required="required" class="form-control"  name="name_of_company" value="'.$details->name_of_trademark.'" placeholder="Name of Company" />';
+                                 
+                                  } 
 
  
         if(isset($details)){
@@ -422,6 +439,27 @@ class FormsDashboardController extends Controller
                              }
                             $datas->save();
                             break; 
+
+                            case "company" : 
+                                $folderNameChange =  ($request->type == 'approve') ? '/Company/ApprovedImg' :'/Company/RaisedImg' ;
+                                $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                $companyid = $request->id;
+                                $datas = UserCompanyDetail::find($companyid);
+                                $status = ($request->type == 'approve') ? 4 : 2; 
+                                $datas->last_update_by = 'admin'; 
+                                $datas->status = $status;  // Approved
+                                 if($request->type == 'approve') {
+                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                    $datas->name_of_company =   $request->name_of_company;
+                                    $datas->company_number =  $request->company_number;  
+                                    $datas->approved_img = $img['approved_img'];
+                                 } else {
+                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                    $datas->admin_note = $request->admin_note; 
+                                    $datas->raised_img = $img['raised_img'];
+                                 }
+                                $datas->save();
+                                break; 
 
 
           default : break; 

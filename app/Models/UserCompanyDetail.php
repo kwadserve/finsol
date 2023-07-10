@@ -14,10 +14,12 @@ class UserCompanyDetail extends Authenticatable
     protected $fillable = [
         'user_id',
         'name_of_company',
+        'company_number',
+        'company_email',
+        'company_mobile',
         'comp_rent_elec_img',
         'comp_kyc_img',
         'comp_certificate_img',
         'status'
     ];
-
 }

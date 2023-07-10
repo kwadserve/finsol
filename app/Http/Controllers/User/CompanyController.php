@@ -18,7 +18,7 @@ class CompanyController  extends Controller {
     }
 
     public function register_form() {
-           $data['trademark_company_images'] = Documents::where(['for_multiple' => 'TRADEMARK Company'])->get();
+        $data['trademark_company_images'] = Documents::where(['for_multiple' => 'TRADEMARK Company'])->get();
         $data['trademark_company_signatory_images'] = Documents::where(['for_multiple' => 'TRADEMARK Signatory'])->get();
         $data['trademark_other_images'] = Documents::where(['for_multiple' => 'TRADEMARK Others'])->get();
         $data['company_images'] = Documents::where(['for_multiple' => 'COMPANY'])->get();
@@ -34,19 +34,24 @@ class CompanyController  extends Controller {
             $folderName = 'uploads/users/'.$useName.'/Company';
             $data = Helper :: uploadImagesNew($request, $userId, $folderName, 'COMPANY');
             $data['user_id'] = $userId;
-            $matchthese = ['user_id'=>$userId];
-            UserCompanyDetail::where($matchthese)->delete();
-            $lastInsertedId =  UserCompanyDetail::updateOrCreate($matchthese, $data)->id;
+            $data['name_of_company'] = $request->input('name_of_company'); 
+            $data['company_email'] = $request->input('company_email'); 
+            $data['company_mobile'] = $request->input('company_mobile'); 
+            // $matchthese = ['user_id'=>$userId];
+            // UserCompanyDetail::where($matchthese)->delete();
+            $lastInsertedId =  UserCompanyDetail::Create($data)->id;
+            
         if ($request->has('companysignatory')) {
+            
             $companysignatory = $request->input('companysignatory');
             UserCompanySignatory::where(['user_id' => $userId])->delete();
             foreach ($companysignatory as $key => $ps) {
                 $folderName = 'uploads/users/'.$useName.'/Company/Signatory';
                 $partner =   Helper :: uploadSignatoryImages($request, $key, $userId, $folderName,$dataon,'COMPANY Signatory');
-                $partner['user_company_id'] =  $lastInsertedId;
+                $partner['user_comp_id'] =  $lastInsertedId;
                 $partner['user_id'] =  $userId;
-                $partner['company_sign_email'] = $ps['email'];
-                $partner['company_sign_mobile'] = $ps['mobile'];
+                $partner['comp_sign_email'] = $ps['email'];
+                $partner['comp_sign_mobile'] = $ps['mobile'];
                 UserCompanySignatory::Create($partner);
             }
         }

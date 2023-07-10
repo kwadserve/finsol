@@ -39,6 +39,7 @@
 
                                  @include('admin.pages.users.forms.profile.esic_profile')
                                  @include('admin.pages.users.forms.profile.trademark_profile')
+                                 @include('admin.pages.users.forms.profile.company_profile')
                                  </div>
 
                                  
