@@ -9,6 +9,7 @@ use App\Models\UserEpfDetail;
 use App\Models\UserEsicDetail;
 use App\Models\UserTrademarkDetail;
 use App\Models\UserCompanyDetail;
+use App\Models\UserPartnershipDetail;
 use App\Models\UserGstUploadDocument;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
@@ -35,6 +36,8 @@ class DashboardController  extends Controller {
         $data['userTrademarkDetails'] = UserTrademarkDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
 
         $data['userCompanyDetails'] = UserCompanyDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
+        $data['userPartnershipDetails'] = UserPartnershipDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
 
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  
@@ -100,6 +103,17 @@ class DashboardController  extends Controller {
         
         if($formType =='Company'){
             $datas = UserCompanyDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+
+
+        if($formType =='Partnership'){
+            $datas = UserPartnershipDetail::find($id);
             $datas->user_note = $request->user_note; 
             $datas->status = 3; // Query Updated      
             $datas->last_update_by = 'user'; 

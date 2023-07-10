@@ -26,6 +26,7 @@
                        @include('admin.pages.users.forms.esic_details')
                        @include('admin.pages.users.forms.trademark_details')
                        @include('admin.pages.users.forms.company_details')
+                       @include('admin.pages.users.forms.partnership_details')
                     </div>
                 </div>
             </div>

@@ -23,6 +23,8 @@ use App\Models\UserTrademarkDetail;
 use App\Models\UserTrademarkSignatory;
 use App\Models\UserCompanyDetail;
 use App\Models\UserCompanySignatory;
+use App\Models\UserPartnershipDetail;
+use App\Models\UserPartnershipPartner;
 
 class FormsDashboardController extends Controller
 {
@@ -39,10 +41,10 @@ class FormsDashboardController extends Controller
         $data['usersPan'] = UserPanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTan'] = UserTanDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersEpf'] = UserEpfDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-
         $data['usersEsic'] = UserEsicDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTrademark'] = UserTrademarkDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersCompany'] = UserCompanyDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersPartnership'] = UserPartnershipDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -86,6 +88,12 @@ class FormsDashboardController extends Controller
         $data['companyDocuments'] = Documents::where(['for_multiple' => 'COMPANY'])->get();
         $data['companyDirector'] = UserCompanySignatory :: where(['user_comp_id' => $Id])->get();
         $data['companyDirectorDocuments'] = Documents::where(['for_multiple' => 'COMPANY Signatory'])->get();
+   
+
+        $data['partnershipDetails'] = UserPartnershipDetail::find($Id);
+        $data['partnershipDocuments'] = Documents::where(['for_multiple' => 'PARTNERSHIP'])->get();
+        $data['partnershipPartner'] = UserPartnershipPartner :: where(['user_partnership_id' => $Id])->get();
+        $data['partnershipPartnerDocuments'] = Documents::where(['for_multiple' => 'PARTNERSHIP Partner'])->get();
    
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
@@ -236,9 +244,19 @@ class FormsDashboardController extends Controller
                                 $content = '<label>Company Number</label>
                                 <input type="text" class="form-control"  required="required" name=company_number" value="" placeholder="Enter the Company Number" />
                                 <label>Name of Company</label>
-                                <input type="text"  required="required" class="form-control"  name="name_of_company" value="'.$details->name_of_trademark.'" placeholder="Name of Company" />';
+                                <input type="text"  required="required" class="form-control"  name="name_of_company" value="'.$details->name_of_company.'" placeholder="Name of Company" />';
                                  
                                   } 
+
+                                  else if($formtype=="partnership"){
+                 
+                                    $details = UserPartnershipDetail::find($id);
+                                    $content = '<label>Partnership Number</label>
+                                    <input type="text" class="form-control"  required="required" name=partnership_number" value="" placeholder="Enter the Partnership Number" />
+                                    <label>Name of Partnership</label>
+                                    <input type="text"  required="required" class="form-control"  name="name_of_partnership" value="'.$details->name_of_partnership.'" placeholder="Name of Partnership" />';
+                                     
+                                      } 
 
  
         if(isset($details)){
@@ -460,6 +478,27 @@ class FormsDashboardController extends Controller
                                  }
                                 $datas->save();
                                 break; 
+
+                                case "partnership" : 
+                                    $folderNameChange =  ($request->type == 'approve') ? '/Partnership/ApprovedImg' :'/Partnership/RaisedImg' ;
+                                    $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                    $pid = $request->id;
+                                    $datas = UserPartnershipDetail::find($pid);
+                                    $status = ($request->type == 'approve') ? 4 : 2; 
+                                    $datas->last_update_by = 'admin'; 
+                                    $datas->status = $status;  // Approved
+                                     if($request->type == 'approve') {
+                                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                        $datas->name_of_partnership =   $request->name_of_partnership;
+                                        $datas->partnership_number =  $request->partnership_number;  
+                                        $datas->approved_img = $img['approved_img'];
+                                     } else {
+                                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                        $datas->admin_note = $request->admin_note; 
+                                        $datas->raised_img = $img['raised_img'];
+                                     }
+                                    $datas->save();
+                                    break; 
 
 
           default : break; 
