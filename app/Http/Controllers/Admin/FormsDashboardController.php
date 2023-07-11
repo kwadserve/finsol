@@ -108,9 +108,9 @@ class FormsDashboardController extends Controller
         $data['hufMemberDocuments'] = Documents::where(['for_multiple' => 'HUF Member'])->get();
    
 
-        $data['trustDetails'] = UserHufDetail::find($Id);
+        $data['trustDetails'] = UserTrustDetail::find($Id);
         $data['trustDocuments'] = Documents::where(['for_multiple' => 'TRUST'])->get();
-        $data['trustMember'] = UserHufMember :: where(['user_trust_id' => $Id])->get();
+        $data['trustMember'] = UserTrustMember :: where(['user_trust_id' => $Id])->get();
         $data['trustMemberDocuments'] = Documents::where(['for_multiple' => 'TRUST Member'])->get();
    
         return view('admin.pages.users.forms.all_profiles')->with($data);

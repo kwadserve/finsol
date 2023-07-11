@@ -25,81 +25,26 @@
                                     aria-label="Close"></button>
                             </div>
                             @endif
-                             
-              @if($hufDetails->type == 'New Huf Registration')
+        
+
+                           
               <div class="card mb-3">
-               
-
-            
-                <div class="card-header">
-                  <h5 class="mb-0">HUF Documents</h5>
-                </div>
-                <div class="card-body bg-light">
-
-                
-                <?php
-              
-//Columns must be a factor of 12 (1,2,3,4,6,12)
-$numOfCols = 3;
-$rowCount = 0;
-$bootstrapColWidth = 12 / $numOfCols;
-?>
-<div class="row">
-<?php
-foreach ($hufDocuments as $row){
-?>  
-        <div class="col-md-<?php echo $bootstrapColWidth; ?>">
-        <h6>{{$row->doc_name}}</h6> 
-        <div class="thumbnail">
-          @php 
-          $keyname =$row->doc_key_name;
-          @endphp
-
-        <form action="{{ url('admin/user/files/'.$hufDetails->user_id) }}" method="POST">
-          @csrf
-  
-          
-              <input type="hidden" name="files" value="{{$hufDetails[$keyname]}}">
-              <input type="hidden" name="id" value="{{ $hufDetails->id }}">  
-              <input type="hidden" name="form_type" value="Huf">  
-          
-            <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
-       </form>
-
-        <!-- <a class=" justify-content-between ms-auto" href="#!">
-         Download
-        </a> -->
-       
-        </div>
-        <br/>
-        </div>
-<?php
-    $rowCount++;
-    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-}
-?>
-</div>
-
-
-                
-                </div>
+              @if($hufDetails->type == 'New HUF Registration')
                 @endif
               </div>
 
 
-
-
               
-<?php   if($hufPartner) { 
-  foreach($hufPartner  as $index => $dir) {
+<?php   if($hufMember) { 
+  foreach($hufMember  as $index => $dir) {
                    ?>
             
 
 <div class="card mb-3">
                 <div class="card-header">
-                  <h5 class="mb-0">Partner {{$index+1}} Details / Documents </h5>
-                  <h6><span>Partner Email :{{$dir->partner_email}}</span>&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;<span>Partner Mobile :{{$dir->partner_mobile}}</span></h6>
+                  <h5 class="mb-0">Member {{$index+1}} Details / Documents </h5>
+                  <h6><span>Member Name :{{$dir->name_of_member}}</span>&nbsp;&nbsp;&nbsp;
+                  </span></h6>
                 </div>
                 <div class="card-body bg-light">
 
@@ -113,7 +58,7 @@ $bootstrapColWidth1 = 12 / $numOfCols1;
 ?>
 <div class="row">
 <?php
-foreach ($hufPartnerDocuments as $row){
+foreach ($hufMemberDocuments as $row){
 ?>  
         <div class="col-md-<?php echo $bootstrapColWidth1; ?>">
         <h6>{{$row->doc_name}}</h6> 
@@ -157,4 +102,4 @@ foreach ($hufPartnerDocuments as $row){
                 } } ?>
            
 @endif
-            
+         

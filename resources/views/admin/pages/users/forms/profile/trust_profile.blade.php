@@ -90,16 +90,16 @@ foreach ($trustDocuments as $row){
 
 
               
-<?php   if($trustPartner) { 
-  foreach($trustPartner  as $index => $dir) {
+<?php   if($trustMember) { 
+  foreach($trustMember  as $index => $dir) {
                    ?>
             
 
 <div class="card mb-3">
                 <div class="card-header">
-                  <h5 class="mb-0">Partner {{$index+1}} Details / Documents </h5>
-                  <h6><span>Partner Email :{{$dir->partner_email}}</span>&nbsp;&nbsp;&nbsp;
-                  &nbsp;&nbsp;&nbsp;<span>Partner Mobile :{{$dir->partner_mobile}}</span></h6>
+                  <h5 class="mb-0">Member {{$index+1}} Details / Documents </h5>
+                  <h6><span>Member Name :{{$dir->name_of_member}}</span>&nbsp;&nbsp;&nbsp;
+                  </h6>
                 </div>
                 <div class="card-body bg-light">
 
@@ -113,7 +113,7 @@ $bootstrapColWidth1 = 12 / $numOfCols1;
 ?>
 <div class="row">
 <?php
-foreach ($trustPartnerDocuments as $row){
+foreach ($trustMemberDocuments as $row){
 ?>  
         <div class="col-md-<?php echo $bootstrapColWidth1; ?>">
         <h6>{{$row->doc_name}}</h6> 
