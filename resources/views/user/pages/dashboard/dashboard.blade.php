@@ -82,6 +82,8 @@ use App\Models\UserGstDetail;
                                                         @include('user.pages.dashboard.trademark')
                                                         @include('user.pages.dashboard.company')
                                                         @include('user.pages.dashboard.partnership')
+                                                        @include('user.pages.dashboard.huf')
+                                                        @include('user.pages.dashboard.trust')
                                                     </div>
 
                                                 </div>

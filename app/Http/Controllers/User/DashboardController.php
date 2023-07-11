@@ -7,6 +7,8 @@ use App\Models\UserGstDetail;
 use App\Models\UserTanDetail;
 use App\Models\UserEpfDetail;
 use App\Models\UserEsicDetail;
+use App\Models\UserHufDetail;
+use App\Models\UserTrustDetail;
 use App\Models\UserTrademarkDetail;
 use App\Models\UserCompanyDetail;
 use App\Models\UserPartnershipDetail;
@@ -38,6 +40,10 @@ class DashboardController  extends Controller {
         $data['userCompanyDetails'] = UserCompanyDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
 
         $data['userPartnershipDetails'] = UserPartnershipDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
+        $data['userHufDetails'] = UserHufDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
+        $data['userTrustDetails'] = UserTrustDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
 
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  
@@ -121,6 +127,27 @@ class DashboardController  extends Controller {
             $datas->additional_img = $img['additional_img']; 
             $datas->save();
         } 
+
+        if($formType =='Huf'){
+            $datas = UserHufDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+
+        if($formType =='Trust'){
+            $datas = UserTrustDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+
         return redirect('/dashboard')->with('success', 'Uploaded the Document!');
        }  
     }

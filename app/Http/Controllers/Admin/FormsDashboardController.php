@@ -25,6 +25,10 @@ use App\Models\UserCompanyDetail;
 use App\Models\UserCompanySignatory;
 use App\Models\UserPartnershipDetail;
 use App\Models\UserPartnershipPartner;
+use App\Models\UserHufDetail;
+use App\Models\UserHufMember;
+use App\Models\UserTrustDetail;
+use App\Models\UserTrustMember;
 
 class FormsDashboardController extends Controller
 {
@@ -45,6 +49,9 @@ class FormsDashboardController extends Controller
         $data['usersTrademark'] = UserTrademarkDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersCompany'] = UserCompanyDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersPartnership'] = UserPartnershipDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersHuf'] = UserHufDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersTrust'] = UserTrustDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+       
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -94,6 +101,17 @@ class FormsDashboardController extends Controller
         $data['partnershipDocuments'] = Documents::where(['for_multiple' => 'PARTNERSHIP'])->get();
         $data['partnershipPartner'] = UserPartnershipPartner :: where(['user_partnership_id' => $Id])->get();
         $data['partnershipPartnerDocuments'] = Documents::where(['for_multiple' => 'PARTNERSHIP Partner'])->get();
+   
+
+        $data['hufDetails'] = UserHufDetail::find($Id);
+        $data['hufMember'] = UserHufMember :: where(['user_huf_id' => $Id])->get();
+        $data['hufMemberDocuments'] = Documents::where(['for_multiple' => 'HUF Member'])->get();
+   
+
+        $data['trustDetails'] = UserHufDetail::find($Id);
+        $data['trustDocuments'] = Documents::where(['for_multiple' => 'TRUST'])->get();
+        $data['trustMember'] = UserHufMember :: where(['user_trust_id' => $Id])->get();
+        $data['trustMemberDocuments'] = Documents::where(['for_multiple' => 'TRUST Member'])->get();
    
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
@@ -257,6 +275,26 @@ class FormsDashboardController extends Controller
                                     <input type="text"  required="required" class="form-control"  name="name_of_partnership" value="'.$details->name_of_partnership.'" placeholder="Name of Partnership" />';
                                      
                                       } 
+
+                                      else if($formtype=="huf"){
+                 
+                                        $details = UserHufDetail::find($id);
+                                        $content = '<label>Huf Number</label>
+                                        <input type="text" class="form-control"  required="required" name=huf_number" value="" placeholder="Enter the Huf Number" />
+                                        <label>Name of Huf</label>
+                                        <input type="text"  required="required" class="form-control"  name="name_of_huf" value="'.$details->name_of_huf.'" placeholder="Name of Huf" />';
+                                         
+                                          } 
+
+                                          else if($formtype=="trust"){
+                 
+                                            $details = UserTrustDetail::find($id);
+                                            $content = '<label>Trust Number</label>
+                                            <input type="text" class="form-control"  required="required" name=trust_number" value="" placeholder="Enter the Trust Number" />
+                                            <label>Name of Trust</label>
+                                            <input type="text"  required="required" class="form-control"  name="name_of_trust" value="'.$details->name_of_trust.'" placeholder="Name of Trust" />';
+                                             
+                                              } 
 
  
         if(isset($details)){
@@ -499,6 +537,48 @@ class FormsDashboardController extends Controller
                                      }
                                     $datas->save();
                                     break; 
+
+                                    case "huf" : 
+                                        $folderNameChange =  ($request->type == 'approve') ? '/Huf/ApprovedImg' :'/Huf/RaisedImg' ;
+                                        $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                        $hid = $request->id;
+                                        $datas = UserHufDetail::find($hid);
+                                        $status = ($request->type == 'approve') ? 4 : 2; 
+                                        $datas->last_update_by = 'admin'; 
+                                        $datas->status = $status;  // Approved
+                                         if($request->type == 'approve') {
+                                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                            $datas->name_of_huf =   $request->name_of_huf;
+                                            $datas->huf_number =  $request->huf_number;  
+                                            $datas->approved_img = $img['approved_img'];
+                                         } else {
+                                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                            $datas->admin_note = $request->admin_note; 
+                                            $datas->raised_img = $img['raised_img'];
+                                         }
+                                        $datas->save();
+                                        break; 
+
+                                        case "trust" : 
+                                            $folderNameChange =  ($request->type == 'approve') ? '/Trust/ApprovedImg' :'/Trust/RaisedImg' ;
+                                            $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                            $tid = $request->id;
+                                            $datas = UserTrustDetail::find($tid);
+                                            $status = ($request->type == 'approve') ? 4 : 2; 
+                                            $datas->last_update_by = 'admin'; 
+                                            $datas->status = $status;  // Approved
+                                             if($request->type == 'approve') {
+                                                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                $datas->name_of_trust =   $request->name_of_trust;
+                                                $datas->trust_number =  $request->trust_number;  
+                                                $datas->approved_img = $img['approved_img'];
+                                             } else {
+                                                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                $datas->admin_note = $request->admin_note; 
+                                                $datas->raised_img = $img['raised_img'];
+                                             }
+                                            $datas->save();
+                                            break; 
 
 
           default : break; 

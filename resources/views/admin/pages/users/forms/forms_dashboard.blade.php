@@ -27,6 +27,9 @@
                        @include('admin.pages.users.forms.trademark_details')
                        @include('admin.pages.users.forms.company_details')
                        @include('admin.pages.users.forms.partnership_details')
+
+                       @include('admin.pages.users.forms.huf_details')
+                       @include('admin.pages.users.forms.trust_details')
                     </div>
                 </div>
             </div>

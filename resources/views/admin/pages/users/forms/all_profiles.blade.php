@@ -41,6 +41,9 @@
                                  @include('admin.pages.users.forms.profile.trademark_profile')
                                  @include('admin.pages.users.forms.profile.company_profile')
                                  @include('admin.pages.users.forms.profile.partnership_profile')
+
+                                 @include('admin.pages.users.forms.profile.huf_profile')
+                                 @include('admin.pages.users.forms.profile.trust_profile')
                                  </div>
 
                                  
