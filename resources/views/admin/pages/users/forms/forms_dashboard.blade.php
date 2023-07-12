@@ -30,6 +30,8 @@
 
                        @include('admin.pages.users.forms.huf_details')
                        @include('admin.pages.users.forms.trust_details')
+                       @include('admin.pages.users.forms.udamy_details')
+                       @include('admin.pages.users.forms.importexport_details')
                     </div>
                 </div>
             </div>

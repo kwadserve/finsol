@@ -120,8 +120,8 @@ Route::post('udamy/register', 'UdamyController@storeUdamy')->name('udamy.registe
 
 
 //Import Export Code registration DETAILS 
-Route::get('importexport/register', 'ImportexportController@register_form')->name('importexport.register_form');
-Route::post('importexport/register', 'ImportexportController@storeImportexport')->name('importexport.register');
+Route::get('importexport/register', 'ImportExportController@register_form')->name('importexport.register_form');
+Route::post('importexport/register', 'ImportExportController@storeImportExport')->name('importexport.register');
 
 
 //Labour License registration DETAILS 

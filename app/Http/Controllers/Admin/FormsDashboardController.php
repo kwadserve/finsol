@@ -29,6 +29,8 @@ use App\Models\UserHufDetail;
 use App\Models\UserHufMember;
 use App\Models\UserTrustDetail;
 use App\Models\UserTrustMember;
+use App\Models\UserUdamyDetail;
+use App\Models\UserImportExportDetail;
 
 class FormsDashboardController extends Controller
 {
@@ -51,6 +53,8 @@ class FormsDashboardController extends Controller
         $data['usersPartnership'] = UserPartnershipDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersHuf'] = UserHufDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTrust'] = UserTrustDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersUdamy'] = UserUdamyDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersImportExport'] = UserImportExportDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
        
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
@@ -113,6 +117,14 @@ class FormsDashboardController extends Controller
         $data['trustMember'] = UserTrustMember :: where(['user_trust_id' => $Id])->get();
         $data['trustMemberDocuments'] = Documents::where(['for_multiple' => 'TRUST Member'])->get();
    
+
+        $data['udamyDetails'] = UserUdamyDetail::find($Id);
+        $data['udamyDocuments'] = Documents::where(['for_multiple' => 'UDAMY'])->get();
+
+        $data['importexportDetails'] = UserImportExportDetail::find($Id);
+        $data['importexportDocuments'] = Documents::where(['for_multiple' => 'IE'])->get();
+
+
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
 
@@ -296,6 +308,24 @@ class FormsDashboardController extends Controller
                                              
                                               } 
 
+                                              else if($formtype=="udamy"){
+                                                $details = UserUdamyDetail::find($id);
+                                                $content = '<label>Udamy Number</label>
+                                                <input type="text" class="form-control"  required="required" name=udamy_number" value="" placeholder="Enter the Udamy Number" />
+                                                <label>Name of Udamy</label>
+                                                <input type="text"  required="required" class="form-control"  name="name_of_udamy" value="'.$details->name_of_udamy.'" placeholder="Name of Udamy" />';
+                                                } 
+
+                                                
+                                              else if($formtype=="importexport"){
+                                                $details = UserImportExportDetail::find($id);
+                                                $content = '<label>Firm Number</label>
+                                                <input type="text" class="form-control"  required="required" name=firm_number" value="" placeholder="Enter the Firm Number" />
+                                                <label>Name of Firm</label>
+                                                <input type="text"  required="required" class="form-control"  name="name_of_firm" value="'.$details->name_of_firm.'" placeholder="Name of Firm" />';
+                                                } 
+    
+    
  
         if(isset($details)){
             if($for ==='note'){
@@ -579,6 +609,50 @@ class FormsDashboardController extends Controller
                                              }
                                             $datas->save();
                                             break; 
+
+
+                                            case "udamy" : 
+                                                $folderNameChange =  ($request->type == 'approve') ? '/Udamy/ApprovedImg' :'/Udamy/RaisedImg' ;
+                                                $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                $uid = $request->id;
+                                                $datas = UserUdamyDetail::find($uid);
+                                                $status = ($request->type == 'approve') ? 4 : 2; 
+                                                $datas->last_update_by = 'admin'; 
+                                                $datas->status = $status;  // Approved
+                                                 if($request->type == 'approve') {
+                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                    $datas->name_of_udamy =   $request->name_of_udamy;
+                                                    $datas->udamy_number =  $request->udamy_number;  
+                                                    $datas->approved_img = $img['approved_img'];
+                                                 } else {
+                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                    $datas->admin_note = $request->admin_note; 
+                                                    $datas->raised_img = $img['raised_img'];
+                                                 }
+                                                $datas->save();
+                                                break; 
+
+                                                
+                                            case "importexport" : 
+                                                $folderNameChange =  ($request->type == 'approve') ? '/ImportExport/ApprovedImg' :'/ImportExport/RaisedImg' ;
+                                                $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                $ieid = $request->id;
+                                                $datas = UserImportExportDetail::find($ieid);
+                                                $status = ($request->type == 'approve') ? 4 : 2; 
+                                                $datas->last_update_by = 'admin'; 
+                                                $datas->status = $status;  // Approved
+                                                 if($request->type == 'approve') {
+                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                    $datas->name_of_firm =   $request->name_of_firm;
+                                                    $datas->firm_number =  $request->firm_number;  
+                                                    $datas->approved_img = $img['approved_img'];
+                                                 } else {
+                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                    $datas->admin_note = $request->admin_note; 
+                                                    $datas->raised_img = $img['raised_img'];
+                                                 }
+                                                $datas->save();
+                                                break; 
 
 
           default : break; 

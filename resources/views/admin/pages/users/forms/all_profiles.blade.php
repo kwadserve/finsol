@@ -44,6 +44,8 @@
 
                                  @include('admin.pages.users.forms.profile.huf_profile')
                                  @include('admin.pages.users.forms.profile.trust_profile')
+                                 @include('admin.pages.users.forms.profile.udamy_profile')
+                                 @include('admin.pages.users.forms.profile.importexport_profile')
                                  </div>
 
                                  

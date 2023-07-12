@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\UserPanDetail;
+use App\Models\UserUdamyDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
  
@@ -15,23 +15,21 @@ class UdamyController  extends Controller {
       //  return view('user.pages.gst.details');
     }
     public function register_form() {
-     
-        $data['panimages'] = Documents::where('for_multiple', 'PAN')->get();
+        $data['udamy_images'] = Documents::where('for_multiple', 'UDAMY')->get();
         return view('user.pages.udamy.udamyform')->with($data);
     }
   
-    public function storePan(Request $request) {
+    public function storeUdamy(Request $request) {
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
-        $folderName = 'uploads/users/'.$useName.'/Pan';
-        $data = Helper :: uploadImagesNew($request, $userId, $folderName,'PAN');
+        $folderName = 'uploads/users/'.$useName.'/Udamy';
+        $data = Helper :: uploadImagesNew($request, $userId, $folderName,'UDAMY');
         $data['user_id'] = $userId;
-        $data['email_id'] = $request['email_id'];
-        $data['mobile_number'] = $request['mobile_number'];
-        $matchthese = ['user_id' => $userId];
-        UserPanDetail::where($matchthese)->delete();
-        UserPanDetail::updateOrCreate($matchthese, $data);
-        return redirect('/pan/register')->with('success', 'Registered Pan successfully!');
+        $data['name_of_udamy'] = $request['name_of_udamy'];
+        $data['udamy_email'] = $request['udamy_email'];
+        $data['udamy_mobile'] = $request['udamy_mobile'];
+        UserUdamyDetail::Create($data);
+        return redirect('/udamy/register')->with('success', 'Registered Udamy successfully!');
     }
      
 }

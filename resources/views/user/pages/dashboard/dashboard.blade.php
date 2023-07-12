@@ -84,6 +84,9 @@ use App\Models\UserGstDetail;
                                                         @include('user.pages.dashboard.partnership')
                                                         @include('user.pages.dashboard.huf')
                                                         @include('user.pages.dashboard.trust')
+                                                        @include('user.pages.dashboard.udamy')
+                                                        @include('user.pages.dashboard.importexport')
+                                                         
                                                     </div>
 
                                                 </div>
