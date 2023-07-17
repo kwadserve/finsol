@@ -31,6 +31,8 @@ use App\Models\UserTrustDetail;
 use App\Models\UserTrustMember;
 use App\Models\UserUdamyDetail;
 use App\Models\UserImportExportDetail;
+use App\Models\UserLabourDetail;
+use App\Models\UserLabourSignatory; 
 
 class FormsDashboardController extends Controller
 {
@@ -55,7 +57,7 @@ class FormsDashboardController extends Controller
         $data['usersTrust'] = UserTrustDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersUdamy'] = UserUdamyDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersImportExport'] = UserImportExportDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-       
+        $data['usersLabour'] = UserLabourDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -124,7 +126,14 @@ class FormsDashboardController extends Controller
         $data['importexportDetails'] = UserImportExportDetail::find($Id);
         $data['importexportDocuments'] = Documents::where(['for_multiple' => 'IE'])->get();
 
-
+ 
+        $data['labourDetails'] = UserLabourDetail::find($Id);
+        $data['labourDocuments'] = Documents::where(['for_multiple' => 'Petty Contract'])->get();
+        $data['labourSignatory'] = UserLabourSignatory :: where(['user_labour_id' => $Id])->get();
+        $data['labourSignatoryDocuments'] = Documents::where(['for_multiple' => 'Petty Contract Signatory'])->get();
+        // $data['labourOthers'] = UserLabourSignatory :: where(['user_labour_id' => $Id])->get();
+        $data['labourOthersDocuments'] = Documents::where(['for_multiple' => 'Labour Contract'])->get();
+ 
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
 
@@ -324,6 +333,16 @@ class FormsDashboardController extends Controller
                                                 <label>Name of Firm</label>
                                                 <input type="text"  required="required" class="form-control"  name="name_of_firm" value="'.$details->name_of_firm.'" placeholder="Name of Firm" />';
                                                 } 
+
+                                                else if($formtype=="labour"){
+                 
+                                                    $details = UserLabourDetail::find($id);
+                                                    $content = '<label>Labour Number</label>
+                                                    <input type="text" class="form-control"  required="required" name=labour_number" value="" placeholder="Enter the Labour Number" />
+                                                    <label>Name of Labour</label>
+                                                    <input type="text"  required="required" class="form-control"  name="name_of_labour" value="'.$details->name_of_labour.'" placeholder="Name of Labour" />';
+                                                     
+                                                      } 
     
     
  
@@ -653,6 +672,27 @@ class FormsDashboardController extends Controller
                                                  }
                                                 $datas->save();
                                                 break; 
+
+                                                case "labour" : 
+                                                    $folderNameChange =  ($request->type == 'approve') ? '/Labour/ApprovedImg' :'/Labour/RaisedImg' ;
+                                                    $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                    $labourid = $request->id;
+                                                    $datas = UserLabourDetail::find($labourid);
+                                                    $status = ($request->type == 'approve') ? 4 : 2; 
+                                                    $datas->last_update_by = 'admin'; 
+                                                    $datas->status = $status;  // Approved
+                                                     if($request->type == 'approve') {
+                                                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                        $datas->name_of_labour =   $request->name_of_labour;
+                                                        $datas->labour_number =  $request->labour_number;  
+                                                        $datas->approved_img = $img['approved_img'];
+                                                     } else {
+                                                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                        $datas->admin_note = $request->admin_note; 
+                                                        $datas->raised_img = $img['raised_img'];
+                                                     }
+                                                    $datas->save();
+                                                    break; 
 
 
           default : break; 

@@ -41,13 +41,13 @@
                                     aria-labelledby="tab-dom-61c83f7c-d9df-458a-94bd-f4e645b55d13"
                                     id="dom-61c83f7c-d9df-458a-94bd-f4e645b55d13">
                                     <ul class="nav nav-pills" id="pill-myTab" role="tablist">
-                                        <li class="nav-item"><a class="nav-link active" id="epf-company-home"
-                                                data-bs-toggle="tab" href="#epf-company" role="tab"
-                                                aria-controls="epf-company" aria-selected="true">Petty Contractor</a>
+                                        <li class="nav-item"><a class="nav-link active" id="labour-petty-home"
+                                                data-bs-toggle="tab" href="#labour-petty" role="tab"
+                                                aria-controls="labour-petty" aria-selected="true">Petty Contractor</a>
                                         </li>
-                                        <li class="nav-item"><a class="nav-link" id="epf-company-other"
-                                                data-bs-toggle="tab" href="#epf-others" role="tab"
-                                                aria-controls="epf-others" aria-selected="false">Labour Contract</a></li>
+                                        <li class="nav-item"><a class="nav-link" id="labour-labour-other"
+                                                data-bs-toggle="tab" href="#labour" role="tab"
+                                                aria-controls="labour" aria-selected="false">Labour Contract</a></li>
 
                                     </ul>
                                     <div class="tab-content mt-3" id="pill-myTabContent">

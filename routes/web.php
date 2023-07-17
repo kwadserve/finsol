@@ -126,4 +126,6 @@ Route::post('importexport/register', 'ImportExportController@storeImportExport')
 
 //Labour License registration DETAILS 
 Route::get('labour/register', 'LabourController@register_form')->name('labour.register_form');
-Route::post('labour/register', 'LabourController@storeLabour')->name('labour.register');
+Route::post('labour/petty', 'LabourController@storePetty')->name('labour.register.petty');
+Route::post('labour/labour', 'LabourController@storeLabour')->name('labour.register.labour');
+ 

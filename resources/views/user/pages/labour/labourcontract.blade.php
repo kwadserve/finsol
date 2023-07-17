@@ -1,22 +1,35 @@
-<div class="tab-pane fade" id="epf-others" role="tabpanel" aria-labelledby="profile-tab">
-    <form class="needs-validation" novalidate="novalidate" action="{{route('epf.register.others')}}" method="post"
+<div class="tab-pane fade" id="labour" role="tabpanel" aria-labelledby="profile-tab">
+    <form class="needs-validation" novalidate="novalidate" action="{{route('labour.register.labour')}}" method="post"
         enctype="multipart/form-data">
         @csrf
-        <input type="hidden" name="epf_type" value="Others" />
+        <input type="hidden" name="labour_type" value="Labours" />
         <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
             <h6 class="detailspadding mb-0">Details of your Business</h6>
         </div>
         <div class="mt-1 row g-2">
             
-               <!-- to be connected to backend --->
+             <!-- to be connected to backend --->
+        
                                     <div class="col-6">
                                         <div class="mb-3">
-                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name
-                                         </label><input class="form-control" type="text" name="#" placeholder="Name"
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Labour
+                                         </label><input class="form-control" type="text" name="name_of_labour" placeholder="Name of Labour"
                                              required="required" />
-                                             <div class="invalid-feedback">Please provide a name</div>
+                                             <div class="invalid-feedback">Please provide name of Labour</div>
                                         </div>
                                      </div>
+                                     <div class="col-6">
+                                        <div class="mb-3">
+                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name of Individual/Business
+                                         </label><input class="form-control" type="text" name="name_of_labour" placeholder="Name of Individual/Business"
+                                             required="required" />
+                                             <div class="invalid-feedback">Please provide name of Individual/Business</div>
+                                        </div>
+                                     </div>
+                                     
+                                     
+                                     
+               
                                      <!-- to be connected to backend --->
 
             <div class="col-6">
@@ -42,13 +55,13 @@
             </div>
             <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
                 <h6 class="detailspadding mb-0">Upload documents of
-                    Epf Others</h6>
+                    Epf Labours</h6>
             </div>
             <div class="row g-2 ">
-                @foreach ($epf_other_images as $keyname => $image)
+                @foreach ($labour_images as $keyname => $image)
                 <div class="col-6 mb-3">
                     <div class="mb-3">
-                        <label>{{$image['doc_name']}} Upload :</label>
+                        <label>{{$image['doc_name']}} :</label>
                         <!-- required="required"  -->
                         <input type="file" name="{{$image['doc_key_name']}}[]" id="image-upload"
                             class="myfrm form-control" multiple />
@@ -59,7 +72,7 @@
             <div class="col-4">
                 <div class="mb-3">
                     <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
-                         <p>Amount : ₹1500</p>
+                    <p>Amount : ₹7000 (Fee - ₹2500 + Gov Challan - ₹4500)</p>
                 </div>
             </div>
         </div>

@@ -46,6 +46,10 @@
                                  @include('admin.pages.users.forms.profile.trust_profile')
                                  @include('admin.pages.users.forms.profile.udamy_profile')
                                  @include('admin.pages.users.forms.profile.importexport_profile')
+
+                                 @if($labourDetails)
+                                    @include('admin.pages.users.forms.profile.labour_profile')
+                                 @endif
                                  </div>
 
                                  

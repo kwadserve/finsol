@@ -32,6 +32,8 @@
                        @include('admin.pages.users.forms.trust_details')
                        @include('admin.pages.users.forms.udamy_details')
                        @include('admin.pages.users.forms.importexport_details')
+
+                       @include('admin.pages.users.forms.labour_details')
                     </div>
                 </div>
             </div>

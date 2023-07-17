@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\UserEpfDetail;
 use App\Models\UserEpfSignatory;
+use App\Models\UserLabourDetail;
+use App\Models\UserLabourSignatory; 
 use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -21,55 +23,64 @@ class LabourController  extends Controller {
     }
 
     public function register_form() {
-        $data['epf_company_images'] = Documents::where(['for_multiple' => 'EPF Company'])->get();
-        $data['epf_company_signatory_images'] = Documents::where(['for_multiple' => 'EPF Signatory'])->get();
-        $data['epf_other_images'] = Documents::where(['for_multiple' => 'EPF Others'])->get();
+
+        $data['petty_images'] = Documents::where(['for_multiple' => 'Petty Contract'])->get();
+        $data['petty_signatory_images'] = Documents::where(['for_multiple' => 'Petty Contract Signatory'])->get();
+        $data['labour_images'] = Documents::where(['for_multiple' => 'Labour Contract'])->get();
         return view('user.pages.labour.labourform')->with($data);
     }
 
-    public function storeEpfCompany(Request $request) {
+    public function storePetty(Request $request) {
    
         $userId = auth()->user()->id;
-        $dataon ='epfsignatory'; 
+        $dataon ='laboursignatory'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
-            $folderName = 'uploads/users/'.$useName.'/Epf/Company';
-            $data = Helper :: uploadImagesNew($request, $userId,  $folderName,  'EPF Company');
+            $folderName = 'uploads/users/'.$useName.'/Labour/Petty';
+            $data = Helper :: uploadImagesNew($request, $userId, $folderName, 'PETTY');
             $data['user_id'] = $userId;
-            $data['epf_type'] = $request['epf_type'];
-            $matchthese = ['user_id'=>$userId, 'epf_type'=>'Company'];
-            UserEpfDetail::where($matchthese)->delete();
-            $lastInsertedId =  UserEpfDetail::updateOrCreate($matchthese, $data)->id;
-        if ($request->has('epfsignatory')) {
-            $epfsignatory = $request->input('epfsignatory');
-            UserEpfSignatory::where(['user_id' => $userId])->delete();
-            foreach ($epfsignatory as $key => $ps) {
-                $folderName = 'uploads/users/'.$useName.'/Epf/Company/Signatory';
-                $partner =  Helper :: uploadSignatoryImages($request, $key, $userId, $folderName, $dataon,'EPF Signatory');
-                $partner['user_epf_id'] =  $lastInsertedId;
+            $data['labour_type'] = $request['labour_type'];
+            // $matchthese = ['user_id'=>$userId, 'labour_type'=>'Company'];
+            // UserLabourDetail::where($matchthese)->delete();
+            $data['name_of_labour'] = $request['name_of_labour'];
+            $data['labour_email'] = $request['email_id'];
+            $data['labour_mobile'] = $request['mobile_number'];
+            $data['name_of_business'] = $request['name_of_business'];
+            
+            $lastInsertedId =  UserLabourDetail::updateOrCreate($data)->id;
+        if ($request->has('laboursignatory')) {
+            $laboursignatory = $request->input('laboursignatory');
+            UserLabourSignatory::where(['user_id' => $userId])->delete();
+            foreach ($laboursignatory as $key => $ps) {
+                $folderName = 'uploads/users/'.$useName.'/Labour/Petty/Signatory';
+                $partner =   Helper :: uploadSignatoryImages($request, $key, $userId, $folderName,$dataon,'PETTY Signatory');
+                $partner['user_labour_id'] =  $lastInsertedId;
                 $partner['user_id'] =  $userId;
-                $partner['epf_sign_email'] = $ps['email'];
-                $partner['epf_sign_mobile'] = $ps['mobile'];
-                UserEpfSignatory::Create($partner);
+                $partner['labour_sign_email'] = $ps['email'];
+                $partner['labour_sign_mobile'] = $ps['mobile'];
+                UserLabourSignatory::Create($partner);
             }
         }
-        return redirect('/labour/register')->with('success', 'Registered Labour License successfully!');
+        return redirect('/labour/register')->with('success', 'Registered Petty Contractor successfully!');
     }
 
 
-    public function storeEpfOthers(Request $request){
+    public function storeLabour(Request $request){
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
-        $folderName = 'uploads/users/'.$useName.'/Epf/Others';
-        $data = Helper :: uploadImagesNew($request, $userId, $folderName, $for_multiple='EPF Others');
+        $folderName = 'uploads/users/'.$useName.'/Labour/Labour';
+        $data = Helper :: uploadImagesNew($request, $userId, $folderName,'LABOUR');
         $data['user_id'] = $userId;
-        $data['epf_email'] = $request['email_id'];
-        $data['epf_mobile'] = $request['mobile_number'];
-        $data['epf_type'] = $request['epf_type'];
-        $matchthese = ['user_id' => $userId, 'epf_type' => 'Others'];
-        UserEpfDetail::where($matchthese)->delete();
-        UserEpfDetail::updateOrCreate($matchthese, $data);
-        return redirect('/labour/register')->with('success', 'Registered Labour License successfully!');;
+        $data['labour_email'] = $request['email_id'];
+        $data['labour_mobile'] = $request['mobile_number'];
+        $data['labour_type'] = $request['labour_type'];
+        $data['name_of_labour'] = $request['name_of_labour'];
+        $data['name_of_business'] = $request['name_of_business'];
+        // $matchthese = ['user_id' => $userId, 'labour_type' => 'Others'];
+        // UserLabourDetail::where($matchthese)->delete();
+        UserLabourDetail::Create($data);
+        return redirect('/labour/register')->with('success', 'Registered Labour Contractor successfully!');;
     }
+
 
     
 }

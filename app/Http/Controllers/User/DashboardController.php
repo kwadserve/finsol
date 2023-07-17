@@ -15,6 +15,7 @@ use App\Models\UserUdamyDetail;
 use App\Models\UserPartnershipDetail;
 use App\Models\UserGstUploadDocument;
 use App\Models\UserImportExportDetail;
+use App\Models\UserLabourDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
@@ -51,6 +52,9 @@ class DashboardController  extends Controller {
 
         $data['userImportExportDetails'] = UserImportExportDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
 
+        $data['userLabourDetails'] = UserLabourDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
+         
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  
     }
@@ -174,6 +178,16 @@ class DashboardController  extends Controller {
             $datas->additional_img = $img['additional_img']; 
             $datas->save();
         } 
+
+        if($formType =='Labour'){
+            $datas = UserLabourDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        }
 
         return redirect('/dashboard')->with('success', 'Uploaded the Document!');
        }  
