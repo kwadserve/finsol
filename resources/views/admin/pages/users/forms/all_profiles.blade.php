@@ -50,6 +50,10 @@
                                  @if($labourDetails)
                                     @include('admin.pages.users.forms.profile.labour_profile')
                                  @endif
+
+                                 @include('admin.pages.users.forms.profile.shop_profile')
+                                
+                                 @include('admin.pages.users.forms.profile.iso_profile')
                                  </div>
 
                                  

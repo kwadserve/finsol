@@ -87,6 +87,8 @@ use App\Models\UserGstDetail;
                                                         @include('user.pages.dashboard.udamy')
                                                         @include('user.pages.dashboard.importexport')
                                                         @include('user.pages.dashboard.labour')
+                                                        @include('user.pages.dashboard.shop')
+                                                        @include('user.pages.dashboard.iso')
                                                     </div>
 
                                                 </div>

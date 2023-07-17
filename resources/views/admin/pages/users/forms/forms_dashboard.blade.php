@@ -34,6 +34,8 @@
                        @include('admin.pages.users.forms.importexport_details')
 
                        @include('admin.pages.users.forms.labour_details')
+                       @include('admin.pages.users.forms.shop_details') 
+                       @include('admin.pages.users.forms.iso_details') 
                     </div>
                 </div>
             </div>

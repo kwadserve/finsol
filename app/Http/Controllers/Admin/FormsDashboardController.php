@@ -33,6 +33,8 @@ use App\Models\UserUdamyDetail;
 use App\Models\UserImportExportDetail;
 use App\Models\UserLabourDetail;
 use App\Models\UserLabourSignatory; 
+use App\Models\UserShopDetail;
+use App\Models\UserIsoDetail; 
 
 class FormsDashboardController extends Controller
 {
@@ -58,6 +60,8 @@ class FormsDashboardController extends Controller
         $data['usersUdamy'] = UserUdamyDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersImportExport'] = UserImportExportDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersLabour'] = UserLabourDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersShop'] = UserShopDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersIso'] = UserIsoDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -134,6 +138,12 @@ class FormsDashboardController extends Controller
         // $data['labourOthers'] = UserLabourSignatory :: where(['user_labour_id' => $Id])->get();
         $data['labourOthersDocuments'] = Documents::where(['for_multiple' => 'Labour Contract'])->get();
  
+        $data['shopDetails'] = UserShopDetail::find($Id);
+        $data['shopDocuments'] = Documents::where(['for_multiple' => 'SHOP'])->get();
+
+        $data['isoDetails'] = UserIsoDetail::find($Id);
+        $data['isoDocuments'] = Documents::where(['for_multiple' => 'ISO'])->get();
+
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
 
@@ -342,7 +352,25 @@ class FormsDashboardController extends Controller
                                                     <label>Name of Labour</label>
                                                     <input type="text"  required="required" class="form-control"  name="name_of_labour" value="'.$details->name_of_labour.'" placeholder="Name of Labour" />';
                                                      
-                                                      } 
+                                                      } else if($formtype=="shop"){
+                 
+                                                        $details = UserShopDetail::find($id); 
+                                                        $content =  '<label>Shop Number</label>
+                                                        <input type="text" class="form-control"  required="required" name=shop_number" value="" placeholder="Enter the Shop Number" />
+                                                        <label>Name of Shop</label>
+                                                        <input type="text"  required="required" class="form-control" id="nameofshop" name="name_of_shop" value="'.$details->name_of_shop.'"  placeholder="Name of Shop" />';
+                                                         
+                                                       
+                                                    } else if($formtype=="iso"){
+                 
+                                                        $details = UserIsoDetail::find($id); 
+                                                        $content =  '<label>ISO Number</label>
+                                                        <input type="text" class="form-control"  required="required" name=iso_number"   placeholder="Enter the Iso Number" />
+                                                        <label>Name of ISO</label>
+                                                        <input type="text"  required="required" class="form-control" id="nameofiso" name="name_of_iso" value="'.$details->name_of_iso.'"  placeholder="Name of Iso" />';
+                                                         
+                                                       
+                                                    }
     
     
  
@@ -693,6 +721,48 @@ class FormsDashboardController extends Controller
                                                      }
                                                     $datas->save();
                                                     break; 
+
+                                                    case "shop" : 
+                                                        $folderNameChange =  ($request->type == 'approve') ? '/Shop/ApprovedImg' :'/Shop/RaisedImg' ;
+                                                        $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                        $shopid = $request->id;
+                                                        $datas = UserShopDetail::find($shopid);
+                                                        $status = ($request->type == 'approve') ? 4 : 2; 
+                                                        $datas->last_update_by = 'admin'; 
+                                                        $datas->status = $status;  // Approved
+                                                         if($request->type == 'approve') {
+                                                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                            $datas->name_of_shop =   $request->name_of_shop;
+                                                            $datas->shop_number =  $request->shop_number;  
+                                                            $datas->approved_img = $img['approved_img'];
+                                                         } else {
+                                                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                            $datas->admin_note = $request->admin_note; 
+                                                            $datas->raised_img = $img['raised_img'];
+                                                         }
+                                                        $datas->save();
+                                                        break; 
+
+                                                        case "iso" : 
+                                                            $folderNameChange =  ($request->type == 'approve') ? '/Iso/ApprovedImg' :'/Iso/RaisedImg' ;
+                                                            $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                            $isoid = $request->id;
+                                                            $datas = UserIsoDetail::find($isoid);
+                                                            $status = ($request->type == 'approve') ? 4 : 2; 
+                                                            $datas->last_update_by = 'admin'; 
+                                                            $datas->status = $status;  // Approved
+                                                             if($request->type == 'approve') {
+                                                                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                                $datas->name_of_iso =   $request->name_of_iso;
+                                                                $datas->iso_number =  $request->iso_number;  
+                                                                $datas->approved_img = $img['approved_img'];
+                                                             } else {
+                                                                $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                                $datas->admin_note = $request->admin_note; 
+                                                                $datas->raised_img = $img['raised_img'];
+                                                             }
+                                                            $datas->save();
+                                                            break; 
 
 
           default : break; 

@@ -128,4 +128,16 @@ Route::post('importexport/register', 'ImportExportController@storeImportExport')
 Route::get('labour/register', 'LabourController@register_form')->name('labour.register_form');
 Route::post('labour/petty', 'LabourController@storePetty')->name('labour.register.petty');
 Route::post('labour/labour', 'LabourController@storeLabour')->name('labour.register.labour');
- 
+
+
+
+//SHOP DETAILS 
+Route::get('shop/register', 'ShopController@register_form')->name('shop.register_form');
+Route::post('shop/register', 'ShopController@storeShop')->name('shop.register');
+
+
+
+//ISO DETAILS 
+Route::get('iso/register', 'IsoController@register_form')->name('iso.register_form');
+Route::post('iso/register', 'IsoController@storeIso')->name('iso.register');
+
