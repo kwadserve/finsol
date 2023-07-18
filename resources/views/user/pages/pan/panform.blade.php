@@ -3,6 +3,7 @@
 <!-- ===============================================-->
 <!--    Main Content-->
 <!-- ===============================================-->
+ 
 <main class="main" id="top">
     <div class="container" data-layout="container">
         @include('user.partials.header')
@@ -38,8 +39,9 @@
                             @endif
                             <form class="needs-validation" novalidate="novalidate" action="{{route('pan.register')}}"
                                 method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="razorpay_order_id" value="<?=(isset($order_data->id) ? $order_data->id:'')?>" />
                                 @csrf
-
+                                
                                 <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
                                     <h6 class="detailspadding mb-0">Personal Details</h6>
                                 </div>
@@ -48,11 +50,8 @@
                                         <div class="mb-3">
                                             <label class="form-label"
                                                 for="bootstrap-wizard-validation-wizard-email">Name for Pan
-                                            </label><input class="form-control" type="text" name="pan_name"
-                                                placeholder="Name for Pan"
-                                                
-                                                required="required" id="bootstrap-wizard-validation-wizard-email"
-                                                  />
+                                            </label><input class="form-control"  type="text" id="pan_name" name="pan_name"
+                                                placeholder="Name for Pan" required="required" id="bootstrap-wizard-validation-wizard-email" />
                                             <div class="invalid-feedback">You must add Pan Name</div>
                                         </div>
                                     </div>
@@ -61,18 +60,15 @@
                                         <div class="mb-3">
                                             <label class="form-label"
                                                 for="bootstrap-wizard-validation-wizard-email">Email ID
-                                            </label><input class="form-control" type="email" name="email_id"
-                                                placeholder="Email address"
-                                                pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
-                                                required="required" id="bootstrap-wizard-validation-wizard-email"
-                                                data-wizard-validate-email="true" />
-                                            <div class="invalid-feedback">You must add email</div>
+                                            </label><input class="form-control" type="email" name="email_id" id="email_id"
+                                                placeholder="Email address"  required="required" id="bootstrap-wizard-validation-wizard-email" data-wizard-validate-email="true" />
+                                             <div class="invalid-feedback">You must add email</div>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
-                                                Number linked with Aadhar</label><input class="form-control" required=""
+                                                Number linked with Aadhar</label><input class="form-control" id="mobile"  required=""
                                                 type="text" name="mobile_number" placeholder="Enter Registration No"
                                                 id="form-wizard-progress-wizard-addregnum" />
                                             <div class="invalid-feedback">Please provide Mobile
@@ -96,7 +92,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="mb-3">
-                                            <button class="btn btn-primary me-1 mb-1" type="submit">Submit</button>
+                                            <button class="btn btn-primary me-1 mb-1" id="rzp-button1" type="submit">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -107,6 +103,40 @@
             </div>
             @include('user.partials.footer')
         </div>
+        
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+@if (session('razorpy'))
+ 
+<script type="text/javascript">
+
+            var options = {
+            "key": '<?= config('constants.razorpay.RAZOR_KEY')  ?>', 
+            "amount": <?=$order_data["amount"]?>,  
+            "currency": '<?= config('constants.razorpay.CURRENCY') ?>',
+            "name": '<?= config('constants.razorpay.BUSINESS_NAME') ?>', 
+            "description": '<?=config('constants.razorpay.BUSINESS_DESCRIPTION') ?>',
+            "image": "https://kwad.in/finsolproject/public/assets/img/logos/finsollogo.svg",
+            "order_id": "{{ session('user_data')['razorpay_order_id'] }}", 
+            "callback_url": "{{route('pan.register')}}",
+            "prefill": {  
+                "name": "{{ session('user_data')['name_of_pan'] }}", 
+                "email":"{{ session('user_data')['email_id'] }}",
+                "contact": "{{ session('user_data')['mobile_number'] }}"  
+             },
+            "notes": {
+                "address": "<?= config('constants.razorpay.BUSINESS_ADDRESS') ?>"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        console.log("options test",options);
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+            e.preventDefault();
+
+</script>
+@endif
     </div>
 </main>
 <!-- ===============================================-->

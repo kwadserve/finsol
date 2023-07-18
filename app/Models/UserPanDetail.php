@@ -13,6 +13,10 @@ class UserPanDetail extends Authenticatable
 
     protected $fillable = [
         'user_id',
+        'razorpay_order_id',
+        'razorpay_signature',
+        'razorpay_payment_id',
+        'payment_status',
         'email_id',
         'name_of_pan',
         'pan_number',

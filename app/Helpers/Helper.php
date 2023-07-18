@@ -5,6 +5,7 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Models\Documents;
+use Razorpay\Api\Api;
  
 class Helper
 {
@@ -190,5 +191,23 @@ $baseSegment = implode('/', array_slice($pathSegments, 0, 1));
 
 
 
+}
+
+public static function createRazorpayOrder($request){
+ 
+    $api = new Api($request['key'], $request['secret']);
+        $order_id = rand(111111, 9999999);
+        $order_data = $api->order->create(
+            array
+            (
+                'receipt' => "receipt_".$order_id,
+                'amount' => $request['amount'],
+                'currency' => $request['currency'],
+                'notes' => array(
+                    'order_id' => $order_id
+                )
+            )
+        );
+        return $order_data;
 }
 }
