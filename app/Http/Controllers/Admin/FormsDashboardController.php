@@ -157,7 +157,7 @@ class FormsDashboardController extends Controller
         $data['itrDocuments'] = Documents::where(['for_multiple' => 'ITR'])->get();
 
         $data['taxauditDetails'] = UserTaxauditDetail::find($Id);
-        $data['fssaiDocuments'] = Documents::where(['for_multiple' => 'TAXAUDIT'])->get();
+        $data['taxauditDocuments'] = Documents::where(['for_multiple' => 'TAXAUDIT'])->get();
 
 
         return view('admin.pages.users.forms.all_profiles')->with($data);
