@@ -89,6 +89,9 @@ use App\Models\UserGstDetail;
                                                         @include('user.pages.dashboard.labour')
                                                         @include('user.pages.dashboard.shop')
                                                         @include('user.pages.dashboard.iso')
+                                                        @include('user.pages.dashboard.fssai')
+                                                        @include('user.pages.dashboard.itr')
+                                                        @include('user.pages.dashboard.taxaudit')
                                                     </div>
 
                                                 </div>

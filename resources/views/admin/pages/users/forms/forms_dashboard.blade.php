@@ -36,6 +36,10 @@
                        @include('admin.pages.users.forms.labour_details')
                        @include('admin.pages.users.forms.shop_details') 
                        @include('admin.pages.users.forms.iso_details') 
+
+                       @include('admin.pages.users.forms.fssai_details')
+                       @include('admin.pages.users.forms.itr_details') 
+                       @include('admin.pages.users.forms.taxaudit_details') 
                     </div>
                 </div>
             </div>

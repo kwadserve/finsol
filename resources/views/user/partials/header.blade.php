@@ -139,7 +139,7 @@
                                  <!-- more inner pages-->
                               </li>
                                <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                 <a class="nav-link" href="{{route('fssai.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">FSSAI License</span></div>
                                  </a>
                                  <!-- more inner pages-->
@@ -216,7 +216,7 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('itr.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ITR</span></div>
                                  </a>
                                  <!-- more inner pages-->
@@ -228,7 +228,7 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('taxaudit.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Tax Audit</span></div>
                                  </a>
                                  <!-- more inner pages-->

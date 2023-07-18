@@ -35,6 +35,9 @@ use App\Models\UserLabourDetail;
 use App\Models\UserLabourSignatory; 
 use App\Models\UserShopDetail;
 use App\Models\UserIsoDetail; 
+use App\Models\UserFssaiDetail; 
+use App\Models\UserItrDetail; 
+use App\Models\UserTaxauditDetail; 
 
 class FormsDashboardController extends Controller
 {
@@ -62,6 +65,9 @@ class FormsDashboardController extends Controller
         $data['usersLabour'] = UserLabourDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersShop'] = UserShopDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersIso'] = UserIsoDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersFssai'] = UserFssaiDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersItr'] = UserItrDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersTaxaudit'] = UserTaxauditDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -143,6 +149,16 @@ class FormsDashboardController extends Controller
 
         $data['isoDetails'] = UserIsoDetail::find($Id);
         $data['isoDocuments'] = Documents::where(['for_multiple' => 'ISO'])->get();
+
+        $data['fssaiDetails'] = UserFssaiDetail::find($Id);
+        $data['fssaiDocuments'] = Documents::where(['for_multiple' => 'FSSAI'])->get();
+
+        $data['itrDetails'] = UserItrDetail::find($Id);
+        $data['itrDocuments'] = Documents::where(['for_multiple' => 'ITR'])->get();
+
+        $data['taxauditDetails'] = UserTaxauditDetail::find($Id);
+        $data['fssaiDocuments'] = Documents::where(['for_multiple' => 'TAXAUDIT'])->get();
+
 
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
@@ -367,9 +383,28 @@ class FormsDashboardController extends Controller
                                                         $content =  '<label>ISO Number</label>
                                                         <input type="text" class="form-control"  required="required" name=iso_number"   placeholder="Enter the Iso Number" />
                                                         <label>Name of ISO</label>
-                                                        <input type="text"  required="required" class="form-control" id="nameofiso" name="name_of_iso" value="'.$details->name_of_iso.'"  placeholder="Name of Iso" />';
-                                                         
-                                                       
+                                                        <input type="text"  required="required" class="form-control" id="nameofiso" name="name_of_iso" value="'.$details->name_of_iso.'"  placeholder="Name of Iso" />'; 
+                                                    } else if($formtype=="fssai"){
+                 
+                                                        $details = UserFssaiDetail::find($id); 
+                                                        $content =  '<label>Fssai Number</label>
+                                                        <input type="text" class="form-control"  required="required" name=fssai_number"   placeholder="Enter the Fssai Number" />
+                                                        <label>Name of Fssai</label>
+                                                        <input type="text"  required="required" class="form-control" id="nameoffssai" name="name_of_fssai" value="'.$details->name_of_fssai.'"  placeholder="Name of Fssai" />'; 
+                                                    } else if($formtype=="itr"){
+                 
+                                                        $details = UserItrDetail::find($id); 
+                                                        $content =  '<label>Itr Number</label>
+                                                        <input type="text" class="form-control"  required="required" name=itr_number"   placeholder="Enter the Itr Number" />
+                                                        <label>Name of Itr</label>
+                                                        <input type="text"  required="required" class="form-control" id="nameofitr" name="name_of_itr" value="'.$details->name_of_itr.'"  placeholder="Name of Itr" />'; 
+                                                    } else if($formtype=="taxaudit"){
+                 
+                                                        $details = UserTaxauditDetail::find($id); 
+                                                        $content =  '<label>Tax Audit Number</label>
+                                                        <input type="text" class="form-control"  required="required" name=taxaudit_number"   placeholder="Enter the Taxaudit Number" />
+                                                        <label>Name of Tax</label>
+                                                        <input type="text"  required="required" class="form-control" id="nameoftaxaudit" name="name_of_taxaudit" value="'.$details->name_of_taxaudit.'"  placeholder="Name of Taxaudit" />'; 
                                                     }
     
     
@@ -763,6 +798,70 @@ class FormsDashboardController extends Controller
                                                              }
                                                             $datas->save();
                                                             break; 
+
+                                                            case "fssai" : 
+                                                                $folderNameChange =  ($request->type == 'approve') ? '/Fssai/ApprovedImg' :'/Fssai/RaisedImg' ;
+                                                                $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                                $fssaiid = $request->id;
+                                                                $datas = UserFssaiDetail::find($fssaiid);
+                                                                $status = ($request->type == 'approve') ? 4 : 2; 
+                                                                $datas->last_update_by = 'admin'; 
+                                                                $datas->status = $status;  // Approved
+                                                                 if($request->type == 'approve') {
+                                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                                    $datas->name_of_fssai =   $request->name_of_fssai;
+                                                                    $datas->fssai_number =  $request->fssai_number;  
+                                                                    $datas->approved_img = $img['approved_img'];
+                                                                 } else {
+                                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                                    $datas->admin_note = $request->admin_note; 
+                                                                    $datas->raised_img = $img['raised_img'];
+                                                                 }
+                                                                $datas->save();
+                                                                break; 
+
+
+                                                                case "itr" : 
+                                                                    $folderNameChange =  ($request->type == 'approve') ? '/Itr/ApprovedImg' :'/Itr/RaisedImg' ;
+                                                                    $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                                    $itrid = $request->id;
+                                                                    $datas = UserItrDetail::find($itrid);
+                                                                    $status = ($request->type == 'approve') ? 4 : 2; 
+                                                                    $datas->last_update_by = 'admin'; 
+                                                                    $datas->status = $status;  // Approved
+                                                                     if($request->type == 'approve') {
+                                                                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                                        $datas->name_of_itr =   $request->name_of_itr;
+                                                                        $datas->itr_number =  $request->itr_number;  
+                                                                        $datas->approved_img = $img['approved_img'];
+                                                                     } else {
+                                                                        $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                                        $datas->admin_note = $request->admin_note; 
+                                                                        $datas->raised_img = $img['raised_img'];
+                                                                     }
+                                                                    $datas->save();
+                                                                    break; 
+
+                                                                    case "taxaudit" : 
+                                                                        $folderNameChange =  ($request->type == 'approve') ? '/Taxaudit/ApprovedImg' :'/Taxaudit/RaisedImg' ;
+                                                                        $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                                        $taxauditid = $request->id;
+                                                                        $datas = UserTaxauditDetail::find($taxauditid);
+                                                                        $status = ($request->type == 'approve') ? 4 : 2; 
+                                                                        $datas->last_update_by = 'admin'; 
+                                                                        $datas->status = $status;  // Approved
+                                                                         if($request->type == 'approve') {
+                                                                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                                            $datas->name_of_taxaudit =   $request->name_of_taxaudit;
+                                                                            $datas->taxaudit_number =  $request->taxaudit_number;  
+                                                                            $datas->approved_img = $img['approved_img'];
+                                                                         } else {
+                                                                            $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                                            $datas->admin_note = $request->admin_note; 
+                                                                            $datas->raised_img = $img['raised_img'];
+                                                                         }
+                                                                        $datas->save();
+                                                                        break; 
 
 
           default : break; 

@@ -141,3 +141,15 @@ Route::post('shop/register', 'ShopController@storeShop')->name('shop.register');
 Route::get('iso/register', 'IsoController@register_form')->name('iso.register_form');
 Route::post('iso/register', 'IsoController@storeIso')->name('iso.register');
 
+//Fssai DETAILS 
+Route::get('fssai/register', 'FssaiController@register_form')->name('fssai.register_form');
+Route::post('fssai/register', 'FssaiController@storeFssai')->name('fssai.register');
+
+//Itr DETAILS 
+Route::get('itr/register', 'ItrController@register_form')->name('itr.register_form');
+Route::post('itr/register', 'ItrController@storeItr')->name('itr.register');
+
+//Taxaudit DETAILS 
+Route::get('taxaudit/register', 'TaxauditController@register_form')->name('taxaudit.register_form');
+Route::post('taxaudit/register', 'TaxauditController@storeTaxaudit')->name('taxaudit.register');
+

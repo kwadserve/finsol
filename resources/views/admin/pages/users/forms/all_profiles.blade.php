@@ -54,6 +54,10 @@
                                  @include('admin.pages.users.forms.profile.shop_profile')
                                 
                                  @include('admin.pages.users.forms.profile.iso_profile')
+
+                                 @include('admin.pages.users.forms.profile.fssai_profile')
+                                 @include('admin.pages.users.forms.profile.itr_profile')
+                                 @include('admin.pages.users.forms.profile.taxaudit_profile')
                                  </div>
 
                                  
