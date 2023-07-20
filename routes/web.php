@@ -33,6 +33,22 @@ Route::get('home', 'UserController@index')->name('home');
 Route::get('settings', 'UserController@settings')->name('settings');
 Route::get('settings/update', 'UserController@settingsUpdate')->name('settings.update');
 
+// Terms and Privacy
+
+Route::get('/privacy', function () {
+    return view('privacy');
+})->name('privacy');
+
+Route::get('/tos', function () {
+    return view('tos');
+})->name('tos');
+
+Route::get('/refund', function () {
+    return view('refund');
+})->name('refund');
+
+
+
 // GST DETAILS
 Route::get('gst', 'GstController@index')->name('gst');
 Route::get('gst/register', 'GstController@register_form')->name('gst.register_form');

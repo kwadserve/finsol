@@ -138,7 +138,7 @@
 
     <!-- ============================================-->
     <!-- <section> begin ============================-->
-    <section id="about">
+    <section id="about-us">
       <div class="container">
         <div class="row justify-content-center text-center">
           <div class="col-lg-8 col-xl-7 col-xxl-6">
@@ -404,7 +404,104 @@
     </section><!-- <section> close ============================-->
     <!-- ============================================-->
 
+    <!---------FAQ----------------->
+    <div class="container" id="faqs">
+            <div class="mt-5 mb-3 row justify-content-center text-center">
+          <div class="col-lg-8 col-xl-7 col-xxl-6">
+            <h1 class="fs-2 fs-sm-4 bluecolor fw-bold fs-md-5">FAQ's</h1>
+            
+          </div>
+        </div>
+  
+          <div class="card mb-5" style=" box-shadow: none; background: #edf2f9;">
+            <div class="card-body">
+              <div class="accordion border rounded overflow-hidden" id="accordionFaq" style="--falcon-accordion-bg: #edf2f9;">
+                
+                <div class="card shadow-none rounded-bottom-0 border-bottom">
+                  <div class="accordion-item border-0">
+                    <div class="card-header p-0" id="faqAccordionHeading1"><button class="accordion-button btn btn-link text-decoration-none d-block w-100 py-2 px-3 collapsed border-0 text-start rounded-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#collapseFaqAccordion1" aria-expanded="false" aria-controls="collapseFaqAccordion1"><span class="fas fa-caret-right accordion-icon me-3" data-fa-transform="shrink-2"></span><span class="fw-medium font-sans-serif text-900">How do I get started with Finsol's services?</span></button></div>
+                    <div class="accordion-collapse collapse" id="collapseFaqAccordion1" aria-labelledby="faqAccordionHeading1" data-parent="#accordionFaq">
+                      <div class="accordion-body p-0">
+                        <div class="card-body pt-2">
+                          <p class="ps-3 mb-0">To begin using Finsol's financial services, simply visit our website and click on the "Get Started" button. You will be guided through the registration process, where you can create an account and start uploading your documents.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card shadow-none rounded-0 border-bottom">
+                  <div class="accordion-item border-0">
+                    <div class="card-header p-0" id="faqAccordionHeading2"><button class="accordion-button btn btn-link text-decoration-none d-block w-100 py-2 px-3 collapsed border-0 text-start rounded-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#collapseFaqAccordion2" aria-expanded="false" aria-controls="collapseFaqAccordion2"><span class="fas fa-caret-right accordion-icon me-3" data-fa-transform="shrink-2"></span><span class="fw-medium font-sans-serif text-900">Can I trust Finsol with my financial information?</span></button></div>
+                    <div class="accordion-collapse collapse" id="collapseFaqAccordion2" aria-labelledby="faqAccordionHeading2" data-parent="#accordionFaq">
+                      <div class="accordion-body p-0">
+                        <div class="card-body pt-2">
+                          <p class="ps-3 mb-0">Absolutely! Finsol follows strict privacy and confidentiality protocols to safeguard your information. We adhere to all applicable laws and regulations to ensure your data remains secure.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card shadow-none rounded-0 border-bottom">
+                  <div class="accordion-item border-0">
+                    <div class="card-header p-0" id="faqAccordionHeading3"><button class="accordion-button btn btn-link text-decoration-none d-block w-100 py-2 px-3 collapsed border-0 text-start rounded-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#collapseFaqAccordion3" aria-expanded="false" aria-controls="collapseFaqAccordion3"><span class="fas fa-caret-right accordion-icon me-3" data-fa-transform="shrink-2"></span><span class="fw-medium font-sans-serif text-900">How do I make a payment for the services I require?</span></button></div>
+                    <div class="accordion-collapse collapse" id="collapseFaqAccordion3" aria-labelledby="faqAccordionHeading3" data-parent="#accordionFaq">
+                      <div class="accordion-body p-0">
+                        <div class="card-body pt-2">
+                          <p class="ps-3 mb-0">Once you have uploaded your documents and selected the services you need, you can proceed to the payment section. Finsol offers a variety of payment methods, including credit/debit cards and online bank transfers.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card shadow-none rounded-0 ">
+                  <div class="accordion-item border-0">
+                    <div class="card-header p-0" id="faqAccordionHeading4"><button class="accordion-button btn btn-link text-decoration-none d-block w-100 py-2 px-3 collapsed border-0 text-start rounded-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#collapseFaqAccordion4" aria-expanded="false" aria-controls="collapseFaqAccordion4"><span class="fas fa-caret-right accordion-icon me-3" data-fa-transform="shrink-2"></span><span class="fw-medium font-sans-serif text-900">What if I need assistance during the registration process or have questions about the services?</span></button></div>
+                    <div class="accordion-collapse collapse" id="collapseFaqAccordion4" aria-labelledby="faqAccordionHeading4" data-parent="#accordionFaq">
+                      <div class="accordion-body p-0">
+                        <div class="card-body pt-2">
+                          <p class="ps-3 mb-0">Our customer support team is here to help you every step of the way. If you have any questions or encounter any issues, feel free to contact us through our support channels, including email and phone.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="card shadow-none rounded-0 border-bottom">
+                  <div class="accordion-item border-0">
+                    <div class="card-header p-0" id="faqAccordionHeading3"><button class="accordion-button btn btn-link text-decoration-none d-block w-100 py-2 px-3 collapsed border-0 text-start rounded-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#collapseFaqAccordion5" aria-expanded="false" aria-controls="collapseFaqAccordion5"><span class="fas fa-caret-right accordion-icon me-3" data-fa-transform="shrink-2"></span><span class="fw-medium font-sans-serif text-900">Is Finsol registered and accredited to provide financial services?</span></button></div>
+                    <div class="accordion-collapse collapse" id="collapseFaqAccordion5" aria-labelledby="faqAccordionHeading5" data-parent="#accordionFaq">
+                      <div class="accordion-body p-0">
+                        <div class="card-body pt-2">
+                          <p class="ps-3 mb-0">Yes, Finsol is a registered and accredited financial services provider. We comply with all the necessary regulations and standards to ensure that you receive reliable and professional assistance.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card shadow-none rounded-0 border-bottom">
+                  <div class="accordion-item border-0">
+                    <div class="card-header p-0" id="faqAccordionHeading3"><button class="accordion-button btn btn-link text-decoration-none d-block w-100 py-2 px-3 collapsed border-0 text-start rounded-0 shadow-none" data-bs-toggle="collapse" data-bs-target="#collapseFaqAccordion6" aria-expanded="false" aria-controls="collapseFaqAccordion6"><span class="fas fa-caret-right accordion-icon me-3" data-fa-transform="shrink-2"></span><span class="fw-medium font-sans-serif text-900">Can I track the progress of my financial services request?</span></button></div>
+                    <div class="accordion-collapse collapse" id="collapseFaqAccordion6" aria-labelledby="faqAccordionHeading6" data-parent="#accordionFaq">
+                      <div class="accordion-body p-0">
+                        <div class="card-body pt-2">
+                          <p class="ps-3 mb-0">Certainly! Once you have registered and submitted your documents, you can log in to your account and track the progress of your request in real-time.
 
+At Finsol, we aim to provide you with seamless financial solutions and outstanding customer support. If you have any other questions or require further information, please don't hesitate to reach out to us.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          </div>
+          
+    <!---------FAQ close----------->
 
     <!-- ============================================-->
     <!-- <section> begin ============================-->
@@ -428,14 +525,14 @@
           <div class="col ps-lg-6 ps-xl-8">
             <div class="row mt-5 mt-lg-0">
               <div class="col-6 col-md-3">
-                <h5 class="text-uppercase text-white opacity-85 mb-3">Company</h5>
+                <h5 class="text-uppercase text-white opacity-85 mb-3">Read About</h5>
                 <ul class="list-unstyled">
-                  <li class="mb-1"><a class="link-600" href="#!">About</a></li>
-                  <li class="mb-1"><a class="link-600" href="#!">Contact</a></li>
-                  <li class="mb-1"><a class="link-600" href="#!">Careers</a></li>
-                  <li class="mb-1"><a class="link-600" href="#!">Blog</a></li>
-                  <li class="mb-1"><a class="link-600" href="#!">Terms</a></li>
-                  <li class="mb-1"><a class="link-600" href="#!">Privacy</a></li>
+                  <li class="mb-1"><a class="link-600" href="#about-us">About</a></li>
+                  <li class="mb-1"><a class="link-600" href="#contact-us">Contact</a></li>
+                  <li class="mb-1"><a class="link-600" href="{{ route('tos') }}">Terms of Services</a></li>
+                  <li class="mb-1"><a class="link-600" href="#faqs">FAQs</a></li>
+                  <li class="mb-1"><a class="link-600" href="{{ route('refund') }}">Refund Policy</a></li>
+                  <li class="mb-1"><a class="link-600" href="{{ route('privacy') }}">Privacy Policy</a></li>
                   
                 </ul>
               </div>
@@ -466,10 +563,10 @@
                 <div class="col-6 col-md-3">
                 <h5 class="text-uppercase text-white opacity-85 mb-3">Contact</h5>
                 <ul class="list-unstyled">
-                    <li class="mb-1"><a class="link-600" href="#!">contact@finsol.in</a></li>
+                    <li class="mb-1"><a class="link-600" href="#!">contact@sampurnasuvidhakendra.com</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">+91 - 6203324932</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">+91 - 9798995769</a></li>
-                  <li class="mb-1"><a class="link-600" href="#!"> 1234 NW Lane, St. Robert, MO 65584, New York</a></li>
+                  <li class="mb-1"><a class="link-600" href="#!">101,RAJ KRISHNA APARTMENT,B.C. Road,Phulwari,Patna-800001,Bihar</a></li>
                  
                  
                 </ul>
@@ -506,50 +603,7 @@
     </section><!-- <section> close ============================-->
     <!-- ============================================-->
 
-    <div class="modal fade" id="authentication-modal" tabindex="-1" role="dialog"
-      aria-labelledby="authentication-modal-label" aria-hidden="true">
-      <div class="modal-dialog mt-6" role="document">
-        <div class="modal-content border-0">
-          <div class="modal-header px-5 position-relative modal-shape-header bg-shape">
-            <div class="position-relative z-1" data-bs-theme="light">
-              <h4 class="mb-0 text-white" id="authentication-modal-label">Register</h4>
-              <p class="fs--1 mb-0 text-white">Please create your free Falcon account</p>
-            </div><button class="btn-close btn-close-white position-absolute top-0 end-0 mt-2 me-2"
-              data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body py-4 px-5">
-            <form>
-              <div class="mb-3"><label class="form-label" for="modal-auth-name">Name</label><input class="form-control"
-                  type="text" autocomplete="on" id="modal-auth-name" /></div>
-              <div class="mb-3"><label class="form-label" for="modal-auth-email">Email address</label><input
-                  class="form-control" type="email" autocomplete="on" id="modal-auth-email" /></div>
-              <div class="row gx-2">
-                <div class="mb-3 col-sm-6"><label class="form-label" for="modal-auth-password">Password</label><input
-                    class="form-control" type="password" autocomplete="on" id="modal-auth-password" /></div>
-                <div class="mb-3 col-sm-6"><label class="form-label" for="modal-auth-confirm-password">Confirm
-                    Password</label><input class="form-control" type="password" autocomplete="on"
-                    id="modal-auth-confirm-password" /></div>
-              </div>
-              <div class="form-check"><input class="form-check-input" type="checkbox"
-                  id="modal-auth-register-checkbox" /><label class="form-label" for="modal-auth-register-checkbox">I
-                  accept the <a href="#!">terms </a>and <a href="#!">privacy policy</a></label></div>
-              <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit"
-                  name="submit">Register</button></div>
-            </form>
-            <div class="position-relative mt-5">
-              <hr />
-              <div class="divider-content-center">or register with</div>
-            </div>
-            <div class="row g-2 mt-2">
-              <div class="col-sm-6"><a class="btn btn-outline-google-plus btn-sm d-block w-100" href="#"><span
-                    class="fab fa-google-plus-g me-2" data-fa-transform="grow-8"></span> google</a></div>
-              <div class="col-sm-6"><a class="btn btn-outline-facebook btn-sm d-block w-100" href="#"><span
-                    class="fab fa-facebook-square me-2" data-fa-transform="grow-8"></span> facebook</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </main><!-- ===============================================-->
   <!--    End of Main Content-->
   <!-- ===============================================-->
@@ -576,6 +630,5 @@
  
 
 
-<!-- Mirrored from prium.github.io/falcon/v3.16.0/pages/landing.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 29 Mar 2023 11:20:09 GMT -->
 
 </html>
