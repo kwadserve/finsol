@@ -21,6 +21,7 @@ use App\Models\UserIsoDetail;
 use App\Models\Documents;
 use App\Models\UserFssaiDetail; 
 use App\Models\UserItrDetail; 
+use App\Models\UserTdsDetail; 
 use App\Models\UserTaxauditDetail; 
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
@@ -68,6 +69,8 @@ class DashboardController  extends Controller {
         $data['userItrDetails'] = UserItrDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
  
         $data['userTaxauditDetails'] = UserTaxauditDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+ 
+        $data['userTdsDetails'] = UserTdsDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
  
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  
@@ -244,6 +247,16 @@ class DashboardController  extends Controller {
 
         if($formType =='Taxaudit'){
             $datas = UserTaxauditDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+
+        if($formType =='Tds'){
+            $datas = UserTdsDetail::find($id);
             $datas->user_note = $request->user_note; 
             $datas->status = 3; // Query Updated      
             $datas->last_update_by = 'user'; 

@@ -40,6 +40,7 @@
                        @include('admin.pages.users.forms.fssai_details')
                        @include('admin.pages.users.forms.itr_details') 
                        @include('admin.pages.users.forms.taxaudit_details') 
+                       @include('admin.pages.users.forms.tds_details') 
                     </div>
                 </div>
             </div>

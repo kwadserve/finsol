@@ -169,3 +169,6 @@ Route::post('itr/register', 'ItrController@storeItr')->name('itr.register');
 Route::get('taxaudit/register', 'TaxauditController@register_form')->name('taxaudit.register_form');
 Route::post('taxaudit/register', 'TaxauditController@storeTaxaudit')->name('taxaudit.register');
 
+//Tds DETAILS 
+Route::get('tds/register', 'TdsController@register_form')->name('tds.register_form');
+Route::post('tds/register', 'TdsController@storeTds')->name('tds.register');

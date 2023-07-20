@@ -222,7 +222,7 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('tds.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">TDS/TCS Returns</span></div>
                                  </a>
                                  <!-- more inner pages-->
