@@ -31,6 +31,7 @@ use App\Models\UserTrustDetail;
 use App\Models\UserTrustMember;
 use App\Models\UserUdamyDetail;
 use App\Models\UserImportExportDetail;
+use App\Models\UserFactoryLicenseDetail;
 use App\Models\UserLabourDetail;
 use App\Models\UserLabourSignatory; 
 use App\Models\UserShopDetail;
@@ -70,6 +71,7 @@ class FormsDashboardController extends Controller
         $data['usersItr'] = UserItrDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTaxaudit'] = UserTaxauditDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersTds'] = UserTdsDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersFactoryLicense'] = UserFactoryLicenseDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.forms.forms_dashboard')->with($data);
     }
 
@@ -163,6 +165,9 @@ class FormsDashboardController extends Controller
 
         $data['tdsDetails'] = UserTdsDetail::find($Id);
         $data['tdsDocuments'] = Documents::where(['for_multiple' => 'TDS'])->get();
+
+        $data['factorylicenseDetails'] = UserFactoryLicenseDetail::find($Id);
+        $data['factorylicenseDocuments'] = Documents::where(['for_multiple' => 'FL'])->get();
 
         return view('admin.pages.users.forms.all_profiles')->with($data);
     }
@@ -418,6 +423,14 @@ class FormsDashboardController extends Controller
                                                         <label>Name of Tds/Tcs </label>
                                                         <input type="text"  required="required" class="form-control" id="nameoftds" name="name_of_tds" value="'.$details->name_of_itr.'"  placeholder="Name of Tds/Tcs " />'; 
                                                     }
+
+                                                    else if($formtype=="factorylicense"){
+                                                        $details = UserFactoryLicenseDetail::find($id);
+                                                        $content = '<label>Factory License Number</label>
+                                                        <input type="text" class="form-control"  required="required" name=facl_number" value="" placeholder="Enter the Factory License Number" />
+                                                        <label>Name of Factory License</label>
+                                                        <input type="text"  required="required" class="form-control"  name="name_of_facl" value="'.$details->name_of_facl.'" placeholder="Name of Factory License" />';
+                                                        } 
     
     
  
@@ -895,6 +908,27 @@ class FormsDashboardController extends Controller
                                                                              }
                                                                             $datas->save();
                                                                             break; 
+
+                                                                            case "factorylicense" : 
+                                                                                $folderNameChange =  ($request->type == 'approve') ? '/FactoryLicense/ApprovedImg' :'/FactoryLicense/RaisedImg' ;
+                                                                                $folderName =  'uploads/users/'.$useName.$folderNameChange; 
+                                                                                $flid = $request->id;
+                                                                                $datas = UserFactoryLicenseDetail::find($flid);
+                                                                                $status = ($request->type == 'approve') ? 4 : 2; 
+                                                                                $datas->last_update_by = 'admin'; 
+                                                                                $datas->status = $status;  // Approved
+                                                                                 if($request->type == 'approve') {
+                                                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
+                                                                                    $datas->name_of_facl =   $request->name_of_facl;
+                                                                                    $datas->facl_number =  $request->facl_number;  
+                                                                                    $datas->approved_img = $img['approved_img'];
+                                                                                 } else {
+                                                                                    $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
+                                                                                    $datas->admin_note = $request->admin_note; 
+                                                                                    $datas->raised_img = $img['raised_img'];
+                                                                                 }
+                                                                                $datas->save();
+                                                                                break; 
 
 
           default : break; 

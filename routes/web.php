@@ -172,3 +172,7 @@ Route::post('taxaudit/register', 'TaxauditController@storeTaxaudit')->name('taxa
 //Tds DETAILS 
 Route::get('tds/register', 'TdsController@register_form')->name('tds.register_form');
 Route::post('tds/register', 'TdsController@storeTds')->name('tds.register');
+
+//Factory License Code registration DETAILS 
+Route::get('factorylicense/register', 'FactoryLicenseController@register_form')->name('factorylicense.register_form');
+Route::post('factorylicense/register', 'FactoryLicenseController@storeFactoryLicense')->name('factorylicense.register');

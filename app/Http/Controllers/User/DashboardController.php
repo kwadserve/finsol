@@ -15,6 +15,7 @@ use App\Models\UserUdamyDetail;
 use App\Models\UserPartnershipDetail;
 use App\Models\UserGstUploadDocument;
 use App\Models\UserImportExportDetail;
+use App\Models\UserFactoryLicenseDetail;
 use App\Models\UserLabourDetail;
 use App\Models\UserShopDetail; 
 use App\Models\UserIsoDetail; 
@@ -71,6 +72,8 @@ class DashboardController  extends Controller {
         $data['userTaxauditDetails'] = UserTaxauditDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
  
         $data['userTdsDetails'] = UserTdsDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+ 
+        $data['userFactoryLicenseDetails'] = UserFactoryLicenseDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
  
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  
@@ -257,6 +260,16 @@ class DashboardController  extends Controller {
 
         if($formType =='Tds'){
             $datas = UserTdsDetail::find($id);
+            $datas->user_note = $request->user_note; 
+            $datas->status = 3; // Query Updated      
+            $datas->last_update_by = 'user'; 
+            $datas->last_update_by_id =  $userId;
+            $datas->additional_img = $img['additional_img']; 
+            $datas->save();
+        } 
+
+        if($formType =='FactoryLicense'){
+            $datas = UserFactoryLicenseDetail::find($id);
             $datas->user_note = $request->user_note; 
             $datas->status = 3; // Query Updated      
             $datas->last_update_by = 'user'; 

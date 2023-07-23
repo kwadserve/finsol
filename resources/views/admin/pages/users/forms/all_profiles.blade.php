@@ -58,6 +58,7 @@
                                         @include('admin.pages.users.forms.profile.itr_profile')
                                         @include('admin.pages.users.forms.profile.taxaudit_profile')
                                         @include('admin.pages.users.forms.profile.tds_profile')
+                                        @include('admin.pages.users.forms.profile.factorylicense_profile')
                                     </div>
                                 </div>
                             </div>

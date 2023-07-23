@@ -94,7 +94,8 @@ use App\Models\UserGstDetail;
                                                             @include('user.pages.dashboard.fssai')
                                                             @include('user.pages.dashboard.itr')
                                                             @include('user.pages.dashboard.taxaudit')  
-                                                            @include('user.pages.dashboard.tds')  
+                                                            @include('user.pages.dashboard.tds') 
+                                                            @include('user.pages.dashboard.factorylicense')  
                                                         </div>
 
                                                     </div>
