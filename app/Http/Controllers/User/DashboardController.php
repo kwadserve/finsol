@@ -74,9 +74,10 @@ class DashboardController  extends Controller {
         $data['userTdsDetails'] = UserTdsDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
  
         $data['userFactoryLicenseDetails'] = UserFactoryLicenseDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
- 
+    
+        $rowcount['rowcount'] = count($data);     
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
-        return view('user.pages.dashboard.dashboard')->with($data);  
+        return view('user.pages.dashboard.dashboard')->with($data)->with($rowcount);  
     }
  
     public function queryRaised(Request $request){

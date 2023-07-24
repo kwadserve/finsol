@@ -8,7 +8,7 @@ use App\Models\UserGstDetail;
 <!-- ===============================================-->
 <main class="main" id="top">
     <div class="container" data-layout="container">
-        @include('user.partials.header')
+        @include('user.partials.header', ['rowcount' => $rowcount])
         <div class="content">
             @include('user.partials.aside')
             <div class="row g-3">
