@@ -36,7 +36,7 @@
                                  class="fas fa-chart-pie"></span></span><span class="nav-link-text ps-1">Registration</span></div>
                            </a>
                            <ul class="nav collapse show" id="registration">
-                            @if($rowcount && $rowcount > 0)
+                            @if(isset($rowcount) && $rowcount > 0)
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{route('form_dashboard')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
