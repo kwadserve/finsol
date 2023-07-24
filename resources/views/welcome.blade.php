@@ -76,7 +76,7 @@
 
           <ul class="navbar-nav ms-auto">
               
-              <li class="nav-item dropdown"><a class="nav-link logincolor" href="#about" role="button"
+           <!--   <li class="nav-item dropdown"><a class="nav-link logincolor" href="#about" role="button"
                 aria-haspopup="true" aria-expanded="false">About</a>
                 </li>
                 
@@ -86,7 +86,7 @@
                 
                   <li class="nav-item dropdown"><a class="nav-link logincolor" href="#contact" role="button"
                 aria-haspopup="true" aria-expanded="false">Contact</a>
-                </li>
+                </li> -->
 
             @auth
             <li class="nav-item dropdown"><a class="nav-link logincolor" href="{{ route('home') }}" role="button"
@@ -234,7 +234,7 @@
                       ensuring that
                       your business is set up legally and efficiently. We handle all the necessary paperwork and
                       registrations, saving you time and providing peace of mind.</p>
-                    <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
+                    <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">INR 1000</button></a>
 
                   </div>
                 </div>
@@ -256,7 +256,7 @@
                       ensure accurate and timely filing of your GST returns, helping you navigate the regulations and
                       avoid
                       penalties. Stay compliant with GST and focus on growing your business.</p>
-                   <a  href="{{ route('register_page') }}"> <button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
+                   <a  href="{{ route('register_page') }}"> <button class="btn btn-primary me-1 mb-1" type="button">INR 1500</button></a>
                   </div>
                 </div>
               </div>
@@ -275,7 +275,7 @@
                       professionals will assist you in preparing and filing your income tax returns, maximizing your
                       deductions and minimizing your tax liability. Let us handle your taxes and enjoy peace of
                       mind.</p>
-                    <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
+                    <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">INR 1000</button></a>
 
                   </div>
                 </div>
@@ -294,7 +294,7 @@
                   company compliance services help you meet all the necessary requirements, from annual filings to
                   corporate governance. We'll ensure that your company operates within the legal framework, minimizing
                   risks and ensuring smooth operations.</p>
-                <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">Get Started</button></a>
+                <a  href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1" type="button">INR 3000</button></a>
               </div>
             </div>
           </div>
@@ -515,20 +515,20 @@ At Finsol, we aim to provide you with seamless financial solutions and outstandi
             <p class="text-600">Our mission is to provide exceptional tax consultation services to individuals and
               businesses, ensuring their financial success and peace of mind. We strive to be a trusted partner,
               delivering expert guidance, innovative solutions, and personalized attention to every client. </p>
-            <div class="icon-group mt-4"><a class="icon-item bg-white text-facebook" href="#!"><span
+          <!--  <div class="icon-group mt-4"><a class="icon-item bg-white text-facebook" href="#!"><span
                   class="fab fa-facebook-f"></span></a><a class="icon-item bg-white text-twitter" href="#!"><span
                   class="fab fa-twitter"></span></a><a class="icon-item bg-white text-google-plus" href="#!"><span
                   class="fab fa-google-plus-g"></span></a><a class="icon-item bg-white text-linkedin" href="#!"><span
                   class="fab fa-linkedin-in"></span></a>
-                </div>
+                </div> -->
           </div>
           <div class="col ps-lg-6 ps-xl-8">
             <div class="row mt-5 mt-lg-0">
               <div class="col-6 col-md-3">
                 <h5 class="text-uppercase text-white opacity-85 mb-3">Read About</h5>
                 <ul class="list-unstyled">
-                  <li class="mb-1"><a class="link-600" href="#about-us">About</a></li>
-                  <li class="mb-1"><a class="link-600" href="#contact-us">Contact</a></li>
+                 <!-- <li class="mb-1"><a class="link-600" href="#about-us">About</a></li>
+                  <li class="mb-1"><a class="link-600" href="#contact-us">Contact</a></li> -->
                   <li class="mb-1"><a class="link-600" href="{{ route('tos') }}">Terms of Services</a></li>
                   <li class="mb-1"><a class="link-600" href="#faqs">FAQs</a></li>
                   <li class="mb-1"><a class="link-600" href="{{ route('refund') }}">Refund Policy</a></li>
@@ -537,8 +537,8 @@ At Finsol, we aim to provide you with seamless financial solutions and outstandi
                 </ul>
               </div>
               <div class="col-6 col-md-3">
-                <h5 class="text-uppercase text-white opacity-85 mb-3">Services</h5>
-                <ul class="list-unstyled">
+                <h5 class="text-uppercase text-white opacity-85 mb-3"></h5>
+              <!--  <ul class="list-unstyled">
                   <li class="mb-1"><a class="link-600" href="#!">Registration</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">GST Filing</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Income Tax</a></li>
@@ -546,11 +546,11 @@ At Finsol, we aim to provide you with seamless financial solutions and outstandi
                   <li class="mb-1"><a class="link-600" href="#!">Loans</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Certifications</a></li>
                  
-                </ul>
+                </ul> -->
               </div>
               <div class="col-6 col-md-3">
-              <h5 class="text-uppercase text-white opacity-85 mb-3">Services</h5>
-                <ul class="list-unstyled">
+              <h5 class="text-uppercase text-white opacity-85 mb-3"></h5>
+              <!--  <ul class="list-unstyled">
                   <li class="mb-1"><a class="link-600" href="#!">Legal</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Auditing</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Finances</a></li>
@@ -558,7 +558,7 @@ At Finsol, we aim to provide you with seamless financial solutions and outstandi
                   <li class="mb-1"><a class="link-600" href="#!">Reports</a></li>
                   <li class="mb-1"><a class="link-600" href="#!">Taxation</a></li>
                  
-                </ul>
+                </ul> -->
               </div>
                 <div class="col-6 col-md-3">
                 <h5 class="text-uppercase text-white opacity-85 mb-3">Contact</h5>

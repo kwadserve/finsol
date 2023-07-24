@@ -73,7 +73,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                                                 Number linked with Aadhar</label><input class="form-control" required=""
-                                                type="text" name="mobile_number" placeholder="Enter Registration No"
+                                                type="text" name="mobile_number" placeholder="Enter Mobile Number"
                                                 id="form-wizard-progress-wizard-addregnum" />
                                             <div class="invalid-feedback">Please provide Mobile
                                                 number</div>
