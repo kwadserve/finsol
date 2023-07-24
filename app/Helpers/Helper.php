@@ -182,7 +182,7 @@ $pathSegments = explode('/', trim($parsedUrl['path'], '/'));
 if( $parsedUrl['host'] =='localhost'){
 $baseSegment = implode('/', array_slice($pathSegments, 0, 1));
 } else {
-    $baseSegment = implode('/', array_slice($pathSegments, 0, 3));
+    $baseSegment = implode('/', array_slice($pathSegments, 0, 2));
 }
 
   return  $baseURL = $baseUrl . '/' . $baseSegment;  
