@@ -32,33 +32,49 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         @endif
-                                        @include('admin.pages.users.forms.profile.pan_profile')
-                                        @include('admin.pages.users.forms.profile.tan_profile')
-                                        @include('admin.pages.users.forms.profile.epf_profile')
+ 
+                                        @if($profilePage=='pan')
+    @include('admin.pages.users.forms.profile.pan_profile')
+@elseif($profilePage =='tan')
+    @include('admin.pages.users.forms.profile.tan_profile')
+@elseif($profilePage =='epf')
+    @include('admin.pages.users.forms.profile.epf_profile')
+@elseif($profilePage =='esic')
+    @include('admin.pages.users.forms.profile.esic_profile')
+@elseif($profilePage =='trademark')
+    @include('admin.pages.users.forms.profile.trademark_profile')
+@elseif($profilePage =='company')
+    @include('admin.pages.users.forms.profile.company_profile')
+@elseif($profilePage =='partnership')
+    @include('admin.pages.users.forms.profile.partnership_profile')
+@elseif($profilePage =='huf')
+    @include('admin.pages.users.forms.profile.huf_profile')
+@elseif($profilePage =='trust')
+    @include('admin.pages.users.forms.profile.trust_profile')
+    @elseif($profilePage =='udamy')
+    @include('admin.pages.users.forms.profile.udamy_profile')
+@elseif($profilePage =='importexport')
+    @include('admin.pages.users.forms.profile.importexport_profile')
+@elseif($profilePage =='labour')
+    @include('admin.pages.users.forms.profile.labour_profile')
+@elseif($profilePage =='shop')
+    @include('admin.pages.users.forms.profile.shop_profile')
+    @elseif($profilePage =='iso')
+    @include('admin.pages.users.forms.profile.iso_profile')
+@elseif($profilePage =='fssai')
+    @include('admin.pages.users.forms.profile.fssai_profile')
+@elseif($profilePage =='itr')
+    @include('admin.pages.users.forms.profile.itr_profile')
+@elseif($profilePage =='taxaudit')
+    @include('admin.pages.users.forms.profile.taxaudit_profile')
+    @elseif($profilePage =='tds')
+    @include('admin.pages.users.forms.profile.tds_profile')
+@elseif($profilePage =='factorylicense')
+    @include('admin.pages.users.forms.profile.factorylicense_profile')
 
-                                        @include('admin.pages.users.forms.profile.esic_profile')
-                                        @include('admin.pages.users.forms.profile.trademark_profile')
-                                        @include('admin.pages.users.forms.profile.company_profile')
-                                        @include('admin.pages.users.forms.profile.partnership_profile')
-
-                                        @include('admin.pages.users.forms.profile.huf_profile')
-                                        @include('admin.pages.users.forms.profile.trust_profile')
-                                        @include('admin.pages.users.forms.profile.udamy_profile')
-                                        @include('admin.pages.users.forms.profile.importexport_profile')
-
-                                        @if($labourDetails)
-                                        @include('admin.pages.users.forms.profile.labour_profile')
-                                        @endif
-
-                                        @include('admin.pages.users.forms.profile.shop_profile')
-
-                                        @include('admin.pages.users.forms.profile.iso_profile')
-
-                                        @include('admin.pages.users.forms.profile.fssai_profile')
-                                        @include('admin.pages.users.forms.profile.itr_profile')
-                                        @include('admin.pages.users.forms.profile.taxaudit_profile')
-                                        @include('admin.pages.users.forms.profile.tds_profile')
-                                        @include('admin.pages.users.forms.profile.factorylicense_profile')
+@endif
+  
+                                                
                                     </div>
                                 </div>
                             </div>

@@ -23,7 +23,7 @@
                                     aria-label="Close"></button>
                             </div>
                             @endif
-              @if($udamyDetails->type == 'New UDAMY Registration')
+              @if($udamyDetails->type == 'New Udamy Registration')
               <div class="card mb-3">
 
 

@@ -82,94 +82,126 @@ class FormsDashboardController extends Controller
     }
 
     
-    public function allProfile($Id)
+    public function allProfile($name, $Id)
     {
-        $data['panDetails'] = UserPanDetail::find($Id);
-        $data['panDocuments'] = Documents::where(['for_multiple' => 'PAN'])->get();
+        if($name=='pan'){
+            $data['panDetails'] = UserPanDetail::find($Id);
+            $data['panDocuments'] = Documents::where(['for_multiple' => 'PAN'])->get();
+        }
 
+        if($name=='tan'){
         $data['tanDetails'] = UserTanDetail::find($Id);
         $data['tanDocuments'] = Documents::where(['for_multiple' => 'TAN'])->get();
+        }
      
+        if($name=='epf'){
         $data['epfDetails'] = UserEpfDetail::find($Id);
         $data['epfDocuments'] = Documents::where(['for_multiple' => 'EPF Company'])->get();
         $data['epfSignatory'] = UserEpfSignatory :: where(['user_epf_id' => $Id])->get();
         $data['epfSignatoryDocuments'] = Documents::where(['for_multiple' => 'EPF Signatory'])->get();
+        }
 
+        if($name=='esic'){
         $data['esicDetails'] = UserEsicDetail::find($Id);
         $data['esicDocuments'] = Documents::where(['for_multiple' => 'ESIC Company'])->get();
         $data['esicSignatory'] = UserEsicSignatory :: where(['user_esic_id' => $Id])->get();
         $data['esicSignatoryDocuments'] = Documents::where(['for_multiple' => 'ESIC Signatory'])->get();
         $data['esicOthers'] = UserEsicSignatory :: where(['user_esic_id' => $Id])->get();
         $data['esicOthersDocuments'] = Documents::where(['for_multiple' => 'ESIC Others'])->get();
+        }
 
-
+        if($name=='trademark'){
         $data['trademarkDetails'] = UserTrademarkDetail::find($Id);
         $data['trademarkDocuments'] = Documents::where(['for_multiple' => 'TRADEMARK Company'])->get();
         $data['trademarkSignatory'] = UserTrademarkSignatory :: where(['user_trademark_id' => $Id])->get();
         $data['trademarkSignatoryDocuments'] = Documents::where(['for_multiple' => 'TRADEMARK Signatory'])->get();
         $data['trademarkOthers'] = UserTrademarkSignatory :: where(['user_trademark_id' => $Id])->get();
         $data['trademarkOthersDocuments'] = Documents::where(['for_multiple' => 'TRADEMARK Others'])->get();
+        }
 
-
+        if($name=='company'){
         $data['companyDetails'] = UserCompanyDetail::find($Id);
         $data['companyDocuments'] = Documents::where(['for_multiple' => 'COMPANY'])->get();
         $data['companyDirector'] = UserCompanySignatory :: where(['user_comp_id' => $Id])->get();
         $data['companyDirectorDocuments'] = Documents::where(['for_multiple' => 'COMPANY Signatory'])->get();
-   
+        }
 
+        if($name=='partnership'){
         $data['partnershipDetails'] = UserPartnershipDetail::find($Id);
         $data['partnershipDocuments'] = Documents::where(['for_multiple' => 'PARTNERSHIP'])->get();
         $data['partnershipPartner'] = UserPartnershipPartner :: where(['user_partnership_id' => $Id])->get();
         $data['partnershipPartnerDocuments'] = Documents::where(['for_multiple' => 'PARTNERSHIP Partner'])->get();
-   
+        }
 
+        if($name=='huf'){
         $data['hufDetails'] = UserHufDetail::find($Id);
         $data['hufMember'] = UserHufMember :: where(['user_huf_id' => $Id])->get();
         $data['hufMemberDocuments'] = Documents::where(['for_multiple' => 'HUF Member'])->get();
-   
+        }
 
+        if($name=='trust'){
         $data['trustDetails'] = UserTrustDetail::find($Id);
         $data['trustDocuments'] = Documents::where(['for_multiple' => 'TRUST'])->get();
         $data['trustMember'] = UserTrustMember :: where(['user_trust_id' => $Id])->get();
         $data['trustMemberDocuments'] = Documents::where(['for_multiple' => 'TRUST Member'])->get();
-   
+        }
 
+        if($name=='udamy'){
         $data['udamyDetails'] = UserUdamyDetail::find($Id);
         $data['udamyDocuments'] = Documents::where(['for_multiple' => 'UDAMY'])->get();
+        }
 
+        if($name=='importexport'){
         $data['importexportDetails'] = UserImportExportDetail::find($Id);
         $data['importexportDocuments'] = Documents::where(['for_multiple' => 'IE'])->get();
-
+        }
  
+        if($name=='labour'){
         $data['labourDetails'] = UserLabourDetail::find($Id);
         $data['labourDocuments'] = Documents::where(['for_multiple' => 'Petty Contract'])->get();
         $data['labourSignatory'] = UserLabourSignatory :: where(['user_labour_id' => $Id])->get();
         $data['labourSignatoryDocuments'] = Documents::where(['for_multiple' => 'Petty Contract Signatory'])->get();
         // $data['labourOthers'] = UserLabourSignatory :: where(['user_labour_id' => $Id])->get();
         $data['labourOthersDocuments'] = Documents::where(['for_multiple' => 'Labour Contract'])->get();
+        }
  
+        if($name=='shop'){
         $data['shopDetails'] = UserShopDetail::find($Id);
         $data['shopDocuments'] = Documents::where(['for_multiple' => 'SHOP'])->get();
+        }
 
+        if($name=='iso'){
         $data['isoDetails'] = UserIsoDetail::find($Id);
         $data['isoDocuments'] = Documents::where(['for_multiple' => 'ISO'])->get();
+        }
 
+        if($name=='fssai'){
         $data['fssaiDetails'] = UserFssaiDetail::find($Id);
         $data['fssaiDocuments'] = Documents::where(['for_multiple' => 'FSSAI'])->get();
+        }
 
+        if($name=='itr'){
         $data['itrDetails'] = UserItrDetail::find($Id);
         $data['itrDocuments'] = Documents::where(['for_multiple' => 'ITR'])->get();
+        }
 
+        if($name=='taxaudit'){
         $data['taxauditDetails'] = UserTaxauditDetail::find($Id);
         $data['taxauditDocuments'] = Documents::where(['for_multiple' => 'TAXAUDIT'])->get();
-
+        }
+        
+        if($name=='tds'){
         $data['tdsDetails'] = UserTdsDetail::find($Id);
         $data['tdsDocuments'] = Documents::where(['for_multiple' => 'TDS'])->get();
+        }
 
+        if($name=='factorylicense'){
         $data['factorylicenseDetails'] = UserFactoryLicenseDetail::find($Id);
         $data['factorylicenseDocuments'] = Documents::where(['for_multiple' => 'FL'])->get();
-
-        return view('admin.pages.users.forms.all_profiles')->with($data);
+        }
+        $page['profilePage'] = $name; 
+       
+        return view('admin.pages.users.forms.all_profiles')->with($data)->with($page);
     }
 
     public function allProfileDocDownload(Request $request, $userId){

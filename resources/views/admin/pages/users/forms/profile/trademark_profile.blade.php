@@ -25,7 +25,7 @@
                                     aria-label="Close"></button>
                             </div>
                             @endif
-              @if($trademarkDetails->type == 'New TRADEMARK Registration')
+              @if($trademarkDetails->type == 'New Trademark Registration')
               <div class="card mb-3">
 
 
