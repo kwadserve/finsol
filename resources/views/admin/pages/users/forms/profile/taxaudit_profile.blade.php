@@ -35,47 +35,9 @@
                 </div>
                 <div class="card-body bg-light">
 
-                
-                <?php
-//Columns must be a factor of 12 (1,2,3,4,6,12)
-$numOfCols = 3;
-$rowCount = 0;
-$bootstrapColWidth = 12 / $numOfCols;
-?>
-<div class="row">
-<?php
-foreach ($taxauditDocuments as $row){
-?>  
-        <div class="col-md-<?php echo $bootstrapColWidth; ?>">
-        <h6>{{$row->doc_name}}</h6> 
-        <div class="thumbnail">
-          @php 
-          $keyname =$row->doc_key_name;
-          @endphp
-
-        <form action="{{ url('admin/user/files/'.$taxauditDetails->user_id) }}" method="POST">
-          @csrf
-  
-          
-              <input type="hidden" name="files" value="{{$taxauditDetails[$keyname]}}">
-              <input type="hidden" name="id" value="{{ $taxauditDetails->id }}">  
-              <input type="hidden" name="form_type" value="Taxaudit">  
-          
-            <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
-       </form>
-
-        <!-- <a class=" justify-content-between ms-auto" href="#!">
-         Download
-        </a> -->
-       
-        </div>
-        <br/>
-        </div>
-<?php
-    $rowCount++;
-    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-}
-?>
+                @include('admin.pages.users.forms.profile.common',
+        ['documents'=> $taxauditDocuments,'form_type'=>'Taxaudit', 'details'=>$taxauditDetails])
+      
 </div>
 
 

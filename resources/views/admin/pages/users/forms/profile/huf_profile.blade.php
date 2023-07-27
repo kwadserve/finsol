@@ -48,40 +48,10 @@
                 </div>
                 <div class="card-body bg-light">
 
-               
+                @include('admin.pages.users.forms.profile.common',
+        ['documents'=> $hufMemberDocuments,'form_type'=>'Huf', 'details'=>$hufDetails])
 
-                        <?php
-//Columns must be a factor of 12 (1,2,3,4,6,12)
-$numOfCols1 = 3;
-$rowCount1 = 0;
-$bootstrapColWidth1 = 12 / $numOfCols1;
-?>
-<div class="row">
-<?php
-foreach ($hufMemberDocuments as $row){
-?>  
-        <div class="col-md-<?php echo $bootstrapColWidth1; ?>">
-        <h6>{{$row->doc_name}}</h6> 
-        @php 
-          $keyname =$row->doc_key_name;
-          @endphp
-
-        <form action="{{ url('admin/user/files/'.$hufDetails->user_id) }}" method="POST">
-          @csrf
-  
-          <input type="hidden" name="files" value="{{$hufDetails[$keyname] }}">
-              <input type="hidden" name="id" value="{{ $hufDetails->id }}">  
-              <input type="hidden" name="form_type" value="Huf">  
  
-            <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
-       </form>
-        <br/>
-        </div>
-<?php
-    $rowCount1++;
-    if($rowCount1 % $numOfCols1 == 0) echo '</div><div class="row">';
-}
-?>
 </div>
 
 

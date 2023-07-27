@@ -33,48 +33,11 @@
                 </div>
                 <div class="card-body bg-light">
 
-                
-                <?php
-//Columns must be a factor of 12 (1,2,3,4,6,12)
-$numOfCols = 3;
-$rowCount = 0;
-$bootstrapColWidth = 12 / $numOfCols;
-?>
-<div class="row">
-<?php
-foreach ($importexportDocuments as $row){
-?>  
-        <div class="col-md-<?php echo $bootstrapColWidth; ?>">
-        <h6>{{$row->doc_name}}</h6> 
-        <div class="thumbnail">
-          @php 
-          $keyname =$row->doc_key_name;
-          @endphp
+                @include('admin.pages.users.forms.profile.common',
+        ['documents'=> $importexportDocuments,'form_type'=>'ImportExport', 'details'=>$importexportDetails])
 
-        <form action="{{ url('admin/user/files/'.$importexportDetails->user_id) }}" method="POST">
-          @csrf
-  
-          
-              <input type="hidden" name="files" value="{{$importexportDetails[$keyname] }}">
-              <input type="hidden" name="id" value="{{ $importexportDetails->id }}">  
-              <input type="hidden" name="form_type" value="ImportExport">  
-          
-            <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<simportexport  class="text-500 fas fa-download"></simportexport></button>  
-       </form>
-
-        <!-- <a class=" justify-content-between ms-auto" href="#!">
-         Download
-        </a> -->
-       
-        </div>
-        <br/>
-        </div>
-<?php
-    $rowCount++;
-    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-}
-?>
-</div>
+             
+             </div>
 
 
                 
