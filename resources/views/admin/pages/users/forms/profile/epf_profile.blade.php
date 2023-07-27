@@ -35,7 +35,7 @@
     </div>
     <div class="card-body bg-light">
         @include('admin.pages.users.forms.profile.common',
-        ['documents'=> $epfDocuments,'form_type'=>'Epf', 'details'=>$epfDetails])
+        ['documents'=> $epfDocuments,'form_type'=>'Epf/'.$epfDetails['epf_type'], 'details'=>$epfDetails])
 
 
     </div>
@@ -62,20 +62,21 @@
             &nbsp;&nbsp;&nbsp;<span>Signatory Mobile :{{$sign->epf_sign_mobile}}</span></h6>
     </div>
     <div class="card-body bg-light">
-    @include('admin.pages.users.forms.profile.common',
-        ['documents'=> $epfSignatoryDocuments,'form_type'=>'Epf', 'details'=>$epfDetails])
-
- 
-        </div>
-
-
-
-
-
-
+        @include('admin.pages.users.forms.profile.common',
+        ['documents'=> $epfSignatoryDocuments,'form_type'=>'Epf/'.$epfDetails['epf_type'].'/Signatory/',
+        'details'=>$sign])
 
 
     </div>
+
+
+
+
+
+
+
+
+</div>
 
 
 

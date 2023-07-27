@@ -212,7 +212,7 @@ class FormsDashboardController extends Controller
         $formType = $request->input('form_type'); 
         $userDetails = User::find($userId);
         $useName = trim($userDetails->name).'-'.$userId; 
-        $zipName = $formType.'-'.$useName.'.zip';
+        $zipName = str_replace('/','-',$formType).'-'.$useName.'.zip';
         $folderPath = 'uploads/users/'.$useName.'/'.$formType.'/'; 
         $zip = new \ZipArchive();
         $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
