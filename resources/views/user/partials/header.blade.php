@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-light navbar-vertical navbar-expand-xl" style="display: none;">
     <script>
         var navbarStyle = localStorage.getItem("navbarStyle");
@@ -36,6 +37,7 @@
                                  class="fas fa-chart-pie"></span></span><span class="nav-link-text ps-1">Registration</span></div>
                            </a>
                            <ul class="nav collapse show" id="registration">
+                           <?php $rowcount = App\Models\User::getAnyoftheformshasrecord();  ?>
                             @if(isset($rowcount) && $rowcount > 0)
                                 <li class="nav-item">
                                  <a class="nav-link" href="{{route('form_dashboard')}}">
