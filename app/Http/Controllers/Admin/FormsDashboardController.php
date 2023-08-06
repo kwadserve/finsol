@@ -301,7 +301,7 @@ class FormsDashboardController extends Controller
                  
                 $details = UserTanDetail::find($id); 
                 $content =  '<label>Tan Number</label>
-                <input type="text" class="form-control"  required="required" name=tan_number" value="" placeholder="Enter the Tan Number" />
+                <input type="text" class="form-control" name="tan_number"  required="required" value=""  placeholder="Enter the Tan Number" />
                 <label>Name of Tan</label>
                 <input type="text"  required="required" class="form-control" id="nameoftan" name="name_of_tan" value="'.$details->name_of_tan.'"  placeholder="Name of Tan" />';
                  
@@ -310,7 +310,7 @@ class FormsDashboardController extends Controller
                  
                 $details = UserPanDetail::find($id);
                 $content = '<label>Pan Number</label>
-                <input type="text" class="form-control"  required="required" name=pan_number" value="" placeholder="Enter the Pan Number" />
+                <input type="text" class="form-control"  required="required" name="pan_number" value=""  placeholder="Enter the Pan Number" />
                 <label>Name of Pan</label>
                 <input type="text"  required="required" class="form-control"  name="name_of_pan" value="'.$details->name_of_pan.'" placeholder="Name of Pan" />';
                  
@@ -319,7 +319,7 @@ class FormsDashboardController extends Controller
                  
                     $details = UserEpfDetail::find($id);
                     $content = '<label>Epf Number</label>
-                    <input type="text" class="form-control"  required="required" name=pan_number" value="" placeholder="Enter the Epf Number" />
+                    <input type="text" class="form-control"  required="required" name="epf_number" value="" placeholder="Enter the Epf Number" />
                     <label>Name of Epf</label>
                     <input type="text"  required="required" class="form-control"  name="name_of_epf" value="'.$details->name_of_epf.'" placeholder="Name of Epf" />';
                      
@@ -329,7 +329,7 @@ class FormsDashboardController extends Controller
                  
                         $details = UserEsicDetail::find($id);
                         $content = '<label>ESIC Number</label>
-                        <input type="text" class="form-control"  required="required" name=esic_number" value="" placeholder="Enter the Esic Number" />
+                        <input type="text" class="form-control"  required="required" name="esic_number" value="" placeholder="Enter the Esic Number" />
                         <label>Name of Esic</label>
                         <input type="text"  required="required" class="form-control"  name="name_of_esic" value="'.$details->name_of_esic.'" placeholder="Name of Esic" />';
                          
@@ -339,7 +339,7 @@ class FormsDashboardController extends Controller
                  
                             $details = UserTrademarkDetail::find($id);
                             $content = '<label>Trademark Number</label>
-                            <input type="text" class="form-control"  required="required" name=trademark_number" value="" placeholder="Enter the Trademark Number" />
+                            <input type="text" class="form-control"  required="required" name="trademark_number" value="" placeholder="Enter the Trademark Number" />
                             <label>Name of Trademark</label>
                             <input type="text"  required="required" class="form-control"  name="name_of_trademark" value="'.$details->name_of_trademark.'" placeholder="Name of Trademark" />';
                              
@@ -348,7 +348,7 @@ class FormsDashboardController extends Controller
                  
                                 $details = UserCompanyDetail::find($id);
                                 $content = '<label>Company Number</label>
-                                <input type="text" class="form-control"  required="required" name=company_number" value="" placeholder="Enter the Company Number" />
+                                <input type="text" class="form-control"  required="required" name="company_number" value="" placeholder="Enter the Company Number" />
                                 <label>Name of Company</label>
                                 <input type="text"  required="required" class="form-control"  name="name_of_company" value="'.$details->name_of_company.'" placeholder="Name of Company" />';
                                  
@@ -358,7 +358,7 @@ class FormsDashboardController extends Controller
                  
                                     $details = UserPartnershipDetail::find($id);
                                     $content = '<label>Partnership Number</label>
-                                    <input type="text" class="form-control"  required="required" name=partnership_number" value="" placeholder="Enter the Partnership Number" />
+                                    <input type="text" class="form-control"  required="required" name="partnership_number" value="" placeholder="Enter the Partnership Number" />
                                     <label>Name of Partnership</label>
                                     <input type="text"  required="required" class="form-control"  name="name_of_partnership" value="'.$details->name_of_partnership.'" placeholder="Name of Partnership" />';
                                      
@@ -368,7 +368,7 @@ class FormsDashboardController extends Controller
                  
                                         $details = UserHufDetail::find($id);
                                         $content = '<label>Huf Number</label>
-                                        <input type="text" class="form-control"  required="required" name=huf_number" value="" placeholder="Enter the Huf Number" />
+                                        <input type="text" class="form-control"  required="required" name="huf_number" value="" placeholder="Enter the Huf Number" />
                                         <label>Name of Huf</label>
                                         <input type="text"  required="required" class="form-control"  name="name_of_huf" value="'.$details->name_of_huf.'" placeholder="Name of Huf" />';
                                          
@@ -378,7 +378,7 @@ class FormsDashboardController extends Controller
                  
                                             $details = UserTrustDetail::find($id);
                                             $content = '<label>Trust Number</label>
-                                            <input type="text" class="form-control"  required="required" name=trust_number" value="" placeholder="Enter the Trust Number" />
+                                            <input type="text" class="form-control"  required="required" name="trust_number" value="" placeholder="Enter the Trust Number" />
                                             <label>Name of Trust</label>
                                             <input type="text"  required="required" class="form-control"  name="name_of_trust" value="'.$details->name_of_trust.'" placeholder="Name of Trust" />';
                                              
@@ -387,7 +387,7 @@ class FormsDashboardController extends Controller
                                               else if($formtype=="udamy"){
                                                 $details = UserUdamyDetail::find($id);
                                                 $content = '<label>Udamy Number</label>
-                                                <input type="text" class="form-control"  required="required" name=udamy_number" value="" placeholder="Enter the Udamy Number" />
+                                                <input type="text" class="form-control"  required="required" name="udamy_number" value="" placeholder="Enter the Udamy Number" />
                                                 <label>Name of Udamy</label>
                                                 <input type="text"  required="required" class="form-control"  name="name_of_udamy" value="'.$details->name_of_udamy.'" placeholder="Name of Udamy" />';
                                                 } 
@@ -396,7 +396,7 @@ class FormsDashboardController extends Controller
                                               else if($formtype=="importexport"){
                                                 $details = UserImportExportDetail::find($id);
                                                 $content = '<label>Firm Number</label>
-                                                <input type="text" class="form-control"  required="required" name=firm_number" value="" placeholder="Enter the Firm Number" />
+                                                <input type="text" class="form-control"  required="required" name="firm_number" value="" placeholder="Enter the Firm Number" />
                                                 <label>Name of Firm</label>
                                                 <input type="text"  required="required" class="form-control"  name="name_of_firm" value="'.$details->name_of_firm.'" placeholder="Name of Firm" />';
                                                 } 
@@ -405,7 +405,7 @@ class FormsDashboardController extends Controller
                  
                                                     $details = UserLabourDetail::find($id);
                                                     $content = '<label>Labour Number</label>
-                                                    <input type="text" class="form-control"  required="required" name=labour_number" value="" placeholder="Enter the Labour Number" />
+                                                    <input type="text" class="form-control"  required="required" name="labour_number" value="" placeholder="Enter the Labour Number" />
                                                     <label>Name of Labour</label>
                                                     <input type="text"  required="required" class="form-control"  name="name_of_labour" value="'.$details->name_of_labour.'" placeholder="Name of Labour" />';
                                                      
@@ -413,7 +413,7 @@ class FormsDashboardController extends Controller
                  
                                                         $details = UserShopDetail::find($id); 
                                                         $content =  '<label>Shop Number</label>
-                                                        <input type="text" class="form-control"  required="required" name=shop_number" value="" placeholder="Enter the Shop Number" />
+                                                        <input type="text" class="form-control"  required="required" name="shop_number" value="" placeholder="Enter the Shop Number" />
                                                         <label>Name of Shop</label>
                                                         <input type="text"  required="required" class="form-control" id="nameofshop" name="name_of_shop" value="'.$details->name_of_shop.'"  placeholder="Name of Shop" />';
                                                          
@@ -422,28 +422,28 @@ class FormsDashboardController extends Controller
                  
                                                         $details = UserIsoDetail::find($id); 
                                                         $content =  '<label>ISO Number</label>
-                                                        <input type="text" class="form-control"  required="required" name=iso_number"   placeholder="Enter the Iso Number" />
+                                                        <input type="text" class="form-control"  required="required" name="iso_number"   placeholder="Enter the Iso Number" />
                                                         <label>Name of ISO</label>
                                                         <input type="text"  required="required" class="form-control" id="nameofiso" name="name_of_iso" value="'.$details->name_of_iso.'"  placeholder="Name of Iso" />'; 
                                                     } else if($formtype=="fssai"){
                  
                                                         $details = UserFssaiDetail::find($id); 
                                                         $content =  '<label>Fssai Number</label>
-                                                        <input type="text" class="form-control"  required="required" name=fssai_number"   placeholder="Enter the Fssai Number" />
+                                                        <input type="text" class="form-control"  required="required" name="fssai_number"   placeholder="Enter the Fssai Number" />
                                                         <label>Name of Fssai</label>
                                                         <input type="text"  required="required" class="form-control" id="nameoffssai" name="name_of_fssai" value="'.$details->name_of_fssai.'"  placeholder="Name of Fssai" />'; 
                                                     } else if($formtype=="itr"){
                  
                                                         $details = UserItrDetail::find($id); 
                                                         $content =  '<label>Itr Number</label>
-                                                        <input type="text" class="form-control"  required="required" name=itr_number"   placeholder="Enter the Itr Number" />
+                                                        <input type="text" class="form-control"  required="required" name="itr_number"   placeholder="Enter the Itr Number" />
                                                         <label>Name of Itr</label>
                                                         <input type="text"  required="required" class="form-control" id="nameofitr" name="name_of_itr" value="'.$details->name_of_itr.'"  placeholder="Name of Itr" />'; 
                                                     } else if($formtype=="taxaudit"){
                  
                                                         $details = UserTaxauditDetail::find($id); 
                                                         $content =  '<label>Tax Audit Number</label>
-                                                        <input type="text" class="form-control"  required="required" name=taxaudit_number"   placeholder="Enter the Taxaudit Number" />
+                                                        <input type="text" class="form-control"  required="required" name="taxaudit_number"   placeholder="Enter the Taxaudit Number" />
                                                         <label>Name of Tax</label>
                                                         <input type="text"  required="required" class="form-control" id="nameoftaxaudit" name="name_of_taxaudit" value="'.$details->name_of_taxaudit.'"  placeholder="Name of Taxaudit" />'; 
                                                     }
@@ -451,7 +451,7 @@ class FormsDashboardController extends Controller
                  
                                                         $details = UserTdsDetail::find($id); 
                                                         $content =  '<label>Tds/Tcs  Number</label>
-                                                        <input type="text" class="form-control"  required="required" name=tds_number"   placeholder="Enter the Tds/Tcs  Number" />
+                                                        <input type="text" class="form-control"  required="required" name="tds_number"   placeholder="Enter the Tds/Tcs  Number" />
                                                         <label>Name of Tds/Tcs </label>
                                                         <input type="text"  required="required" class="form-control" id="nameoftds" name="name_of_tds" value="'.$details->name_of_itr.'"  placeholder="Name of Tds/Tcs " />'; 
                                                     }
@@ -459,7 +459,7 @@ class FormsDashboardController extends Controller
                                                     else if($formtype=="factorylicense"){
                                                         $details = UserFactoryLicenseDetail::find($id);
                                                         $content = '<label>Factory License Number</label>
-                                                        <input type="text" class="form-control"  required="required" name=facl_number" value="" placeholder="Enter the Factory License Number" />
+                                                        <input type="text" class="form-control"  required="required" name="facl_number" value="" placeholder="Enter the Factory License Number" />
                                                         <label>Name of Factory License</label>
                                                         <input type="text"  required="required" class="form-control"  name="name_of_facl" value="'.$details->name_of_facl.'" placeholder="Name of Factory License" />';
                                                         } 
@@ -598,7 +598,7 @@ class FormsDashboardController extends Controller
                     $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'raised_img');
                     $datas->admin_note = $request->admin_note; 
                     $datas->raised_img = $img['raised_img'];
-                 }
+                 }                
                 $datas->save();
                 break; 
 

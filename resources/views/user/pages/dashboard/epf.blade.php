@@ -15,9 +15,9 @@
 
                                                             <tbody>
                                                                 @if($userEpfDetails)
-                                                                @foreach($userEpfDetails as $detail)
+                                                                @foreach($userEpfDetails as $key =>  $detail)
                                                                 <tr class="align-middle" data-toggle="collapse"
-                                                                    data-target="#{{$detail->type}}"
+                                                                    data-target="#{{$detail->type.$key}}"
                                                                     class="accordion-toggle">
 
                                                                     <td class="text-nowrap">{{isset($detail->name_of_epf)?$detail->name_of_epf:'-'}}</td>

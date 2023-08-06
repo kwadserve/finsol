@@ -16,9 +16,9 @@
 
                                                             <tbody>
                                                                 @if($userGstDetails)
-                                                                @foreach($userGstDetails as $detail)
+                                                                @foreach($userGstDetails as $key=> $detail)
                                                                 <tr class="align-middle" data-toggle="collapse"
-                                                                    data-target="#{{$detail->gst_type}}"
+                                                                    data-target="#{{$detail->gst_type.$key}}"
                                                                     class="accordion-toggle">
                                                                     <!-- <td><button class="btn btn-default btn-xs"><span
                                                                                 class="glyphicon glyphicon-eye-open"></span></button>

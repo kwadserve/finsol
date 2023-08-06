@@ -31,7 +31,7 @@
                  <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                      number
                      registered with aadhar</label><input class="form-control" required="" type="text"
-                     name="firm_mobile" placeholder="Enter Mobile No" id="form-wizard-progress-wizard-addregnum" />
+                     name="firm_mobile" placeholder="Enter Mobile No" maxlength="10" id="form-wizard-progress-wizard-addregnum" />
                  <div class="invalid-feedback">Please provide Mobile
                      number</div>
              </div>

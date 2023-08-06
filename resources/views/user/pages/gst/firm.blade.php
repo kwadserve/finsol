@@ -35,7 +35,7 @@
                     <label class="form-label" for="form-wizard-progress-wizard-addregnum">Mobile
                         number
                         of firm</label><input class="form-control" required="" type="text" name="mobile_linked_aadhar"
-                        placeholder="Enter Mobile No" id="form-wizard-progress-wizard-addregnum" />
+                        placeholder="Enter Mobile No" maxlength="10" id="form-wizard-progress-wizard-addregnum" />
                     <div class="invalid-feedback">Please provide Mobile
                         number</div>
                 </div>
