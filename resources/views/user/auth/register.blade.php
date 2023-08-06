@@ -102,11 +102,80 @@
                   <div class="col-md-7 d-flex flex-center">
                     <div class="p-4 p-md-5 flex-grow-1">
                       <h3>Register</h3>
-                      <form class="needs-validation" novalidate="">
+                      <form class="needs-validation" novalidate=""  method="POST" action="{{ route('register') }}">
+                      @csrf
                         <div class="row gx-2">
-                          <div class="mb-3"><label class="form-label" for="aadhar-number">Aadhar Number</label><input class="form-control" type="number" min="12" autocomplete="on" required="" id="aadhar-number" />
-                            <div class="invalid-feedback">Please Provide 16 digit Valid Aadhar Number</div></div>
-                            <div class="mb-3"><button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Fetch Details</button></div>
+                          <!-- <div class="mb-3">
+                            <label class="form-label" for="aadhar-number">Aadhar Number</label>
+                            <input class="form-control" type="number" min="12" autocomplete="on" required="" id="aadhar-number" />
+                            <div class="invalid-feedback">Please Provide 16 digit Valid Aadhar Number</div>
+                          </div> -->
+
+                          @if ($errors->any())    
+    <ul>
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
+    </ul>
+@endif
+
+@if (session()->has('message'))
+    <p class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </p>
+@endif
+
+                          <div class="mb-3">
+                            <label class="form-label" for="">Name</label>
+                            <input class="form-control" type="text" name="name"  autocomplete="on" required="" id="" />
+                            <div class="invalid-feedback">Please Provide Name</div>
+                          </div>
+
+                          <!-- <div class="mb-3">
+                            <label class="form-label" for="">Last Name</label>
+                            <input class="form-control" type="text"  autocomplete="on" required="" id="" />
+                            <div class="invalid-feedback">Please Provide 16 digit Valid Last Name</div>
+                          </div> -->
+
+                          <div class="mb-3">
+                            <label class="form-label" for="">Email</label>
+                            <input class="form-control" type="text" name="email"  autocomplete="on" required="" id="" />
+                            <div class="invalid-feedback">Please Provide Email</div>
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label" for="">Password</label>
+                            <input class="form-control" type="password" name="password"  autocomplete="on" required="" id="" />
+                            <div class="invalid-feedback">Please Provide Password</div>
+                          </div>
+
+                          
+
+                           <div class="mb-3">
+                            <label class="form-label" for="">State</label>
+                            <input class="form-control" type="text" name="state" autocomplete="on" required="" id="" />
+                            <div class="invalid-feedback">Please Provide State</div>
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label" for="">District</label>
+                            <input class="form-control" type="text"  name="district"  autocomplete="on" required="" id="" />
+                            <div class="invalid-feedback">Please Provide District</div>
+                          </div>
+
+                          <div class="mb-3">
+                            <label class="form-label" for="">City</label>
+                            <input class="form-control" type="text"  name="city"  autocomplete="on" required="" id="" />
+                            <div class="invalid-feedback">Please Provide City</div>
+                          </div>
+                          
+                          
+                          
+                            <div class="mb-3">
+                              <button class="btn btn-primary d-block w-100 mt-3" type="submit" name="submit">Create User</button>
+                            </div>
                        
                           
                       </form>
