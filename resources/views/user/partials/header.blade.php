@@ -288,7 +288,7 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('mgt.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">MGT-7</span></div>
                                  </a>
                                  <!-- more inner pages-->
@@ -300,7 +300,7 @@
                                  <!-- more inner pages-->
                               </li>
                                <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('minutes.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Minutes</span></div>
                                  </a>
                                  <!-- more inner pages-->
