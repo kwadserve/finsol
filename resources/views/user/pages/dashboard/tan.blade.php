@@ -15,9 +15,9 @@
 
                                                             <tbody>
                                                                 @if($userTanDetails)
-                                                                @foreach($userTanDetails as $detail)
+                                                                @foreach($userTanDetails as $key =>  $detail)
                                                                 <tr class="align-middle" data-toggle="collapse"
-                                                                    data-target="#{{$detail->type}}"
+                                                                    data-target="#{{$detail->type.$key}}"
                                                                     class="accordion-toggle">
 
                                                                     <td class="text-nowrap">{{isset($detail->name_of_tan)?$detail->name_of_tan:'-'}}</td>

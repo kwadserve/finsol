@@ -75,7 +75,7 @@
                  <label class="form-label" for="form-wizard-progress-wizard-addregnum">
                      Mobile number
                      registered with aadhar</label><input class="form-control" type="text"
-                     name="companysignatory[0][mobile]" placeholder="Enter Mobile No"
+                     name="companysignatory[0][mobile]" maxlength="10" placeholder="Enter Mobile No"
                      id="form-wizard-progress-wizard-addregnum" />
                  <div class="invalid-feedback">Please provide Mobile
                      number</div>

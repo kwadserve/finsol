@@ -37,7 +37,7 @@
                  <label class="form-label" for="form-wizard-progress-wizard-addregnum">
                      Mobile number
                      </label><input class="form-control" type="text"
-                     name="trust_mobile" required="required" placeholder="Enter Mobile No"
+                     name="trust_mobile" required="required"  maxlength="10" placeholder="Enter Mobile No"
                      id="form-wizard-progress-wizard-addregnum" />
                  <div class="invalid-feedback">Please provide Mobile
                      number</div>

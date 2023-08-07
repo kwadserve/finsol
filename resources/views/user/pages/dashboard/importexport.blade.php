@@ -15,9 +15,9 @@
 
                                                             <tbody>
                                                                 @if($userImportExportDetails)
-                                                                @foreach($userImportExportDetails as $detail)
+                                                                @foreach($userImportExportDetails as $key =>  $detail)
                                                                 <tr class="align-middle" data-toggle="collapse"
-                                                                    data-target="#{{$detail->type}}"
+                                                                    data-target="#{{$detail->type.$key}}"
                                                                     class="accordion-toggle">
 
                                                                     <td class="text-nowrap">{{isset($detail->name_of_firm)?$detail->name_of_firm:'-'}}</td>

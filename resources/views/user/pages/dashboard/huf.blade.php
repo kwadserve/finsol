@@ -15,9 +15,9 @@
 
                                                             <tbody>
                                                                 @if($userHufDetails)
-                                                                @foreach($userHufDetails as $detail)
+                                                                @foreach($userHufDetails as $key =>  $detail)
                                                                 <tr class="align-middle" data-toggle="collapse"
-                                                                    data-target="#{{$detail->type}}"
+                                                                    data-target="#{{$detail->type.$key}}"
                                                                     class="accordion-toggle">
 
                                                                     <td class="text-nowrap">{{isset($detail->name_of_huf)?$detail->name_of_huf:'-'}}</td>

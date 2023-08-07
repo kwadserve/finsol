@@ -59,11 +59,11 @@
                                                                 Updated<span class="ms-1 fas fa-stream"
                                                                     data-fa-transform="shrink-2"></span></span>
                                                              @if($detail->additional_img!="")        
-                                                         <form action="{{ url('admin/user/forms/download/additional/file/' . $detail->user_id) }}" method="POST">
+                                                         <form action="{{ url('admin/user/forms/additional/file/' . $detail->user_id) }}" method="POST">
                                                                                     @csrf
                                                                                     
                                                                                         <input type="hidden" name="files" value="{{ $detail->additional_img }}">
-                                                                                    
+                                                                                        <input type="hidden" name="form_type" value="Tan">
                                                                                       <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download File</small>&nbsp;&nbsp;<span  class="text-500 fas fa-download"></span></button>  
                                                                                 </form>
                                                                                 @endif
