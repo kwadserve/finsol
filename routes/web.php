@@ -176,3 +176,15 @@ Route::post('tds/register', 'TdsController@storeTds')->name('tds.register');
 //Factory License Code registration DETAILS 
 Route::get('factorylicense/register', 'FactoryLicenseController@register_form')->name('factorylicense.register_form');
 Route::post('factorylicense/register', 'FactoryLicenseController@storeFactoryLicense')->name('factorylicense.register');
+
+Route::group([
+    'namespace' => 'CompaniesAct',
+], function () {
+// CompaniesAct 
+Route::get('minutes/register', 'MinutesController@register_form')->name('minutes.register_form');
+Route::post('minutes/register', 'MinutesController@storeMinutes')->name('minutes.register');
+
+Route::get('mgt/register', 'MgtController@register_form')->name('mgt.register_form');
+Route::post('mgt/register', 'MgtController@storeMgt')->name('mgt.register');
+
+});
