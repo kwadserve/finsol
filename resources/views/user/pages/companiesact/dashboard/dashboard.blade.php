@@ -18,15 +18,15 @@ use App\Models\UserGstDetail;
                         <!-- <section> begin ============================-->
                         <section class="text-center">
                             <div class="card-body">
-                                <!-- <div class="row">
+                                 <div class="row">
                                     <div class="col">
-                                        <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">Registration<font
+                                        <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">CompaniesAct<font
                                                 color="#ec465f">Status
                                             </font>
                                         </h1>
                                         <p class="lead">Things you will get right out of the box with Finsol.</p>
                                     </div>
-                                </div> -->
+                                </div>  
 
                                 <!------ GST options drop ------->
 
@@ -48,12 +48,14 @@ use App\Models\UserGstDetail;
                                                                 <button class="btn-close" type="button"
                                                                     data-bs-dismiss="alert" aria-label="Close"></button>
                                                             </div>
-                                                            @endif
-
-                                                            
-
+                                                            @endif                                                           
+                                                            @include('user.pages.companiesact.dashboard.statutoryaudit')
+                                                            @include('user.pages.companiesact.dashboard.dinkyc')
+                                                            @include('user.pages.companiesact.dashboard.aoc')                                                       
+                                                            @include('user.pages.companiesact.dashboard.mgt')                                                            
+                                                            @include('user.pages.companiesact.dashboard.adt')
                                                             @include('user.pages.companiesact.dashboard.minutes')
-                                                             
+                                                                                                                      
                                                         </div>
 
                                                     </div>

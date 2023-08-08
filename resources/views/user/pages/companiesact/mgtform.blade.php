@@ -86,7 +86,7 @@
                                         @foreach ($mgtimages as $keyname => $image)
                                         <div class="col-6 mb-3">
                                             <div class="mb-3">
-                                                <label>{{$image['doc_name']}} Upload :</label>
+                                                <label>{{$image['doc_name']}}   :</label>
                                                 <!-- required="required"  -->
                                                 <input type="file" name="{{$image['doc_key_name']}}[]" id="image-upload"
                                                     class="myfrm form-control" multiple />

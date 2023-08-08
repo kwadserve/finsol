@@ -12,7 +12,7 @@
                 <span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i
                         class="fa-inverse fa-stack-1x text-primary fas fa-check-double"></i></span>
                 <div class="col">
-                    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">New Minutes
+                    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">New Din Kyc
                             Registration</span><span
                             class="border position-absolute top-50 translate-middle-y w-100 start-0 z-n1"></span>
                     </h5>
@@ -36,7 +36,7 @@
                                     aria-label="Close"></button>
                             </div>
                             @endif
-                            <form class="needs-validation" novalidate="novalidate" action="{{route('minutes.register')}}"
+                            <form class="needs-validation" novalidate="novalidate" action="{{route('dinkyc.register')}}"
                                 method="post" enctype="multipart/form-data">
                                 @csrf
 
@@ -47,7 +47,7 @@
                                 <div class="col-4">
                                         <div class="mb-3">
                                             <label class="form-label"
-                                                for="bootstrap-wizard-validation-wizard-email">Name for Minutes
+                                                for="bootstrap-wizard-validation-wizard-email">Name for Company
                                             </label><input class="form-control" type="text" name="name_of_company"
                                                 placeholder="Name for Company"
                                                 
@@ -83,11 +83,12 @@
                                         <h6 class="detailspadding mb-0">Upload documents required for Minutes </h6>
                                     </div> -->
                                     <div class="row g-2 ">
-                                        @foreach ($minutesimages as $keyname => $image)
+                                        @foreach ($dinkycimages as $keyname => $image)
                                         <div class="col-6 mb-3">
                                             <div class="mb-3">
-                                                <label>{{$image['doc_name']}} Upload :</label>
+                                                <label>{{$image['doc_name']}} :</label>
                                                 <!-- required="required"  -->
+                                                
                                                 <input type="file" name="{{$image['doc_key_name']}}[]" id="image-upload"
                                                     class="myfrm form-control" multiple />
                                             </div>

@@ -187,4 +187,26 @@ Route::post('minutes/register', 'MinutesController@storeMinutes')->name('minutes
 Route::get('mgt/register', 'MgtController@register_form')->name('mgt.register_form');
 Route::post('mgt/register', 'MgtController@storeMgt')->name('mgt.register');
 
+
+Route::get('adt/register', 'AdtController@register_form')->name('adt.register_form');
+Route::post('adt/register', 'AdtController@storeAdt')->name('adt.register');
+
+
+Route::get('aoc/register', 'AocController@register_form')->name('aoc.register_form');
+Route::post('aoc/register', 'AocController@storeAoc')->name('aoc.register');
+
+
+Route::get('dinkyc/register', 'DinkycController@register_form')->name('dinkyc.register_form');
+Route::post('dinkyc/register', 'DinkycController@storeDinkyc')->name('dinkyc.register');
+
+Route::get('statutoryaudit/register', 'StatutoryAuditController@register_form')->name('statutoryaudit.register_form');
+Route::post('statutoryaudit/register', 'StatutoryAuditController@storeAudit')->name('statutoryaudit.register');
+
+
+// Companies Act Dashboard details for all forms 
+Route::get('companiesact/dashboard', 'DashboardController@index')->name('companiesact_dashboard');
+Route::post('companiesact/download/raised/file', 'DashboardController@raisedFile')->name('companiesact_web_raisedFile');
+Route::post('companiesact/download/approved/file', 'DashboardController@approvedFile')->name('companiesact_web_approvedFile');
+Route::post('companiesact/queryraised', 'DashboardController@queryRaised')->name('companiesact_query_raised');
+
 });

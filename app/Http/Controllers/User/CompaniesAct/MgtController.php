@@ -14,7 +14,7 @@ class MgtController  extends Controller {
     public function register_form() {
      
         $data['mgtimages'] = Documents::where('for_multiple', 'MGT')->get();
-        return view('user.pages.companiesact.mgt.mgtform')->with($data);
+        return view('user.pages.companiesact.mgtform')->with($data);
     }
   
     public function storeMgt(Request $request) 
