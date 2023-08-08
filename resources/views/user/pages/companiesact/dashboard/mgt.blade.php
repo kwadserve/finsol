@@ -1,4 +1,4 @@
-@if(count($userMinutesDetails)>0)<b>Minutes Details</b>
+@if(count($userMgtDetails)>0)<b>Mgt Details</b>
 <hr />
 <table class="table table-condensed table-striped">
     <thead>
@@ -12,8 +12,8 @@
     </thead>
 
     <tbody>
-        @if($userMinutesDetails)
-        @foreach($userMinutesDetails as $key =>  $detail)
+        @if($userMgtDetails)
+        @foreach($userMgtDetails as $key =>  $detail)
         <tr class="align-middle" data-toggle="collapse"
             data-target="#{{$detail->type.$key}}"
         class="accordion-toggle">
@@ -41,7 +41,7 @@
                 @if($detail->raised_img!="")
                 <form action="{{ route('companiesact_web_raisedFile') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="form_type" value="Minutes">
+                    <input type="hidden" name="form_type" value="Mgt">
                     <input type="hidden" name="files" value="{{ $detail->raised_img }}">
 
                     <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download
@@ -64,7 +64,7 @@
                 @if($detail->approved_img!="")
                 <form action="{{ route('companiesact_web_approvedFile') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="form_type" value="Minutes">
+                    <input type="hidden" name="form_type" value="Mgt">
                     <input type="hidden" name="files" value="{{ $detail->approved_img }}">
 
                     <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download
@@ -118,7 +118,7 @@
                             <label>Enter Your Suggestion:</label>
                             <textarea name="user_note" style="height:90px;width:100%"></textarea>
 
-                            <input type="hidden" name="form_type" value="Minutes" />
+                            <input type="hidden" name="form_type" value="Mgt" />
 
                             <input type="hidden" name="id" value="{{$detail->id}}" />
                             <div class="mt-3">

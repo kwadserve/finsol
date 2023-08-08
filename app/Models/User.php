@@ -24,9 +24,19 @@ use App\Models\UserShopDetail;
 use App\Models\UserIsoDetail; 
 use App\Models\Documents;
 use App\Models\UserFssaiDetail; 
+
+// Itr Act 
 use App\Models\UserItrDetail; 
 use App\Models\UserTdsDetail; 
 use App\Models\UserTaxauditDetail; 
+
+//Companies act 
+use App\Models\CompaniesAct\UserMgtDetail;
+use App\Models\CompaniesAct\UserAdtDetail;
+use App\Models\CompaniesAct\UserAocDetail;
+use App\Models\CompaniesAct\UserMinutesDetail;
+use App\Models\CompaniesAct\UserDinkycDetail;
+use App\Models\CompaniesAct\UserStatutoryAuditDetail;
 
 class User extends Authenticatable
 {
@@ -116,6 +126,22 @@ class User extends Authenticatable
         || count($q) || count($r) || count($s) || count($t); 
         return $rowcount;     
     }
+
+     
+    protected function getCompaniesActhasrecord(){
+        $userId = auth()->user()->id; 
+        $a = UserMgtDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $b = UserAdtDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $c = UserAocDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $d = UserMinutesDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $e = UserDinkycDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $e = UserStatutoryAuditDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $rowcount  = count($a) || count($b) || count($c) || count($d)
+        || count($e) ; 
+        return $rowcount; 
+    }
+
+
 }
 
   

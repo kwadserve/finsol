@@ -14,7 +14,7 @@ class MinutesController  extends Controller {
     public function register_form() {
      
         $data['minutesimages'] = Documents::where('for_multiple', 'MINUTES')->get();
-        return view('user.pages.companiesact.minutes.minutesform')->with($data);
+        return view('user.pages.companiesact.minutesform')->with($data);
     }
   
     public function storeMinutes(Request $request) 

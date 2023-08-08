@@ -59,15 +59,26 @@ Route::group([
             Route::get('gsttype/details/{id}', 'UserGstController@gstProfile')->name('gstTypeDetails'); 
             Route::post('gst/files/{id}', 'UserGstController@downloadGstFile')->name('downloadGstFile');
 
-            // Display all form related to this user 
+            // Display all form related to this user on registration tab
             Route::get('forms/dashboard/details/{id}', 'FormsDashboardController@index')->name('form_dashboard');
             Route::post('forms/change_status', 'FormsDashboardController@change_status')->name('form_dashboard_change_status');
             Route::get('forms/statusview', 'FormsDashboardController@statusview')->name('form_statusView');
             Route::post('forms/additional/file/{id}', 'FormsDashboardController@additionalFile')->name('form_additionalFile');
             Route::post('forms/approved/file/{id}', 'FormsDashboardController@approvedFile')->name('form_approvedFile');
             Route::get('forms/details/{name}/{id1}', 'FormsDashboardController@allProfile')->name('allformProfile');
-            
             Route::post('files/{id}', 'FormsDashboardController@allProfileDocDownload')->name('allprofiledocdownload'); 
+
+            // Display all form related to this user on Companies Act tab
+
+            Route::get('companiesact/dashboard/details/{id}', 'CompaniesActDashboardController@index')->name('companiesact_dashboard');
+            Route::post('companiesact/change_status', 'CompaniesActDashboardController@change_status')->name('companiesact_dashboard_change_status');
+            Route::get('companiesact/statusview', 'CompaniesActDashboardController@statusview')->name('companiesact_statusView');
+            Route::post('companiesact/additional/file/{id}', 'CompaniesActDashboardController@additionalFile')->name('companiesact_additionalFile');
+            Route::post('companiesact/approved/file/{id}', 'CompaniesActDashboardController@approvedFile')->name('companiesact_approvedFile');
+            // Route::get('forms/details/{name}/{id1}', 'CompaniesActDashboardController@allProfile')->name('allformProfile');
+            // Route::post('files/{id}', 'CompaniesActDashboardController@allProfileDocDownload')->name('allprofiledocdownload'); 
+
+
         });
 
         // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');

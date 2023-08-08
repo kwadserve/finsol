@@ -1,4 +1,4 @@
-@if(count($userMinutesDetails)>0)<b>Minutes Details</b>
+@if(count($userStatutoryAuditDetails)>0)<b>Statutoryaudit Details</b>
 <hr />
 <table class="table table-condensed table-striped">
     <thead>
@@ -12,8 +12,8 @@
     </thead>
 
     <tbody>
-        @if($userMinutesDetails)
-        @foreach($userMinutesDetails as $key =>  $detail)
+        @if($userStatutoryAuditDetails)
+        @foreach($userStatutoryAuditDetails as $key =>  $detail)
         <tr class="align-middle" data-toggle="collapse"
             data-target="#{{$detail->type.$key}}"
         class="accordion-toggle">
@@ -34,14 +34,14 @@
 
             <td colspan=7>
                 @if($detail->status == 2)
-                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning accordion-toggle"
-                    data-bs-toggle="collapse" data-bs-target="#collapseContent1">Query
+                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning"
+                     data-bs-target="#collapseContent2">Query
                     Raised - Click here <span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span>
                 </span>
                 @if($detail->raised_img!="")
                 <form action="{{ route('companiesact_web_raisedFile') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="form_type" value="Minutes">
+                    <input type="hidden" name="form_type" value="Statutoryaudit">
                     <input type="hidden" name="files" value="{{ $detail->raised_img }}">
 
                     <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download
@@ -64,7 +64,7 @@
                 @if($detail->approved_img!="")
                 <form action="{{ route('companiesact_web_approvedFile') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="form_type" value="Minutes">
+                    <input type="hidden" name="form_type" value="Statutoryaudit">
                     <input type="hidden" name="files" value="{{ $detail->approved_img }}">
 
                     <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download
@@ -118,7 +118,7 @@
                             <label>Enter Your Suggestion:</label>
                             <textarea name="user_note" style="height:90px;width:100%"></textarea>
 
-                            <input type="hidden" name="form_type" value="Minutes" />
+                            <input type="hidden" name="form_type" value="Statutoryaudit" />
 
                             <input type="hidden" name="id" value="{{$detail->id}}" />
                             <div class="mt-3">

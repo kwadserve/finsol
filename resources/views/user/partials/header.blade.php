@@ -263,26 +263,30 @@
                                  class="fas fa-calendar-day"></span></span><span class="nav-link-text ps-1">Companies Act</span></div>
                            </a>
                            <ul class="nav collapse" id="companiesact">
+
+                           <?php $carowcount = App\Models\User::getCompaniesActhasrecord();  ?>
+                              @if(isset($carowcount) && $carowcount > 0)
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('companiesact_dashboard')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
+                              @endif
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('statutoryaudit.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Statutory Audit</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('dinkyc.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">DIN KYC</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('aoc.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">AOC-4</span></div>
                                  </a>
                                  <!-- more inner pages-->
@@ -294,7 +298,7 @@
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('adt.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ADT-1</span></div>
                                  </a>
                                  <!-- more inner pages-->
