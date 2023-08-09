@@ -9,8 +9,9 @@
 
 
             <th scope="col">Type</th>
+            <th scope="col">Payment Status</th>
             <th scope="col">Status</th>
-
+            
 
         </tr>
     </thead>
@@ -33,7 +34,23 @@
             <td class="text-nowrap">{{isset($detail->mobile_number)?$detail->mobile_number:'-'}}</td>
 
             <td class="text-nowrap">{{isset($detail->type)?$detail->type:'-'}}</td>
-
+            <td class="text-nowrap">
+               
+                @if($detail->payment_status == 'Credit')
+                <span class="badge badge rounded-pill d-block p-2 badge-subtle-success">
+                Paid
+                <span class="ms-1 fas fa-check" data-fa-transform="shrink-2">
+                </span>
+                @else
+                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning">
+                {{$detail->payment_status}}
+                <span class="ms-1" data-fa-transform="shrink-2">
+                </span>
+                @endif
+              
+                    
+                </span>
+            </td>
             <td colspan=7>
                 @if($detail->status == 2)
                 <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning accordion-toggle"
