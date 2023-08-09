@@ -1,22 +1,23 @@
-@if(count($userStatutoryAuditDetails)>0)<b>Statutoryaudit Details</b>
+@if(count($userStatutoryAuditDetails)>0)<b> Statutory Audit Details</b>
 <hr />
 <table class="table table-condensed table-striped">
     <thead>
         <tr>
-            <th scope="col">Name Of Company</th>
+            <th scope="col">Name</th>
             <th scope="col">Email Id</th>
             <th scope="col">Mobile Number</th>
+
             <th scope="col">Type</th>
             <th scope="col">Status</th>
+
+
         </tr>
     </thead>
 
     <tbody>
         @if($userStatutoryAuditDetails)
-        @foreach($userStatutoryAuditDetails as $key =>  $detail)
-        <tr class="align-middle" data-toggle="collapse"
-            data-target="#{{$detail->type.$key}}"
-        class="accordion-toggle">
+        @foreach($userStatutoryAuditDetails as $key => $detail)
+        <tr class="align-middle" data-toggle="collapse" data-target="#{{$detail->type.$key}}" class="accordion-toggle">
 
             <td class="text-nowrap">{{isset($detail->name_of_company)?$detail->name_of_company:'-'}}</td>
 
@@ -29,19 +30,18 @@
             </td>
 
             <td class="text-nowrap">{{isset($detail->mobile_number)?$detail->mobile_number:'-'}}</td>
-
             <td class="text-nowrap">{{isset($detail->type)?$detail->type:'-'}}</td>
 
             <td colspan=7>
                 @if($detail->status == 2)
                 <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning"
-                     data-bs-target="#collapseContent2">Query
+                    data-bs-target="#collapseContent2">Query
                     Raised - Click here <span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span>
                 </span>
                 @if($detail->raised_img!="")
                 <form action="{{ route('companiesact_web_raisedFile') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="form_type" value="Statutoryaudit">
+                    <input type="hidden" name="form_type" value="StatutoryAudit">
                     <input type="hidden" name="files" value="{{ $detail->raised_img }}">
 
                     <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download
@@ -51,7 +51,7 @@
 
                 @else
                 @if($detail->status == 3)
-                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning toggleButton1">Query
+                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
                     Updated<span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span></span>
 
 
@@ -64,7 +64,7 @@
                 @if($detail->approved_img!="")
                 <form action="{{ route('companiesact_web_approvedFile') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="form_type" value="Statutoryaudit">
+                    <input type="hidden" name="form_type" value="StatutoryAudit">
                     <input type="hidden" name="files" value="{{ $detail->approved_img }}">
 
                     <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit"><small>Download
@@ -96,30 +96,25 @@
         </tr>
         @if($detail->status == 2)
         <tr>
-            <td colspan="6" class="hiddenRow1">
-                <div id="{{$detail->type}}" class="accordian-body collapse ">
+            <td colspan="6" class="hiddenRow2">
+                <div id="{{$detail->type.$key}}" class="accordian-body collapse">
                     <!-- {{$detail->gst_type}} -->
-
                     <br /><br />
                     <div class="col">
-                        <form class="needs-validation" novalidate="novalidate" action="{{route('companiesact_query_raised')}}"
-                            method="post" enctype="multipart/form-data">
+                        <form class="needs-validation" novalidate="novalidate"
+                            action="{{route('companiesact_query_raised')}}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning toggleButton">Query
+                            <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
                                 Raised
                             </span>
                             <br />
-                            <div class="mb-3">
-                                <label class="form-label" for="note">
+                            <div class="mb-3"><label class="form-label" for="note">
                                     {{$detail->admin_note}}
-                                </label>
-                            </div>
+                                </label> </div>
 
                             <label>Enter Your Suggestion:</label>
                             <textarea name="user_note" style="height:90px;width:100%"></textarea>
-
-                            <input type="hidden" name="form_type" value="Statutoryaudit" />
-
+                            <input type="hidden" name="form_type" value="StatutoryAudit" />
                             <input type="hidden" name="id" value="{{$detail->id}}" />
                             <div class="mt-3">
                                 <label>Upload Required
@@ -147,7 +142,4 @@
         @endif
     </tbody>
 </table>
-
-
-
 @endif

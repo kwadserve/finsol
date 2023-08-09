@@ -80,7 +80,7 @@ class CompaniesActDashboardController extends Controller
         
         $page['profilePage'] = $name; 
        
-        return view('admin.pages.users.forms.all_profiles')->with($data)->with($page);
+        return view('admin.pages.users.companiesact.profile.all_profiles')->with($data)->with($page);
     }
 
     public function allProfileDocDownload(Request $request, $userId){
@@ -92,7 +92,7 @@ class CompaniesActDashboardController extends Controller
         $userDetails = User::find($userId);
         $useName = trim($userDetails->name).'-'.$userId; 
         $zipName = str_replace('/','-',$formType).'-'.$useName.'.zip';
-        $folderPath = 'uploads/users/'.$useName.'/'.$formType.'/'; 
+        $folderPath = 'uploads/users/'.$useName.'/'.$formType.'/';  
         $zip = new \ZipArchive();
         $zip->open($zipName, \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
         if (count($commaValues) > 1) {
@@ -102,7 +102,7 @@ class CompaniesActDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('/admin/user/forms/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                    return redirect('/admin/user/companiesact/details/'.$id)->with('filenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -112,10 +112,10 @@ class CompaniesActDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($files), $fileContents); 
                 } else {
-                return redirect('/admin/user/forms/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                return redirect('/admin/user/companiesact/details/'.$id)->with('filenotexist', 'File Not Exist!');
                 }  
             } else  {
-                return redirect('/admin/user/forms/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                return redirect('/admin/user/companiesact/details/'.$id)->with('filenotexist', 'File Not Exist!');
             }
         }
         $zip->close();
@@ -193,6 +193,11 @@ class CompaniesActDashboardController extends Controller
             if($formtype=="statutoryaudit"){
                 $details = UserStatutoryAuditDetail::find($id); 
             }
+
+            if($formtype=="minutes"){
+                $details = UserMinutesDetail::find($id); 
+            }
+    
     
             $content =  '<label>Company Number</label>
             <input type="text" class="form-control" name="company_number"  required="required" value=""  placeholder="Enter the Company Number" />
@@ -241,8 +246,36 @@ class CompaniesActDashboardController extends Controller
             $datas = UserStatutoryAuditDetail::find($panid);
             $fName = "StatutoryAudit";
             break; 
-             
-                                                                    
+
+        case "dinkyc" : 
+            $panid = $request->id;
+            $datas = UserDinkycDetail::find($panid);
+            $fName = "Dinkyc";
+            break; 
+
+        case "mgt" : 
+            $panid = $request->id;
+            $datas = UserMgtDetail::find($panid);
+            $fName = "Mgt";
+            break; 
+
+        case "adt" : 
+            $panid = $request->id;
+            $datas = UserAdtDetail::find($panid);
+            $fName = "Adt";
+            break; 
+
+        case "aoc" : 
+            $panid = $request->id;
+            $datas = UserAocDetail::find($panid);
+            $fName = "Aoc";
+            break; 
+
+        case "minutes" : 
+            $panid = $request->id;
+            $datas = UserMinutesDetail::find($panid);
+            $fName = "Minutes";
+            break;                                                  
           default : break; 
        }
             $folderNameChange =  ($request->type == 'approve') ? '/'.$fName.'/ApprovedImg' :'/'.$fName.'/RaisedImg' ;

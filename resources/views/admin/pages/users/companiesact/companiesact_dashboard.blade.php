@@ -34,6 +34,7 @@
                        @include('admin.pages.users.companiesact.statutoryaudit_details');
                        @include('admin.pages.users.companiesact.dinkyc_details');
                   <!-- // Adt need to check -->
+                       @include('admin.pages.users.companiesact.adt_details');
                        @include('admin.pages.users.companiesact.mgt_details');
                        @include('admin.pages.users.companiesact.aoc_details');
                        @include('admin.pages.users.companiesact.minutes_details');
