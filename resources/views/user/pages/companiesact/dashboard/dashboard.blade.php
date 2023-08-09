@@ -94,6 +94,8 @@ use App\Models\UserGstDetail;
 }
 </style>
 
+
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous">
@@ -102,7 +104,9 @@ use App\Models\UserGstDetail;
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" crossorigin="anonymous">
 </script>
+
 <script>
+
 // window.onload = function() {
 //     var errorMessage = document.querySelector('.alert-danger');
 //     errorMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });

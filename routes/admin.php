@@ -75,8 +75,8 @@ Route::group([
             Route::get('companiesact/statusview', 'CompaniesActDashboardController@statusview')->name('companiesact_statusView');
             Route::post('companiesact/additional/file/{id}', 'CompaniesActDashboardController@additionalFile')->name('companiesact_additionalFile');
             Route::post('companiesact/approved/file/{id}', 'CompaniesActDashboardController@approvedFile')->name('companiesact_approvedFile');
-            // Route::get('forms/details/{name}/{id1}', 'CompaniesActDashboardController@allProfile')->name('allformProfile');
-            // Route::post('files/{id}', 'CompaniesActDashboardController@allProfileDocDownload')->name('allprofiledocdownload'); 
+            Route::get('companiesact/details/{name}/{id1}', 'CompaniesActDashboardController@allProfile')->name('companiesact_allformProfile');
+            Route::post('cafiles/{id}', 'CompaniesActDashboardController@allProfileDocDownload')->name('companiesact_allprofiledocdownload'); 
 
 
         });

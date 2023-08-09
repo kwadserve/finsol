@@ -14,9 +14,7 @@
     <tbody>
         @if($userMgtDetails)
         @foreach($userMgtDetails as $key =>  $detail)
-        <tr class="align-middle" data-toggle="collapse"
-            data-target="#{{$detail->type.$key}}"
-        class="accordion-toggle">
+        <tr class="align-middle" data-toggle="collapse"  data-target="#{{$detail->type.$key}}"  class="accordion-toggle">
 
             <td class="text-nowrap">{{isset($detail->name_of_company)?$detail->name_of_company:'-'}}</td>
 
@@ -34,8 +32,8 @@
 
             <td colspan=7>
                 @if($detail->status == 2)
-                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning accordion-toggle"
-                    data-bs-toggle="collapse" data-bs-target="#collapseContent1">Query
+                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning"
+                      data-bs-target="#collapseContent2">Query
                     Raised - Click here <span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span>
                 </span>
                 @if($detail->raised_img!="")
@@ -51,7 +49,7 @@
 
                 @else
                 @if($detail->status == 3)
-                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning toggleButton1">Query
+                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
                     Updated<span class="ms-1 fas fa-stream" data-fa-transform="shrink-2"></span></span>
 
 
@@ -96,8 +94,8 @@
         </tr>
         @if($detail->status == 2)
         <tr>
-            <td colspan="6" class="hiddenRow1">
-                <div id="{{$detail->type}}" class="accordian-body collapse ">
+            <td colspan="6" class="hiddenRow2">
+                <div id="{{$detail->type.$key}}" class="accordian-body collapse ">
                     <!-- {{$detail->gst_type}} -->
 
                     <br /><br />
@@ -105,7 +103,7 @@
                         <form class="needs-validation" novalidate="novalidate" action="{{route('companiesact_query_raised')}}"
                             method="post" enctype="multipart/form-data">
                             @csrf
-                            <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning toggleButton">Query
+                            <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning">Query
                                 Raised
                             </span>
                             <br />

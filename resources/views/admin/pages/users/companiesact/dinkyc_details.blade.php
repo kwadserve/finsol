@@ -30,7 +30,7 @@
                             <td class="text-nowrap">{{($detail->type)?$detail->type:''}}</td>
                             <td>{{($detail->admin_note)?$detail->admin_note:''}}</td>
                             <td>{{($detail->user_note)?$detail->user_note:''}}</td>
-                            <td><a href="{{ url('admin/user/companiesact/details/dinkyc'.$detail->id) }}">Details</a>
+                            <td><a href="{{ url('admin/user/companiesact/details/dinkyc/'.$detail->id) }}">Details</a>
                             </td>
                             <td>
                                 @if($detail->status == 2)

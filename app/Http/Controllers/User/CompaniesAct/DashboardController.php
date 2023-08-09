@@ -8,6 +8,7 @@ use App\Models\CompaniesAct\UserAocDetail;
 use App\Models\CompaniesAct\UserMinutesDetail;
 use App\Models\CompaniesAct\UserDinkycDetail;
 use App\Models\CompaniesAct\UserStatutoryAuditDetail;
+use App\Models\UserShopDetail;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
 
@@ -24,6 +25,8 @@ class DashboardController  extends Controller {
         $data['userAocDetails'] = UserAocDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userMinutesDetails'] = UserMinutesDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userDinkycDetails'] = UserDinkycDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userShopDetails'] = UserShopDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+ 
         $data['userStatutoryAuditDetails'] = UserStatutoryAuditDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('user.pages.companiesact.dashboard.dashboard')->with($data);  
     }
