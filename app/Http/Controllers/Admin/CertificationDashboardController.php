@@ -11,14 +11,12 @@ use Yajra\DataTables\DataTables;
 use App\Helpers\Helper as Helper;
 use App\Models\User;
 use App\Models\Documents; 
-use App\Models\CompaniesAct\UserMgtDetail;
-use App\Models\CompaniesAct\UserAdtDetail;
-use App\Models\CompaniesAct\UserAocDetail;
-use App\Models\CompaniesAct\UserMinutesDetail;
-use App\Models\CompaniesAct\UserDinkycDetail;
-use App\Models\CompaniesAct\UserStatutoryAuditDetail;
+use App\Models\Certification\UserCaDetail;
+use App\Models\Certification\UserNetworthDetail;
+use App\Models\Certification\UserTurnoverDetail;
+ 
 
-class CompaniesActDashboardController extends Controller
+class CertificationDashboardController extends Controller
 {
     public function __construct()
     {
@@ -29,14 +27,10 @@ class CompaniesActDashboardController extends Controller
     {
        
         $data['routeurl'] =  Helper::getBaseUrl($request);  
-        $data['usersMgt'] = UserMgtDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['usersAdt'] = UserAdtDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['usersAoc'] = UserAocDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['usersMinutes'] = UserMinutesDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['usersDinkyc'] = UserDinkycDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['usersStatutoryaudit'] = UserStatutoryAuditDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-         
-        return view('admin.pages.users.companiesact.companiesact_dashboard')->with($data);
+        $data['usersCa'] = UserCaDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersNetworth'] = UserNetworthDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['usersTurnover'] = UserTurnoverDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        return view('admin.pages.users.certification.certification_dashboard')->with($data);
     }
 
     public function profile($userId)
@@ -48,39 +42,24 @@ class CompaniesActDashboardController extends Controller
     
     public function allProfile($name, $Id)
     {
-        if($name=='mgt'){
-            $data['mgtDetails'] = UserMgtDetail::find($Id);
-            $data['mgtDocuments'] = Documents::where(['for_multiple' => 'MGT'])->get();
+        if($name=='ca'){
+            $data['caDetails'] = UserCaDetail::find($Id);
+            $data['caDocuments'] = Documents::where(['for_multiple' => 'CA'])->get();
         }
 
-        if($name=='aoc'){
-        $data['aocDetails'] = UserAocDetail::find($Id);
-        $data['aocDocuments'] = Documents::where(['for_multiple' => 'AOC'])->get();
+        if($name=='networth'){
+        $data['networthDetails'] = UserNetworthDetail::find($Id);
+        $data['networthDocuments'] = Documents::where(['for_multiple' => 'NETWORTH'])->get();
         }
 
-        if($name=='adt'){
-            $data['adtDetails'] = UserAdtDetail::find($Id);
-            $data['adtDocuments'] = Documents::where(['for_multiple' => 'ADT'])->get();
+        if($name=='turnover'){
+            $data['turnoverDetails'] = UserTurnoverDetail::find($Id);
+            $data['turnoverDocuments'] = Documents::where(['for_multiple' => 'TURNOVER'])->get();
             }
-      
-        if($name=='minutes'){
-            $data['minutesDetails'] = UserMinutesDetail::find($Id);
-            $data['minutesDocuments'] = Documents::where(['for_multiple' => 'MINUTES'])->get();
-            }
-
-            if($name=='dinkyc'){
-                $data['dinkycDetails'] = UserDinkycDetail::find($Id);
-                $data['dinkycDocuments'] = Documents::where(['for_multiple' => 'DINKYC'])->get();
-                }
-
-                if($name=='statutoryaudit'){
-                    $data['statutoryauditDetails'] = UserStatutoryAuditDetail::find($Id);
-                    $data['statutoryauditDocuments'] = Documents::where(['for_multiple' => 'SA'])->get();
-                    }
-        
+       
         $page['profilePage'] = $name; 
        
-        return view('admin.pages.users.companiesact.profile.all_profiles')->with($data)->with($page);
+        return view('admin.pages.users.certification.profile.all_profiles')->with($data)->with($page);
     }
 
     public function allProfileDocDownload(Request $request, $userId){
@@ -102,7 +81,7 @@ class CompaniesActDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('/admin/user/companiesact/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                    return redirect('/admin/user/certification/details/'.$id)->with('filenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -112,10 +91,10 @@ class CompaniesActDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($files), $fileContents); 
                 } else {
-                return redirect('/admin/user/companiesact/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                return redirect('/admin/user/certification/details/'.$id)->with('filenotexist', 'File Not Exist!');
                 }  
             } else  {
-                return redirect('/admin/user/companiesact/details/'.$id)->with('filenotexist', 'File Not Exist!');
+                return redirect('/admin/user/certification/details/'.$id)->with('filenotexist', 'File Not Exist!');
             }
         }
         $zip->close();
@@ -176,33 +155,22 @@ class CompaniesActDashboardController extends Controller
         try{            
         if($formtype){ 
             
-            if($formtype=="mgt"){
+            if($formtype=="ca"){
                  
-                $details = UserMgtDetail::find($id); 
+                $details = UserCaDetail::find($id); 
                
                
-            }  else  if($formtype=="aoc"){
-                $details = UserAocDetail::find($id); 
+            }  else  if($formtype=="networth"){
+                $details = UserNetworthDetail::find($id); 
             }
-            if($formtype=="adt"){
-                $details = UserAdtDetail::find($id); 
+            if($formtype=="turnover"){
+                $details = UserTurnoverDetail::find($id); 
             }
-            if($formtype=="dinkyc"){
-                $details = UserDinkycDetail::find($id); 
-            }
-            if($formtype=="statutoryaudit"){
-                $details = UserStatutoryAuditDetail::find($id); 
-            }
-
-            if($formtype=="minutes"){
-                $details = UserMinutesDetail::find($id); 
-            }
-    
-    
-            $content =  '<label>Company Number</label>
-            <input type="text" class="form-control" name="company_number"  required="required" value=""  placeholder="Enter the Company Number" />
+              
+            $content =  '<label>Number</label>
+            <input type="text" class="form-control" name="company_number"  required="required" value=""  placeholder="Enter the  Number" />
             <label>Name of Company</label>
-            <input type="text"  required="required" class="form-control" id="nameoftan" name="name_of_company" value="'.$details->name_of_company.'"  placeholder="Name of Company" />';
+            <input type="text"  required="required" class="form-control" id="nameoftan" name="name" value="'.$details->name.'"  placeholder="Name" />';
              
  
         if(isset($details)){
@@ -241,41 +209,24 @@ class CompaniesActDashboardController extends Controller
          $route = $request->routeis;  
          $fName="";
        switch($route){
-          case "statutoryaudit" : 
+          case "ca" : 
             $panid = $request->id;
-            $datas = UserStatutoryAuditDetail::find($panid);
-            $fName = "StatutoryAudit";
+            $datas = UserCaDetail::find($panid);
+            $fName = "Ca";
             break; 
 
-        case "dinkyc" : 
+        case "networth" : 
             $panid = $request->id;
-            $datas = UserDinkycDetail::find($panid);
-            $fName = "Dinkyc";
+            $datas = UserNetworthDetail::find($panid);
+            $fName = "Networth";
             break; 
 
-        case "mgt" : 
+        case "turnover" : 
             $panid = $request->id;
-            $datas = UserMgtDetail::find($panid);
-            $fName = "Mgt";
+            $datas = UserTurnoverDetail::find($panid);
+            $fName = "Turnover";
             break; 
-
-        case "adt" : 
-            $panid = $request->id;
-            $datas = UserAdtDetail::find($panid);
-            $fName = "Adt";
-            break; 
-
-        case "aoc" : 
-            $panid = $request->id;
-            $datas = UserAocDetail::find($panid);
-            $fName = "Aoc";
-            break; 
-
-        case "minutes" : 
-            $panid = $request->id;
-            $datas = UserMinutesDetail::find($panid);
-            $fName = "Minutes";
-            break;                                                  
+                              
           default : break; 
        }
             $folderNameChange =  ($request->type == 'approve') ? '/'.$fName.'/ApprovedImg' :'/'.$fName.'/RaisedImg' ;
@@ -287,7 +238,7 @@ class CompaniesActDashboardController extends Controller
             $datas->status = $status;  // Approved
              if($request->type == 'approve') {
                 $img = Helper :: uploadImagesNormal($request, $userId, $folderName,'approved_img');
-                $datas->name_of_company =   $request->name_of_company;
+                $datas->name =   $request->name;
                 $datas->company_number =  $request->company_number;  
                 $datas->approved_img = $img['approved_img'];
              } else {
@@ -296,7 +247,7 @@ class CompaniesActDashboardController extends Controller
                 $datas->raised_img = $img['raised_img'];
              }
             $datas->save();
-       return redirect('admin/user/companiesact/dashboard/details/'.$userId)->with('success', 'Uploaded the Document!'); 
+       return redirect('admin/user/certification/dashboard/details/'.$userId)->with('success', 'Uploaded the Document!'); 
      }
 
      // download quary updated file 
@@ -317,7 +268,7 @@ class CompaniesActDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('admin/user/companiesact/dashboard/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
+                    return redirect('admin/user/certification/dashboard/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -326,7 +277,7 @@ class CompaniesActDashboardController extends Controller
             $fileContents = file_get_contents(public_path($filePath));
             $zip->addFromString(basename($files), $fileContents); 
             } else {
-            return redirect('admin/user/companiesact/dashboard/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
+            return redirect('admin/user/certification/dashboard/details/'.$userId)->with('additionalfilenotexist', 'File Not Exist!');
             }  
         }
         $zip->close();
@@ -352,7 +303,7 @@ class CompaniesActDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('admin/user/companiesact/dashboard/details/'.$userId)->with('approvedfilenotexist', 'File Not Exist!');
+                    return redirect('admin/user/certification/dashboard/details/'.$userId)->with('approvedfilenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -361,7 +312,7 @@ class CompaniesActDashboardController extends Controller
             $fileContents = file_get_contents(public_path($filePath));
             $zip->addFromString(basename($files), $fileContents); 
             } else {
-            return redirect('admin/user/companiesact/dashboard/details/'.$userId)->with('approvedfilenotexist', 'File Not Exist!');
+            return redirect('admin/user/certification/dashboard/details/'.$userId)->with('approvedfilenotexist', 'File Not Exist!');
             }  
         }
         $zip->close();

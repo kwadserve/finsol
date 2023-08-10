@@ -1,13 +1,10 @@
 <?php
-namespace App\Http\Controllers\User\CompaniesAct;
+namespace App\Http\Controllers\User\Certification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\CompaniesAct\UserMgtDetail;
-use App\Models\CompaniesAct\UserAdtDetail;
-use App\Models\CompaniesAct\UserAocDetail;
-use App\Models\CompaniesAct\UserMinutesDetail;
-use App\Models\CompaniesAct\UserDinkycDetail;
-use App\Models\CompaniesAct\UserStatutoryAuditDetail;
+use App\Models\Certification\UserCaDetail;
+use App\Models\Certification\UserNetworthDetail;
+use App\Models\Certification\UserTurnoverDetail;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
 
@@ -19,13 +16,10 @@ class DashboardController  extends Controller {
 
     public function index(Request $request) {
         $userId = auth()->user()->id;
-        $data['userMgtDetails'] = UserMgtDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['userAdtDetails'] = UserAdtDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['userAocDetails'] = UserAocDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['userMinutesDetails'] = UserMinutesDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['userDinkycDetails'] = UserDinkycDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['userStatutoryAuditDetails'] = UserStatutoryAuditDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        return view('user.pages.companiesact.dashboard.dashboard')->with($data);  
+        $data['userCaDetails'] = UserCaDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userNetworthDetails'] = UserNetworthDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['userTurnoverDetails'] = UserTurnoverDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+       return view('user.pages.certification.dashboard.dashboard')->with($data);  
     }
  
     public function queryRaised(Request $request){
@@ -37,31 +31,23 @@ class DashboardController  extends Controller {
         $folderName = 'uploads/users/'.$useName.'/'.$formType.'/AdditionalImg';
         $name='additional_img';
         $img = Helper :: uploadImagesNormal($request, $userId, $folderName, $name);
-        if($formType =='Mgt'){
-            $datas = UserMgtDetail::find($id); 
+        if($formType =='Ca'){
+            $datas = UserCaDetail::find($id); 
         }
-        if($formType =='Adt'){
-            $datas = UserAdtDetail::find($id); 
+        if($formType =='Networth'){
+            $datas = UserNetworthDetail::find($id); 
         }
-        if($formType =='Aoc'){
-            $datas = UserAocDetail::find($id); 
+        if($formType =='Turnover'){
+            $datas = UserTurnoverDetail::find($id); 
         }
-        if($formType =='Minutes'){
-            $datas = UserMinutesDetail::find($id); 
-        }
-        if($formType =='Dinkyc'){
-            $datas = UserDinkycDetail::find($id); 
-        }
-        if($formType =='StatutoryAudit'){
-            $datas = UserStatutoryAuditDetail::find($id); 
-        }
+         
         $datas->user_note = $request->user_note; 
         $datas->status = 3; // Query Updated      
         $datas->last_update_by = 'user'; 
         $datas->last_update_by_id =  $userId;
         $datas->additional_img = $img['additional_img']; 
         $datas->save();
-        return redirect('/companiesact/dashboard')->with('success', 'Uploaded the Document!');
+        return redirect('/certification/dashboard')->with('success', 'Uploaded the Document!');
        }  
     }
 
@@ -82,7 +68,7 @@ class DashboardController  extends Controller {
                $fileContents = file_get_contents(public_path($filePath));
                $zip->addFromString(basename($file), $fileContents);
                }else {
-                   return redirect('/companiesact/dashboard')->with('givenfilenotexist', 'File Not Exist!');
+                   return redirect('/certification/dashboard')->with('givenfilenotexist', 'File Not Exist!');
                }
            }
        } else {
@@ -91,7 +77,7 @@ class DashboardController  extends Controller {
            $fileContents = file_get_contents(public_path($filePath));
            $zip->addFromString(basename($files), $fileContents); 
            } else {
-           return redirect('/companiesact/dashboard')->with('givenfilenotexist', 'File Not Exist!');
+           return redirect('/certification/dashboard')->with('givenfilenotexist', 'File Not Exist!');
            }  
        }
        $zip->close();
@@ -114,7 +100,7 @@ class DashboardController  extends Controller {
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($file), $fileContents);
                 }else {
-                    return redirect('/companiesact/dashboard')->with('givenfilenotexist', 'File Not Exist!');
+                    return redirect('/certification/dashboard')->with('givenfilenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -123,7 +109,7 @@ class DashboardController  extends Controller {
             $fileContents = file_get_contents(public_path($filePath));
             $zip->addFromString(basename($files), $fileContents); 
             } else {
-            return redirect('/companiesact/dashboard')->with('givenfilenotexist', 'File Not Exist!');
+            return redirect('/certification/dashboard')->with('givenfilenotexist', 'File Not Exist!');
             }  
         }
         $zip->close();

@@ -77,6 +77,16 @@ Route::group([
             Route::post('companiesact/approved/file/{id}', 'CompaniesActDashboardController@approvedFile')->name('companiesact_approvedFile');
             Route::get('companiesact/details/{name}/{id1}', 'CompaniesActDashboardController@allProfile')->name('companiesact_allformProfile');
             Route::post('cafiles/{id}', 'CompaniesActDashboardController@allProfileDocDownload')->name('companiesact_allprofiledocdownload'); 
+  
+            // Display all form related to this user on Companies Act tab
+
+            Route::get('certification/dashboard/details/{id}', 'CertificationDashboardController@index')->name('certification_dashboard');
+            Route::post('certification/change_status', 'CertificationDashboardController@change_status')->name('certification_dashboard_change_status');
+            Route::get('certification/statusview', 'CertificationDashboardController@statusview')->name('certification_statusView');
+            Route::post('certification/additional/file/{id}', 'CertificationDashboardController@additionalFile')->name('certification_additionalFile');
+            Route::post('certification/approved/file/{id}', 'CertificationDashboardController@approvedFile')->name('certification_approvedFile');
+            Route::get('certification/details/{name}/{id1}', 'CertificationDashboardController@allProfile')->name('certification_allformProfile');
+            Route::post('cafiles/{id}', 'CertificationDashboardController@allProfileDocDownload')->name('certification_allprofiledocdownload'); 
 
 
         });
