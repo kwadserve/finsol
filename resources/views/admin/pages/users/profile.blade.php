@@ -82,10 +82,23 @@
                                                 <p class="card-text">With supporting text below as a natural lead-in to
                                                     additional content.</p>
                                                 <a href="{{ URL('/admin/user/companiesact/dashboard/details/'.$userId )}}"
-                                                    class="btn btn-primary">Registrations</a>
+                                                    class="btn btn-primary">Companies Act</a>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Certification</h5>
+                                                <p class="card-text">With supporting text below as a natural lead-in to
+                                                    additional content.</p>
+                                                <a href="{{ URL('/admin/user/certification/dashboard/details/'.$userId )}}"
+                                                    class="btn btn-primary">Certification</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
 

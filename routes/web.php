@@ -208,5 +208,35 @@ Route::get('companiesact/dashboard', 'DashboardController@index')->name('compani
 Route::post('companiesact/download/raised/file', 'DashboardController@raisedFile')->name('companiesact_web_raisedFile');
 Route::post('companiesact/download/approved/file', 'DashboardController@approvedFile')->name('companiesact_web_approvedFile');
 Route::post('companiesact/queryraised', 'DashboardController@queryRaised')->name('companiesact_query_raised');
+});
+
+Route::group([
+    'namespace' => 'Certification',
+], function () {
+
+// All about certification
+
+Route::get('ca/register', 'CaController@register_form')->name('ca.register_form');
+Route::post('ca/register', 'CaController@storeCa')->name('ca.register');
+
+
+Route::get('networth/register', 'NetworthController@register_form')->name('networth.register_form');
+Route::post('networth/register', 'NetworthController@storeNetworth')->name('networth.register');
+
+
+Route::get('turnover/register', 'TurnoverController@register_form')->name('turnover.register_form');
+Route::post('turnover/register', 'TurnoverController@storeTurnover')->name('turnover.register');
+
+// certification Dashboard
+Route::get('certification/dashboard', 'DashboardController@index')->name('certification_dashboard');
+Route::post('certification/download/raised/file', 'DashboardController@raisedFile')->name('certification_web_raisedFile');
+Route::post('certification/download/approved/file', 'DashboardController@approvedFile')->name('certification_web_approvedFile');
+Route::post('certification/queryraised', 'DashboardController@queryRaised')->name('certification_query_raised');
+
+
+
+
+
+
 
 });

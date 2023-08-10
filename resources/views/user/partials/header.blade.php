@@ -411,25 +411,25 @@
                            </a>
                            <ul class="nav collapse" id="certification">
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('certification_dashboard')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('ca.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">CA Certificate</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('networth.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Networth</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('turnover.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Turnover Certificate</span></div>
                                  </a>
                                  <!-- more inner pages-->
