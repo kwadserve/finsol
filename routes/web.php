@@ -236,7 +236,6 @@ Route::post('certification/queryraised', 'DashboardController@queryRaised')->nam
 
 });
 
-
-Route::get('/', [DropdownController::class, 'index']);
+ 
 Route::get('/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
 Route::get('/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
