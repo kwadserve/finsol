@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Models\State;
+use Illuminate\Http\Request;
+use App\Helpers\Helper as Helper;
 
 class RegisterController extends Controller
 {
@@ -43,9 +45,10 @@ class RegisterController extends Controller
         session()->flash('message', 'Thank you for registering!');
     }
 
-    public function showRegistrationForm()
+    public function showRegistrationForm(Request $request)
     {
         $states = State::all();
-        return view('user.auth.register', compact('states'));
+        $routeUrl = Helper::getBaseUrl($request);
+        return view('user.auth.register', compact('states','routeUrl'));
     }
 }

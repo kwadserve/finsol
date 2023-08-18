@@ -238,5 +238,5 @@ Route::post('certification/queryraised', 'DashboardController@queryRaised')->nam
 
 
  
-Route::get('/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
-Route::get('/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
+Route::get('register/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
+Route::get('register/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);

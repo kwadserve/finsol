@@ -201,13 +201,15 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+  var urlpath="{{ $routeUrl }}";
+  
 $(document).ready(function() {
   $('#stateSelect').change(function() {
     var stateId = $(this).val();
-    alert(stateId); 
+    console.log('urlpath',urlpath); 
     if (stateId) {
       $.ajax({
-        url: '/get-districts/' + stateId,
+        url:  urlpath+'/get-districts/' + stateId,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -227,7 +229,7 @@ $(document).ready(function() {
     var districtId = $(this).val();
     if (districtId) {
       $.ajax({
-        url: '/get-blocks/' + districtId,
+        url:  urlpath+'/get-blocks/' + districtId,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
