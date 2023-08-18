@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\DropdownController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -233,10 +234,9 @@ Route::post('certification/download/raised/file', 'DashboardController@raisedFil
 Route::post('certification/download/approved/file', 'DashboardController@approvedFile')->name('certification_web_approvedFile');
 Route::post('certification/queryraised', 'DashboardController@queryRaised')->name('certification_query_raised');
 
-
-
-
-
-
-
 });
+
+
+Route::get('/', [DropdownController::class, 'index']);
+Route::get('/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
+Route::get('/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);

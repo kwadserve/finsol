@@ -153,23 +153,29 @@
 
                           
 
-                           <div class="mb-3">
-                            <label class="form-label" for="">State</label>
-                            <input class="form-control" type="text" name="state" autocomplete="on" required="" id="" />
-                            <div class="invalid-feedback">Please Provide State</div>
-                          </div>
-
                           <div class="mb-3">
-                            <label class="form-label" for="">District</label>
-                            <input class="form-control" type="text"  name="district"  autocomplete="on" required="" id="" />
-                            <div class="invalid-feedback">Please Provide District</div>
-                          </div>
-
-                          <div class="mb-3">
-                            <label class="form-label" for="">City</label>
-                            <input class="form-control" type="text"  name="city"  autocomplete="on" required="" id="" />
-                            <div class="invalid-feedback">Please Provide City</div>
-                          </div>
+    <label for="stateSelect" class="form-label">Select State:</label>
+    <select class="form-select" id="stateSelect">
+      <option value="">Select State</option>
+      @foreach ($states as $state)
+        <option value="{{ $state->id }}">{{ $state->name }}</option>
+      @endforeach
+    </select>
+  </div>
+  
+  <div class="mb-3">
+    <label for="districtSelect" class="form-label">Select District:</label>
+    <select class="form-select" id="districtSelect">
+      <option value="">Select District</option>
+    </select>
+  </div>
+  
+  <div class="mb-3">
+    <label for="blockSelect" class="form-label">Select Block:</label>
+    <select class="form-select" id="blockSelect">
+      <option value="">Select Block</option>
+    </select>
+  </div>
                           
                           
                           
@@ -193,3 +199,47 @@
     <!-- ===============================================-->
 
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#stateSelect').change(function() {
+    var stateId = $(this).val();
+    alert(stateId); 
+    if (stateId) {
+      $.ajax({
+        url: '/get-districts/' + stateId,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          $('#districtSelect').empty().append('<option value="">Select District</option>');
+          $.each(data, function(key, value) {
+            $('#districtSelect').append('<option value="' + value.id + '">' + value.name + '</option>');
+          });
+        }
+      });
+    } else {
+      $('#districtSelect').empty().append('<option value="">Select District</option>');
+      $('#blockSelect').empty().append('<option value="">Select Block</option>');
+    }
+  });
+
+  $('#districtSelect').change(function() {
+    var districtId = $(this).val();
+    if (districtId) {
+      $.ajax({
+        url: '/get-blocks/' + districtId,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          $('#blockSelect').empty().append('<option value="">Select Block</option>');
+          $.each(data, function(key, value) {
+            $('#blockSelect').append('<option value="' + value.id + '">' + value.name + '</option>');
+          });
+        }
+      });
+    } else {
+      $('#blockSelect').empty().append('<option value="">Select Block</option>');
+    }
+  });
+});
+</script>
