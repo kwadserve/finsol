@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\State;
 
 class RegisterController extends Controller
 {
@@ -44,6 +45,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('user.auth.register');
+        $states = State::all();
+        return view('user.auth.register', compact('states'));
     }
 }
