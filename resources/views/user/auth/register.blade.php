@@ -215,7 +215,7 @@ $(document).ready(function() {
         success: function(data) {
           $('#districtSelect').empty().append('<option value="">Select District</option>');
           $.each(data, function(key, value) {
-            $('#districtSelect').append('<option value="' + value.id + '">' + value.name + '</option>');
+            $('#districtSelect').append('<option value="' + value.d_code + '">' + value.name + '</option>');
           });
         }
       });
