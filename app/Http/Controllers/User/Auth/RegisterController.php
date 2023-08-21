@@ -40,7 +40,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'state' => $data['state'],
             'district' => $data['district'],
-            'city' => $data['city'],
+            'block' => $data['block'],
         ]);
         session()->flash('message', 'Thank you for registering!');
     }

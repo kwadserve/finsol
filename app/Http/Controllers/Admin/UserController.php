@@ -7,6 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
+use App\Models\State;
+use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -103,4 +107,30 @@ class UserController extends Controller
             ], 200);
         }
     }
+
+    public function addUserForm(Request $request){
+        $states = State::all();
+        $routeUrl = Helper::getBaseUrl($request);
+        return view('admin.auth.register',compact('states','routeUrl'));
+    }
+
+    
+    protected function validator(array $data)
+    {
+         
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
+        ]);
+    }
+
+    public function addUser(Request $request){
+        $this->validator($request->all())->validate();
+        $inputs=$request->all();
+        $inputs['password']=Hash::make($inputs['password']);
+        User::create($inputs);
+        return redirect('admin/users/all')->with(['message' => 'User Created successfully']);
+    }
+
 }

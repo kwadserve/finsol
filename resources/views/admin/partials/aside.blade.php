@@ -54,8 +54,17 @@ if (isFluid) {
                     </a>
                     <ul class="nav collapse" id="users">
 
+
+
                         <li class="nav-item"><a class="nav-link" href="{{ url('admin/users/all') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">All</span>
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">All Users</span>
+                                </div>
+                            </a><!-- more inner pages-->
+                        </li>
+
+
+                        <li class="nav-item"><a class="nav-link" href="{{ url('admin/users/addform') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Add User</span>
                                 </div>
                             </a><!-- more inner pages-->
                         </li>

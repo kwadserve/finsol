@@ -22,6 +22,11 @@
                     <div class="card-body d-flex flex-column justify-content-end">
                         <div class="row">
                             <div class="col-12">
+                            @if (session()->has('message'))
+    <p class="alert alert-success alert-dismissible fade show" role="alert">{{ session('message') }}
+   
+  </p>
+@endif
                                 <div id="tableExample"
                                     data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                                     <div class="table-responsive scrollbar">

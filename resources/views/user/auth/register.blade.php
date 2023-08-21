@@ -155,7 +155,7 @@
 
                           <div class="mb-3">
     <label for="stateSelect" class="form-label">Select State:</label>
-    <select class="form-select" id="stateSelect">
+    <select class="form-select" name="state" id="stateSelect">
       <option value="">Select State</option>
       @foreach ($states as $state)
         <option value="{{ $state->id }}">{{ $state->name }}</option>
@@ -165,14 +165,14 @@
   
   <div class="mb-3">
     <label for="districtSelect" class="form-label">Select District:</label>
-    <select class="form-select" id="districtSelect">
+    <select class="form-select" name="district" id="districtSelect">
       <option value="">Select District</option>
     </select>
   </div>
   
   <div class="mb-3">
     <label for="blockSelect" class="form-label">Select Block:</label>
-    <select class="form-select" id="blockSelect">
+    <select class="form-select" name="block" id="blockSelect">
       <option value="">Select Block</option>
     </select>
   </div>

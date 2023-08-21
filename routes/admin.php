@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\DropdownController;
 Route::group([
     'namespace' => 'Auth',
 ], function () {
@@ -7,6 +7,10 @@ Route::group([
     Route::get('login', 'LoginController@showLoginForm')->name('login_page');
     Route::post('login', 'LoginController@login')->name('login');
     Route::post('logout', 'LoginController@logout')->name('logout');
+
+    Route::get('get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
+    Route::get('get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
+ 
 });
 
 Route::group([
@@ -31,8 +35,9 @@ Route::group([
             Route::post('delete', 'UserController@delete')->name('delete');
 
             // Route::get('gst/details/{id}', 'UserGstController@index')->name('gstDetails');
-
-
+            Route::get('addform', 'UserController@addUserForm')->name('addUserForm');
+            Route::post('adduser', 'UserController@addUser')->name('addUser');
+               
         });
         Route::group(['prefix' => 'user', 'as' => 'user.',], function () {
             Route::get('gst/details/{id}', 'UserGstController@index')->name('gstDetails');
