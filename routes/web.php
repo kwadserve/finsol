@@ -91,6 +91,9 @@ Route::post('form/queryraised', 'DashboardController@queryRaised')->name('form.q
 //PAN DETAILS 
 Route::get('pan/register', 'PanController@register_form')->name('pan.register_form');
 Route::post('pan/register', 'PanController@storePan')->name('pan.register');
+Route::post('dashboard_register', 'DashboardController@createInstaMojoOrder')->name('dashboard.register');
+Route::get('store_payment_data', 'DashboardController@storePaymentData')->name('dashboard.storedata');
+
 
 //TAN DETAILS 
 Route::get('tan/register', 'TanController@register_form')->name('tan.register_form');

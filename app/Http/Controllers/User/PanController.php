@@ -57,5 +57,5 @@ class PanController  extends Controller {
         return redirect('/pan/register')->with('success', 'Registered Pan successfully!');
     }
 
- 
+    
 }
