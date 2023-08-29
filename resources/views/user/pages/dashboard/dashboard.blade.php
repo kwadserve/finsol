@@ -18,7 +18,21 @@ use App\Models\UserGstDetail;
                         <!-- <section> begin ============================-->
                         <section class="text-center">
                             <div class="card-body">
+
                                 <div class="row">
+
+                            @if (session('payment_success'))
+                            <div class="alert alert-success border-2 d-flex align-items-center" role="alert">
+                                <div class="bg-success me-3 icon-item"><span
+                                        class="fas fa-check-circle text-white fs-3"></span>
+                                </div>
+                                <p class="mb-0 flex-1">{{ session('payment_success') }}</p>
+                                <button class="btn-close" type="button" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                            </div>
+                            @endif
+                                <!-- <div class="row">
+
                                     <div class="col">
                                         <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">Registration<font
                                                 color="#ec465f">Status

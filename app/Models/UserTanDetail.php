@@ -17,6 +17,7 @@ class UserTanDetail extends Authenticatable
         'name_of_tan',
         'tan_number',
         'mobile_number',
+        'payment_unique_id',
         'tan_aadhar_voterid_passport_img',
         'tan_driving_license_img',
         'tan_your_img',

@@ -15,6 +15,22 @@ class TanController  extends Controller {
     }
     public function register_form() {
      
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserTanDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'TAN';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Tan and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Tan successfully! but we are unable to complete payment transaction. Please contact to Administrator.';
+            }
+            return redirect('/tan/register')->with('success', $msg);
+        }
+
         $data['tanimages'] = Documents::where('for_multiple', 'TAN')->get();
         return view('user.pages.tan.tanform')->with($data);
     }
@@ -30,7 +46,18 @@ class TanController  extends Controller {
         $data['mobile_number'] = $request['mobile_number'];
         $matchthese = ['user_id' => $userId];
         // UserTanDetail::where($matchthese)->delete();
-        UserTanDetail::Create($data);
+        $insert_data= UserTanDetail::Create($data);
+
+        if(isset($insert_data->id) && !empty($insert_data->id)){
+            $data['insert_id'] = $insert_data->id;
+            $data['payment_purpose'] = 'Payment for Tan Register';
+            $data['name_of_pan'] = $data['name_of_tan'];
+            $data['payment_amount'] = 200;
+            $data['type'] = 'TAN';
+            $data['route'] = 'tan.register';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
+
         return redirect('/tan/register')->with('success', 'Registered Tan successfully!');
     }
      
