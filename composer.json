@@ -17,8 +17,7 @@
         "razorpay/razorpay": "^2.8",
         "spatie/laravel-permission": "^2.37",
         "yajra/laravel-datatables-oracle": "^9.4",
-        "instamojo/instamojo-php": "^0.4"
-
+         "instamojo/instamojo-php": "^0.4"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
