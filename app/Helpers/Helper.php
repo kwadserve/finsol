@@ -5,6 +5,8 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\Storage;
 use App\Models\UserPanDetail;
 use App\Models\UserTanDetail;
+use App\Models\UserCompanyDetail;
+use App\Models\UserPartnershipDetail;
 use App\Models\Instamojo;
 use Illuminate\Support\Facades\File;
 use App\Models\Documents;
@@ -226,6 +228,12 @@ class Helper
             }
             else if($data["type"] == 'PAN'){
                 UserPanDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Partnership'){
+                UserPartnershipDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Company'){
+                UserCompanyDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
             
         }

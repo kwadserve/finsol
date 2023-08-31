@@ -120,11 +120,12 @@ Route::post('trademark/others', 'TradeMarkController@storeTrademarkOthers')->nam
 //Company Regitration DETAILS 
 Route::get('company/register', 'CompanyController@register_form')->name('company.register_form');
 Route::post('company', 'CompanyController@storeCompany')->name('company.register');
+Route::post('company/register', 'CompanyController@register_form')->name('company.pamentregister');
  
 //Partnership Regitration DETAILS 
 Route::get('partnership/register', 'PartnershipController@register_form')->name('partnership.register_form');
 Route::post('partnership', 'PartnershipController@storePartnership')->name('partnership.register');
-
+Route::post('partnership/register', 'PartnershipController@register_form')->name('partnership.paymentregister');
 //HUF Regitration DETAILS 
 Route::get('huf/register', 'HufController@register_form')->name('huf.register_form');
 Route::post('huf', 'HufController@storeHuf')->name('huf.register');
