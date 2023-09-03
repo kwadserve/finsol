@@ -7,6 +7,7 @@
                                                                     <!-- <th scope="col">Mobile Number</th> -->
                                                                    
                                                                     <th scope="col">Type</th>
+                                                                    <th scope="col">Payment Status</th>
                                                                     <th scope="col">Status</th>
                                                                      
 
@@ -32,7 +33,34 @@
 
                                                                     <!-- <td class="text-nowrap">{{isset($detail->company_mobile)?$detail->company_mobile:'-'}}</td> -->
                                                                     <td class="text-nowrap">{{isset($detail->type)?$detail->type:'-'}}</td>
+                                                                    <td class="text-nowrap">
+               
+               @if($detail->payment_status == 'Credit')
+               <span class="badge badge rounded-pill d-block p-2 badge-subtle-success">
+               Paid
+               <span class="ms-1 fas fa-check" data-fa-transform="shrink-2">
+               </span>
+               @else
+               <form action="{{ route('dashboard.register') }}" method="POST">
+                   @csrf
 
+                   <input type="hidden" name="form_type" value="Company">
+                   <input type="hidden" name="insert_id" value="{{$detail->id}}">
+                   <input type="hidden" name="payment_amount" value="10">
+                   <input type="hidden" name="route" value="form_dashboard">
+                   <input type="hidden" name="payment_purpose" value="Company">
+                   <input type="hidden" name="email_id" value="{{$detail->company_email}}">
+                   <input type="hidden" name="name_of_pan" value="{{$detail->name_of_company}}">
+                   <input type="hidden" name="mobile_number" value="{{$detail->company_mobile}}">
+
+                   <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit">
+                       <small>Pay</small>
+                   </button>
+               </form>
+               @endif          
+                   
+               </span>
+           </td>
                                                                     <td colspan=7>
                                                                         @if($detail->status == 2)
                                                                            <span

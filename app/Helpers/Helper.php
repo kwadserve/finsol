@@ -10,7 +10,7 @@ use App\Models\UserPartnershipDetail;
 use App\Models\Instamojo;
 use Illuminate\Support\Facades\File;
 use App\Models\Documents;
-
+use Illuminate\Support\Facades\Session;
 class Helper
 {
     public static function shout(string $string)
@@ -211,7 +211,11 @@ class Helper
             env('INSTAMOJO_TEST_AUTH_TOKEN'),
             env('INSTAMOJO_TEST_URL'),
         );
-
+        // Session::forget('form_type');
+        // Session::flush();
+        // session('form_type', $data["type"]);
+        session()->put('form_type', $data["type"]);
+        session()->save();
         $response = $api->paymentRequestCreate([
             "purpose" => $data["payment_purpose"],
             "amount" => $data["payment_amount"],
@@ -238,7 +242,7 @@ class Helper
             
         }
 
-        header('Location: ' . $response['longurl']);
+        header('Location: ' . $response['longurl']."?form_type=".$data["type"]);
         exit();
     }
 
