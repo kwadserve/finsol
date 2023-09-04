@@ -16,6 +16,21 @@ class TrustController  extends Controller {
     
 
     public function register_form() {
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserTrustDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Trust';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Trust/NGO and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Trust/NGO successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/trust/register')->with('success', $msg);
+        }
         $data['trust_images'] = Documents::where(['for_multiple' => 'TRUST'])->get();
         $data['trust_member_images'] = Documents::where(['for_multiple' => 'TRUST Member'])->get();
         return view('user.pages.trust.trustform')->with($data);
@@ -34,6 +49,19 @@ class TrustController  extends Controller {
             $data['trust_email'] = $request->input('trust_email');
             $data['trust_mobile'] = $request->input('trust_mobile');
             $lastInsertedId =  UserTrustDetail::Create($data)->id;
+
+            if(isset($lastInsertedId) && !empty($lastInsertedId)){
+                $data['insert_id'] = $lastInsertedId;
+                $data['payment_purpose'] = 'Payment for Trust/NGO Register';
+                $data['name_of_pan'] =  $data['name_of_trust'];
+                $data['email_id'] = $data['trust_email'];
+                $data['mobile_number'] = $data['trust_mobile'];
+                $data['payment_amount'] = 10;
+                $data['type'] = 'Trust';
+                $data['route'] = 'trust.paymentregister';
+                $payment_Req= Helper::createInstaMojoOrder($data);
+            }
+
         if ($request->has('trustmember')) {
             $trustmember = $request->input('trustmember');
             UserTrustMember::where(['user_id' => $userId])->delete();

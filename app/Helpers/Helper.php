@@ -2,11 +2,15 @@
 
 namespace App\Helpers;
 
+use App\Models\UserImportExportDetail;
+use App\Models\UserTrustDetail;
+use App\Models\UserUdamyDetail;
 use Illuminate\Support\Facades\Storage;
 use App\Models\UserPanDetail;
 use App\Models\UserTanDetail;
 use App\Models\UserCompanyDetail;
 use App\Models\UserPartnershipDetail;
+use App\Models\UserHufDetail;
 use App\Models\Instamojo;
 use Illuminate\Support\Facades\File;
 use App\Models\Documents;
@@ -238,6 +242,19 @@ class Helper
             }
             else if($data["type"] == 'Company'){
                 UserCompanyDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Huf'){
+                UserHufDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Trust'){
+                UserTrustDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+
+            else if($data["type"] == 'Udamy'){
+                UserUdamyDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Import'){
+                UserImportExportDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
             
         }
