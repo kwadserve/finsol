@@ -8,6 +8,15 @@ use App\Models\UserTanDetail;
 use App\Models\Instamojo;
 use Illuminate\Support\Facades\File;
 use App\Models\Documents;
+use App\Models\CompaniesAct\UserStatutoryAuditDetail;
+use App\Models\CompaniesAct\UserAdtDetail;
+use App\Models\CompaniesAct\UserAocDetail;
+use App\Models\CompaniesAct\UserDinkycDetail;
+use App\Models\CompaniesAct\UserMgtDetail;
+use App\Models\CompaniesAct\UserMinutesDetail;
+use App\Models\Certification\UserCaDetail;
+use App\Models\Certification\UserNetworthDetail;
+use App\Models\Certification\UserTurnoverDetail;
 
 class Helper
 {
@@ -227,7 +236,33 @@ class Helper
             else if($data["type"] == 'PAN'){
                 UserPanDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
-            
+            else if($data["type"] == 'StatutoryAudit'){
+                UserStatutoryAuditDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'ADT'){
+                UserAdtDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'AOC'){
+                UserAocDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'DINKYC'){
+                UserDinkycDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'MGT'){
+                UserMgtDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Minutes'){
+                UserMinutesDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'CA'){
+                UserCaDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Networth'){
+                UserNetworthDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Turnover'){
+                UserTurnoverDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
         }
 
         header('Location: ' . $response['longurl']);

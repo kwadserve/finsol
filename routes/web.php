@@ -5,30 +5,29 @@ Route::get('/', function () {
     return view('welcome');
 })->name('front');
 
-Route::group([
-    'namespace' => 'Auth',
-], function () {
+Route::group(
+    [
+        'namespace' => 'Auth',
+    ],
+    function () {
+        // Authentication Routes...
+        Route::get('login', 'LoginController@showLoginForm')->name('login_page');
+        Route::post('login', 'LoginController@login')->name('login');
+        Route::post('logout', 'LoginController@logout')->name('logout');
+        Route::get('logout', 'LoginController@logout')->name('logout_page');
 
-    // Authentication Routes...
-    Route::get('login', 'LoginController@showLoginForm')->name('login_page');
-    Route::post('login', 'LoginController@login')->name('login');
-    Route::post('logout', 'LoginController@logout')->name('logout');
-    Route::get('logout', 'LoginController@logout')->name('logout_page');
+        // Registration Routes...
+        Route::get('register', 'RegisterController@showRegistrationForm')->name('register_page');
+        Route::post('register', 'RegisterController@register')->name('register');
+        Route::get('register/activate/{token}', 'RegisterController@confirm')->name('email_confirm');
 
-    // Registration Routes...
-    Route::get('register', 'RegisterController@showRegistrationForm')->name('register_page');
-    Route::post('register', 'RegisterController@register')->name('register');
-    Route::get('register/activate/{token}', 'RegisterController@confirm')->name('email_confirm');
-
-   
-
-    // Password Reset Routes...
-    Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('password/reset', 'ResetPasswordController@reset');
-
-});
+        // Password Reset Routes...
+        Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+        Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+        Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('password/reset', 'ResetPasswordController@reset');
+    },
+);
 
 Route::get('home', 'UserController@index')->name('home');
 Route::get('settings', 'UserController@settings')->name('settings');
@@ -48,15 +47,12 @@ Route::get('/refund', function () {
     return view('refund');
 })->name('refund');
 
-
-
 // GST DETAILS
 Route::get('gst', 'GstController@index')->name('gst');
 Route::get('gst/register', 'GstController@register_form')->name('gst.register_form');
 
 Route::get('gst/existing_register', 'GstController@existing_register_form')->name('gst.existing_register_form');
 Route::post('gst/existing', 'GstController@storeExistingRegister')->name('gst.existing');
-
 
 Route::post('gst/individual', 'GstController@storeIndividual')->name('gst.individual');
 Route::post('gst/firm', 'GstController@storeFirm')->name('gst.firm');
@@ -75,171 +71,155 @@ Route::post('gst/download/approved/file', 'GstController@approvedFile')->name('a
 Route::post('gst/download/uploaddocument/file', 'GstController@uploadDocumentFile')->name('uploadDocumentFile');
 Route::post('gst/download/raised/file', 'GstController@raisedFile')->name('raisedFile');
 
-
-
 Route::post('gst/getformtype', 'GstController@getFormType')->name('gst.getformtype');
 Route::post('gst/getyear', 'GstController@getYear')->name('gst.getyear');
 Route::post('gst/getmonth', 'GstController@getMonth')->name('gst.getmonth');
 Route::post('gst/getquarter', 'GstController@getQuarter')->name('gst.getquarter');
 Route::post('gst/download/copyofreturns/file', 'GstController@copyofreturnsFile')->name('copyofreturnsFile');
 
-// Registration Dashboard details for all forms 
+// Registration Dashboard details for all forms
 Route::get('dashboard', 'DashboardController@index')->name('form_dashboard');
 Route::post('form/download/raised/file', 'DashboardController@raisedFile')->name('form_web_raisedFile');
 Route::post('form/download/approved/file', 'DashboardController@approvedFile')->name('form_web_approvedFile');
 Route::post('form/queryraised', 'DashboardController@queryRaised')->name('form.query_raised');
 
-//PAN DETAILS 
+//PAN DETAILS
 Route::get('pan/register', 'PanController@register_form')->name('pan.register_form');
 Route::post('pan/register', 'PanController@storePan')->name('pan.register');
 Route::post('dashboard_register', 'DashboardController@createInstaMojoOrder')->name('dashboard.register');
 Route::get('store_payment_data', 'DashboardController@storePaymentData')->name('dashboard.storedata');
 
-
-//TAN DETAILS 
+//TAN DETAILS
 Route::get('tan/register', 'TanController@register_form')->name('tan.register_form');
 Route::post('tan/register', 'TanController@storeTan')->name('tan.register');
 
-
-//Epf DETAILS 
+//Epf DETAILS
 Route::get('epf/register', 'EpfController@register_form')->name('epf.register_form');
 Route::post('epf/company', 'EpfController@storeEpfCompany')->name('epf.register.company');
 Route::post('epf/others', 'EpfController@storeEpfOthers')->name('epf.register.others');
 
-
-
-//ESIC DETAILS 
+//ESIC DETAILS
 Route::get('esic/register', 'ESICController@register_form')->name('esic.register_form');
 Route::post('esic/company', 'ESICController@storeEsicCompany')->name('esic.register.company');
 Route::post('esic/others', 'ESICController@storeEsicOthers')->name('esic.register.others');
 
-//TradeMark DETAILS 
+//TradeMark DETAILS
 Route::get('trademark/register', 'TradeMarkController@register_form')->name('trademark.register_form');
 Route::post('trademark/company', 'TradeMarkController@storeTrademarkCompany')->name('trademark.register.company');
 Route::post('trademark/others', 'TradeMarkController@storeTrademarkOthers')->name('trademark.register.others');
 
-//Company Regitration DETAILS 
+//Company Regitration DETAILS
 Route::get('company/register', 'CompanyController@register_form')->name('company.register_form');
 Route::post('company', 'CompanyController@storeCompany')->name('company.register');
- 
-//Partnership Regitration DETAILS 
+
+//Partnership Regitration DETAILS
 Route::get('partnership/register', 'PartnershipController@register_form')->name('partnership.register_form');
 Route::post('partnership', 'PartnershipController@storePartnership')->name('partnership.register');
 
-//HUF Regitration DETAILS 
+//HUF Regitration DETAILS
 Route::get('huf/register', 'HufController@register_form')->name('huf.register_form');
 Route::post('huf', 'HufController@storeHuf')->name('huf.register');
 
-//Trust Regitration DETAILS 
+//Trust Regitration DETAILS
 Route::get('trust/register', 'TrustController@register_form')->name('trust.register_form');
 Route::post('trust', 'TrustController@storeTrust')->name('trust.register');
 
-//Udamy Registration DETAILS 
+//Udamy Registration DETAILS
 Route::get('udamy/register', 'UdamyController@register_form')->name('udamy.register_form');
 Route::post('udamy/register', 'UdamyController@storeUdamy')->name('udamy.register');
 
-
-//Import Export Code registration DETAILS 
+//Import Export Code registration DETAILS
 Route::get('importexport/register', 'ImportExportController@register_form')->name('importexport.register_form');
 Route::post('importexport/register', 'ImportExportController@storeImportExport')->name('importexport.register');
 
-
-//Labour License registration DETAILS 
+//Labour License registration DETAILS
 Route::get('labour/register', 'LabourController@register_form')->name('labour.register_form');
 Route::post('labour/petty', 'LabourController@storePetty')->name('labour.register.petty');
 Route::post('labour/labour', 'LabourController@storeLabour')->name('labour.register.labour');
 
-
-
-//SHOP DETAILS 
+//SHOP DETAILS
 Route::get('shop/register', 'ShopController@register_form')->name('shop.register_form');
 Route::post('shop/register', 'ShopController@storeShop')->name('shop.register');
 
-
-
-//ISO DETAILS 
+//ISO DETAILS
 Route::get('iso/register', 'IsoController@register_form')->name('iso.register_form');
 Route::post('iso/register', 'IsoController@storeIso')->name('iso.register');
 
-//Fssai DETAILS 
+//Fssai DETAILS
 Route::get('fssai/register', 'FssaiController@register_form')->name('fssai.register_form');
 Route::post('fssai/register', 'FssaiController@storeFssai')->name('fssai.register');
 
-//Itr DETAILS 
+//Itr DETAILS
 Route::get('itr/register', 'ItrController@register_form')->name('itr.register_form');
 Route::post('itr/register', 'ItrController@storeItr')->name('itr.register');
 
-//Taxaudit DETAILS 
+//Taxaudit DETAILS
 Route::get('taxaudit/register', 'TaxauditController@register_form')->name('taxaudit.register_form');
 Route::post('taxaudit/register', 'TaxauditController@storeTaxaudit')->name('taxaudit.register');
 
-//Tds DETAILS 
+//Tds DETAILS
 Route::get('tds/register', 'TdsController@register_form')->name('tds.register_form');
 Route::post('tds/register', 'TdsController@storeTds')->name('tds.register');
 
-//Factory License Code registration DETAILS 
+//Factory License Code registration DETAILS
 Route::get('factorylicense/register', 'FactoryLicenseController@register_form')->name('factorylicense.register_form');
 Route::post('factorylicense/register', 'FactoryLicenseController@storeFactoryLicense')->name('factorylicense.register');
 
-Route::group([
-    'namespace' => 'CompaniesAct',
-], function () {
-// CompaniesAct 
-Route::get('minutes/register', 'MinutesController@register_form')->name('minutes.register_form');
-Route::post('minutes/register', 'MinutesController@storeMinutes')->name('minutes.register');
+Route::group(
+    [
+        'namespace' => 'CompaniesAct',
+    ],
+    function () {
+        // CompaniesAct
+        Route::get('minutes/register', 'MinutesController@register_form')->name('minutes.register_form');
+        Route::post('minutes/register', 'MinutesController@storeMinutes')->name('minutes.register');
 
-Route::get('mgt/register', 'MgtController@register_form')->name('mgt.register_form');
-Route::post('mgt/register', 'MgtController@storeMgt')->name('mgt.register');
+        Route::get('mgt/register', 'MgtController@register_form')->name('mgt.register_form');
+        Route::post('mgt/register', 'MgtController@storeMgt')->name('mgt.register');
 
+        Route::get('adt/register', 'AdtController@register_form')->name('adt.register_form');
+        Route::post('adt/register', 'AdtController@storeAdt')->name('adt.register');
 
-Route::get('adt/register', 'AdtController@register_form')->name('adt.register_form');
-Route::post('adt/register', 'AdtController@storeAdt')->name('adt.register');
+        Route::get('aoc/register', 'AocController@register_form')->name('aoc.register_form');
+        Route::post('aoc/register', 'AocController@storeAoc')->name('aoc.register');
 
+        Route::get('dinkyc/register', 'DinkycController@register_form')->name('dinkyc.register_form');
+        Route::post('dinkyc/register', 'DinkycController@storeDinkyc')->name('dinkyc.register');
 
-Route::get('aoc/register', 'AocController@register_form')->name('aoc.register_form');
-Route::post('aoc/register', 'AocController@storeAoc')->name('aoc.register');
+        Route::get('statutoryaudit/register', 'StatutoryAuditController@register_form')->name('statutoryaudit.register_form');
+        Route::post('statutoryaudit/register', 'StatutoryAuditController@storeAudit')->name('statutoryaudit.register');
 
+        // Companies Act Dashboard details for all forms
+        Route::get('companiesact/dashboard', 'DashboardController@index')->name('companiesact_dashboard');
+        Route::post('companiesact/download/raised/file', 'DashboardController@raisedFile')->name('companiesact_web_raisedFile');
+        Route::post('companiesact/download/approved/file', 'DashboardController@approvedFile')->name('companiesact_web_approvedFile');
+        Route::post('companiesact/queryraised', 'DashboardController@queryRaised')->name('companiesact_query_raised');
+    },
+);
 
-Route::get('dinkyc/register', 'DinkycController@register_form')->name('dinkyc.register_form');
-Route::post('dinkyc/register', 'DinkycController@storeDinkyc')->name('dinkyc.register');
+Route::group(
+    [
+        'namespace' => 'Certification',
+    ],
+    function () {
+        // All about certification
 
-Route::get('statutoryaudit/register', 'StatutoryAuditController@register_form')->name('statutoryaudit.register_form');
-Route::post('statutoryaudit/register', 'StatutoryAuditController@storeAudit')->name('statutoryaudit.register');
+        Route::get('ca/register', 'CaController@register_form')->name('ca.register_form');
+        Route::post('ca/register', 'CaController@storeCa')->name('ca.register');
 
+        Route::get('networth/register', 'NetworthController@register_form')->name('networth.register_form');
+        Route::post('networth/register', 'NetworthController@storeNetworth')->name('networth.register');
 
-// Companies Act Dashboard details for all forms 
-Route::get('companiesact/dashboard', 'DashboardController@index')->name('companiesact_dashboard');
-Route::post('companiesact/download/raised/file', 'DashboardController@raisedFile')->name('companiesact_web_raisedFile');
-Route::post('companiesact/download/approved/file', 'DashboardController@approvedFile')->name('companiesact_web_approvedFile');
-Route::post('companiesact/queryraised', 'DashboardController@queryRaised')->name('companiesact_query_raised');
-});
+        Route::get('turnover/register', 'TurnoverController@register_form')->name('turnover.register_form');
+        Route::post('turnover/register', 'TurnoverController@storeTurnover')->name('turnover.register');
 
-Route::group([
-    'namespace' => 'Certification',
-], function () {
+        // certification Dashboard
+        Route::get('certification/dashboard', 'DashboardController@index')->name('certification_dashboard');
+        Route::post('certification/download/raised/file', 'DashboardController@raisedFile')->name('certification_web_raisedFile');
+        Route::post('certification/download/approved/file', 'DashboardController@approvedFile')->name('certification_web_approvedFile');
+        Route::post('certification/queryraised', 'DashboardController@queryRaised')->name('certification_query_raised');
+    },
+);
 
-// All about certification
-
-Route::get('ca/register', 'CaController@register_form')->name('ca.register_form');
-Route::post('ca/register', 'CaController@storeCa')->name('ca.register');
-
-
-Route::get('networth/register', 'NetworthController@register_form')->name('networth.register_form');
-Route::post('networth/register', 'NetworthController@storeNetworth')->name('networth.register');
-
-
-Route::get('turnover/register', 'TurnoverController@register_form')->name('turnover.register_form');
-Route::post('turnover/register', 'TurnoverController@storeTurnover')->name('turnover.register');
-
-// certification Dashboard
-Route::get('certification/dashboard', 'DashboardController@index')->name('certification_dashboard');
-Route::post('certification/download/raised/file', 'DashboardController@raisedFile')->name('certification_web_raisedFile');
-Route::post('certification/download/approved/file', 'DashboardController@approvedFile')->name('certification_web_approvedFile');
-Route::post('certification/queryraised', 'DashboardController@queryRaised')->name('certification_query_raised');
-
-});
-
-
- 
 Route::get('register/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
 Route::get('register/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
