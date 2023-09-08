@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\UserImportExportDetail;
+use App\Models\UserShopDetail;
 use App\Models\UserTrustDetail;
 use App\Models\UserUdamyDetail;
 use Illuminate\Support\Facades\Storage;
@@ -255,6 +256,10 @@ class Helper
             }
             else if($data["type"] == 'Import'){
                 UserImportExportDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+
+            else if($data["type"] == 'Shop'){
+                UserShopDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
             
         }

@@ -144,7 +144,7 @@ Route::post('udamy/register', 'UdamyController@storeUdamy')->name('udamy.registe
 //Import Export Code registration DETAILS 
 Route::get('importexport/register', 'ImportExportController@register_form')->name('importexport.register_form');
 Route::post('importexport/register', 'ImportExportController@storeImportExport')->name('importexport.register');
-// Route::post('importexport/register', 'ImportExportController@register_form')->name('importexport.paymentregister');
+//  Route::post('importexport/register', 'ImportExportController@register_form')->name('importexport.paymentregister');
 
 //Labour License registration DETAILS 
 Route::get('labour/register', 'LabourController@register_form')->name('labour.register_form');
@@ -156,6 +156,7 @@ Route::post('labour/labour', 'LabourController@storeLabour')->name('labour.regis
 //SHOP DETAILS 
 Route::get('shop/register', 'ShopController@register_form')->name('shop.register_form');
 Route::post('shop/register', 'ShopController@storeShop')->name('shop.register');
+// Route::post('shop/register', 'ShopController@register_form')->name('shop.pamentregister');
 
 
 
