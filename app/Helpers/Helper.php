@@ -2,7 +2,10 @@
 
 namespace App\Helpers;
 
+use App\Models\UserFactoryLicenseDetail;
+use App\Models\UserFssaiDetail;
 use App\Models\UserImportExportDetail;
+use App\Models\UserIsoDetail;
 use App\Models\UserShopDetail;
 use App\Models\UserTrustDetail;
 use App\Models\UserUdamyDetail;
@@ -261,6 +264,16 @@ class Helper
             else if($data["type"] == 'Shop'){
                 UserShopDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
+            else if($data["type"] == 'ISO'){
+                UserIsoDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Fssai'){
+                UserFssaiDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Factory'){
+                UserFactoryLicenseDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            
             
         }
 

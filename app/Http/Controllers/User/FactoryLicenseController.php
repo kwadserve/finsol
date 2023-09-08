@@ -16,6 +16,21 @@ class FactoryLicenseController  extends Controller {
       //  return view('user.pages.gst.details');
     }
     public function register_form() {
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserFactoryLicenseDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Factory';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Factory License and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Factory License successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/factorylicense/register')->with('success', $msg);
+        }
         $data['factory_license_images'] = Documents::where('for_multiple', 'FL')->get();
         return view('user.pages.factorylicense.factorylicenseform')->with($data);
     }
@@ -29,7 +44,18 @@ class FactoryLicenseController  extends Controller {
         $data['name_of_facl'] = $request['name_of_udamy'];
         $data['facl_email'] = $request['facl_email'];
         $data['facl_mobile'] = $request['facl_mobile'];
-        UserFactoryLicenseDetail::Create($data);
+        $lastInsertedId = UserFactoryLicenseDetail::Create($data)->id;;
+        if(isset($lastInsertedId) && !empty($lastInsertedId)){
+            $data['insert_id'] = $lastInsertedId;
+            $data['payment_purpose'] = 'Payment for Factory License Register';
+            $data['name_of_pan'] =  $data['name_of_facl'];
+            $data['email_id'] = $data['facl_email'];
+            $data['mobile_number'] = $data['facl_mobile'];
+            $data['payment_amount'] = 10;
+            $data['type'] = 'Factory';
+            $data['route'] = 'factorylicense.register_form';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
         return redirect('/factorylicense/register')->with('success', 'Registered Factory License successfully!');
     }
      

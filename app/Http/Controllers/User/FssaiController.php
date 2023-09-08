@@ -14,6 +14,21 @@ class FssaiController  extends Controller {
       //  return view('user.pages.gst.details');
     }
     public function register_form() {
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserFssaiDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Fssai';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Fssai and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Fssai successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/fssai/register')->with('success', $msg);
+        }
      
         $data['fssaiimages'] = Documents::where('for_multiple', 'FSSAI')->get();
         return view('user.pages.fssai.fssaiform')->with($data);
@@ -30,7 +45,20 @@ class FssaiController  extends Controller {
         $data['mobile_number'] = $request['mobile_number'];
         $matchthese = ['user_id' => $userId];
         // UserFssaiDetail::where($matchthese)->delete();
-        UserFssaiDetail::Create($data);
+        $lastInsertedId = UserFssaiDetail::Create($data)->id;
+
+        if(isset($lastInsertedId) && !empty($lastInsertedId)){
+            $data['insert_id'] = $lastInsertedId;
+            $data['payment_purpose'] = 'Payment for Fssai Register';
+            $data['name_of_pan'] =  $data['name_of_fssai'];
+            $data['email_id'] = $data['email_id'];
+            $data['mobile_number'] = $data['mobile_number'];
+            $data['payment_amount'] = 10;
+            $data['type'] = 'Fssai';
+            $data['route'] = 'fssai.register_form';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
+
         return redirect('/fssai/register')->with('success', 'Registered Fssai successfully!');
     }
      
