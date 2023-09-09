@@ -46,7 +46,7 @@
 
                    <input type="hidden" name="form_type" value="Partnership">
                    <input type="hidden" name="insert_id" value="{{$detail->id}}">
-                   <input type="hidden" name="payment_amount" value="10">
+                   <input type="hidden" name="payment_amount" value="{{$partnership_instamojo_amount}}">
                    <input type="hidden" name="route" value="form_dashboard">
                    <input type="hidden" name="payment_purpose" value="Partnership">
                    <input type="hidden" name="email_id" value="{{$detail->partnership_email}}">
