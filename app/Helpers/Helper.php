@@ -2,12 +2,16 @@
 
 namespace App\Helpers;
 
+use App\Models\UserEpfDetail;
+use App\Models\UserEsicDetail;
 use App\Models\UserFactoryLicenseDetail;
 use App\Models\UserFssaiDetail;
 use App\Models\UserGstDetail;
 use App\Models\UserImportExportDetail;
 use App\Models\UserIsoDetail;
+use App\Models\UserLabourDetail;
 use App\Models\UserShopDetail;
+use App\Models\UserTrademarkDetail;
 use App\Models\UserTrustDetail;
 use App\Models\UserUdamyDetail;
 use Illuminate\Support\Facades\Storage;
@@ -276,6 +280,18 @@ class Helper
             }
             else if($data["type"] == 'Gst'){
                 UserGstDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Epf'){
+                UserEpfDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Esic'){
+                UserEsicDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Trademark'){
+                UserTrademarkDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Labour'){
+                UserLabourDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
             
             

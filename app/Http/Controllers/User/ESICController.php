@@ -18,6 +18,22 @@ class ESICController  extends Controller {
     }
 
     public function register_form() {
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserEsicDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Esic';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Esic and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Esic successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/esic/register')->with('success', $msg);
+        }
+
         $data['esic_company_images'] = Documents::where(['for_multiple' => 'ESIC Company'])->get();
         $data['esic_company_signatory_images'] = Documents::where(['for_multiple' => 'ESIC Signatory'])->get();
         $data['esic_other_images'] = Documents::where(['for_multiple' => 'ESIC Others'])->get();
@@ -39,6 +55,18 @@ class ESICController  extends Controller {
             // $matchthese = ['user_id'=>$userId, 'esic_type'=>'Company'];
             // UserEsicDetail::where($matchthese)->delete();
             $lastInsertedId =  UserEsicDetail::Create($data)->id;
+
+            if(isset($lastInsertedId) && !empty($lastInsertedId)){
+                $data['insert_id'] = $lastInsertedId;
+                $data['payment_purpose'] = 'Payment for Esic Register';
+                $data['name_of_pan'] =  $data['name_of_esic'];
+                $data['email_id'] = $data['esic_email'];
+                $data['mobile_number'] = $data['esic_mobile'];
+                $data['payment_amount'] = 10;
+                $data['type'] = 'Esic';
+                $data['route'] = 'esic.register_form';
+                $payment_Req= Helper::createInstaMojoOrder($data);
+            }
         if ($request->has('esicsignatory')) {
             $esicsignatory = $request->input('esicsignatory');
             UserEsicSignatory::where(['user_id' => $userId])->delete();
@@ -70,7 +98,19 @@ class ESICController  extends Controller {
         $data['name_of_esic'] = $request['name_of_esic'];
         // $matchthese = ['user_id' => $userId, 'esic_type' => 'Others'];
         // UserEsicDetail::where($matchthese)->delete();
-        UserEsicDetail::updateOrCreate($data);
+        $lastInsertedId = UserEsicDetail::updateOrCreate($data)->id;
+        if(isset($lastInsertedId) && !empty($lastInsertedId)){
+            $data['insert_id'] = $lastInsertedId;
+            $data['payment_purpose'] = 'Payment for Esic Register';
+            $data['name_of_pan'] =  $data['name_of_esic'];
+            $data['email_id'] = $data['esic_email'];
+            $data['mobile_number'] = $data['esic_mobile'];
+            $data['payment_amount'] = 10;
+            $data['type'] = 'Esic';
+            $data['route'] = 'esic.register_form';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
+
         return redirect('/esic/register')->with('success', 'Registered ESIC Others successfully!');;
     }
 
