@@ -31,6 +31,21 @@ class GstController extends Controller {
         return view('user.pages.gst.details')->with($data);
     }
     public function register_form() {
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserGstDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Gst';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Gst and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Gst successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/gst/register')->with('success', $msg);
+        }
         $data['images'] = Documents::where(['for_multiple' => 'GST'])->get();
         $data['firm_images'] = Documents::where(['for_multiple' => 'GST Firm'])->get();
         $data['firm_partner_images'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
@@ -111,7 +126,7 @@ class GstController extends Controller {
         ]);
     }
     public function storeIndividual(Request $request) {
-        $this->validateform($request);
+        // $this->validateform($request);
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
         $folderName = 'uploads/users/'.$useName.'/Gst/Individual';
@@ -124,11 +139,23 @@ class GstController extends Controller {
         $data['status'] = 1 ; //1- Under Process/2- Query Raised/ 3- Query Updated, 4-Approved
         $matchthese = ['user_id' => $userId, 'gst_type' => 'Individual'];
         UserGstDetail::where($matchthese)->delete();
-        UserGstDetail::updateOrCreate($matchthese, $data);
+        $lastInsertedId = UserGstDetail::updateOrCreate($matchthese, $data)->id;
+
+        if(isset($lastInsertedId) && !empty($lastInsertedId)){
+            $data['insert_id'] = $lastInsertedId;
+            $data['payment_purpose'] = 'Payment for GST Register';
+            $data['name_of_pan'] =  $data['trade_name'];
+            $data['email_id'] = $data['email_id'];
+            $data['mobile_number'] = (!empty($request['mobile_linked_aadhar'])?$request['mobile_linked_aadhar']:'7218046496');
+            $data['payment_amount'] = 10;
+            $data['type'] = 'Gst';
+            $data['route'] = 'gst.register_form';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
         return redirect('/gst/register')->with('success', 'Registered as Individual successfully!');;
     }
     public function storeFirm(Request $request) {
-        $this->validateform($request);
+        // $this->validateform($request);
         $userId = auth()->user()->id;
         $dataon ='partners'; 
             $useName = trim(auth()->user()->name).'-'.$userId; 
@@ -143,6 +170,18 @@ class GstController extends Controller {
             $matchthese = ['user_id'=>$userId, 'gst_type'=>'Firm'];
             UserGstDetail::where($matchthese)->delete();
             $lastInsertedId =  UserGstDetail::updateOrCreate($matchthese, $data)->id;
+
+            if(isset($lastInsertedId) && !empty($lastInsertedId)){
+                $data['insert_id'] = $lastInsertedId;
+                $data['payment_purpose'] = 'Payment for GST Register';
+                $data['name_of_pan'] =  $data['trade_name'];
+                $data['email_id'] = $data['email_id'];
+                $data['mobile_number'] = (!empty($request['mobile_linked_aadhar'])?$request['mobile_linked_aadhar']:'7218046496');
+                $data['payment_amount'] = 10;
+                $data['type'] = 'Gst';
+                $data['route'] = 'gst.register_form';
+                $payment_Req= Helper::createInstaMojoOrder($data);
+            }
         if ($request->has('partners')) {
             $partners = $request->input('partners');
             UserPartner::where(['user_id' => $userId])->delete();
@@ -208,6 +247,18 @@ class GstController extends Controller {
             $matchthese = ['user_id'=>$userId, 'gst_type'=>'Company'];
             UserGstDetail::where($matchthese)->delete();
             $lastInsertedId =  UserGstDetail::updateOrCreate($matchthese, $data)->id;
+
+            if(isset($lastInsertedId) && !empty($lastInsertedId)){
+                $data['insert_id'] = $lastInsertedId;
+                $data['payment_purpose'] = 'Payment for GST Register';
+                $data['name_of_pan'] =  $data['trade_name'];
+                $data['email_id'] = $data['email_id'];
+                $data['mobile_number'] = (!empty($request['mobile_linked_aadhar'])?$request['mobile_linked_aadhar']:'7218046496');
+                $data['payment_amount'] = 10;
+                $data['type'] = 'Gst';
+                $data['route'] = 'gst.register_form';
+                $payment_Req= Helper::createInstaMojoOrder($data);
+            }
         if ($request->has('directors')) {
             $directors = $request->input('directors');
             UserDirector::where(['user_id' => $userId])->delete();
