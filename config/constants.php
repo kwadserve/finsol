@@ -18,6 +18,9 @@
             'esic' => 10,
             'trademark' => 10,
             'labour' => 10,
+            'itr' => 10,
+            'tds' => 10,
+            'taxaudit' => 10
         ]
     ];
 ?>

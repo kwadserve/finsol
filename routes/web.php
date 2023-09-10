@@ -183,3 +183,5 @@ Route::post('tds/register', 'TdsController@storeTds')->name('tds.register');
 //Factory License Code registration DETAILS 
 Route::get('factorylicense/register', 'FactoryLicenseController@register_form')->name('factorylicense.register_form');
 Route::post('factorylicense/register', 'FactoryLicenseController@storeFactoryLicense')->name('factorylicense.register');
+
+Route::get('payments', 'PaymentsController@index')->name('form_payment');
