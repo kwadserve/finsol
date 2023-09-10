@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserUdamyDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class UdamyController  extends Controller {
     public function __construct() {
@@ -52,7 +53,7 @@ class UdamyController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_udamy'];
             $data['email_id'] = $data['udamy_email'];
             $data['mobile_number'] = $data['udamy_mobile'];
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = config::get('constants.instamojo.udamy');
             $data['type'] = 'Udamy';
             $data['route'] = 'udamy.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

@@ -8,7 +8,7 @@ use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
- 
+use Illuminate\Support\Facades\Config;
 class CompanyController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -64,7 +64,7 @@ class CompanyController  extends Controller {
                 $data['name_of_pan'] =  $data['name_of_company'];
                 $data['email_id'] = $data['company_email'];
                 $data['mobile_number'] = $data['company_mobile'];
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = config::get('constants.instamojo.company');
                 $data['type'] = 'Company';
                 $data['route'] = 'company.pamentregister';
                 $payment_Req= Helper::createInstaMojoOrder($data);

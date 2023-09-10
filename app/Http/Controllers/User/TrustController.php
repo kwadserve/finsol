@@ -8,6 +8,7 @@ use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class TrustController  extends Controller {
     public function __construct() {
@@ -56,7 +57,7 @@ class TrustController  extends Controller {
                 $data['name_of_pan'] =  $data['name_of_trust'];
                 $data['email_id'] = $data['trust_email'];
                 $data['mobile_number'] = $data['trust_mobile'];
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = config::get('constants.instamojo.trust');
                 $data['type'] = 'Trust';
                 $data['route'] = 'trust.paymentregister';
                 $payment_Req= Helper::createInstaMojoOrder($data);

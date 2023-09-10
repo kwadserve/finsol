@@ -1,26 +1,26 @@
 <?php
     return [
         'instamojo' => [
-            'tan' => 10,
-            'pan' => 10,
-            'partnership' => 10,
-            'company' => 10,
-            'huf' => 10,
-            'trust' => 10,
-            'udamy' => 10,
-            'import' => 10,
-            'shop' => 10,
-            'iso' => 10,
-            'fssai' => 10,
-            'factory' => 10,
-            'gst' => 10,
-            'epf' => 10,
-            'esic' => 10,
-            'trademark' => 10,
-            'labour' => 10,
+            'tan' => 5,
+            'pan' => 15,
+            'partnership' => 20,
+            'company' => 22,
+            'huf' => 12,
+            'trust' => 25,
+            'udamy' => 30,
+            'import' => 50,
+            'shop' => 70,
+            'iso' => 85,
+            'fssai' => 20,
+            'factory' => 25,
+            'gst' => 32,
+            'epf' => 50,
+            'esic' => 55,
+            'trademark' => 60,
+            'labour' => 90,
             'itr' => 10,
-            'tds' => 10,
-            'taxaudit' => 10
+            'tds' => 15,
+            'taxaudit' => 20
         ]
     ];
 ?>

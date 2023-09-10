@@ -15,6 +15,7 @@ class Instamojo extends Authenticatable
         'staus',
         'user_id',
         'type',
+        'amount',
         'payment_id',
         'payment_request_id',
         'type',

@@ -15,7 +15,7 @@ use App\Models\UserGstUploadDocument;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Response;
 use DB; 
- 
+use Illuminate\Support\Facades\Config;
 
 class GstController extends Controller {
     public function __construct() {
@@ -147,7 +147,7 @@ class GstController extends Controller {
             $data['name_of_pan'] =  $data['trade_name'];
             $data['email_id'] = $data['email_id'];
             $data['mobile_number'] = (!empty($request['mobile_linked_aadhar'])?$request['mobile_linked_aadhar']:'7218046496');
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = config::get('constants.instamojo.gst');
             $data['type'] = 'Gst';
             $data['route'] = 'gst.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);
@@ -177,7 +177,7 @@ class GstController extends Controller {
                 $data['name_of_pan'] =  $data['trade_name'];
                 $data['email_id'] = $data['email_id'];
                 $data['mobile_number'] = (!empty($request['mobile_linked_aadhar'])?$request['mobile_linked_aadhar']:'7218046496');
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = config::get('constants.instamojo.gst');
                 $data['type'] = 'Gst';
                 $data['route'] = 'gst.register_form';
                 $payment_Req= Helper::createInstaMojoOrder($data);
@@ -254,7 +254,7 @@ class GstController extends Controller {
                 $data['name_of_pan'] =  $data['trade_name'];
                 $data['email_id'] = $data['email_id'];
                 $data['mobile_number'] = (!empty($request['mobile_linked_aadhar'])?$request['mobile_linked_aadhar']:'7218046496');
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = config::get('constants.instamojo.gst');
                 $data['type'] = 'Gst';
                 $data['route'] = 'gst.register_form';
                 $payment_Req= Helper::createInstaMojoOrder($data);

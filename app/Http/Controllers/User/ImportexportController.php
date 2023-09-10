@@ -6,6 +6,7 @@ use App\Models\UserUdamyDetail;
 use App\Models\UserImportExportDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class ImportExportController  extends Controller {
     public function __construct() {
@@ -52,7 +53,7 @@ class ImportExportController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_firm'];
             $data['email_id'] = $data['firm_email'];
             $data['mobile_number'] = $data['firm_mobile'];
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = config::get('constants.instamojo.import');
             $data['type'] = 'Import';
             $data['route'] = 'importexport.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

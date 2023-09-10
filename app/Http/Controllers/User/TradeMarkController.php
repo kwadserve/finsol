@@ -8,6 +8,7 @@ use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class TradeMarkController  extends Controller {
     public function __construct() {
@@ -63,7 +64,7 @@ class TradeMarkController  extends Controller {
                 $data['name_of_pan'] =  $data['name_of_trademark'];
                 $data['email_id'] = $data['trademark_email'];
                 $data['mobile_number'] = $data['trademark_mobile'];
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = config::get('constants.instamojo.trademark');
                 $data['type'] = 'Trademark';
                 $data['route'] = 'trademark.register_form';
                 $payment_Req= Helper::createInstaMojoOrder($data);

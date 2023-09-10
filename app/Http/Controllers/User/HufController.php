@@ -8,6 +8,7 @@ use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class HufController  extends Controller {
     public function __construct() {
@@ -55,7 +56,7 @@ class HufController  extends Controller {
                 $data['name_of_pan'] =  $data['name_of_huf'];
                 $data['email_id'] = $data['huf_email'];
                 $data['mobile_number'] = $data['huf_mobile'];
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = config::get('constants.instamojo.huf');
                 $data['type'] = 'Huf';
                 $data['route'] = 'huf.paymentregister';
                 $payment_Req= Helper::createInstaMojoOrder($data);

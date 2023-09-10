@@ -231,6 +231,7 @@ class Helper
         // Session::flush();
         // session('form_type', $data["type"]);
         session()->put('form_type', $data["type"]);
+        session()->put('payment_amount', $data["payment_amount"]);
         session()->save();
         $response = $api->paymentRequestCreate([
             "purpose" => $data["payment_purpose"],
@@ -313,10 +314,12 @@ class Helper
     }
 
     public static function storePaymentResponse($data){
+        $amount = session()->get('payment_amount');
 
         $data['staus'] = $data['payment_status'];
         $data['user_id'] = $data['userid'];
         $data['type'] = $data['type'];
+        $data['amount'] = $amount;
         $data['payment_id'] = $data['payment_id'];
         $data['payment_request_id'] = $data['payment_request_id'];
         Instamojo::Create($data);

@@ -10,6 +10,7 @@ use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class LabourController  extends Controller {
     public function __construct() {
@@ -112,7 +113,7 @@ class LabourController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_labour'];
             $data['email_id'] = $data['labour_email'];
             $data['mobile_number'] = $data['labour_mobile'];
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = config::get('constants.instamojo.labour');
             $data['type'] = 'Labour';
             $data['route'] = 'labour.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

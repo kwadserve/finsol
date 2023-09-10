@@ -54,7 +54,7 @@ class ItrController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_itr'];
             $data['email_id'] = $data['email_id'];
             $data['mobile_number'] = $data['mobile_number'];
-            $data['payment_amount'] = config::get('constants.instamojo.itr');;
+            $data['payment_amount'] = config::get('constants.instamojo.itr');
             $data['type'] = 'Itr';
             $data['route'] = 'itr.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

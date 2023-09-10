@@ -8,6 +8,7 @@ use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class PartnershipController  extends Controller {
     public function __construct() {
@@ -59,7 +60,7 @@ class PartnershipController  extends Controller {
                 $data['name_of_pan'] =  $data['name_of_partnership'];
                 $data['email_id'] = $data['partnership_email'];
                 $data['mobile_number'] = $data['partnership_mobile'];
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = config::get('constants.instamojo.partnership');
                 $data['type'] = 'Partnership';
                 $data['route'] = 'partnership.paymentregister';
                 $payment_Req= Helper::createInstaMojoOrder($data);

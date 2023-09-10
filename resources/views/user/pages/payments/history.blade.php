@@ -36,6 +36,7 @@ use App\Models\UserGstDetail;
                 <th scope="col">Id</th>
                 <th scope="col">Payment Status</th>
                 <th scope="col">Type</th>
+                <th scope="col">Amount</th>
                 <th scope="col">Payment Id</th>
                 <th scope="col">Payment Request Id</th>
                 <th scope="col">Created at</th>
@@ -61,6 +62,9 @@ use App\Models\UserGstDetail;
                 </td>
                 <td class="text-nowrap">
                 {{$detail->type}}
+                </td>
+                <td class="text-nowrap">
+                ₹{{$detail->amount}}
                 </td>
                 <td class="text-nowrap">
                 {{$detail->payment_id}}
