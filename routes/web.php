@@ -221,5 +221,25 @@ Route::group(
     },
 );
 
+//Loan & Finance
+Route::group(
+    ['namespace' => 'LoanFinance'], function() {        
+        Route::get('loan-finance/estimated/register', 'EstimatedController@register_form')->name('estimated.register_form');
+        Route::post('loan-finance/estimated/register', 'EstimatedController@storeEstimated')->name('estimated.register');
+
+        Route::get('loan-finance/cma/register', 'CMAController@register_form')->name('cma.register_form');
+        Route::post('loan-finance/cma/register', 'CMAController@storeCMA')->name('cma.register');
+
+        Route::get('loan-finance/project-report/register', 'ProjectReportController@register_form')->name('projectReport.register_form');
+        Route::post('loan-finance/project-report/register', 'ProjectReportController@storeProjectReport')->name('projectReport.register');
+
+        //Loan & Finance Dashboard
+        Route::get('loan-finance/dashboard', 'DashboardController@index')->name('loan_dashboard');
+        Route::post('loan-finance/download/raised/file', 'DashboardController@raisedFile')->name('loan_web_raisedFile');
+        Route::post('loan-finance/download/approved/file', 'DashboardController@approvedFile')->name('loan_web_approvedFile');
+        Route::post('loan-finance/queryraised', 'DashboardController@queryRaised')->name('loan_query_raised');
+    }
+);
+
 Route::get('register/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
 Route::get('register/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
