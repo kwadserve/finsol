@@ -165,6 +165,10 @@ Route::post('tds/register', 'TdsController@storeTds')->name('tds.register');
 Route::get('factorylicense/register', 'FactoryLicenseController@register_form')->name('factorylicense.register_form');
 Route::post('factorylicense/register', 'FactoryLicenseController@storeFactoryLicense')->name('factorylicense.register');
 
+//ISI Details
+Route::get('isi/register', 'ISIController@register_form')->name('isi.register_form');
+Route::post('isi/register', 'ISIController@storeISI')->name('isi.register');
+
 Route::group(
     [
         'namespace' => 'CompaniesAct',

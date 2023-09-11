@@ -26,7 +26,7 @@ use App\Models\UserTdsDetail;
 use App\Models\UserTaxauditDetail; 
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
-
+use App\Models\UserISIDetail;
  
 class DashboardController  extends Controller {
     public $payment_type;
@@ -79,6 +79,8 @@ class DashboardController  extends Controller {
         $data['userTdsDetails'] = UserTdsDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
  
         $data['userFactoryLicenseDetails'] = UserFactoryLicenseDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+
+        $data['userISIDetail'] = UserISIDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         
        // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);  

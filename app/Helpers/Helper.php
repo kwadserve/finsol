@@ -17,6 +17,10 @@ use App\Models\CompaniesAct\UserMinutesDetail;
 use App\Models\Certification\UserCaDetail;
 use App\Models\Certification\UserNetworthDetail;
 use App\Models\Certification\UserTurnoverDetail;
+use App\Models\LoanFinance\CMA;
+use App\Models\LoanFinance\Estimated;
+use App\Models\LoanFinance\ProjectReport;
+use App\Models\UserISIDetail;
 
 class Helper
 {
@@ -262,6 +266,18 @@ class Helper
             }
             else if($data["type"] == 'Turnover'){
                 UserTurnoverDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'CMA'){
+                CMA::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'LFEstimated'){
+                Estimated::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'LFProjectReport'){
+                ProjectReport::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'ISI'){
+                UserISIDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
         }
 
