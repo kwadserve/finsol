@@ -41,12 +41,23 @@
                 <span class="ms-1 fas fa-check" data-fa-transform="shrink-2">
                 </span>
                 @else
-                <span class="badge badge rounded-pill d-block p-2 badge-subtle-warning">
-                {{$detail->payment_status}}
-                <span class="ms-1" data-fa-transform="shrink-2">
-                </span>
-                @endif
-              
+                <form action="{{ route('dashboard.register') }}" method="POST">
+                    @csrf
+
+                    <input type="hidden" name="form_type" value="TAN">
+                    <input type="hidden" name="insert_id" value="{{$detail->id}}">
+                    <input type="hidden" name="payment_amount" value="{{$tan_instamojo_amount}}">
+                    <input type="hidden" name="route" value="form_dashboard">
+                    <input type="hidden" name="payment_purpose" value="Tan">
+                    <input type="hidden" name="email_id" value="{{$detail->email_id}}">
+                    <input type="hidden" name="name_of_pan" value="{{$detail->name_of_tan}}">
+                    <input type="hidden" name="mobile_number" value="{{$detail->mobile_number}}">
+
+                    <button class="btn btn-primary btn-xs mt-2 bsgstdwbtn" type="submit">
+                        <small>Pay</small>
+                    </button>
+                </form>
+                @endif          
                     
                 </span>
             </td>

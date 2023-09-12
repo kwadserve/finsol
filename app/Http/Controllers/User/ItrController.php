@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserItrDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
- 
+use Illuminate\Support\Facades\Config;
 class ItrController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -15,6 +15,21 @@ class ItrController  extends Controller {
     }
     public function register_form() {
      
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserItrDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Itr';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Itr and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Itr successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/itr/register')->with('success', $msg);
+        }
         $data['itrimages'] = Documents::where('for_multiple', 'ITR')->get();
         return view('user.pages.itr.itrform')->with($data);
     }
@@ -31,7 +46,19 @@ class ItrController  extends Controller {
         $data['pan_number'] = $request['pan_number'];
         $matchthese = ['user_id' => $userId];
         // UserItrDetail::where($matchthese)->delete();
-        UserItrDetail::Create($data);
+        $lastInsertedId = UserItrDetail::Create($data)->id;
+
+        if(isset($lastInsertedId) && !empty($lastInsertedId)){
+            $data['insert_id'] = $lastInsertedId;
+            $data['payment_purpose'] = 'Payment for Itr Register';
+            $data['name_of_pan'] =  $data['name_of_itr'];
+            $data['email_id'] = $data['email_id'];
+            $data['mobile_number'] = $data['mobile_number'];
+            $data['payment_amount'] = config::get('constants.instamojo.itr');
+            $data['type'] = 'Itr';
+            $data['route'] = 'itr.register_form';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
         return redirect('/itr/register')->with('success', 'Registered Itr successfully!');
     }
      

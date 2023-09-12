@@ -5,6 +5,10 @@ use App\Helpers\Helper as Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Documents;
 use App\Models\UserPanDetail;
+use App\Models\Documents;
+use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
 
 class PanController extends Controller
@@ -48,14 +52,14 @@ class PanController extends Controller
         $data['mobile_number'] = $request['mobile_number'];
         $insert_data = UserPanDetail::Create($data);
 
-        if (isset($insert_data->id) && !empty($insert_data->id)) {
-            $data['insert_id'] = $insert_data->id;
-            $data['payment_purpose'] = 'Payment for Pan Register';
-            $data['payment_amount'] = 10;
-            $data['type'] = 'PAN';
-            $data['route'] = 'pan.register';
-            $payment_Req = Helper::createInstaMojoOrder($data);
-        }
+    if(isset($insert_data->id) && !empty($insert_data->id)){
+        $data['insert_id'] = $insert_data->id;
+        $data['payment_purpose'] = 'Payment for Pan Register';
+        $data['payment_amount'] = config::get('constants.instamojo.pan');
+        $data['type'] = 'PAN';
+        $data['route'] = 'pan.register';
+        $payment_Req= Helper::createInstaMojoOrder($data);
+    }
         return redirect('/pan/register')->with('success', 'Registered Pan successfully!');
     }
 

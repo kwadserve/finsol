@@ -8,7 +8,7 @@ use App\Models\Documents;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
- 
+use Illuminate\Support\Facades\Config;
 class CompanyController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -18,6 +18,23 @@ class CompanyController  extends Controller {
     }
 
     public function register_form() {
+
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserCompanyDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Company';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Company and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Company successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/company/register')->with('success', $msg);
+        }
+
         $data['trademark_company_images'] = Documents::where(['for_multiple' => 'TRADEMARK Company'])->get();
         $data['trademark_company_signatory_images'] = Documents::where(['for_multiple' => 'TRADEMARK Signatory'])->get();
         $data['trademark_other_images'] = Documents::where(['for_multiple' => 'TRADEMARK Others'])->get();
@@ -40,6 +57,18 @@ class CompanyController  extends Controller {
             // $matchthese = ['user_id'=>$userId];
             // UserCompanyDetail::where($matchthese)->delete();
             $lastInsertedId =  UserCompanyDetail::Create($data)->id;
+
+            if(isset($lastInsertedId) && !empty($lastInsertedId)){
+                $data['insert_id'] = $lastInsertedId;
+                $data['payment_purpose'] = 'Payment for Company Register';
+                $data['name_of_pan'] =  $data['name_of_company'];
+                $data['email_id'] = $data['company_email'];
+                $data['mobile_number'] = $data['company_mobile'];
+                $data['payment_amount'] = config::get('constants.instamojo.company');
+                $data['type'] = 'Company';
+                $data['route'] = 'company.pamentregister';
+                $payment_Req= Helper::createInstaMojoOrder($data);
+            }
             
         if ($request->has('companysignatory')) {
             
