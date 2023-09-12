@@ -5,8 +5,6 @@ use App\Helpers\Helper as Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Documents;
 use App\Models\UserPanDetail;
-use App\Models\Documents;
-use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
