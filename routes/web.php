@@ -165,6 +165,10 @@ Route::post('tds/register', 'TdsController@storeTds')->name('tds.register');
 Route::get('factorylicense/register', 'FactoryLicenseController@register_form')->name('factorylicense.register_form');
 Route::post('factorylicense/register', 'FactoryLicenseController@storeFactoryLicense')->name('factorylicense.register');
 
+//ISI Details
+Route::get('isi/register', 'ISIController@register_form')->name('isi.register_form');
+Route::post('isi/register', 'ISIController@storeISI')->name('isi.register');
+
 Route::group(
     [
         'namespace' => 'CompaniesAct',
@@ -219,6 +223,26 @@ Route::group(
         Route::post('certification/download/approved/file', 'DashboardController@approvedFile')->name('certification_web_approvedFile');
         Route::post('certification/queryraised', 'DashboardController@queryRaised')->name('certification_query_raised');
     },
+);
+
+//Loan & Finance
+Route::group(
+    ['namespace' => 'LoanFinance'], function() {        
+        Route::get('loan-finance/estimated/register', 'EstimatedController@register_form')->name('estimated.register_form');
+        Route::post('loan-finance/estimated/register', 'EstimatedController@storeEstimated')->name('estimated.register');
+
+        Route::get('loan-finance/cma/register', 'CMAController@register_form')->name('cma.register_form');
+        Route::post('loan-finance/cma/register', 'CMAController@storeCMA')->name('cma.register');
+
+        Route::get('loan-finance/project-report/register', 'ProjectReportController@register_form')->name('projectReport.register_form');
+        Route::post('loan-finance/project-report/register', 'ProjectReportController@storeProjectReport')->name('projectReport.register');
+
+        //Loan & Finance Dashboard
+        Route::get('loan-finance/dashboard', 'DashboardController@index')->name('loan_dashboard');
+        Route::post('loan-finance/download/raised/file', 'DashboardController@raisedFile')->name('loan_web_raisedFile');
+        Route::post('loan-finance/download/approved/file', 'DashboardController@approvedFile')->name('loan_web_approvedFile');
+        Route::post('loan-finance/queryraised', 'DashboardController@queryRaised')->name('loan_query_raised');
+    }
 );
 
 Route::get('register/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);

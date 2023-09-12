@@ -137,7 +137,7 @@
                                  <!-- more inner pages-->
                               </li>
                                <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/support-desk.html">
+                                 <a class="nav-link" href="{{route('isi.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ISI</span></div>
                                  </a>
                                  <!-- more inner pages-->
@@ -373,25 +373,25 @@
                            </a>
                            <ul class="nav collapse" id="loan">
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('loan_dashboard')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Dashboard</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('estimated.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Estimated/Projected</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('cma.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">CMA</span></div>
                                  </a>
                                  <!-- more inner pages-->
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="dashboard/analytics.html">
+                                 <a class="nav-link" href="{{route('projectReport.register_form')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Project Report</span></div>
                                  </a>
                                  <!-- more inner pages-->

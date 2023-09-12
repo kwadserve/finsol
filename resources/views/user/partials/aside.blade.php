@@ -92,7 +92,8 @@
                                 class="dropdown-item px-x1 py-2" href="pages/user/profile.html">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-l status-online me-2">
-                                        <img class="rounded-circle" src="../../../assets/img/team/1.jpg" alt="" />
+                                        <img class="rounded-circle" src="../../../assets/img/team/1.jpg"
+                                            alt="" />
                                     </div>
                                     <div class="flex-1">
                                         <h6 class="mb-0 title">Anna Karinina</h6>
@@ -103,7 +104,8 @@
                             <a class="dropdown-item px-x1 py-2" href="pages/user/profile.html">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-l me-2">
-                                        <img class="rounded-circle" src="../../../assets/img/team/2.jpg" alt="" />
+                                        <img class="rounded-circle" src="../../../assets/img/team/2.jpg"
+                                            alt="" />
                                     </div>
                                     <div class="flex-1">
                                         <h6 class="mb-0 title">Antony Hopkins</h6>
@@ -114,7 +116,8 @@
                             <a class="dropdown-item px-x1 py-2" href="pages/user/profile.html">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-l me-2">
-                                        <img class="rounded-circle" src="../../../assets/img/team/3.jpg" alt="" />
+                                        <img class="rounded-circle" src="../../../assets/img/team/3.jpg"
+                                            alt="" />
                                     </div>
                                     <div class="flex-1">
                                         <h6 class="mb-0 title">Emma Watson</h6>
@@ -133,8 +136,8 @@
         <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
             <li class="nav-item px-2">
                 <div class="theme-control-toggle fa-icon-wait"><input
-                        class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox"
-                        data-theme-control="theme" value="dark" /><label
+                        class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle"
+                        type="checkbox" data-theme-control="theme" value="dark" /><label
                         class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle"
                         data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to light theme"><span
                             class="fas fa-sun fs-0"></span></label><label
@@ -151,8 +154,8 @@
             <li class="nav-item dropdown">
                 <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
                     id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false" data-hide-on-body-scroll="data-hide-on-body-scroll"><span class="fas fa-bell"
-                        data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
+                    aria-expanded="false" data-hide-on-body-scroll="data-hide-on-body-scroll"><span
+                        class="fas fa-bell" data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
                 <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
                     aria-labelledby="navbarDropdownNotification">
                     <div class="card card-notification shadow-none">
@@ -161,7 +164,8 @@
                                 <div class="col-auto">
                                     <h6 class="card-header-title mb-0">Notifications</h6>
                                 </div>
-                                <div class="col-auto ps-0 ps-sm-3"><a class="card-link fw-normal" href="#">Mark all as
+                                <div class="col-auto ps-0 ps-sm-3"><a class="card-link fw-normal" href="#">Mark
+                                        all as
                                         read</a>
                                 </div>
                             </div>
@@ -211,7 +215,8 @@
                                             </div>
                                         </div>
                                         <div class="notification-body">
-                                            <p class="mb-1">The forecast today shows a low of 20&#8451; in California.
+                                            <p class="mb-1">The forecast today shows a low of 20&#8451; in
+                                                California.
                                                 See today's
                                                 weather.</p>
                                             <span class="notification-time"><span class="me-2" role="img"
@@ -263,9 +268,9 @@
             </li>
             <li class="nav-item dropdown px-1">
                 <a class="nav-link fa-icon-wait nine-dots p-1" id="navbarDropdownMenu" role="button"
-                    data-hide-on-body-scroll="data-hide-on-body-scroll" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="43"
-                        viewBox="0 0 16 16" fill="none">
+                    data-hide-on-body-scroll="data-hide-on-body-scroll" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="43" viewBox="0 0 16 16" fill="none">
                         <circle cx="2" cy="2" r="2" fill="#6C6E71"></circle>
                         <circle cx="2" cy="8" r="2" fill="#6C6E71"></circle>
                         <circle cx="2" cy="14" r="2" fill="#6C6E71"></circle>
@@ -292,71 +297,71 @@
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="https://themewagon.com/" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/themewagon.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/themewagon.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Themewagon</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="https://mailbluster.com/" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/mailbluster.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/mailbluster.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Mailbluster</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/google.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/google.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Google</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/spotify.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/spotify.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Spotify</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/steam.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/steam.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Steam</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/github-light.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/github-light.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Github</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/discord.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/discord.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Discord</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/xbox.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/xbox.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">xbox</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/trello.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/trello.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Kanban</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/hp.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/hp.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Hp</p>
                                         </a></div>
                                     <div class="col-12">
@@ -365,50 +370,50 @@
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/linkedin.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/linkedin.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Linkedin</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/twitter.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/twitter.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Twitter</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/facebook.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/facebook.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Facebook</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/instagram.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/instagram.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Instagram</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/pinterest.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/pinterest.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Pinterest</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/slack.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/slack.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Slack</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/deviantart.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/deviantart.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Deviantart</p>
                                         </a></div>
                                     <div class="col-4"><a
@@ -421,7 +426,8 @@
                                             </div>
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2">Events</p>
                                         </a></div>
-                                    <div class="col-12"><a class="btn btn-outline-primary btn-sm mt-4" href="#!">Show
+                                    <div class="col-12"><a class="btn btn-outline-primary btn-sm mt-4"
+                                            href="#!">Show
                                             more</a></div>
                                 </div>
                             </div>
@@ -432,7 +438,8 @@
             <li class="nav-item dropdown"><a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-xl">
-                        <img class="rounded-circle" src="{{ asset('../../../assets/img/team/3-thumb.png')}}" alt="" />
+                        <img class="rounded-circle" src="{{ asset('../../../assets/img/team/3-thumb.png') }}"
+                            alt="" />
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
@@ -460,8 +467,8 @@
                     class="toggle-line"></span></span></button>
         <a class="navbar-brand me-1 me-sm-3" href="index-2.html">
             <div class="d-flex align-items-center"><img class="me-2"
-                    src="../../../assets/img/icons/spot-illustrations/falcon.png" alt="" width="40" /><span
-                    class="font-sans-serif">falcon</span></div>
+                    src="../../../assets/img/icons/spot-illustrations/falcon.png" alt=""
+                    width="40" /><span class="font-sans-serif">falcon</span></div>
         </a>
         <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
             <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
@@ -472,10 +479,11 @@
                         aria-labelledby="dashboards">
                         <div class="bg-white dark__bg-1000 rounded-3 py-2"><a class="dropdown-item link-600 fw-medium"
                                 href="index-2.html">Default</a><a class="dropdown-item link-600 fw-medium"
-                                href="dashboard/analytics.html">Analytics</a><a class="dropdown-item link-600 fw-medium"
-                                href="dashboard/crm.html">CRM</a><a class="dropdown-item link-600 fw-medium"
-                                href="dashboard/e-commerce.html">E commerce</a><a
-                                class="dropdown-item link-600 fw-medium" href="dashboard/lms.html">LMS<span
+                                href="dashboard/analytics.html">Analytics</a><a
+                                class="dropdown-item link-600 fw-medium" href="dashboard/crm.html">CRM</a><a
+                                class="dropdown-item link-600 fw-medium" href="dashboard/e-commerce.html">E
+                                commerce</a><a class="dropdown-item link-600 fw-medium"
+                                href="dashboard/lms.html">LMS<span
                                     class="badge rounded-pill ms-2 badge-subtle-success">New</span></a><a
                                 class="dropdown-item link-600 fw-medium"
                                 href="dashboard/project-management.html">Management</a><a
@@ -495,7 +503,8 @@
                                     <div class="col-6 col-md-4">
                                         <div class="nav flex-column"><a class="nav-link py-1 link-600 fw-medium"
                                                 href="app/calendar.html">Calendar</a><a
-                                                class="nav-link py-1 link-600 fw-medium" href="app/chat.html">Chat</a><a
+                                                class="nav-link py-1 link-600 fw-medium"
+                                                href="app/chat.html">Chat</a><a
                                                 class="nav-link py-1 link-600 fw-medium"
                                                 href="app/kanban.html">Kanban</a>
                                             <p class="nav-link text-700 mb-0 fw-bold">Social</p><a
@@ -563,8 +572,8 @@
                                                 class="nav-link py-1 link-600 fw-medium"
                                                 href="app/e-commerce/product/product-grid.html">Product grid</a><a
                                                 class="nav-link py-1 link-600 fw-medium"
-                                                href="app/e-commerce/product/product-details.html">Product details</a><a
-                                                class="nav-link py-1 link-600 fw-medium"
+                                                href="app/e-commerce/product/product-details.html">Product
+                                                details</a><a class="nav-link py-1 link-600 fw-medium"
                                                 href="app/e-commerce/orders/order-list.html">Order list</a><a
                                                 class="nav-link py-1 link-600 fw-medium"
                                                 href="app/e-commerce/orders/order-details.html">Order details</a><a
@@ -588,8 +597,10 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="pagess">Pages</a>
-                    <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0" aria-labelledby="pagess">
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        id="pagess">Pages</a>
+                    <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
+                        aria-labelledby="pagess">
                         <div class="card navbar-card-pages shadow-none dark__bg-1000">
                             <div class="card-body scrollbar max-h-dropdown"><img class="img-dropdown"
                                     src="../../../assets/img/icons/spot-illustrations/authentication-corner.png"
@@ -739,7 +750,8 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
-                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="moduless">Modules</a>
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        id="moduless">Modules</a>
                     <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
                         aria-labelledby="moduless">
                         <div class="card navbar-card-components shadow-none dark__bg-1000">
@@ -995,7 +1007,8 @@
                         id="documentations">Documentation</a>
                     <div class="dropdown-menu dropdown-caret dropdown-menu-card border-0 mt-0"
                         aria-labelledby="documentations">
-                        <div class="bg-white dark__bg-1000 rounded-3 py-2"><a class="dropdown-item link-600 fw-medium"
+                        <div class="bg-white dark__bg-1000 rounded-3 py-2"><a
+                                class="dropdown-item link-600 fw-medium"
                                 href="documentation/getting-started.html">Getting started</a><a
                                 class="dropdown-item link-600 fw-medium"
                                 href="documentation/customization/configuration.html">Configuration</a><a
@@ -1008,8 +1021,10 @@
                                 href="documentation/customization/plugin.html">Plugin</a><a
                                 class="dropdown-item link-600 fw-medium" href="documentation/faq.html">Faq</a><a
                                 class="dropdown-item link-600 fw-medium" href="documentation/gulp.html">Gulp</a><a
-                                class="dropdown-item link-600 fw-medium" href="documentation/design-file.html">Design
-                                file</a><a class="dropdown-item link-600 fw-medium" href="changelog.html">Changelog</a>
+                                class="dropdown-item link-600 fw-medium"
+                                href="documentation/design-file.html">Design
+                                file</a><a class="dropdown-item link-600 fw-medium"
+                                href="changelog.html">Changelog</a>
                         </div>
                     </div>
                 </li>
@@ -1018,8 +1033,8 @@
         <ul class="navbar-nav navbar-nav-icons ms-auto flex-row align-items-center">
             <li class="nav-item px-2">
                 <div class="theme-control-toggle fa-icon-wait"><input
-                        class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle" type="checkbox"
-                        data-theme-control="theme" value="dark" /><label
+                        class="form-check-input ms-0 theme-control-toggle-input" id="themeControlToggle"
+                        type="checkbox" data-theme-control="theme" value="dark" /><label
                         class="mb-0 theme-control-toggle-label theme-control-toggle-light" for="themeControlToggle"
                         data-bs-toggle="tooltip" data-bs-placement="left" title="Switch to light theme"><span
                             class="fas fa-sun fs-0"></span></label><label
@@ -1035,8 +1050,9 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link notification-indicator notification-indicator-primary px-0 fa-icon-wait"
-                    id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false" data-hide-on-body-scroll="data-hide-on-body-scroll"><span class="fas fa-bell"
+                    id="navbarDropdownNotification" role="button" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"
+                    data-hide-on-body-scroll="data-hide-on-body-scroll"><span class="fas fa-bell"
                         data-fa-transform="shrink-6" style="font-size: 33px;"></span></a>
                 <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end dropdown-menu-card dropdown-menu-notification dropdown-caret-bg"
                     aria-labelledby="navbarDropdownNotification">
@@ -1046,7 +1062,8 @@
                                 <div class="col-auto">
                                     <h6 class="card-header-title mb-0">Notifications</h6>
                                 </div>
-                                <div class="col-auto ps-0 ps-sm-3"><a class="card-link fw-normal" href="#">Mark all as
+                                <div class="col-auto ps-0 ps-sm-3"><a class="card-link fw-normal"
+                                        href="#">Mark all as
                                         read</a>
                                 </div>
                             </div>
@@ -1058,8 +1075,8 @@
                                     <a class="notification notification-flush notification-unread" href="#!">
                                         <div class="notification-avatar">
                                             <div class="avatar avatar-2xl me-3">
-                                                <img class="rounded-circle" src="../../../assets/img/team/1-thumb.png"
-                                                    alt="" />
+                                                <img class="rounded-circle"
+                                                    src="../../../assets/img/team/1-thumb.png" alt="" />
                                             </div>
                                         </div>
                                         <div class="notification-body">
@@ -1096,7 +1113,8 @@
                                             </div>
                                         </div>
                                         <div class="notification-body">
-                                            <p class="mb-1">The forecast today shows a low of 20&#8451; in California.
+                                            <p class="mb-1">The forecast today shows a low of 20&#8451; in
+                                                California.
                                                 See today's
                                                 weather.</p>
                                             <span class="notification-time"><span class="me-2" role="img"
@@ -1109,8 +1127,8 @@
                                         href="#!">
                                         <div class="notification-avatar">
                                             <div class="avatar avatar-xl me-3">
-                                                <img class="rounded-circle" src="../../../assets/img/logos/oxford.png"
-                                                    alt="" />
+                                                <img class="rounded-circle"
+                                                    src="../../../assets/img/logos/oxford.png" alt="" />
                                             </div>
                                         </div>
                                         <div class="notification-body">
@@ -1131,7 +1149,8 @@
                                             </div>
                                         </div>
                                         <div class="notification-body">
-                                            <p class="mb-1"><strong>James Cameron</strong> invited to join the group:
+                                            <p class="mb-1"><strong>James Cameron</strong> invited to join the
+                                                group:
                                                 United Nations
                                                 International Children's Fund</p>
                                             <span class="notification-time"><span class="me-2" role="img"
@@ -1148,9 +1167,9 @@
             </li>
             <li class="nav-item dropdown px-1">
                 <a class="nav-link fa-icon-wait nine-dots p-1" id="navbarDropdownMenu" role="button"
-                    data-hide-on-body-scroll="data-hide-on-body-scroll" data-bs-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="43"
-                        viewBox="0 0 16 16" fill="none">
+                    data-hide-on-body-scroll="data-hide-on-body-scroll" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="43" viewBox="0 0 16 16" fill="none">
                         <circle cx="2" cy="2" r="2" fill="#6C6E71"></circle>
                         <circle cx="2" cy="8" r="2" fill="#6C6E71"></circle>
                         <circle cx="2" cy="14" r="2" fill="#6C6E71"></circle>
@@ -1177,71 +1196,72 @@
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="https://themewagon.com/" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/themewagon.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/themewagon.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Themewagon</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="https://mailbluster.com/" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/mailbluster.png" alt="" width="40"
-                                                height="40" />
-                                            <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Mailbluster</p>
+                                                src="../../../assets/img/nav-icons/mailbluster.png" alt=""
+                                                width="40" height="40" />
+                                            <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Mailbluster
+                                            </p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/google.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/google.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Google</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/spotify.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/spotify.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Spotify</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/steam.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/steam.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Steam</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/github-light.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/github-light.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Github</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/discord.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/discord.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Discord</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/xbox.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/xbox.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">xbox</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/trello.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/trello.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Kanban</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/hp.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/hp.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Hp</p>
                                         </a></div>
                                     <div class="col-12">
@@ -1250,63 +1270,65 @@
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/linkedin.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/linkedin.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Linkedin</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/twitter.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/twitter.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Twitter</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/facebook.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/facebook.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Facebook</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/instagram.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/instagram.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Instagram</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/pinterest.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/pinterest.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Pinterest</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/slack.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/slack.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Slack</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="#!" target="_blank"><img class="rounded"
-                                                src="../../../assets/img/nav-icons/deviantart.png" alt="" width="40"
-                                                height="40" />
+                                                src="../../../assets/img/nav-icons/deviantart.png" alt=""
+                                                width="40" height="40" />
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2 pt-1">Deviantart</p>
                                         </a></div>
                                     <div class="col-4"><a
                                             class="d-block hover-bg-200 px-2 py-3 rounded-3 text-center text-decoration-none"
                                             href="app/events/event-detail.html" target="_blank">
                                             <div class="avatar avatar-2xl">
-                                                <div class="avatar-name rounded-circle bg-primary-subtle text-primary">
+                                                <div
+                                                    class="avatar-name rounded-circle bg-primary-subtle text-primary">
                                                     <span class="fs-2">E</span>
                                                 </div>
                                             </div>
                                             <p class="mb-0 fw-medium text-800 text-truncate fs--2">Events</p>
                                         </a></div>
-                                    <div class="col-12"><a class="btn btn-outline-primary btn-sm mt-4" href="#!">Show
+                                    <div class="col-12"><a class="btn btn-outline-primary btn-sm mt-4"
+                                            href="#!">Show
                                             more</a></div>
                                 </div>
                             </div>
@@ -1317,7 +1339,8 @@
             <li class="nav-item dropdown"><a class="nav-link pe-0 ps-2" id="navbarDropdownUser" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-xl">
-                        <img class="rounded-circle" src="{{ asset('../../../assets/img/team/3-thumb.png')}}" alt="" />
+                        <img class="rounded-circle" src="{{ asset('../../../assets/img/team/3-thumb.png') }}"
+                            alt="" />
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-caret dropdown-caret dropdown-menu-end py-0"
@@ -1338,50 +1361,50 @@
         </ul>
     </nav>
     <script>
-    var isFluid = JSON.parse(localStorage.getItem('isFluid'));
-    if (isFluid) {
-        var container = document.querySelector('[data-layout]');
-        container.classList.remove('container');
-        container.classList.add('container-fluid');
-    }
+        var isFluid = JSON.parse(localStorage.getItem('isFluid'));
+        if (isFluid) {
+            var container = document.querySelector('[data-layout]');
+            container.classList.remove('container');
+            container.classList.add('container-fluid');
+        }
     </script>
     <script>
-    var navbarPosition = localStorage.getItem('navbarPosition');
-    var navbarVertical = document.querySelector('.navbar-vertical');
-    var navbarTopVertical = document.querySelector('.content .navbar-top');
-    var navbarTop = document.querySelector('[data-layout] .navbar-top:not([data-double-top-nav');
-    var navbarDoubleTop = document.querySelector('[data-double-top-nav]');
-    var navbarTopCombo = document.querySelector('.content [data-navbar-top="combo"]');
+        var navbarPosition = localStorage.getItem('navbarPosition');
+        var navbarVertical = document.querySelector('.navbar-vertical');
+        var navbarTopVertical = document.querySelector('.content .navbar-top');
+        var navbarTop = document.querySelector('[data-layout] .navbar-top:not([data-double-top-nav');
+        var navbarDoubleTop = document.querySelector('[data-double-top-nav]');
+        var navbarTopCombo = document.querySelector('.content [data-navbar-top="combo"]');
 
-    if (localStorage.getItem('navbarPosition') === 'double-top') {
-        document.documentElement.classList.toggle('double-top-nav-layout');
-    }
+        if (localStorage.getItem('navbarPosition') === 'double-top') {
+            document.documentElement.classList.toggle('double-top-nav-layout');
+        }
 
-    if (navbarPosition === 'top') {
-        navbarTop.removeAttribute('style');
-        navbarTopVertical.remove(navbarTopVertical);
-        navbarVertical.remove(navbarVertical);
-        navbarTopCombo.remove(navbarTopCombo);
-        navbarDoubleTop.remove(navbarDoubleTop);
-    } else if (navbarPosition === 'combo') {
-        navbarVertical.removeAttribute('style');
-        navbarTopCombo.removeAttribute('style');
-        navbarTop.remove(navbarTop);
-        navbarTopVertical.remove(navbarTopVertical);
-        navbarDoubleTop.remove(navbarDoubleTop);
-    } else if (navbarPosition === 'double-top') {
-        navbarDoubleTop.removeAttribute('style');
-        navbarTopVertical.remove(navbarTopVertical);
-        navbarVertical.remove(navbarVertical);
-        navbarTop.remove(navbarTop);
-        navbarTopCombo.remove(navbarTopCombo);
-    } else {
-        navbarVertical.removeAttribute('style');
-        navbarTopVertical.removeAttribute('style');
-        navbarTop.remove(navbarTop);
-        navbarDoubleTop.remove(navbarDoubleTop);
-        navbarTopCombo.remove(navbarTopCombo);
-    }
+        if (navbarPosition === 'top') {
+            navbarTop.removeAttribute('style');
+            navbarTopVertical.remove(navbarTopVertical);
+            navbarVertical.remove(navbarVertical);
+            navbarTopCombo.remove(navbarTopCombo);
+            navbarDoubleTop.remove(navbarDoubleTop);
+        } else if (navbarPosition === 'combo') {
+            navbarVertical.removeAttribute('style');
+            navbarTopCombo.removeAttribute('style');
+            navbarTop.remove(navbarTop);
+            navbarTopVertical.remove(navbarTopVertical);
+            navbarDoubleTop.remove(navbarDoubleTop);
+        } else if (navbarPosition === 'double-top') {
+            navbarDoubleTop.removeAttribute('style');
+            navbarTopVertical.remove(navbarTopVertical);
+            navbarVertical.remove(navbarVertical);
+            navbarTop.remove(navbarTop);
+            navbarTopCombo.remove(navbarTopCombo);
+        } else {
+            navbarVertical.removeAttribute('style');
+            navbarTopVertical.removeAttribute('style');
+            navbarTop.remove(navbarTop);
+            navbarDoubleTop.remove(navbarDoubleTop);
+            navbarTopCombo.remove(navbarTopCombo);
+        }
     </script>
 
 </aside>
