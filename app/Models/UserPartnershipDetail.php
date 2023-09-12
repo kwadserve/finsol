@@ -16,6 +16,7 @@ class UserPartnershipDetail extends Authenticatable
         'name_of_partnership',
         'partnership_number',
         'partnership_email',
+        'payment_unique_id',
         'partnership_mobile',
         'partnership_rent_elec_img',
         'partnership_kyc_img',

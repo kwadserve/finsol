@@ -111,26 +111,31 @@ Route::post('trademark/others', 'TradeMarkController@storeTrademarkOthers')->nam
 //Company Regitration DETAILS
 Route::get('company/register', 'CompanyController@register_form')->name('company.register_form');
 Route::post('company', 'CompanyController@storeCompany')->name('company.register');
+Route::post('company/register', 'CompanyController@register_form')->name('company.pamentregister');
 
 //Partnership Regitration DETAILS
 Route::get('partnership/register', 'PartnershipController@register_form')->name('partnership.register_form');
 Route::post('partnership', 'PartnershipController@storePartnership')->name('partnership.register');
-
+Route::post('partnership/register', 'PartnershipController@register_form')->name('partnership.paymentregister');
 //HUF Regitration DETAILS
 Route::get('huf/register', 'HufController@register_form')->name('huf.register_form');
 Route::post('huf', 'HufController@storeHuf')->name('huf.register');
+Route::post('huf/register', 'HufController@register_form')->name('huf.paymentregister');
 
 //Trust Regitration DETAILS
 Route::get('trust/register', 'TrustController@register_form')->name('trust.register_form');
 Route::post('trust', 'TrustController@storeTrust')->name('trust.register');
+Route::post('trust/register', 'TrustController@register_form')->name('trust.paymentregister');
 
 //Udamy Registration DETAILS
 Route::get('udamy/register', 'UdamyController@register_form')->name('udamy.register_form');
 Route::post('udamy/register', 'UdamyController@storeUdamy')->name('udamy.register');
+// Route::post('udamy/register', 'UdamyController@register_form')->name('udamy.paymentregister');
 
 //Import Export Code registration DETAILS
 Route::get('importexport/register', 'ImportExportController@register_form')->name('importexport.register_form');
 Route::post('importexport/register', 'ImportExportController@storeImportExport')->name('importexport.register');
+//  Route::post('importexport/register', 'ImportExportController@register_form')->name('importexport.paymentregister');
 
 //Labour License registration DETAILS
 Route::get('labour/register', 'LabourController@register_form')->name('labour.register_form');
@@ -140,6 +145,7 @@ Route::post('labour/labour', 'LabourController@storeLabour')->name('labour.regis
 //SHOP DETAILS
 Route::get('shop/register', 'ShopController@register_form')->name('shop.register_form');
 Route::post('shop/register', 'ShopController@storeShop')->name('shop.register');
+// Route::post('shop/register', 'ShopController@register_form')->name('shop.pamentregister');
 
 //ISO DETAILS
 Route::get('iso/register', 'IsoController@register_form')->name('iso.register_form');
@@ -247,3 +253,4 @@ Route::group(
 
 Route::get('register/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
 Route::get('register/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
+Route::get('payments', 'PaymentsController@index')->name('form_payment');

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserTanDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
+use Illuminate\Support\Facades\Config;
  
 class TanController  extends Controller {
     public function __construct() {
@@ -52,7 +53,7 @@ class TanController  extends Controller {
             $data['insert_id'] = $insert_data->id;
             $data['payment_purpose'] = 'Payment for Tan Register';
             $data['name_of_pan'] = $data['name_of_tan'];
-            $data['payment_amount'] = 200;
+            $data['payment_amount'] = config::get('constants.instamojo.tan');
             $data['type'] = 'TAN';
             $data['route'] = 'tan.register';
             $payment_Req= Helper::createInstaMojoOrder($data);

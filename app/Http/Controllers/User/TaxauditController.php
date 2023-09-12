@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserTaxauditDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
- 
+use Illuminate\Support\Facades\Config;
 class TaxauditController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -14,7 +14,21 @@ class TaxauditController  extends Controller {
       //  return view('user.pages.gst.details');
     }
     public function register_form() {
-     
+        if(isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])){
+            UserTaxauditDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type']= 'Taxaudit';
+            Helper::storePaymentResponse($response);
+
+            if($_REQUEST["payment_status"] == 'Credit'){
+                $msg = 'Registered Taxaudit and Payment received successfully!';
+            }
+            else{
+                $msg = 'Registered Taxaudit successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/taxaudit/register')->with('success', $msg);
+        }
         $data['taxauditimages'] = Documents::where('for_multiple', 'TAXAUDIT')->get();
         return view('user.pages.taxaudit.taxauditform')->with($data);
     }
@@ -32,7 +46,19 @@ class TaxauditController  extends Controller {
         $data['gst_password'] = $request['gst_password'];
         $matchthese = ['user_id' => $userId];
         // UserTaxauditDetail::where($matchthese)->delete();
-        UserTaxauditDetail::Create($data);
+        $lastInsertedId = UserTaxauditDetail::Create($data)->id;
+
+        if(isset($lastInsertedId) && !empty($lastInsertedId)){
+            $data['insert_id'] = $lastInsertedId;
+            $data['payment_purpose'] = 'Payment for Taxaudit Register';
+            $data['name_of_pan'] =  $data['name_of_taxaudit'];
+            $data['email_id'] = $data['email_id'];
+            $data['mobile_number'] = $data['mobile_number'];
+            $data['payment_amount'] = config::get('constants.instamojo.taxaudit');
+            $data['type'] = 'Taxaudit';
+            $data['route'] = 'taxaudit.register_form';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
         return redirect('/taxaudit/register')->with('success', 'Registered Taxaudit successfully!');
     }
      
