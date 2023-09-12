@@ -15,8 +15,8 @@ class UserISIDetail extends Authenticatable
     protected $fillable = [
         'user_id',
         'email_id',
-        'name_of_isi',
-        'isi_number',
+        'name_of_company',
+        'company_number',
         'mobile_number',
         'certification_img',
         'property_img',
