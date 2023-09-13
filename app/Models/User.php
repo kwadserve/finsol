@@ -38,7 +38,9 @@ use App\Models\CompaniesAct\UserMinutesDetail;
 use App\Models\CompaniesAct\UserDinkycDetail;
 use App\Models\CompaniesAct\UserStatutoryAuditDetail;
 
-class User extends Authenticatable
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
