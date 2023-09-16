@@ -11,6 +11,7 @@ use App\Models\UserImportExportDetail;
 use App\Models\UserIsoDetail;
 use App\Models\UserItrDetail;
 use App\Models\UserLabourDetail;
+use App\Models\UserPayDetail;
 use App\Models\UserShopDetail;
 use App\Models\UserTaxauditDetail;
 use App\Models\UserTdsDetail;
@@ -357,6 +358,9 @@ class Helper
             }
             else if($data["type"] == 'Taxaudit'){
                 UserTaxauditDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
+            }
+            else if($data["type"] == 'Custom'){
+                UserPayDetail::where('id', '=', $data["insert_id"])->update(array('payment_unique_id' => $response['id']));
             }
             
         }
