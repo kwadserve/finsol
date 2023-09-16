@@ -151,9 +151,16 @@
                               </div> -->
 
                                                 <div class="mb-3">
+                                                    <label class="form-label" for="">Mobile No.</label>
+                                                    <input class="form-control" type="text" name="mobile"
+                                                        autocomplete="on" required="" id=""
+                                                        pattern="^$|^[0-9]{10}$" />
+                                                    <div class="invalid-feedback">Please Provide Mobile No.</div>
+                                                </div>
+                                                <div class="mb-3">
                                                     <label class="form-label" for="">Email</label>
                                                     <input class="form-control" type="text" name="email"
-                                                        autocomplete="on" required="" id="" />
+                                                        autocomplete="on" id="" />
                                                     <div class="invalid-feedback">Please Provide Email</div>
                                                 </div>
 
@@ -162,6 +169,14 @@
                                                     <input class="form-control" type="password" name="password"
                                                         autocomplete="on" required="" id="" />
                                                     <div class="invalid-feedback">Please Provide Password</div>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="">Adhaar No.</label>
+                                                    <input class="form-control" type="text" maxlength="12" name="aadhaar"
+                                                        autocomplete="on" required="" id="" 
+                                                        pattern="^$|^[0-9]{12}$"/>
+                                                    <div class="invalid-feedback">Please provide correct Aadhaar Number</div>
                                                 </div>
 
                                                 <div class="mb-3">
@@ -212,12 +227,12 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    var urlpath = "{{ $routeUrl }}";
+    var urlpath = "{{ $url }}";
 
     $(document).ready(function() {
         $('#stateSelect').change(function() {
             var stateId = $(this).val();
-            console.log('urlpath', urlpath);
+            console.log(urlpath);
             if (stateId) {
                 $.ajax({
                     url: urlpath + '/get-districts/' + stateId,

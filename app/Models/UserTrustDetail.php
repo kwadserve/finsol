@@ -18,6 +18,7 @@ class UserTrustDetail extends Authenticatable
         'trust_email',
         'trust_mobile',
         'name_of_trust',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',

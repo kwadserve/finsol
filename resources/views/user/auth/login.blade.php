@@ -49,8 +49,7 @@
                                     <!-- <form class="needs-validation" novalidate=""> -->
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
-                                        <div class="mb-3"><label class="form-label" for="card-email">Email
-                                                address/Aadhar Number</label><input
+                                        <div class="mb-3"><label class="form-label" for="card-email">Mobile/Aadhar Number</label><input
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
                                                 required="required" data-wizard-validate-email="true" id="card-email"

@@ -38,9 +38,7 @@ use App\Models\CompaniesAct\UserMinutesDetail;
 use App\Models\CompaniesAct\UserDinkycDetail;
 use App\Models\CompaniesAct\UserStatutoryAuditDetail;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -52,6 +50,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
+        'aadhaar',
         'status',
         'address',
         'type_of_user',

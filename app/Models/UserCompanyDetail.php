@@ -21,6 +21,7 @@ class UserCompanyDetail extends Authenticatable
         'comp_rent_elec_img',
         'comp_kyc_img',
         'comp_certificate_img',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',

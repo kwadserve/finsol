@@ -26,6 +26,7 @@ class UserFssaiDetail extends Authenticatable
         'shop_img',
         'deed_img',
         'card_img',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',

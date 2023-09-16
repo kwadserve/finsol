@@ -21,7 +21,8 @@ class UserTrademarkSignatory extends Authenticatable
         'trademark_sign_photo_img',
         'trademark_sign_spaceman_img',
         'trademark_sign_declare_img'.
-        'trademark_signaff_img'
+        'trademark_signaff_img',
+        'docs_img',
     ];
 
 }

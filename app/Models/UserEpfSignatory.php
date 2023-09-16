@@ -20,7 +20,8 @@ class UserEpfSignatory extends Authenticatable
         'epf_sign_aadhar_img',
         'epf_sign_photo_img',
         'epf_sign_spaceman_img',
-        'epf_sign_declare_img'
+        'epf_sign_declare_img',
+        'docs_img',
     ];
 
 }

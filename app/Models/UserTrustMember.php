@@ -15,7 +15,8 @@ class UserTrustMember extends Authenticatable
         'user_id',
         'user_trust_id',
         'name_of_member',
-        'trust_of_member_img'
+        'trust_of_member_img',
+        'docs_img',
     ];
 
 }

@@ -17,6 +17,7 @@ class UserImportExportDetail extends Authenticatable
         'firm_number',
         'firm_email',
         'firm_mobile',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',

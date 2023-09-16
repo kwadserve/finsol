@@ -20,7 +20,8 @@ class UserEsicSignatory extends Authenticatable
         'esic_sign_aadhar_img',
         'esic_sign_photo_img',
         'esic_sign_spaceman_img',
-        'esic_sign_declare_img'
+        'esic_sign_declare_img',
+        'docs_img',
     ];
 
 }

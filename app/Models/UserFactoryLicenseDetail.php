@@ -30,6 +30,7 @@ class UserFactoryLicenseDetail extends Authenticatable
         'llp_img',
         'prj_img',
         'poll_img',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',

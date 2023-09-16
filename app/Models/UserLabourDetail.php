@@ -31,6 +31,7 @@ class UserLabourDetail extends Authenticatable
         'labour_aff_img',
         'labour_oth_photo_img',
         'labour_oth_spaceman_img',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',
