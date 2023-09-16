@@ -15,6 +15,7 @@
                                                     <th scope="col">Admin Note</th>
                                                     <th scope="col">User Note</th>
                                                     <th scope="col">Details</th>
+                                                    <th scope="col">Payment Status</th>
                                                     <th scope="col">Status</th>
                                                     <th scope="col">Note/Approve</th>
                                                 </tr>
@@ -30,6 +31,13 @@
                                                     <td>{{($detail->admin_note)?$detail->admin_note:'--'}}</td>
                                                     <td>{{($detail->user_note)?$detail->user_note:'--'}}</td>
                                                     <td><a href="{{ url('admin/user/forms/details/huf/'.$detail->id) }}">Details</a></td>
+                                                    <td>
+                                                    @if($detail->payment_status == 'Credit')
+                                                    <span class="btn btn-success ml-1 mb-1 btn-sm"> Paid</span>
+                                                    @else
+                                                    <span class="btn btn-warning ml-1 mb-1 btn-sm"> Pending</span>
+                                                    @endif
+                                                    </td>
                                                     <td>
                                                         @if($detail->status == 2)
                                                         <div><span

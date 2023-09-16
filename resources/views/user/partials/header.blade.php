@@ -449,6 +449,12 @@
                            </a>
                            <ul class="nav collapse" id="payments">
                               <li class="nav-item">
+                                 <a class="nav-link" href="{{route('pay.register_form')}}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Custom Payment</span></div>
+                                 </a>
+                                 <!-- more inner pages-->
+                              </li>
+                              <li class="nav-item">
                                  <a class="nav-link" href="{{route('form_payment')}}">
                                     <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Payment History</span></div>
                                  </a>

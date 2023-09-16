@@ -1,7 +1,7 @@
 <?php
     return [
         'instamojo' => [
-            'tan' => 5,
+            'tan' => 10,
             'pan' => 15,
             'partnership' => 20,
             'company' => 22,
