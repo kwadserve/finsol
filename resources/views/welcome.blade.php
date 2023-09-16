@@ -660,11 +660,10 @@
                     </div>
                     <div class="col ps-lg-6 ps-xl-8">
                         <div class="row mt-5 mt-lg-0">
-                            <div class="col-6 col-md-3">
+                            <div class="col-6">
                                 <h5 class="text-uppercase text-white opacity-85 mb-3">Read About</h5>
                                 <ul class="list-unstyled">
-                                    <!-- <li class="mb-1"><a class="link-600" href="#about-us">About</a></li>
-                  <li class="mb-1"><a class="link-600" href="#contact-us">Contact</a></li> -->
+                                    
                                     <li class="mb-1"><a class="link-600" href="{{ route('tos') }}">Terms of
                                             Services</a></li>
                                     <li class="mb-1"><a class="link-600" href="#faqs">FAQs</a></li>
@@ -675,7 +674,7 @@
 
                                 </ul>
                             </div>
-                            <div class="col-6 col-md-3">
+                            {{-- <div class="col-6 col-md-3">
                                 <h5 class="text-uppercase text-white opacity-85 mb-3"></h5>
                                 <!--  <ul class="list-unstyled">
                   <li class="mb-1"><a class="link-600" href="#!">Registration</a></li>
@@ -698,8 +697,8 @@
                   <li class="mb-1"><a class="link-600" href="#!">Taxation</a></li>
                  
                 </ul> -->
-                            </div>
-                            <div class="col-6 col-md-3">
+                            </div> --}}
+                            <div class="col-6">
                                 <h5 class="text-uppercase text-white opacity-85 mb-3">Contact</h5>
                                 <ul class="list-unstyled">
                                     <li class="mb-1"><a class="link-600"

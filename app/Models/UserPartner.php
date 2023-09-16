@@ -20,7 +20,8 @@ class UserPartner extends Authenticatable
         'p_aadharcard_img',
         'p_voterid_or_passport_img',
         'p_drivinglicence_img',
-        'p_userphoto_img'
+        'p_userphoto_img',
+        'docs_img',
     ];
 
 }

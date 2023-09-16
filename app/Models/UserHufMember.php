@@ -15,7 +15,8 @@ class UserHufMember extends Authenticatable
         'user_id',
         'user_huf_id',
         'name_of_member',
-        'kyc_of_member_img'
+        'kyc_of_member_img',
+        'docs_img',
     ];
 
 }

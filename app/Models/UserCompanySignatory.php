@@ -21,7 +21,8 @@ class UserCompanySignatory extends Authenticatable
         'comp_sign_photo_img',
         'comp_sign_spaceman_img',
         'comp_sign_declare_img'.
-        'comp_sign_aff_img'
+        'comp_sign_aff_img',
+        'docs_img',
     ];
 
 }

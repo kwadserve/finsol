@@ -21,6 +21,7 @@ class UserTdsDetail extends Authenticatable
         'tan_img',
         'tds_img',
         'challan_img',
+        'docs_img',
         'tds_date',
         'tds_rate',
         'tds_amount',

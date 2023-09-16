@@ -31,6 +31,7 @@ class UserISIDetail extends Authenticatable
         'test_img',
         'machinery_list_img',
         'calibration_img',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',

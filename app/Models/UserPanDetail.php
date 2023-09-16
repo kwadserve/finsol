@@ -21,6 +21,7 @@ class UserPanDetail extends Authenticatable
         'pan_aadhar_voterid_passport_img',
         'pan_driving_license',
         'pan_your_photo',
+        'docs_img',
         'status',
         'last_updated_by',
         'last_update_by_id',

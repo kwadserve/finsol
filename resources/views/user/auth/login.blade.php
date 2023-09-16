@@ -30,9 +30,10 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 mb-4 mt-md-4 mb-md-5" data-bs-theme="light">
-                                    <p class="text-white">Don't have an account?<br><a
-                                            class="text-decoration-underline link-light" href="#">Get
-                                            started!</a></p>
+                                    <p class="text-white">Don't have an account?<br>
+                                        <a class="text-decoration-underline link-light" href="{{route('register_page')}}">Get
+                                            started!</a>
+                                        </p>
                                     <p class="mb-0 mt-4 mt-md-5 fs--1 fw-semi-bold text-white opacity-75">Read our <a
                                             class="text-decoration-underline text-white" href="#!">terms</a> and <a
                                             class="text-decoration-underline text-white" href="#!">conditions </a></p>
@@ -48,8 +49,7 @@
                                     <!-- <form class="needs-validation" novalidate=""> -->
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
-                                        <div class="mb-3"><label class="form-label" for="card-email">Email
-                                                address/Aadhar Number</label><input
+                                        <div class="mb-3"><label class="form-label" for="card-email">Mobile/Aadhar Number</label><input
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
                                                 required="required" data-wizard-validate-email="true" id="card-email"
