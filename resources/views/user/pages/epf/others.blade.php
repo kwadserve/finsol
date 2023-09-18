@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="epf-others" role="tabpanel" aria-labelledby="profile-tab">
-    <form class="needs-validation" novalidate="novalidate" action="{{route('epf.register.others')}}" method="post"
+    <form class="needs-validation" novalidate="novalidate" action="{{ route('epf.register.others') }}" method="post"
         enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="epf_type" value="Others" />
@@ -7,17 +7,17 @@
             <h6 class="detailspadding mb-0">Details of your Business</h6>
         </div>
         <div class="mt-1 row g-2">
-            
-               <!-- to be connected to backend --->
-                                    <div class="col-6">
-                                        <div class="mb-3">
-                                         <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name
-                                         </label><input class="form-control" type="text" name="epf_name" placeholder="Name"
-                                             required="required" />
-                                             <div class="invalid-feedback">Please provide a name</div>
-                                        </div>
-                                     </div>
-                                     <!-- to be connected to backend --->
+
+            <!-- to be connected to backend --->
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="bootstrap-wizard-validation-wizard-company">Name
+                    </label><input class="form-control" type="text" name="epf_name" placeholder="Name"
+                        required="required" />
+                    <div class="invalid-feedback">Please provide a name</div>
+                </div>
+            </div>
+            <!-- to be connected to backend --->
 
             <div class="col-6">
                 <div class="mb-3">
@@ -46,20 +46,20 @@
             </div>
             <div class="row g-2 ">
                 @foreach ($epf_other_images as $keyname => $image)
-                <div class="col-6 mb-3">
-                    <div class="mb-3">
-                        <label>{{$image['doc_name']}} Upload :</label>
-                        <!-- required="required"  -->
-                        <input type="file" name="{{$image['doc_key_name']}}[]" id="image-upload"
-                            class="myfrm form-control" multiple />
+                    <div class="col-6 mb-3">
+                        <div class="mb-3">
+                            <label>{{ $image['doc_name'] }} Upload :</label>
+                            <!-- required="required"  -->
+                            <input type="file" name="{{ $image['doc_key_name'] }}[]" id="image-upload"
+                                class="myfrm form-control" multiple />
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
             <div class="col-4">
                 <div class="mb-3">
                     <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
-                         <p>Amount : ₹1500</p>
+                    <p>Amount : ₹1500</p>
                 </div>
             </div>
         </div>

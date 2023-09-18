@@ -259,3 +259,7 @@ Route::group(
 Route::get('register/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
 Route::get('register/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
 Route::get('payments', 'PaymentsController@index')->name('form_payment');
+
+Route::get('profile', 'UserController@profile')->name('user_profile');
+Route::get('settings', 'UserController@user_settings')->name('user_settings');
+Route::post('save-settings', 'UserController@save_settings')->name('user_save_settings');
