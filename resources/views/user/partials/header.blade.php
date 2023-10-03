@@ -196,20 +196,20 @@
                             <!-- more inner pages-->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
+                            <a class="nav-link" href="{{route('gst.register_form')}}">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">New
                                         Registration</span></div>
                             </a>
                             <!-- more inner pages-->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
+                            <a class="nav-link" href="{{route('gst.existing_register_form')}}">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Exisitng
                                         Registration</span></div>
                             </a>
                             <!-- more inner pages-->
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="dashboard/analytics.html">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Upload
                                         Documents</span></div>
@@ -229,7 +229,7 @@
                                         Appeal</span></div>
                             </a>
                             <!-- more inner pages-->
-                        </li>
+                        </li> --}}
 
                     </ul>
                 </li>
