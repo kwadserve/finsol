@@ -94,6 +94,11 @@ Route::post('pan/register', 'PanController@storePan')->name('pan.register');
 Route::post('dashboard_register', 'DashboardController@createInstaMojoOrder')->name('dashboard.register');
 Route::get('store_payment_data', 'DashboardController@storePaymentData')->name('dashboard.storedata');
 
+
+//
+Route::get('pay/register', 'PayController@register_form')->name('pay.register_form');
+Route::post('pay/register', 'PayController@storePay')->name('pay.register');
+
 //TAN DETAILS
 Route::get('tan/register', 'TanController@register_form')->name('tan.register_form');
 Route::post('tan/register', 'TanController@storeTan')->name('tan.register');
