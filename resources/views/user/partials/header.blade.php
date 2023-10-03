@@ -243,7 +243,7 @@
                     </a>
                     <ul class="nav collapse" id="itact">
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
+                            <a class="nav-link" href="{{route('it_act.dashboard')}}">
                                 <div class="d-flex align-items-center"><span
                                         class="nav-link-text ps-1">Dashboard</span></div>
                             </a>
@@ -271,13 +271,13 @@
                             <!-- more inner pages-->
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="dashboard/analytics.html">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Hearing &
                                         Appeal</span></div>
                             </a>
                             <!-- more inner pages-->
-                        </li>
+                        </li> --}}
 
                     </ul>
                 </li>
@@ -464,6 +464,12 @@
                                 class="nav-link-text ps-1">Payments</span></div>
                     </a>
                     <ul class="nav collapse" id="payments">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('pay.register_form')}}">
+                               <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Custom Payment</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('form_payment') }}">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Payment
