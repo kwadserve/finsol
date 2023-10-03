@@ -18,15 +18,15 @@ use App\Models\UserGstDetail;
                         <!-- <section> begin ============================-->
                         <section class="text-center">
                             <div class="card-body">
-                                <!-- <div class="row">
+                                <div class="row">
                                     <div class="col">
-                                        <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">Registration<font
+                                        <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">IT Act<font
                                                 color="#ec465f">Status
                                             </font>
                                         </h1>
                                         <p class="lead">Things you will get right out of the box with Finsol.</p>
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <!------ GST options drop ------->
 
@@ -76,7 +76,9 @@ use App\Models\UserGstDetail;
                                                             </div>
                                                             @endif
 
-                                                            @include('user.pages.dashboard.gst')
+                                                            @include('user.pages.it-act.dashboard.itr')
+                                                            @include('user.pages.it-act.dashboard.tds')
+                                                            @include('user.pages.it-act.dashboard.tax')
                                                              
                                                         </div>
 

@@ -165,6 +165,9 @@ Route::post('iso/register', 'IsoController@storeIso')->name('iso.register');
 Route::get('fssai/register', 'FssaiController@register_form')->name('fssai.register_form');
 Route::post('fssai/register', 'FssaiController@storeFssai')->name('fssai.register');
 
+//IT Act
+Route::get('it-act/dashboard', 'ITActController@index')->name('it_act.dashboard');
+
 //Itr DETAILS
 Route::get('itr/register', 'ItrController@register_form')->name('itr.register_form');
 Route::post('itr/register', 'ItrController@storeItr')->name('itr.register');
