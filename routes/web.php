@@ -261,6 +261,23 @@ Route::group(
     }
 );
 
+//Legal Work
+Route::group(
+    ['namespace' => 'LegalWork'], function() {
+        Route::get('legal-work/register', 'LegalController@register_form')->name('legalwork.register_form');
+        Route::post('legal-work/register', 'LegalController@storeLegalWork')->name('legalwork.register');
+
+        //Loan & Finance Dashboard
+        Route::get('legal-work/dashboard', 'DashboardController@index')->name('legalwork.dashboard');
+        Route::post('legal-work/download/raised/file', 'DashboardController@raisedFile')->name('legalwork_web_raisedFile');
+        Route::post('legal-work/download/approved/file', 'DashboardController@approvedFile')->name('legalwork_web_approvedFile');
+        Route::post('legal-work/queryraised', 'DashboardController@queryRaised')->name('legalwork_query_raised');
+    }
+);
 Route::get('register/get-districts/{stateId}', [DropdownController::class, 'getDistricts']);
 Route::get('register/get-blocks/{districtId}', [DropdownController::class, 'getBlocks']);
 Route::get('payments', 'PaymentsController@index')->name('form_payment');
+
+Route::get('profile', 'UserController@profile')->name('user_profile');
+Route::get('settings', 'UserController@user_settings')->name('user_settings');
+Route::post('save-settings', 'UserController@save_settings')->name('user_save_settings');

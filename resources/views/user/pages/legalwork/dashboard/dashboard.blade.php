@@ -18,15 +18,15 @@ use App\Models\UserGstDetail;
                         <!-- <section> begin ============================-->
                         <section class="text-center">
                             <div class="card-body">
-                                <!-- <div class="row">
+                                <div class="row">
                                     <div class="col">
-                                        <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">Registration<font
+                                        <h1 style="color: #2a3468;" class="fs-2 fs-sm-4 fs-md-5">Legal Work<font
                                                 color="#ec465f">Status
                                             </font>
                                         </h1>
                                         <p class="lead">Things you will get right out of the box with Finsol.</p>
                                     </div>
-                                </div> -->
+                                </div>
 
                                 <!------ GST options drop ------->
 
@@ -48,36 +48,8 @@ use App\Models\UserGstDetail;
                                                                 <button class="btn-close" type="button"
                                                                     data-bs-dismiss="alert" aria-label="Close"></button>
                                                             </div>
-                                                            @endif
-
-                                                            @if (session('raisedfilenotexist'))
-                                                            <div class="alert alert-danger border-2 d-flex align-items-center"
-                                                                role="alert">
-                                                                <div class="bg-danger me-3 icon-item"><span
-                                                                        class="fas fa-check-circle text-white fs-3"></span>
-                                                                </div>
-                                                                <p class="mb-0 flex-1">
-                                                                    {{ session('raisedfilenotexist') }}</p>
-                                                                <button class="btn-close" type="button"
-                                                                    data-bs-dismiss="alert" aria-label="Close"></button>
-                                                            </div>
-                                                            @endif
-
-                                                            @if (session('approvedfilenotexist'))
-                                                            <div class="alert alert-danger border-2 d-flex align-items-center"
-                                                                role="alert">
-                                                                <div class="bg-danger me-3 icon-item"><span
-                                                                        class="fas fa-check-circle text-white fs-3"></span>
-                                                                </div>
-                                                                <p class="mb-0 flex-1">
-                                                                    {{ session('approvedfilenotexist') }}</p>
-                                                                <button class="btn-close" type="button"
-                                                                    data-bs-dismiss="alert" aria-label="Close"></button>
-                                                            </div>
-                                                            @endif
-
-                                                            @include('user.pages.dashboard.gst')
-                                                             
+                                                            @endif                                                           
+                                                            @include('user.pages.legalwork.dashboard.legal') 
                                                         </div>
 
                                                     </div>
