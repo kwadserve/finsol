@@ -356,43 +356,18 @@
                     </a>
                     <ul class="nav collapse" id="legalwork">
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
+                            <a class="nav-link" href="{{ route('legalwork.dashboard') }}">
                                 <div class="d-flex align-items-center"><span
                                         class="nav-link-text ps-1">Dashboard</span></div>
                             </a>
                             <!-- more inner pages-->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Income
-                                        Tax</span></div>
-                            </a>
-                            <!-- more inner pages-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">GST</span>
-                                </div>
-                            </a>
-                            <!-- more inner pages-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">MCA</span>
-                                </div>
-                            </a>
-                            <!-- more inner pages-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">IPC</span>
-                                </div>
-                            </a>
-                            <!-- more inner pages-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard/analytics.html">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">NI Act</span>
+                            <a class="nav-link" href="{{ route('legalwork.register_form') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-text ps-1">
+                                        Legal Form
+                                    </span>
                                 </div>
                             </a>
                             <!-- more inner pages-->
@@ -659,7 +634,7 @@
                                 class="fas fa-crown me-1"></span><span>Go Pro</span></a>
                         <div class="dropdown-divider"></div> -->
                         {{-- <a class="dropdown-item" href="{{url('settings')}}">Settings</a> --}}
-                        <a class="dropdown-item" href="{{url('profile')}}">Profile &amp; account</a>
+                        <a class="dropdown-item" href="{{ url('profile') }}">Profile &amp; account</a>
 
                         <div class="dropdown-divider"></div>
 
