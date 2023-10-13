@@ -1,6 +1,6 @@
-@if ($usersCa)
+@if ($legal)
     <div class="row">
-        <h5>CA Form Details</h5>
+        <h5>Legal Work Details</h5>
         <div class="col-12">
             <div id="tableExample" data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
                 <div class="table-responsive scrollbar">
@@ -21,17 +21,18 @@
                         </thead>
 
                         <tbody class="list">
-                            @if ($usersCa)
-                                @foreach ($usersCa as $detail)
+                            @if ($legal)
+                                @foreach ($legal as $detail)
                                     <tr class="align-middle">
 
                                         <td class="text-nowrap">{{ $detail->email_id ? $detail->email_id : '--' }}</td>
 
-                                        <td class="text-nowrap">{{ $detail->type ? $detail->type : '' }}</td>
+                                        <td class="text-nowrap">
+                                            {{ $detail->form_type ? $detail->form_type : $detail->type }}</td>
                                         <td>{{ $detail->admin_note ? $detail->admin_note : '' }}</td>
                                         <td>{{ $detail->user_note ? $detail->user_note : '' }}</td>
                                         <td><a
-                                                href="{{ url('admin/user/certification/details/ca/' . $detail->id) }}">Details</a>
+                                                href="{{ url('admin/user/legal-work/details/' . $detail->id) }}">Details</a>
                                         </td>
                                         <td>
                                             @if ($detail->status == 2)
