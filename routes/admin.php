@@ -28,6 +28,7 @@ Route::group(
 
         // for administrator
         Route::group(['middleware' => ['role:administrator']], function () {
+
             // users
             Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
                 Route::get('all', 'UserController@index')->name('index');
@@ -105,8 +106,13 @@ Route::group(
                 Route::post('loan-finance/additional/file/{id}', 'LoanDashboardController@additionalFile')->name('loan_additionalFile');
                 Route::post('loan-finance/approved/file/{id}', 'LoanDashboardController@approvedFile')->name('loan_approvedFile');
                 Route::get('loan-finance/details/{name}/{id1}', 'LoanDashboardController@allProfile')->name('loan_allformProfile');
+
+                //User Payments
+                Route::get('payments/{userId}', 'PaymentController@userPaymentDetails');
             });
 
+            Route::get('payment/history', 'PaymentController@allTransactions');
+            Route::get('payment/form-value', 'PaymentController@allTransactions');
             // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
         });
 

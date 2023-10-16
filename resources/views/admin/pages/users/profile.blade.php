@@ -102,11 +102,11 @@
                                         <div class="col-sm-4">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">IT Act</h5>
+                                                    <h5 class="card-title">Payments</h5>
                                                     <p class="card-text">With supporting text below as a natural lead-in to
                                                         additional content.</p>
-                                                    <a href="{{ URL('/admin/user/it-act/dashboard/details/' . $userId) }}"
-                                                        class="btn btn-primary">IT Act</a>
+                                                    <a href="{{ URL('/admin/user/payments/' . $userId) }}"
+                                                        class="btn btn-primary">Payments</a>
                                                 </div>
                                             </div>
                                         </div>

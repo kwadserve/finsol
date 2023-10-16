@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use App\Models\UserGstDetail;
+use App\Models\LoanFinance\CMA;
+use App\Models\LoanFinance\Estimated;
+use App\Models\LoanFinance\ProjectReport;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
 use App\Helpers\Helper as Helper;
@@ -23,10 +25,10 @@ class LoanDashboardController extends Controller
     {
 
         $data['routeurl'] = Helper::getBaseUrl($request);
-        $data['usersCa'] = UserCaDetail::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['usersNetworth'] = UserNetworthDetail::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['usersTurnover'] = UserTurnoverDetail::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        return view('admin.pages.users.certification.certification_dashboard')->with($data);
+        $data['estimated'] = Estimated::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
+        $data['cma'] = CMA::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
+        $data['projectReport'] = ProjectReport::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
+        return view('admin.pages.users.loan.dashboard')->with($data);
     }
 
     public function profile($userId)
@@ -37,24 +39,24 @@ class LoanDashboardController extends Controller
 
     public function allProfile($name, $Id)
     {
-        if ($name == 'ca') {
-            $data['caDetails'] = UserCaDetail::find($Id);
-            $data['caDocuments'] = Documents::where(['for_multiple' => 'CA'])->get();
+        if ($name == 'cma') {
+            $data['cmaDetails'] = CMA::find($Id);
+            $data['cmaDocuments'] = Documents::where(['for_multiple' => 'LFCMA'])->get();
         }
 
-        if ($name == 'networth') {
-            $data['networthDetails'] = UserNetworthDetail::find($Id);
-            $data['networthDocuments'] = Documents::where(['for_multiple' => 'NETWORTH'])->get();
+        if ($name == 'estimated') {
+            $data['estimatedDetails'] = Estimated::find($Id);
+            $data['estimatedDocuments'] = Documents::where(['for_multiple' => 'LF Estimated'])->get();
         }
 
-        if ($name == 'turnover') {
-            $data['turnoverDetails'] = UserTurnoverDetail::find($Id);
-            $data['turnoverDocuments'] = Documents::where(['for_multiple' => 'TURNOVER'])->get();
+        if ($name == 'projectReport') {
+            $data['projectReportDetails'] = ProjectReport::find($Id);
+            $data['projectReportDocuments'] = Documents::where(['for_multiple' => 'LFPR'])->get();
         }
 
         $page['profilePage'] = $name;
 
-        return view('admin.pages.users.certification.profile.all_profiles')->with($data)->with($page);
+        return view('admin.pages.users.loan.profile.all_profiles')->with($data)->with($page);
     }
 
     public function allProfileDocDownload(Request $request, $userId)
@@ -77,7 +79,7 @@ class LoanDashboardController extends Controller
                     $fileContents = file_get_contents(public_path($filePath));
                     $zip->addFromString(basename($file), $fileContents);
                 } else {
-                    return redirect('/admin/user/certification/details/' . $id)->with('filenotexist', 'File Not Exist!');
+                    return redirect('/admin/user/loan-finance/details/' . $id)->with('filenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -87,10 +89,10 @@ class LoanDashboardController extends Controller
                     $fileContents = file_get_contents(public_path($filePath));
                     $zip->addFromString(basename($files), $fileContents);
                 } else {
-                    return redirect('/admin/user/certification/details/' . $id)->with('filenotexist', 'File Not Exist!');
+                    return redirect('/admin/user/loan-finance/details/' . $id)->with('filenotexist', 'File Not Exist!');
                 }
             } else {
-                return redirect('/admin/user/certification/details/' . $id)->with('filenotexist', 'File Not Exist!');
+                return redirect('/admin/user/loan-finance/details/' . $id)->with('filenotexist', 'File Not Exist!');
             }
         }
         $zip->close();
@@ -151,15 +153,15 @@ class LoanDashboardController extends Controller
         try {
             if ($formtype) {
 
-                if ($formtype == "ca") {
+                if ($formtype == "CMA") {
 
-                    $details = UserCaDetail::find($id);
+                    $details = CMA::find($id);
 
-                } else if ($formtype == "networth") {
-                    $details = UserNetworthDetail::find($id);
+                } else if ($formtype == "LFEstimated") {
+                    $details = Estimated::find($id);
                 }
-                if ($formtype == "turnover") {
-                    $details = UserTurnoverDetail::find($id);
+                if ($formtype == "LFProjectReport") {
+                    $details = ProjectReport::find($id);
                 }
 
                 $content = '<label>Number</label>
@@ -202,22 +204,22 @@ class LoanDashboardController extends Controller
         $route = $request->routeis;
         $fName = "";
         switch ($route) {
-            case "ca":
+            case "CMA":
                 $panid = $request->id;
-                $datas = UserCaDetail::find($panid);
-                $fName = "Ca";
+                $datas = CMA::find($panid);
+                $fName = "CMA";
                 break;
 
-            case "networth":
+            case "estimated":
                 $panid = $request->id;
-                $datas = UserNetworthDetail::find($panid);
-                $fName = "Networth";
+                $datas = Estimated::find($panid);
+                $fName = "Estimated";
                 break;
 
-            case "turnover":
+            case "projectReport":
                 $panid = $request->id;
-                $datas = UserTurnoverDetail::find($panid);
-                $fName = "Turnover";
+                $datas = ProjectReport::find($panid);
+                $fName = "ProjectReport";
                 break;
 
             default:break;
@@ -240,7 +242,7 @@ class LoanDashboardController extends Controller
             $datas->raised_img = $img['raised_img'];
         }
         $datas->save();
-        return redirect('admin/user/certification/dashboard/details/' . $userId)->with('success', 'Uploaded the Document!');
+        return redirect('admin/user/loan-finance/dashboard/details/' . $userId)->with('success', 'Uploaded the Document!');
     }
 
     // download quary updated file
@@ -262,7 +264,7 @@ class LoanDashboardController extends Controller
                     $fileContents = file_get_contents(public_path($filePath));
                     $zip->addFromString(basename($file), $fileContents);
                 } else {
-                    return redirect('admin/user/certification/dashboard/details/' . $userId)->with('additionalfilenotexist', 'File Not Exist!');
+                    return redirect('admin/user/loan-finance/dashboard/details/' . $userId)->with('additionalfilenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -271,7 +273,7 @@ class LoanDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($files), $fileContents);
             } else {
-                return redirect('admin/user/certification/dashboard/details/' . $userId)->with('additionalfilenotexist', 'File Not Exist!');
+                return redirect('admin/user/loan-finance/dashboard/details/' . $userId)->with('additionalfilenotexist', 'File Not Exist!');
             }
         }
         $zip->close();
@@ -298,7 +300,7 @@ class LoanDashboardController extends Controller
                     $fileContents = file_get_contents(public_path($filePath));
                     $zip->addFromString(basename($file), $fileContents);
                 } else {
-                    return redirect('admin/user/certification/dashboard/details/' . $userId)->with('approvedfilenotexist', 'File Not Exist!');
+                    return redirect('admin/user/loan-finance/dashboard/details/' . $userId)->with('approvedfilenotexist', 'File Not Exist!');
                 }
             }
         } else {
@@ -307,7 +309,7 @@ class LoanDashboardController extends Controller
                 $fileContents = file_get_contents(public_path($filePath));
                 $zip->addFromString(basename($files), $fileContents);
             } else {
-                return redirect('admin/user/certification/dashboard/details/' . $userId)->with('approvedfilenotexist', 'File Not Exist!');
+                return redirect('admin/user/loan-finance/dashboard/details/' . $userId)->with('approvedfilenotexist', 'File Not Exist!');
             }
         }
         $zip->close();
