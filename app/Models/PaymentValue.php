@@ -14,6 +14,7 @@ class PaymentValue extends Authenticatable
 
     protected $fillable = [
         'form_type',
+        'form',
         'value',
     ];
 }

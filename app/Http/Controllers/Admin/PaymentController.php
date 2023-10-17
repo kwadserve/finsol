@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Instamojo;
+use App\Models\PaymentValue;
+use App\Models\Documents;
 
 class PaymentController extends Controller
 {
@@ -25,6 +27,34 @@ class PaymentController extends Controller
         return view('admin.pages.payment.history.transactions')->with($data);
     }
 
-    public function formValue(Request $request)
-    {}
+    public function updateFormValue(Request $request)
+    {
+        $form = PaymentValue::where('id', $request->id)->update([
+            'value' => $request->value,
+        ]);
+
+        return $form;
+    }
+
+    public function showFormValue()
+    {
+        $data['values'] = PaymentValue::select('*')->orderBy('updated_at', 'DESC')->get();
+        // $documents = Documents::select('*')->get();
+        // $pre = 'a';
+        // foreach($documents as $doc)
+        // {
+        //     $type = $doc->gst_type_val;
+        //     if($type != $pre)
+        //     {
+        //         $pre = $type;
+        //         $forms = PaymentValue::firstOrCreate([
+        //             'form_type' => $doc->for_multiple
+        //         ],[
+        //             'form' => $doc->for_multiple,
+        //             'value' => 80,
+        //         ]);
+        //     }
+        // }
+        return view('admin.pages.payment.formValue.list')->with($data);
+    }
 }

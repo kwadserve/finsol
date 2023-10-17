@@ -112,7 +112,8 @@ Route::group(
             });
 
             Route::get('payment/history', 'PaymentController@allTransactions');
-            Route::get('payment/form-value', 'PaymentController@allTransactions');
+            Route::get('payment/form-value', 'PaymentController@showFormValue');
+            Route::post('payment/update-form-value', 'PaymentController@updateFormValue');
             // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
         });
 
