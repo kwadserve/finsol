@@ -47,20 +47,29 @@
                     </a>
                     <ul class="nav collapse" id="users">
 
-                        <li class="nav-item"><a class="nav-link" href="{{ url('admin/users/all') }}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/users/all') }}">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">All Users</span>
                                 </div>
                             </a><!-- more inner pages-->
                         </li>
-
-                        <li class="nav-item"><a class="nav-link" href="{{ url('admin/users/addform') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Add User</span>
+                        @if(Auth::user()->type_of_user === 'Head Office')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/employee/all') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">All Employee</span>
                                 </div>
                             </a><!-- more inner pages-->
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/users/addform') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Add Employee</span>
+                                </div>
+                            </a><!-- more inner pages-->
+                        </li>
+                        @endif
                     </ul>
                 </li>
-
+                @if(Auth::user()->type_of_user === 'Head Office')
                 <li class="nav-item">
                     <a class="nav-link dropdown-indicator" href="#payment" role="button" data-bs-toggle="collapse"
                         aria-expanded="false" aria-controls="forms">
@@ -83,7 +92,7 @@
                         </li>
                     </ul>
                 </li>
-
+                @endif
             </ul>
 
         </div>

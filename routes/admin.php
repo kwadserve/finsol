@@ -111,6 +111,7 @@ Route::group(
                 Route::get('payments/{userId}', 'PaymentController@userPaymentDetails');
             });
 
+            Route::get('employee/all', 'UserController@allEmployees');
             Route::get('payment/history', 'PaymentController@allTransactions');
             Route::get('payment/form-value', 'PaymentController@showFormValue');
             Route::post('payment/update-form-value', 'PaymentController@updateFormValue');

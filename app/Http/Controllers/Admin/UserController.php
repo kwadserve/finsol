@@ -4,35 +4,77 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use Yajra\DataTables\DataTables;
 use App\Models\State;
+use App\Models\District;
+use App\Models\Block;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
-
-        // View::share('action', 'no_add');
-        // View::share('nav', 'users');
     }
 
     public function index()
     {
-        $data['users'] = User::select(
-            'name',
-            'image',
-            'status',
-            'email',
-            'id'
-        )->orderBy('id', 'DESC')->get();
+        $user = Auth::user();
+        switch($user->type_of_user){
+            case "State Office":
+                $data['users'] = User::select(
+                    'name',
+                    'image',
+                    'status',
+                    'email',
+                    'id'
+                )->where("state", $user->access_level_id)->orderBy('id', 'DESC')->get();
+                break;
+
+            case "District Office":
+                $data['users'] = User::select(
+                    'name',
+                    'image',
+                    'status',
+                    'email',
+                    'id'
+                )->where("district", $user->access_level_id)->orderBy('id', 'DESC')->get();
+                break;
+
+            case "Block Office":
+                $data['users'] = User::select(
+                    'name',
+                    'image',
+                    'status',
+                    'email',
+                    'id'
+                )->where("block", $user->access_level_id)->orderBy('id', 'DESC')->get();
+                break;
+            
+            default:
+                $data['users'] = User::select(
+                    'name',
+                    'image',
+                    'status',
+                    'email',
+                    'id'
+                )->orderBy('id', 'DESC')->get();
+        }        
        
         return view('admin.pages.users.index')->with($data);
+    }
+
+    public function allEmployees()
+    {
+        $data['users'] = Admin::select('*')->get();
+        return view('admin.pages.employee.list')->with($data);
     }
 
     public function ajax()
@@ -129,7 +171,27 @@ class UserController extends Controller
         $this->validator($request->all())->validate();
         $inputs=$request->all();
         $inputs['password']=Hash::make($inputs['password']);
-        User::create($inputs);
+        switch($request->type_of_user){
+            case "State Office":
+                $inputs['access_level_id'] = $request->state;
+                break;
+            case "District Office":
+                $inputs['access_level_id'] = $request->district;
+                break;
+            case "Block Office":
+                $inputs['access_level_id'] = $request->block;
+                break;
+            default:
+                $inputs['access_level_id'] = 0;
+        }
+        $user = Admin::create($inputs);
+        $permission = DB::table('model_has_roles')->insert(
+            [
+                'role_id' => 1,
+                'model_id' => $user->id,
+                'model_type' => 'App\Models\Admin'
+            ]
+        );
         return redirect('admin/users/all')->with(['message' => 'User Created successfully']);
     }
 
