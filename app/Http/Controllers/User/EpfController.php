@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
+
 class EpfController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -59,7 +61,7 @@ class EpfController  extends Controller {
                 $data['name_of_pan'] =  $data['name_of_epf'];
                 $data['email_id'] = $data['epf_email'];
                 $data['mobile_number'] = $data['epf_mobile'];
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = PaymentValue::where('id', 6)->first()->value;
                 $data['type'] = 'Epf';
                 $data['route'] = 'epf.register_form';
                 $payment_Req= Helper::createInstaMojoOrder($data);
@@ -101,7 +103,7 @@ class EpfController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_epf'];
             $data['email_id'] = $data['epf_email'];
             $data['mobile_number'] = $data['epf_mobile'];
-            $data['payment_amount'] = config::get('constants.instamojo.epf');
+            $data['payment_amount'] = PaymentValue::where('id', 43)->first()->value;
             $data['type'] = 'Epf';
             $data['route'] = 'epf.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

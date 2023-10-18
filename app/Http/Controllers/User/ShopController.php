@@ -6,6 +6,7 @@ use App\Models\UserShopDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
  
 class ShopController  extends Controller {
     public function __construct() {
@@ -55,7 +56,7 @@ class ShopController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_shop'];
             $data['email_id'] = $data['email_id'];
             $data['mobile_number'] = $data['mobile_number'];
-            $data['payment_amount'] = config::get('constants.instamojo.shop');
+            $data['payment_amount'] = PaymentValue::where('id', 18)->first()->value;
             $data['type'] = 'Shop';
             $data['route'] = 'shop.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

@@ -6,6 +6,8 @@ use App\Models\UserFssaiDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
+
 class FssaiController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -53,7 +55,7 @@ class FssaiController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_fssai'];
             $data['email_id'] = $data['email_id'];
             $data['mobile_number'] = $data['mobile_number'];
-            $data['payment_amount'] = config::get('constants.instamojo.fssai');
+            $data['payment_amount'] = PaymentValue::where('id', 20)->first()->value;
             $data['type'] = 'Fssai';
             $data['route'] = 'fssai.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

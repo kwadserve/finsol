@@ -49,15 +49,15 @@ class PayController extends Controller
         
         $insert_data = UserPayDetail::Create($data);
 
-    if(isset($insert_data->id) && !empty($insert_data->id)){
-        $data['insert_id'] = $insert_data->id;
-        $data["name_of_pan"] = $request['name'];
-        $data['payment_purpose'] = $request['payment_for'];
-        $data['payment_amount'] = $request['amount'];
-        $data['type'] = 'Custom';
-        $data['route'] = 'pay.register';
-        $payment_Req= Helper::createInstaMojoOrder($data);
-    }
+        if(isset($insert_data->id) && !empty($insert_data->id)){
+            $data['insert_id'] = $insert_data->id;
+            $data["name_of_pan"] = $request['name'];
+            $data['payment_purpose'] = $request['payment_for'];
+            $data['payment_amount'] = $request['amount'];
+            $data['type'] = 'Custom';
+            $data['route'] = 'pay.register';
+            $payment_Req= Helper::createInstaMojoOrder($data);
+        }
     }
 
 }

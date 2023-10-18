@@ -7,6 +7,8 @@ use App\Models\UserFactoryLicenseDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
+
 class FactoryLicenseController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -51,7 +53,7 @@ class FactoryLicenseController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_facl'];
             $data['email_id'] = $data['facl_email'];
             $data['mobile_number'] = $data['facl_mobile'];
-            $data['payment_amount'] = config::get('constants.instamojo.factory');
+            $data['payment_amount'] = PaymentValue::where('id', 24)->first()->value;
             $data['type'] = 'Factory';
             $data['route'] = 'factorylicense.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

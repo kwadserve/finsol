@@ -5,6 +5,7 @@ use App\Helpers\Helper as Helper;
 use App\Http\Controllers\Controller;
 use App\Models\CompaniesAct\UserAocDetail;
 use App\Models\Documents;
+use App\Models\PaymentValue;
 use Illuminate\Http\Request;
 
 class AocController extends Controller
@@ -50,7 +51,7 @@ class AocController extends Controller
         if (isset($insert_data->id) && !empty($insert_data->id)) {
             $data['insert_id'] = $insert_data->id;
             $data['payment_purpose'] = 'Payment for AOC Register';
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = PaymentValue::where('id', 28)->first()->value;
             $data['name_of_pan'] = $data['name_of_company'];
             $data['type'] = 'AOC';
             $data['route'] = 'aoc.register';

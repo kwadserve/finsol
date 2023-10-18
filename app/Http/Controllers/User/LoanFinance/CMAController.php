@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Helpers\Helper as Helper;
 use App\Models\Documents;
 use App\Models\LoanFinance\CMA;
+use App\Models\PaymentValue;
 
 class CMAController extends Controller
 {
@@ -51,7 +52,7 @@ class CMAController extends Controller
         if (isset($insert_data->id) && !empty($insert_data->id)) {
             $data['insert_id'] = $insert_data->id;
             $data['payment_purpose'] = 'Payment for CMA Register';
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = PaymentValue::where('id', 34)->first()->value;
             $data['name_of_pan'] = $data['name_of_company'];
             $data['type'] = 'CMA';
             $data['route'] = 'cma.register';
