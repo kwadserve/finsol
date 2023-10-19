@@ -8,6 +8,7 @@ use App\Models\UserPanDetail;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
+use App\Models\PaymentValue;
 
 class PanController extends Controller
 {
@@ -53,7 +54,7 @@ class PanController extends Controller
     if(isset($insert_data->id) && !empty($insert_data->id)){
         $data['insert_id'] = $insert_data->id;
         $data['payment_purpose'] = 'Payment for Pan Register';
-        $data['payment_amount'] = config::get('constants.instamojo.pan');
+        $data['payment_amount'] = PaymentValue::where('id', 4)->first()->value;
         $data['type'] = 'PAN';
         $data['route'] = 'pan.register';
         $payment_Req= Helper::createInstaMojoOrder($data);

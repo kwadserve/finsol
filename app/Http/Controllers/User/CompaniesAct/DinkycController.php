@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CompaniesAct\UserDinkycDetail;
 use App\Models\Documents;
 use Illuminate\Http\Request;
+use App\Models\PaymentValue;
 
 class DinkycController extends Controller
 {
@@ -50,7 +51,7 @@ class DinkycController extends Controller
         if (isset($insert_data->id) && !empty($insert_data->id)) {
             $data['insert_id'] = $insert_data->id;
             $data['payment_purpose'] = 'Payment for DINKYC Register';
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = PaymentValue::where('id', 29)->first()->value;
             $data['name_of_pan'] = $data['name_of_company'];
             $data['type'] = 'DINKYC';
             $data['route'] = 'dinkyc.register';

@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     @include('admin.partials.head')
     @stack('custom_styles')
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
 
-<div class="wrapper">
-    @include('admin.partials.header')
-    @include('admin.partials.aside')
+    <div class="wrapper">
+        @include('admin.partials.header')
+        @include('admin.partials.aside')
 
-    <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
-        @include('admin.partials.flashes')
+            @include('admin.partials.flashes')
 
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
                     Dashboard <small>{{ $nav }}</small>
-                    @if($nav != 'dashboard' && $action != 'create' && $action != 'no_add')
+                    @if ($nav != 'dashboard' && $action != 'create' && $action != 'no_add')
                         <a class="btn btn-success" href="{{ route('admin.' . $nav . '.create') }}">
                             <i class="fa fa-plus"></i> Add
                         </a>
@@ -37,12 +39,13 @@
         </div>
         <!-- /.content-wrapper -->
 
-    @include('admin.partials.footer')
-</div>
+        @include('admin.partials.footer')
+    </div>
 
-@include('admin.partials.scripts')
+    @include('admin.partials.scripts')
 
-@stack('custom_scripts')
+    @stack('custom_scripts')
 
 </body>
+
 </html>

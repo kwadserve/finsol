@@ -6,6 +6,8 @@ use App\Models\UserTdsDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
+
 class TdsController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -56,7 +58,7 @@ class TdsController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_tds'];
             $data['email_id'] = $data['email_id'];
             $data['mobile_number'] = $data['mobile_number'];
-            $data['payment_amount'] = config::get('constants.instamojo.tds');
+            $data['payment_amount'] = PaymentValue::where('id', 23)->first()->value;
             $data['type'] = 'Tds';
             $data['route'] = 'tds.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

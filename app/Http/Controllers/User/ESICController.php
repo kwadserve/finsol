@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
  
 class ESICController  extends Controller {
     public function __construct() {
@@ -63,7 +64,7 @@ class ESICController  extends Controller {
                 $data['name_of_pan'] =  $data['name_of_esic'];
                 $data['email_id'] = $data['esic_email'];
                 $data['mobile_number'] = $data['esic_mobile'];
-                $data['payment_amount'] = 10;
+                $data['payment_amount'] = PaymentValue::where('id', 7)->first()->value;
                 $data['type'] = 'Esic';
                 $data['route'] = 'esic.register_form';
                 $payment_Req= Helper::createInstaMojoOrder($data);
@@ -106,7 +107,7 @@ class ESICController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_esic'];
             $data['email_id'] = $data['esic_email'];
             $data['mobile_number'] = $data['esic_mobile'];
-            $data['payment_amount'] = config::get('constants.instamojo.esic');
+            $data['payment_amount'] = PaymentValue::where('id', 42)->first()->value;
             $data['type'] = 'Esic';
             $data['route'] = 'esic.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);
