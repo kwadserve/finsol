@@ -1,8 +1,5 @@
 @extends('admin.layouts.admin')
 
-{{-- @push('custom_styles') --}}
-{{-- @endpush --}}
-
 @section('content')
     <!-- ===============================================-->
     <!--    Main Content-->

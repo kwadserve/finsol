@@ -53,45 +53,50 @@
                                 </div>
                             </a><!-- more inner pages-->
                         </li>
-                        @if(Auth::user()->type_of_user === 'Head Office')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin/employee/all') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">All Employee</span>
-                                </div>
-                            </a><!-- more inner pages-->
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin/users/addform') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Add Employee</span>
-                                </div>
-                            </a><!-- more inner pages-->
-                        </li>
+                        @if (Auth::user()->type_of_user === 'Head Office')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('admin/employee/all') }}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">All
+                                            Employee</span>
+                                    </div>
+                                </a><!-- more inner pages-->
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('admin/users/addform') }}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Add
+                                            Employee</span>
+                                    </div>
+                                </a><!-- more inner pages-->
+                            </li>
                         @endif
                     </ul>
                 </li>
-                @if(Auth::user()->type_of_user === 'Head Office')
-                <li class="nav-item">
-                    <a class="nav-link dropdown-indicator" href="#payment" role="button" data-bs-toggle="collapse"
-                        aria-expanded="false" aria-controls="forms">
-                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
-                                    class="fas fa-rupee-sign"></span></span><span class="nav-link-text ps-1">Payment</span>
-                        </div>
-                    </a>
-                    <ul class="nav collapse" id="payment">
+                @if (Auth::user()->type_of_user === 'Head Office')
+                    <li class="nav-item">
+                        <a class="nav-link dropdown-indicator" href="#payment" role="button" data-bs-toggle="collapse"
+                            aria-expanded="false" aria-controls="forms">
+                            <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                        class="fas fa-rupee-sign"></span></span><span
+                                    class="nav-link-text ps-1">Payment</span>
+                            </div>
+                        </a>
+                        <ul class="nav collapse" id="payment">
 
-                        <li class="nav-item"><a class="nav-link" href="{{ url('admin/payment/history') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">History</span>
-                                </div>
-                            </a><!-- more inner pages-->
-                        </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('admin/payment/history') }}">
+                                    <div class="d-flex align-items-center"><span
+                                            class="nav-link-text ps-1">History</span>
+                                    </div>
+                                </a><!-- more inner pages-->
+                            </li>
 
-                        <li class="nav-item"><a class="nav-link" href="{{ url('admin/payment/form-value') }}">
-                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Form Value</span>
-                                </div>
-                            </a><!-- more inner pages-->
-                        </li>
-                    </ul>
-                </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('admin/payment/form-value') }}">
+                                    <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Form
+                                            Value</span>
+                                    </div>
+                                </a><!-- more inner pages-->
+                            </li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
 
@@ -112,7 +117,8 @@
     <div class="collapse navbar-collapse scrollbar" id="navbarStandard">
         <ul class="navbar-nav" data-top-nav-dropdowns="data-top-nav-dropdowns">
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dashboards">Dashboard13</a>
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    id="dashboards">Dashboard13</a>
 
             </li>
         </ul>

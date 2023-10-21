@@ -182,7 +182,8 @@
         // Make an AJAX GET request to fetch the item details
         $.ajax({
             // url:  urlpath+'/user/forms/statusview' +'?pan=' + itemId,
-            url: urlpath + '/user/loan-finance/statusview' + '?for=approve&formtype=LFProjectReport&id=' + itemId,
+            url: urlpath + '/user/loan-finance/statusview' + '?for=approve&formtype=LFProjectReport&id=' +
+                itemId,
             type: 'GET',
             success: function(data) {
 

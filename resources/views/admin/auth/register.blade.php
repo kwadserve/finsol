@@ -120,14 +120,13 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-
     $(document).ready(function() {
         $('#stateSelect').change(function() {
 
             var stateId = $(this).val();
             if (stateId) {
                 $.ajax({
-                    url: '{{url("admin/get-districts")}}/' + stateId,
+                    url: '{{ url('admin/get-districts') }}/' + stateId,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
@@ -149,7 +148,7 @@
             var districtId = $(this).val();
             if (districtId) {
                 $.ajax({
-                    url: '{{url("admin/get-blocks")}}/' + districtId,
+                    url: '{{ url('admin/get-blocks') }}/' + districtId,
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {

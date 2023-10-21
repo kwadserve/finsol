@@ -1,20 +1,20 @@
 @extends('admin.layouts.app')
 
 @push('custom_styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin/datatables.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin/switcher3.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin/datatables.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin/switcher3.css') }}" />
     <script>
-
         // if(device_is_mobile){
         var status_contents = {
-            blocked: '<i class="fa fa-thumbs-down"></i>',
-            pending: '<i class="fa fa-pause"></i>',
-            approved: '<i class="fa fa-thumbs-up"></i>',
-            selector: 'selector',
-        }, options_contents = {
-            view: '<i class="fa fa-eye"></i>',
-            delete: '<i class="fa fa-remove"></i>'
-        };
+                blocked: '<i class="fa fa-thumbs-down"></i>',
+                pending: '<i class="fa fa-pause"></i>',
+                approved: '<i class="fa fa-thumbs-up"></i>',
+                selector: 'selector',
+            },
+            options_contents = {
+                view: '<i class="fa fa-eye"></i>',
+                delete: '<i class="fa fa-remove"></i>'
+            };
         // } else {
         //     var status_contents = {
         //         blocked: 'blocked',
@@ -27,8 +27,7 @@
         //     };
         // }
 
-        function changePosition(item_id, position)
-        {
+        function changePosition(item_id, position) {
             let item = document.querySelector('.switcher[data-item="' + item_id + '"]');
 
             let blocked = item.getElementsByClassName("blocked")[0],
@@ -56,12 +55,12 @@
                     selector.style.backgroundColor = "green";
                     break;
                 default:
-                // pending
+                    // pending
             }
         }
-        function initSwitcher(position, item_id, change)
-        {
-            if(change){
+
+        function initSwitcher(position, item_id, change) {
+            if (change) {
                 $.ajax({
                     url: "{{ route('admin.products.change_status') }}",
                     data: {
@@ -70,10 +69,10 @@
                         '_token': "{{ csrf_token() }}"
                     },
                     type: "POST",
-                    success: function (data) {
-                        if(data.success){
+                    success: function(data) {
+                        if (data.success) {
                             changePosition(item_id, position)
-                        }else{
+                        } else {
                             console.log(data.message);
                         }
                     }
@@ -86,19 +85,17 @@
 @endpush
 
 @section('content')
-
     <table id="yajra_datatable" class="table table-bordered">
         <thead>
-        <tr>
-            <th>Admin</th>
-            <th>Main Image</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Options</th>
-        </tr>
+            <tr>
+                <th>Admin</th>
+                <th>Main Image</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Options</th>
+            </tr>
         </thead>
     </table>
-
 @endsection
 
 @push('custom_scripts')
@@ -109,8 +106,7 @@
                 "processing": true,
                 "serverSide": true,
                 "ajax": "{{ route('admin.products.ajax') }}",
-                "columns":[
-                    {
+                "columns": [{
                         "data": "admin_name_for_datatable",
                         "name": "" //ss for avoiding Yajra DataTable search errors, we need to write here any searchable and existing in table column name: e.g. 'title'
                     },
@@ -138,16 +134,16 @@
                         initSwitcher(items_array[i].status, items_array[i].id, false);
                     }
                 },
-                'columnDefs': [
-                    { // admin
+                'columnDefs': [{ // admin
                         'targets': 0,
                         'defaultContent': '-',
                         'searchable': false,
                         'orderable': false,
                         'className': 'dt-body-center',
                         // 'width': '10%',
-                        'render': function (data, type, full_row, meta){
-                            return '<div style="display: block;">' + full_row.admin_name_for_datatable + '</div>';
+                        'render': function(data, type, full_row, meta) {
+                            return '<div style="display: block;">' + full_row.admin_name_for_datatable +
+                                '</div>';
                         }
                     },
                     { // image
@@ -157,8 +153,9 @@
                         'orderable': false,
                         // 'width': '10%',
                         'className': 'dt-body-center',
-                        'render': function (data, type, full_row, meta){
-                            return '<img onerror="this.src=\'{{ asset('/images/no_image/small.jpg') }}\'" src="{{ asset('/uploads/' . config('project.product.images_folder') . '/small') }}/' + full_row.main_image + '" />';
+                        'render': function(data, type, full_row, meta) {
+                            return '<img onerror="this.src=\'{{ asset('/images/no_image/small.jpg') }}\'" src="{{ asset('/uploads/' . config('project.product.images_folder') . '/small') }}/' +
+                                full_row.main_image + '" />';
                         }
                     },
                     { // title
@@ -175,13 +172,19 @@
                         'searchable': false,
                         'orderable': false,
                         // 'width': '20%',
-                        'render': function (data, type, full_row, meta){
-                            return '<div class="switcher" data-item="' + full_row.id + '"> \
-                                    <div class="switch2 blocked" onclick="initSwitcher(\'blocked\', this.parentElement.getAttribute(\'data-item\'), true)">' + status_contents.blocked + '</div> \
-                                    <div class="switch2 pending" onclick="initSwitcher(\'pending\', this.parentElement.getAttribute(\'data-item\'), true)">' + status_contents.pending + '</div> \
-                                    <div class="switch2 approved" onclick="initSwitcher(\'approved\', this.parentElement.getAttribute(\'data-item\'), true)">' + status_contents.approved + '</div> \
-                                    <div class="selector"></div> \
-                                </div>';
+                        'render': function(data, type, full_row, meta) {
+                            return '<div class="switcher" data-item="' + full_row.id +
+                                '"> \
+                                        <div class="switch2 blocked" onclick="initSwitcher(\'blocked\', this.parentElement.getAttribute(\'data-item\'), true)">' + status_contents
+                                .blocked +
+                                '</div> \
+                                        <div class="switch2 pending" onclick="initSwitcher(\'pending\', this.parentElement.getAttribute(\'data-item\'), true)">' +
+                                status_contents.pending +
+                                '</div> \
+                                        <div class="switch2 approved" onclick="initSwitcher(\'approved\', this.parentElement.getAttribute(\'data-item\'), true)">' +
+                                status_contents.approved + '</div> \
+                                        <div class="selector"></div> \
+                                    </div>';
                         }
                     },
                     {
@@ -191,7 +194,7 @@
                         'orderable': false,
                         // 'width': '10%',
                         'className': 'dt-body-center',
-                        'render': function (data, type, full_row, meta){
+                        'render': function(data, type, full_row, meta) {
                             return '<div style="display: block">' +
                                 '<button type="button" class="btn btn-default btn-xs">Will create options later</button>' +
                                 '</div>';

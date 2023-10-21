@@ -1,7 +1,6 @@
 @extends('admin.layouts.admin')
 
-{{--@push('custom_styles')--}}
-{{--@endpush--}}
+
 
 @section('content')
 <!-- ===============================================-->
@@ -93,7 +92,7 @@
 
 @include('admin.pages.users.modal')
 
-<!-- {{--@push('custom_scripts)--}} -->
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     crossorigin="anonymous">
  
@@ -112,4 +111,3 @@
         })
     }
 </script>
-<!-- {{--@endpush--}} -->
