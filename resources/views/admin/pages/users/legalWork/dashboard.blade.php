@@ -36,7 +36,8 @@
         </div>
         @include('admin.partials.footer')
     </div>
-</main><!-- ===============================================-->
+</main>
+<!-- ===============================================-->
 <!--    End of Main Content-->
 <!-- ===============================================-->
 @endsection
@@ -49,5 +50,3 @@
  
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous">
 </script>
- 
-

@@ -45,9 +45,7 @@
             $bootstrapColWidth = 12 / $numOfCols;
             ?>
             <div class="row">
-                <?php
-foreach ($gstIndividualDocuments as $row){
-?>
+                <?php foreach ($gstIndividualDocuments as $row){ ?>
                 <div class="col-md-<?php echo $bootstrapColWidth; ?>">
                     <h6>{{ $row->doc_name }}</h6>
                     <div class="thumbnail">
@@ -74,10 +72,10 @@ foreach ($gstIndividualDocuments as $row){
                     <br />
                 </div>
                 <?php
-    $rowCount++;
-    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
-}
-?>
+                    $rowCount++;
+                    if($rowCount % $numOfCols == 0) echo '</div><div class="row">';
+                }
+                ?>
             </div>
 
         </div>

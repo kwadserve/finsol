@@ -169,7 +169,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 
 <script>
-    var urlpath = "{{ $routeUrl }}";
+    var urlpath = "{{ url('admin') }}";
 
     function changeApprove(itemId) {
         // Make an AJAX GET request to fetch the item details

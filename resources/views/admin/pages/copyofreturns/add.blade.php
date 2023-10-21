@@ -213,7 +213,7 @@
         });
     });
 
-    var urlpath = "{{ $routeUrl }}";
+    var urlpath = "{{ url('admin') }}";
 
     function getTradeNameData() {
 

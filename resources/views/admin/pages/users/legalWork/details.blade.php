@@ -7,9 +7,7 @@
 
                     <table class="table table-bordered table-striped fs--1 mb-0">
                         <thead class="bg-200 text-900">
-                            <tr>
-                                <!-- <th scope="col"></th> -->
-
+                            <tr></tr>
                                 <th scope="col">Email Id</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Admin Note</th>
@@ -156,7 +154,7 @@
 @endif
 
 <script>
-    var urlpath = "{{ $routeurl }}";
+    var urlpath = "{{ url('admin') }}";
 
     function openCaNoteModal(itemId) {
         // Make an AJAX GET request to fetch the item details

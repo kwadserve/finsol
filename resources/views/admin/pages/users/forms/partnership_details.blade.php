@@ -169,7 +169,7 @@
 @endif
 
 <script>
-    var urlpath = "{{ $routeurl }}";
+    var urlpath = "{{ url('admin') }}";
 
     function openPartnershipNoteModal(itemId) {
         // Make an AJAX GET request to fetch the item details

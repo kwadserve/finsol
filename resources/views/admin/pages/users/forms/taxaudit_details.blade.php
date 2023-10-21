@@ -181,7 +181,7 @@
 @endif
 
 <script>
-    var urlpath = "{{ $routeurl }}";
+    var urlpath = "{{ url('admin') }}";
 
     function openTaxauditNoteModal(itemId) {
         // Make an AJAX GET request to fetch the item details

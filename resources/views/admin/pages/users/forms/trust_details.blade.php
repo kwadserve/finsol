@@ -161,7 +161,7 @@
     </div>
 @endif
 <script>
-    var urlpath = "{{ $routeurl }}";
+    var urlpath = "{{ url('admin') }}";
 
     function openTrustNoteModal(itemId) {
         // Make an AJAX GET request to fetch the item details

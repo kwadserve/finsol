@@ -1,8 +1,5 @@
 @extends('admin.layouts.admin')
 
-{{-- @push('custom_styles') --}}
-{{-- @endpush --}}
-
 @section('content')
     <!-- ===============================================-->
     <!--    Main Content-->
@@ -42,7 +39,8 @@
             </div>
             @include('admin.partials.footer')
         </div>
-    </main><!-- ===============================================-->
+    </main>
+    <!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
 @endsection
