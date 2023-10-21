@@ -73,7 +73,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="mb-3">
+                                            <div class="mb-3 d-none" id="select-state">
                                                 <label for="stateSelect" class="form-label">Select State:</label>
                                                 <select class="form-select" name="state" id="stateSelect">
                                                     <option value="">Select State</option>
@@ -83,14 +83,14 @@
                                                 </select>
                                             </div>
 
-                                            <div class="mb-3">
+                                            <div class="mb-3 d-none" id="select-district">
                                                 <label for="districtSelect" class="form-label">Select District:</label>
                                                 <select class="form-select" name="district" id="districtSelect">
                                                     <option value="">Select District</option>
                                                 </select>
                                             </div>
 
-                                            <div class="mb-3">
+                                            <div class="mb-3 d-none" id="select-block">
                                                 <label for="blockSelect" class="form-label">Select Block:</label>
                                                 <select class="form-select" name="block" id="blockSelect">
                                                     <option value="">Select Block</option>
@@ -112,7 +112,7 @@
             </div>
         </div>
         @include('admin.partials.footer')
-        </div>
+        
     </main><!-- ===============================================-->
     <!--    End of Main Content-->
     <!-- ===============================================-->
@@ -121,6 +121,28 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        $('#typeofuser').change(function(){
+            var selected = $(this).val();
+            switch (selected){
+                case "State Office":
+                    $('#select-state').removeClass('d-none');
+                    break;
+                case "District Office":
+                    $('#select-state').removeClass('d-none');
+                    $('#select-district').removeClass('d-none');
+                    break;
+                case "Block Office":
+                    $('#select-state').removeClass('d-none');
+                    $('#select-district').removeClass('d-none');
+                    $('#select-block').removeClass('d-none');
+                    break;
+                default:
+                    $('#select-state').addClass('d-none');
+                    $('#select-district').addClass('d-none');
+                    $('#select-block').addClass('d-none');
+            }
+        })
+
         $('#stateSelect').change(function() {
 
             var stateId = $(this).val();

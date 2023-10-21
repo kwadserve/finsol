@@ -35,6 +35,7 @@
                                             <table class="table table-bordered table-striped fs--1 mb-0">
                                                 <thead class="bg-200 text-900">
                                                     <tr>
+                                                        <th class="sort" data-sort="id">ID</th>
                                                         <th class="sort" data-sort="name">Name</th>
                                                         <th class="sort" data-sort="email">Email</th>
                                                         <th class="sort" data-sort="age">Status</th>
@@ -46,7 +47,8 @@
                                                 <tbody class="list">
                                                     @foreach ($users as $keyname => $user)
                                                         <tr>
-                                                            <td class="name">{{ $user['name'] }}({{ $user->id }})</td>
+                                                            <td>{{ $user->id }}</td>
+                                                            <td class="name">{{ $user['name'] }}</td>
                                                             <td class="email">{{ $user['email'] }}</td>
                                                             <td class="age">{{ $user['status'] }}</td>
 
