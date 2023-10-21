@@ -289,18 +289,14 @@
                                     class="fas fa-calendar-day"></span></span><span
                                 class="nav-link-text ps-1">Companies Act</span></div>
                     </a>
-                    <ul class="nav collapse" id="companiesact">
-
-                        <?php $carowcount = App\Models\User::getCompaniesActhasrecord(); ?>
-                        @if (isset($carowcount) && $carowcount > 0)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('companiesact_dashboard') }}">
-                                    <div class="d-flex align-items-center"><span
-                                            class="nav-link-text ps-1">Dashboard</span></div>
-                                </a>
-                                <!-- more inner pages-->
-                            </li>
-                        @endif
+                    <ul class="nav collapse" id="companiesact">                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('companiesact_dashboard') }}">
+                                <div class="d-flex align-items-center"><span
+                                        class="nav-link-text ps-1">Dashboard</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('statutoryaudit.register_form') }}">
                                 <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Statutory

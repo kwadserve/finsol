@@ -6,6 +6,8 @@ use App\Models\UserIsoDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
+
 class IsoController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -53,7 +55,7 @@ class IsoController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_iso'];
             $data['email_id'] = $data['email_id'];
             $data['mobile_number'] = $data['mobile_number'];
-            $data['payment_amount'] = config::get('constants.instamojo.iso');
+            $data['payment_amount'] = PaymentValue::where('id', 19)->first()->value;
             $data['type'] = 'ISO';
             $data['route'] = 'iso.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

@@ -6,6 +6,8 @@ use App\Models\UserTaxauditDetail;
 use App\Models\Documents;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\Config;
+use App\Models\PaymentValue;
+
 class TaxauditController  extends Controller {
     public function __construct() {
         $this->middleware('auth');
@@ -54,7 +56,7 @@ class TaxauditController  extends Controller {
             $data['name_of_pan'] =  $data['name_of_taxaudit'];
             $data['email_id'] = $data['email_id'];
             $data['mobile_number'] = $data['mobile_number'];
-            $data['payment_amount'] = config::get('constants.instamojo.taxaudit');
+            $data['payment_amount'] = PaymentValue::where('id', 22)->first()->value;
             $data['type'] = 'Taxaudit';
             $data['route'] = 'taxaudit.register_form';
             $payment_Req= Helper::createInstaMojoOrder($data);

@@ -93,7 +93,7 @@ class UserGstController extends Controller
             } else {
             return redirect('/admin/user/gsttype/details/'.$gstId)->with('filenotexistsection1', 'File Not Exist!');
             }  
-        } else  {
+        } else {
             return redirect('/admin/user/gsttype/details/'.$gstId)->with('filenotexistsection1', 'File Not Exist!');
         }
 
@@ -103,12 +103,11 @@ class UserGstController extends Controller
     }
 
 
-    public function statusview($item_id){
-         
-
+    public function statusview($item_id)
+    {
         if($item_id){
-        $singleGst = UserGstDetail::find($item_id);
-         return $singleGst; 
+            $singleGst = UserGstDetail::find($item_id);
+            return $singleGst;
         //return view('admin.pages.users.modal')->with($data);
         }
     }

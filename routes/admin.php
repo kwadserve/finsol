@@ -28,6 +28,7 @@ Route::group(
 
         // for administrator
         Route::group(['middleware' => ['role:administrator']], function () {
+
             // users
             Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
                 Route::get('all', 'UserController@index')->name('index');
@@ -73,7 +74,6 @@ Route::group(
                 Route::post('files/{id}', 'FormsDashboardController@allProfileDocDownload')->name('allprofiledocdownload');
 
                 // Display all form related to this user on Companies Act tab
-
                 Route::get('companiesact/dashboard/details/{id}', 'CompaniesActDashboardController@index')->name('companiesact_dashboard');
                 Route::post('companiesact/change_status', 'CompaniesActDashboardController@change_status')->name('companiesact_dashboard_change_status');
                 Route::get('companiesact/statusview', 'CompaniesActDashboardController@statusview')->name('companiesact_statusView');
@@ -82,8 +82,7 @@ Route::group(
                 Route::get('companiesact/details/{name}/{id1}', 'CompaniesActDashboardController@allProfile')->name('companiesact_allformProfile');
                 Route::post('cafiles/{id}', 'CompaniesActDashboardController@allProfileDocDownload')->name('companiesact_allprofiledocdownload');
 
-                // Display all form related to this user on Companies Act tab
-
+                // Display all form related to this user on Certification
                 Route::get('certification/dashboard/details/{id}', 'CertificationDashboardController@index')->name('certification_dashboard');
                 Route::post('certification/change_status', 'CertificationDashboardController@change_status')->name('certification_dashboard_change_status');
                 Route::get('certification/statusview', 'CertificationDashboardController@statusview')->name('certification_statusView');
@@ -91,8 +90,31 @@ Route::group(
                 Route::post('certification/approved/file/{id}', 'CertificationDashboardController@approvedFile')->name('certification_approvedFile');
                 Route::get('certification/details/{name}/{id1}', 'CertificationDashboardController@allProfile')->name('certification_allformProfile');
                 Route::post('cafiles/{id}', 'CertificationDashboardController@allProfileDocDownload')->name('certification_allprofiledocdownload');
+
+                // Display all form related to this user on Legal Work
+                Route::get('legal-work/dashboard/details/{id}', 'LegalWorkDashboardController@index')->name('legal_dashboard');
+                Route::post('legal-work/change_status', 'LegalWorkDashboardController@change_status')->name('legal_dashboard_change_status');
+                Route::get('legal-work/statusview', 'LegalWorkDashboardController@statusview')->name('legal_statusView');
+                Route::post('legal-work/additional/file/{id}', 'LegalWorkDashboardController@additionalFile')->name('legal_additionalFile');
+                Route::post('legal-work/approved/file/{id}', 'LegalWorkDashboardController@approvedFile')->name('legal_approvedFile');
+                Route::get('legal-work/details/{id1}', 'LegalWorkDashboardController@allProfile')->name('legal_allformProfile');
+
+                // Display all form related to this user on Legal Work
+                Route::get('loan-finance/dashboard/details/{id}', 'LoanDashboardController@index')->name('loan_dashboard');
+                Route::post('loan-finance/change_status', 'LoanDashboardController@change_status')->name('loan_dashboard_change_status');
+                Route::get('loan-finance/statusview', 'LoanDashboardController@statusview')->name('loan_statusView');
+                Route::post('loan-finance/additional/file/{id}', 'LoanDashboardController@additionalFile')->name('loan_additionalFile');
+                Route::post('loan-finance/approved/file/{id}', 'LoanDashboardController@approvedFile')->name('loan_approvedFile');
+                Route::get('loan-finance/details/{name}/{id1}', 'LoanDashboardController@allProfile')->name('loan_allformProfile');
+
+                //User Payments
+                Route::get('payments/{userId}', 'PaymentController@userPaymentDetails');
             });
 
+            Route::get('employee/all', 'UserController@allEmployees');
+            Route::get('payment/history', 'PaymentController@allTransactions');
+            Route::get('payment/form-value', 'PaymentController@showFormValue');
+            Route::post('payment/update-form-value', 'PaymentController@updateFormValue');
             // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
         });
 

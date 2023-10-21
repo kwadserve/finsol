@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CompaniesAct\UserMgtDetail;
 use App\Models\Documents;
 use Illuminate\Http\Request;
+use App\Models\PaymentValue;
 
 class MgtController extends Controller
 {
@@ -51,7 +52,7 @@ class MgtController extends Controller
             $data['insert_id'] = $insert_data->id;
             $data['payment_purpose'] = 'Payment for MGT Register';
             $data['name_of_pan'] = $data['name_of_company'];
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = PaymentValue::where('id', 26)->first()->value;
             $data['type'] = 'MGT';
             $data['route'] = 'mgt.register';
             $payment_Req = Helper::createInstaMojoOrder($data);

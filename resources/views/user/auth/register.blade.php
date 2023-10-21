@@ -227,7 +227,7 @@
 @endsection
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    var urlpath = "{{ $routeUrl }}";
+    var urlpath = "{{ url('/register') }}";
 
     $(document).ready(function() {
         $('#stateSelect').change(function() {
