@@ -42,6 +42,7 @@ class RegisterController extends Controller
             'state' => $data['state'],
             'district' => $data['district'],
             'block' => $data['block'],
+            'aadhaar' => $data['aadhaar']
         ]);
         session()->flash('message', 'Thank you for registering!');
     }
