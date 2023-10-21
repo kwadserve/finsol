@@ -44,6 +44,8 @@ class LabourController  extends Controller {
         $data['petty_images'] = Documents::where(['for_multiple' => 'Petty Contract'])->get();
         $data['petty_signatory_images'] = Documents::where(['for_multiple' => 'Petty Contract Signatory'])->get();
         $data['labour_images'] = Documents::where(['for_multiple' => 'Labour Contract'])->get();
+        $data['amount_sign'] = PaymentValue::where('id', 16)->first()->value;
+        $data['amount'] = PaymentValue::where('id', 15)->first()->value;
         return view('user.pages.labour.labourform')->with($data);
     }
 

@@ -33,6 +33,7 @@ class StatutoryAuditController extends Controller
         }
         
         $data['statutoryauditimages'] = Documents::where('for_multiple', 'SA')->get();
+        $data['amount'] = PaymentValue::where('id', 30)->first()->value;
         return view('user.pages.companiesact.statutoryauditform')->with($data);
     }
 

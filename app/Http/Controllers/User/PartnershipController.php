@@ -37,6 +37,7 @@ class PartnershipController  extends Controller {
 
         $data['partnership_images'] = Documents::where(['for_multiple' => 'PARTNERSHIP'])->get();
         $data['partnership_partner_images'] = Documents::where(['for_multiple' => 'PARTNERSHIP Partner'])->get();
+        $data['amount'] = PaymentValue::where('id', 10)->first()->value;
         return view('user.pages.partnership.partnershipform')->with($data);
     }
 

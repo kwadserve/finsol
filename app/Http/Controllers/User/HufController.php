@@ -35,6 +35,7 @@ class HufController  extends Controller {
         }
 
         $data['huf_member_images'] = Documents::where(['for_multiple' => 'HUF Member'])->get();
+        $data['amount'] = PaymentValue::where('id', 11)->first()->value;
         return view('user.pages.huf.hufform')->with($data);
     }
 

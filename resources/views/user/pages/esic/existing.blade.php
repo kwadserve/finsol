@@ -133,9 +133,9 @@
                                         <br />
                                         <div class="col-4">
                                             <div class="mb-3">
-                                                <button class="btn btn-primary me-1 mb-1" type="submit">Submit and
+                                                <button class="btn btn-primary me-1 mb-1" type="submit">Submit &
                                                     Pay</button>
-                                                <p>Amount : ₹1000</p>
+                                                <p>Amount: ₹{{$amount_esi_ci}}</p>
                                             </div>
                                         </div>
                                     </form>
@@ -223,9 +223,9 @@
                                             <div class="col-4">
                                                 <div class="mb-3">
                                                     <button class="btn btn-primary me-1 mb-1" type="submit">Submit
-                                                        and
+                                                        &
                                                         Pay</button>
-                                                    <p>Amount : ₹1000</p>
+                                                    <p>Amount: ₹{{$amount}}</p>
                                                 </div>
                                             </div>
                                         </div>

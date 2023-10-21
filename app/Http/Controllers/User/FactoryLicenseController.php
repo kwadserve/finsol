@@ -34,6 +34,7 @@ class FactoryLicenseController  extends Controller {
             return redirect('/factorylicense/register')->with('success', $msg);
         }
         $data['factory_license_images'] = Documents::where('for_multiple', 'FL')->get();
+        $data['amount'] = PaymentValue::where('id', 24)->first()->value;
         return view('user.pages.factorylicense.factorylicenseform')->with($data);
     }
   

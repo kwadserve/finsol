@@ -38,6 +38,9 @@ class TradeMarkController  extends Controller {
         $data['trademark_company_images'] = Documents::where(['for_multiple' => 'TRADEMARK Company'])->get();
         $data['trademark_company_signatory_images'] = Documents::where(['for_multiple' => 'TRADEMARK Signatory'])->get();
         $data['trademark_other_images'] = Documents::where(['for_multiple' => 'TRADEMARK Others'])->get();
+        $data['amount_trade_ci'] = PaymentValue::where('id', 14)->first()->value;
+        $data['amount_trade_cs'] = PaymentValue::where('id', 8)->first()->value;
+        $data['amount'] = PaymentValue::where('id', 41)->first()->value;
         return view('user.pages.trademark.trademarkform')->with($data);
     }
 
@@ -114,7 +117,5 @@ class TradeMarkController  extends Controller {
             $payment_Req= Helper::createInstaMojoOrder($data);
         }
         return redirect('/trademark/register')->with('success', 'Registered TRADEMARK Others successfully!');;
-    }
-
-    
+    }    
 }

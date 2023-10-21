@@ -32,6 +32,7 @@ class TurnoverController extends Controller
         }
 
         $data['turnoverimages'] = Documents::where('for_multiple', 'TURNOVER')->get();
+        $data['amount'] = PaymentValue::where('id', 33)->first()->value;
         return view('user.pages.certification.turnoverform')->with($data);
     }
 
@@ -50,7 +51,7 @@ class TurnoverController extends Controller
         if (isset($insert_data->id) && !empty($insert_data->id)) {
             $data['insert_id'] = $insert_data->id;
             $data['payment_purpose'] = 'Payment for Turnover Register';
-            $data['payment_amount'] = 10;
+            $data['payment_amount'] = $data['amount'] = PaymentValue::where('id', 33)->first()->value;;
             $data['name_of_pan'] = $data['name'];
             $data['type'] = 'Turnover';
             $data['route'] = 'turnover.register';

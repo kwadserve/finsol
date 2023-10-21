@@ -33,6 +33,7 @@ class MgtController extends Controller
         }
         
         $data['mgtimages'] = Documents::where('for_multiple', 'MGT')->get();
+        $data['amount'] = PaymentValue::where('id', 26)->first()->value;
         return view('user.pages.companiesact.mgtform')->with($data);
     }
 

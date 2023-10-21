@@ -33,6 +33,7 @@ class CaController extends Controller
         }
 
         $data['caimages'] = Documents::where('for_multiple', 'CA')->get();
+        $data['amount'] = PaymentValue::where('id', 31)->first()->value;
         return view('user.pages.certification.caform')->with($data);
     }
 

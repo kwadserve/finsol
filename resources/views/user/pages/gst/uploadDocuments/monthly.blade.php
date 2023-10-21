@@ -1,84 +1,86 @@
 <div class="tab-pane fade show active" id="pill-tab-home" role="tabpanel"
-                                aria-labelledby="home-tab">
-                                <form class="needs-validation" novalidate="novalidate" action="{{ route('gst.uploaddocumentscreate') }}" method="post"enctype="multipart/form-data">
-                                    @csrf
-                                  <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                                    <h6 class="detailspadding mb-0">Select Business</h6>
-                                  </div>
-                                  <div class="mt-1 row g-2">
-                                    <div class="col-6">
-                                      <div class="mb-3">
-                                        <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
-                                          GST Number</label>
-                                        <select name="gstnumber" class="form-select" id="gstSelect" required="required" onChange="getTradeName()"
-                                          aria-label="Default select example">
-                                          <option value="">GST Number</option>
-                                           @foreach ($gstNumbers  as $key => $numbers)
-                                                <option value="{{ $numbers->gst_number }}">{{ $numbers->gst_number }}</option>
-                                            @endforeach
-                                        </select>
-                                        <input type="hidden" name="gstid" value="" class="gstid" />
-                                        <input type="hidden" name="doc_type" value="Monthly"  />
-                                        <div class="invalid-feedback">Please select GST Number</div>
-                                      </div>
-                                    </div>
-                                    <div class="col-6">
-                                      <div class="mb-3">
-                                        <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Trade
-                                          Name of
-                                          the
-                                          Business</label><input required="" class="form-control tradeName" type="text" disabled
-                                          name="name" placeholder="Legal Name of Business" value=""
-                                          id="form-wizard-progress-wizard-legalname tradeName"
-                                          data-wizard-validate-legal-name="true" />
-                                        <div class="invalid-feedback">Please provide Trade Name</div>
-                                      </div>
-                                    </div>
-                                    <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                                      <h6 class="detailspadding mb-0">Select Year and Month</h6>
-                                    </div>
-                                  </div>
-                                  <div class="mt-1 row g-2">
-                                    <div class="col-6">
-                                      <div class="mb-3">
-                                        <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
-                                          Year</label>
-                                          <select class="form-select" required="required" name="year" aria-label="Default select example">
-                                            @php
-                                                $currentYear = date('Y');
-                                                $startYear = $currentYear - 20;
-                                                $endYear = $currentYear;
-                                            @endphp
-                                            <option value="">Select Year</option>
-                                            @for ($year = $endYear; $year >= $startYear; $year--)
-                                                <option value="{{ $year }}">{{ $year }}</option>
-                                            @endfor
-                                        </select>
-                                      
-                                        <div class="invalid-feedback">Please select Year</div>
-                                      </div>
-                                    </div>
-                                    <div class="col-6">
-                                      <div class="mb-3">
-                                        <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
-                                          Month</label>
-                                        
-                                        <select class="form-select" required="required" name="month">
-                                        <option value="">Select Month</option>
-                                            @for ($month = 1; $month <= 12; $month++)
-                                                <option value="{{ $month }}">{{ date('F', mktime(0, 0, 0, $month, 1)) }}</option>
-                                            @endfor
-                                        </select>
-                                        <div class="invalid-feedback">Please select Month</div>
-                                      </div>
-                                    </div>
-                                    <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
-                                      <h6 class="detailspadding mb-0">Upload documents to file returns</h6>
-                                    </div>
-                                    <div class="col-12">
-                                      <div class="bg-light">
-                                         <input type="file" name="documents[]" required="required" class="form-control" multiple /> 
-                                          <!-- <div class="tab-content">
+    aria-labelledby="home-tab">
+    <form class="needs-validation" novalidate="novalidate" action="{{ route('gst.uploaddocumentscreate') }}"
+        method="post"enctype="multipart/form-data">
+        @csrf
+        <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
+            <h6 class="detailspadding mb-0">Select Business</h6>
+        </div>
+        <div class="mt-1 row g-2">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
+                        GST Number</label>
+                    <select name="gstnumber" class="form-select" id="gstSelect" required="required"
+                        onChange="getTradeName()"
+                        aria-label="Default select example">
+                        <option value="">GST Number</option>
+                        @foreach ($gstNumbers as $key => $numbers)
+                            <option value="{{ $numbers->gst_number }}">{{ $numbers->gst_number }}</option>
+                        @endforeach
+                    </select>
+                    <input type="hidden" name="gstid" value="" class="gstid" />
+                    <input type="hidden" name="doc_type" value="Monthly" />
+                    <div class="invalid-feedback">Please select GST Number</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Trade
+                        Name of
+                        the
+                        Business</label><input required="" class="form-control tradeName" type="text" disabled
+                        name="name" placeholder="Legal Name of Business" value=""
+                        id="form-wizard-progress-wizard-legalname tradeName"
+                        data-wizard-validate-legal-name="true" />
+                    <div class="invalid-feedback">Please provide Trade Name</div>
+                </div>
+            </div>
+            <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
+                <h6 class="detailspadding mb-0">Select Year and Month</h6>
+            </div>
+        </div>
+        <div class="mt-1 row g-2">
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
+                        Year</label>
+                    <select class="form-select" required="required" name="year" aria-label="Default select example">
+                        @php
+                            $currentYear = date('Y');
+                            $startYear = $currentYear - 20;
+                            $endYear = $currentYear;
+                        @endphp
+                        <option value="">Select Year</option>
+                        @for ($year = $endYear; $year >= $startYear; $year--)
+                            <option value="{{ $year }}">{{ $year }}</option>
+                        @endfor
+                    </select>
+
+                    <div class="invalid-feedback">Please select Year</div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label class="form-label" for="form-wizard-progress-wizard-legalnamename">Select
+                        Month</label>
+
+                    <select class="form-select" required="required" name="month">
+                        <option value="">Select Month</option>
+                        @for ($month = 1; $month <= 12; $month++)
+                            <option value="{{ $month }}">{{ date('F', mktime(0, 0, 0, $month, 1)) }}</option>
+                        @endfor
+                    </select>
+                    <div class="invalid-feedback">Please select Month</div>
+                </div>
+            </div>
+            <div class="detailsmargin card-header d-flex flex-between-center bg-light py-2">
+                <h6 class="detailspadding mb-0">Upload documents to file returns</h6>
+            </div>
+            <div class="col-12">
+                <div class="bg-light">
+                    <input type="file" name="documents[]" required="required" class="form-control" multiple />
+                    <!-- <div class="tab-content">
                                           <div class="tab-pane preview-tab-pane active" role="tabpanel"
                                             aria-labelledby="tab-dom-77cd7e82-0ae3-4189-b6e8-f4e60ff78ac7"
                                             id="dom-77cd7e82-0ae3-4189-b6e8-f4e60ff78ac7">
@@ -125,18 +127,16 @@
                                             </div>
                                           </div>
                                         </div>   -->
-                                      </div>
-                                    </div>
-                                    <div class="col-4"></div>
-                                    <div class="col-4">
-                                      <div class="mb-3">
-                                        <button class="mt-4 btn btn-primary me-1 mb-1" type="submit">Upload Monthly Documents</button>
-                                      </div>
-                                    </div>
-                                    <div class="col-4"></div>
-                                  </div>
+                </div>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="mb-3">
+                    <button class="mt-4 btn btn-primary me-1 mb-1" type="submit">Upload Monthly Documents</button>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
 
-                                </form>
-                              </div>
-
-                             
+    </form>
+</div>

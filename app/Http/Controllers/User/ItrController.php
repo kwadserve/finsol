@@ -33,6 +33,7 @@ class ItrController  extends Controller {
             return redirect('/itr/register')->with('success', $msg);
         }
         $data['itrimages'] = Documents::where('for_multiple', 'ITR')->get();
+        $data['amount'] = PaymentValue::where('id', 21)->first()->value;
         return view('user.pages.itr.itrform')->with($data);
     }
   

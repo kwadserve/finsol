@@ -34,6 +34,7 @@ class CMAController extends Controller
         }
         
         $data['cmaImages'] = Documents::where('for_multiple', 'LFCMA')->get();
+        $data['amount'] = PaymentValue::where('id', 34)->first()->value;
         return view('user.pages.loanfinance.cmaForm')->with($data);
     }
 

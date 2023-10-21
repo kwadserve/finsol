@@ -58,8 +58,8 @@
             </div>
             <div class="col-4">
                 <div class="mb-3">
-                    <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
-                    <p>Amount : ₹1500</p>
+                    <button class="btn btn-primary me-1 mb-1" type="submit">Submit & Pay</button>
+                    <p>Amount: ₹{{$amount}}</p>
                 </div>
             </div>
         </div>

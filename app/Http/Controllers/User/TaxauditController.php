@@ -32,6 +32,7 @@ class TaxauditController  extends Controller {
             return redirect('/taxaudit/register')->with('success', $msg);
         }
         $data['taxauditimages'] = Documents::where('for_multiple', 'TAXAUDIT')->get();
+        $data['amount'] = PaymentValue::where('id', 22)->first()->value;
         return view('user.pages.taxaudit.taxauditform')->with($data);
     }
   

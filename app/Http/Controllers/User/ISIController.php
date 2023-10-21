@@ -34,6 +34,7 @@ class ISIController extends Controller
         }
         
         $data['isiImages'] = Documents::where('for_multiple', 'ISI')->get();
+        $data['amount'] = PaymentValue::where('id', 37)->first()->value;
         return view('user.pages.isi.isiForm')->with($data);
     }
 

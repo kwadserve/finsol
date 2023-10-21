@@ -100,8 +100,8 @@
         <br />
         <div class="col-4">
             <div class="mb-3">
-                <button class="btn btn-primary me-1 mb-1" type="submit">Submit and Pay</button>
-                <p>Amount : ₹1500</p>
+                <button class="btn btn-primary me-1 mb-1" type="submit">Submit & Pay</button>
+                <p>Amount: ₹{{$amount_epf_ci}}</p>
             </div>
         </div>
     </form>
@@ -127,7 +127,6 @@
             '][epf_sign_spaceman_img][]" id="image-upload" class="myfrm form-control" multiple=""> </div> </div> <div class="col-4 mb-3"> <div class="mb-3"> <label>Upload Declaration :</label> <!-- required="required" --> <input type="file" name="epfsignatory[' +
             epfsignatoryIndex +
             '][epf_sign_declare_img][]" id="image-upload" class="myfrm form-control" multiple=""> </div> </div><div class="mt-1 row g-2"> <button class="deleteepfsignatory btn btn-outline-primary me-1 mb-1" type="button"><span class="fas fa-trash me-1" data-fa-transform="shrink-3"></span> Delete Signatory </button> </div></div>'
-
 
         );
     });

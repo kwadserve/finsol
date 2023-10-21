@@ -35,6 +35,7 @@ class PanController extends Controller
         }
 
         $data['panimages'] = Documents::where('for_multiple', 'PAN')->get();
+        $data['amount'] = PaymentValue::where('id', 4)->first()->value;
         return view('user.pages.pan.panform')->with($data);
     }
 

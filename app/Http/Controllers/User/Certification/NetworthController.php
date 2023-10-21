@@ -33,6 +33,7 @@ class NetworthController extends Controller
         }
 
         $data['networthimages'] = Documents::where('for_multiple', 'NETWORTH')->get();
+        $data['amount'] = PaymentValue::where('id', 32)->first()->value;
         return view('user.pages.certification.networthform')->with($data);
     }
 

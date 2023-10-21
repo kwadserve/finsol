@@ -35,6 +35,8 @@ class EpfController  extends Controller {
         $data['epf_company_images'] = Documents::where(['for_multiple' => 'EPF Company'])->get();
         $data['epf_company_signatory_images'] = Documents::where(['for_multiple' => 'EPF Signatory'])->get();
         $data['epf_other_images'] = Documents::where(['for_multiple' => 'EPF Others'])->get();
+        $data['amount_epf_ci'] = PaymentValue::where('id', 6)->first()->value;
+        $data['amount'] = PaymentValue::where('id', 43)->first()->value;
         return view('user.pages.epf.epfform')->with($data);
     }
 
@@ -82,7 +84,6 @@ class EpfController  extends Controller {
         return redirect('/epf/register')->with('success', 'Registered EPF successfully!');
     }
 
-
     public function storeEpfOthers(Request $request){
         $userId = auth()->user()->id;
         $useName = trim(auth()->user()->name).'-'.$userId; 
@@ -109,7 +110,5 @@ class EpfController  extends Controller {
             $payment_Req= Helper::createInstaMojoOrder($data);
         }
         return redirect('/epf/register')->with('success', 'Registered EPF Others successfully!');;
-    }
-
-    
+    }    
 }

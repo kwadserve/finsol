@@ -32,6 +32,7 @@ class TdsController  extends Controller {
             return redirect('/tds/register')->with('success', $msg);
         }
         $data['tdsimages'] = Documents::where('for_multiple', 'TDS')->get();
+        $data['amount'] = PaymentValue::where('id', 23)->first()->value;
         return view('user.pages.tds.tdsform')->with($data);
     }
   

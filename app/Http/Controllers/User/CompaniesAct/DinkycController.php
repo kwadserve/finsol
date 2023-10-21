@@ -33,6 +33,7 @@ class DinkycController extends Controller
         }
         
         $data['dinkycimages'] = Documents::where('for_multiple', 'DINKYC')->get();
+        $data['amount'] = PaymentValue::where('id', 29)->first()->value;
         return view('user.pages.companiesact.dinkycform')->with($data);
     }
 

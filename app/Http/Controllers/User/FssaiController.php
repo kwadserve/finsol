@@ -33,6 +33,7 @@ class FssaiController  extends Controller {
         }
      
         $data['fssaiimages'] = Documents::where('for_multiple', 'FSSAI')->get();
+        $data['amount'] = PaymentValue::where('id', 20)->first()->value;
         return view('user.pages.fssai.fssaiform')->with($data);
     }
   

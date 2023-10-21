@@ -34,6 +34,7 @@ class TanController  extends Controller {
         }
 
         $data['tanimages'] = Documents::where('for_multiple', 'TAN')->get();
+        $data['amount'] = PaymentValue::where('id', 5)->first()->value;
         return view('user.pages.tan.tanform')->with($data);
     }
   

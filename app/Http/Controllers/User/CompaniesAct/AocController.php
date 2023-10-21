@@ -33,6 +33,7 @@ class AocController extends Controller
         }
         
         $data['aocimages'] = Documents::where('for_multiple', 'AOC')->get();
+        $data['amount'] = PaymentValue::where('id', 28)->first()->value;
         return view('user.pages.companiesact.aocform')->with($data);
     }
 

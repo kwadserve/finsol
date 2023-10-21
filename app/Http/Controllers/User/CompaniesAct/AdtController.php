@@ -33,6 +33,7 @@ class AdtController extends Controller
         }
         
         $data['adtimages'] = Documents::where('for_multiple', 'ADT')->get();
+        $data['amount'] = PaymentValue::where('id', 27)->first()->value;
         return view('user.pages.companiesact.adtform')->with($data);
     }
 

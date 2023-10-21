@@ -33,6 +33,7 @@ class MinutesController extends Controller
         }
 
         $data['minutesimages'] = Documents::where('for_multiple', 'MINUTES')->get();
+        $data['amount'] = PaymentValue::where('id', 25)->first()->value;
         return view('user.pages.companiesact.minutesform')->with($data);
     }
 

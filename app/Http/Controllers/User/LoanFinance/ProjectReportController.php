@@ -34,6 +34,7 @@ class ProjectReportController extends Controller
         }
         
         $data['projectReportImages'] = Documents::where('for_multiple', 'LFPR')->get();
+        $data['amount'] = PaymentValue::where('id', 35)->first()->value;
         return view('user.pages.loanfinance.projectReportForm')->with($data);
     }
 

@@ -34,6 +34,7 @@ class UdamyController  extends Controller {
         }
 
         $data['udamy_images'] = Documents::where('for_multiple', 'UDAMY')->get();
+        $data['amount'] = PaymentValue::where('id', 13)->first()->value;
         return view('user.pages.udamy.udamyform')->with($data);
     }
   

@@ -34,6 +34,7 @@ class ImportExportController  extends Controller {
             return redirect('/importexport/register')->with('success', $msg);
         }
         $data['import_export_images'] = Documents::where('for_multiple', 'IE')->get();
+        $data['amount'] = PaymentValue::where('id', 14)->first()->value;
         return view('user.pages.importexport.importexportform')->with($data);
     }
   

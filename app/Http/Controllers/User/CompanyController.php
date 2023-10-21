@@ -42,6 +42,7 @@ class CompanyController  extends Controller {
         $data['trademark_other_images'] = Documents::where(['for_multiple' => 'TRADEMARK Others'])->get();
         $data['company_images'] = Documents::where(['for_multiple' => 'COMPANY'])->get();
         $data['company_signatory_images'] = Documents::where(['for_multiple' => 'COMPANY Signatory'])->get();
+        $data['amount'] = PaymentValue::where('id', 9)->first()->value;
         return view('user.pages.company.companyform')->with($data);
     }
 

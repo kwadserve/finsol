@@ -33,6 +33,7 @@ class IsoController  extends Controller {
         }
      
         $data['isoimages'] = Documents::where('for_multiple', 'ISO')->get();
+        $data['amount'] = PaymentValue::where('id', 19)->first()->value;
         return view('user.pages.iso.isoform')->with($data);
     }
   

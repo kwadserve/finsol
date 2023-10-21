@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Helpers\Helper as Helper;
 use App\Models\Documents;
 use App\Models\LegalWork;
+use App\Models\PaymentValue;
 
 class LegalController extends Controller
 {
@@ -33,6 +34,7 @@ class LegalController extends Controller
         }
 
         $data['legalworkimages'] = Documents::where('for_multiple', 'LEGALWORK')->get();
+        $data['amount'] = PaymentValue::where('id', 44)->first()->value;
         return view('user.pages.legalwork.form')->with($data);
     }
 

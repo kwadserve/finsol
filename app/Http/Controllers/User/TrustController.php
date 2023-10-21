@@ -35,6 +35,7 @@ class TrustController  extends Controller {
         }
         $data['trust_images'] = Documents::where(['for_multiple' => 'TRUST'])->get();
         $data['trust_member_images'] = Documents::where(['for_multiple' => 'TRUST Member'])->get();
+        $data['amount'] = PaymentValue::where('id', 12)->first()->value;
         return view('user.pages.trust.trustform')->with($data);
     }
 

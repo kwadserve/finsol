@@ -34,6 +34,7 @@ class ShopController  extends Controller {
         }
      
         $data['shopimages'] = Documents::where('for_multiple', 'SHOP')->get();
+        $data['amount'] = PaymentValue::where('id', 18)->first()->value;
         return view('user.pages.shop.shopform')->with($data);
     }
   

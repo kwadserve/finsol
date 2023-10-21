@@ -34,6 +34,7 @@ class EstimatedController extends Controller
         }
         
         $data['estimatedImages'] = Documents::where('for_multiple', 'LF Estimated')->get();
+        $data['amount'] = PaymentValue::where('id', 36)->first()->value;
         return view('user.pages.loanfinance.estimatedForm')->with($data);
     }
 

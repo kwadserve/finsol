@@ -39,6 +39,8 @@ class ESICController  extends Controller {
         $data['esic_company_images'] = Documents::where(['for_multiple' => 'ESIC Company'])->get();
         $data['esic_company_signatory_images'] = Documents::where(['for_multiple' => 'ESIC Signatory'])->get();
         $data['esic_other_images'] = Documents::where(['for_multiple' => 'ESIC Others'])->get();
+        $data['amount_esi_ci'] = PaymentValue::where('id', 7)->first()->value;
+        $data['amount'] = PaymentValue::where('id', 42)->first()->value;
         return view('user.pages.esic.esicform')->with($data);
     }
 
