@@ -81,7 +81,6 @@
                             </div>
                         </a>
                         <ul class="nav collapse" id="payment">
-
                             <li class="nav-item"><a class="nav-link" href="{{ url('admin/payment/history') }}">
                                     <div class="d-flex align-items-center"><span
                                             class="nav-link-text ps-1">History</span>
@@ -96,8 +95,265 @@
                                 </a><!-- more inner pages-->
                             </li>
                         </ul>
+                        <ul class="nav collapse" id="all-forms">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('admin/forms/GST') }}">
+                                    <div class="d-flex align-items-center">
+                                        <span class="nav-link-text ps-1">GST</span>
+                                    </div>
+                                </a><!-- more inner pages-->
+                            </li>
+                        </ul>
                     </li>
                 @endif
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#forms" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="forms">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                    class="fas fa-file-alt"></span></span><span class="nav-link-text ps-1">All Forms</span>
+                        </div>
+                    </a>
+                    <ul class="nav collapse" id="forms">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/PAN?form_type=pan') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">PAN</span>
+                                </div>
+                            </a><!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/TAN?form_type=tan') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">TAN</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/GST?form_type=gst') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">GST</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/EPF?form_type=epf') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">EPF</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/ESIC?form_type=esic') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ESIC</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/trademark?form_type=trademark') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Trade
+                                        Mark</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/company?form_type=company') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Company</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/patnership?form_type=partnership') }}">
+                                <div class="d-flex align-items-center"><span
+                                        class="nav-link-text ps-1">Partnership</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/HUF?form_type=huf') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">HUF</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/trust?form_type=trust') }}">
+                                <div class="d-flex align-items-center"><span
+                                        class="nav-link-text ps-1">Trust/NGO</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/udamy?form_type=udamy') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Udamy</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/import-export?form_type=import') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Import Export
+                                        Code</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/labour?form_type=labour') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Labour
+                                        Licence</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/shop?form_type=shop') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Shop and
+                                        Establishment</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/ISO?form_type=iso') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ISO</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/ISI?form_type=isi') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ISI</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/FSSAI?form_type=fssai') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">FSSAI
+                                        License</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/factory-license?form_type=factory') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Factory
+                                        License</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/ITR?form_type=itr') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ITR</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/TDS?form_type=tds') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">TDS/TCS
+                                        Returns</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/tax-audit?form_type=tax') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Tax
+                                        Audit</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/statutory-audit?form_type=sa') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Statutory
+                                        Audit</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/DIN-KYC?form_type=din_kyc') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">DIN KYC</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/AOC?form_type=aoc') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">AOC-4</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/MGT?form_type=mgt') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">MGT-7</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/ADT?form_type=adt') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">ADT-1</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/minute?form_type=minute') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Minutes</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/legal-form?form_type=legal') }}">
+                                <div class="d-flex align-items-center">
+                                    <span class="nav-link-text ps-1">
+                                        Legal Form
+                                    </span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/estimated?form_type=estimated') }}">
+                                <div class="d-flex align-items-center"><span
+                                        class="nav-link-text ps-1">Estimated/Projected</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/CMA?form_type=cma') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">CMA</span>
+                                </div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/project-report?form_type=project_report') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Project
+                                        Report</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/CA?form_type=ca') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">CA
+                                        Certificate</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/net-worth?form_type=worth') }}">
+                                <div class="d-flex align-items-center"><span
+                                        class="nav-link-text ps-1">Networth</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/forms/turnover?form_type=turnover') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Turnover
+                                        Certificate</span></div>
+                            </a>
+                            <!-- more inner pages-->
+                        </li>
+                    </ul>
+                </li>
             </ul>
 
         </div>

@@ -84,9 +84,6 @@
                                                 data-list-pagination="next"><span>Next</span></button></div>
                                     </div>
                                 </div>
-
-
-
                             </div>
                             <div class="col-auto ps-0">
                                 <div class="echart-bar-weekly-sales h-100"></div>

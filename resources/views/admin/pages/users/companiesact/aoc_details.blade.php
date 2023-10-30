@@ -3,7 +3,7 @@
         <h5>AOC Form Details</h5>
         <div class="col-12">
             <div id="tableExample"
-                data-list='{"valueNames":["name","email","age"],"page":5,"pagination":true}'>
+                data-list='{"valueNames":["name","email_id","age"],"page":5,"pagination":true}'>
                 <div class="table-responsive scrollbar">
 
                     <table class="table table-bordered table-striped fs--1 mb-0">
