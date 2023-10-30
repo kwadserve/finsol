@@ -142,6 +142,7 @@ Route::group(
                 Route::get('/DIN-KYC', 'AdminController@form_list');
                 Route::get('/AOC', 'AdminController@form_list');
                 Route::get('/MGT', 'AdminController@form_list');
+                Route::get('/ADT', 'AdminController@form_list');
                 Route::get('/minute', 'AdminController@form_list');
                 Route::get('/legal-form', 'AdminController@form_list');
                 Route::get('/estimated', 'AdminController@form_list');
