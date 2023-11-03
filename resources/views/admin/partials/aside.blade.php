@@ -161,7 +161,7 @@
                             <!-- more inner pages-->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('admin/forms/patnership?form_type=partnership') }}">
+                            <a class="nav-link" href="{{ url('admin/forms/partnership?form_type=partnership') }}">
                                 <div class="d-flex align-items-center"><span
                                         class="nav-link-text ps-1">Partnership</span></div>
                             </a>
@@ -351,6 +351,41 @@
                                         Certificate</span></div>
                             </a>
                             <!-- more inner pages-->
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dropdown-indicator" href="#status" role="button" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="forms">
+                        <div class="d-flex align-items-center"><span class="nav-link-icon"><span
+                                    class="fas fa-file-alt"></span></span><span class="nav-link-text ps-1">Status</span>
+                        </div>
+                    </a>
+                    <ul class="nav collapse" id="status">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/status/processing') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Processing</span>
+                                </div>
+                            </a><!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/status/query-raised') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Query Raised</span>
+                                </div>
+                            </a><!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/status/query-updated') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Query Updated</span>
+                                </div>
+                            </a><!-- more inner pages-->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('admin/status/approved') }}">
+                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Approved</span>
+                                </div>
+                            </a><!-- more inner pages-->
                         </li>
                     </ul>
                 </li>

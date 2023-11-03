@@ -152,6 +152,9 @@ Route::group(
                 Route::get('/net-worth', 'AdminController@form_list');
                 Route::get('/turnover', 'AdminController@form_list');
             });
+            Route::group(['prefix' => 'status'], function(){
+                Route::get('{status}', 'AdminController@status_list');
+            });
             // Route::get('gst/statusview/{id}', 'UserGstController@statusview')->name('gstStatusView');
         });
 

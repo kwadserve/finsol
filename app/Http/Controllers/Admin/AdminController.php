@@ -90,6 +90,380 @@ class AdminController extends Controller
         return $data;
     }
 
+    public function all_forms($status)
+    {
+        $list = AdminController::user_list();
+        $users = [];
+        foreach ($list['users'] as $user) {
+            $users[] = (int) $user->id;
+        }
+
+        $forms = new \Illuminate\Database\Eloquent\Collection();
+        $forms = $forms->concat(
+            CMA::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/loan-finance/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserPanDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserGstDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserTanDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserEpfDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserEsicDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserHufDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserTrustDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserTrademarkDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserCompanyDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserUdamyDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserPartnershipDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserImportExportDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserFactoryLicenseDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserLabourDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserShopDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserIsoDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserFssaiDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserItrDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserTdsDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserTaxauditDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserISIDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/forms/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            Estimated::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/loan-finance/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            ProjectReport::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/loan-finance/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            LegalWork::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/legal-work/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserTurnoverDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/certification/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserNetworthDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/certification/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserCaDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/certification/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserMinutesDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/companiesact/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserStatutoryAuditDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/companiesact/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserDinkycDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/companiesact/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserAocDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/companiesact/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserAdtDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/companiesact/dashboard/details';
+                    return $post;
+                }),
+        );
+        $forms = $forms->concat(
+            UserMgtDetail::where('status', $status)
+                ->whereIn('user_id', $users)
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->map(function ($post) {
+                    $post['url'] = 'admin/user/companiesact/dashboard/details';
+                    return $post;
+                }),
+        );
+        
+        return $forms;
+    }
+
+    public function status_list($status)
+    {
+        switch ($status) {
+            case 'processing':
+                $data['forms'] = AdminController::all_forms(1);
+                break;
+            case 'query-raised':
+                $data['forms'] = AdminController::all_forms(2);
+                break;
+            case 'query-updated':
+                $data['forms'] = AdminController::all_forms(3);
+                break;
+            case 'approved':
+                $data['forms'] = AdminController::all_forms(4);
+                break;
+            default:
+        }
+
+        return view('admin.pages.status.dashboard')->with($data);
+    }
+
     public function form_list(Request $request)
     {
         $list = AdminController::user_list();
