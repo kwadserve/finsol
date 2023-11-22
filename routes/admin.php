@@ -41,7 +41,11 @@ Route::group(
                 Route::get('addform', 'UserController@addUserForm')->name('addUserForm');
                 Route::post('adduser', 'UserController@addUser')->name('addUser');
             });
+            Route::get('profile', 'UserController@profile');
+            Route::get('employee/profile/{id}', 'UserController@profile_employee');
+            
             Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+                
                 Route::get('gst/details/{id}', 'UserGstController@index')->name('gstDetails');
                 Route::post('gst/change_status', 'UserGstController@change_status')->name('change_status');
                 Route::get('profile/{id}', 'UserGstController@profile')->name('user-profile');

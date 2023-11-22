@@ -195,4 +195,16 @@ class UserController extends Controller
         return redirect('admin/users/all')->with(['message' => 'User Created successfully']);
     }
 
+    public function profile()
+    {
+        $data['user'] = Auth::user();
+        return view('admin.auth.profile')->with($data);
+    }
+
+    public function profile_employee($id)
+    {
+        $data['employee'] = Auth::user();
+        return view('admin.auth.profile')->with($data);
+    }
+
 }

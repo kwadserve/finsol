@@ -15,6 +15,7 @@
                 <div class="card h-md-100 ecommerce-card-min-width">
                     <div class="card-header pb-0">
                         <h6 class="mb-0 mt-2 d-flex align-items-center">All User Payments</h6>
+                        <h6 class="float-right">Total: <?php $total = 0; foreach ($transaction as $detail){ if($detail->status === "Credit") $total = $total + (int)$detail->amount; } echo "₹".$total;?></h6>
                     </div>
                     <div class="card-body d-flex flex-column justify-content-end">
                         @if ($transaction)
@@ -43,7 +44,7 @@
 
                                                                 <td class="text-nowrap">{{ $detail->type ? $detail->type : '--' }}</td>
 
-                                                                <td class="text-nowrap">{{ $detail->amount ? $detail->amount : '' }}</td>
+                                                                <td class="text-nowrap">₹{{ $detail->amount ? $detail->amount : '' }}</td>
                                                                 <td>{{ $detail->staus ? $detail->staus : '' }}</td>
                                                                 <td>{{ $detail->payment_id ? $detail->payment_id : '' }}</td>
                                                                 <td>{{ $detail->updated_at ? $detail->updated_at : '' }}</td>
