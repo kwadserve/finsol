@@ -176,9 +176,9 @@
                     </div>
                     <div class="col-md col-lg-5 col-xl-4 mt-4 mt-md-0">
                         <h5 class="text-info"> <span class="far fa-object-ungroup me-2"></span>CONSULT</h5>
-                        <h3>Financial Consulting</h3>
-                        <p>We offer comprehensive financial consulting services to help you develop a solid financial
-                            plan. Our
+                        <h3>Financial and Legal Consulting</h3>
+                        <p>We offer comprehensive financial and legal consulting services to help you develop a solid financial
+                            plan and legal plan. Our
                             experts will assess your current financial situation, identify areas for improvement, and
                             create a roadmap
                             to achieve your objectives. From budgeting and debt management to investment advice, we are
@@ -260,7 +260,7 @@
                                             paperwork and
                                             registrations, saving you time and providing peace of mind.</p>
                                         <a href="{{ route('register_page') }}"><button
-                                                class="btn btn-primary me-1 mb-1" type="button">INR 1000</button></a>
+                                                class="btn btn-primary me-1 mb-1" type="button">Register Now</button></a>
 
                                     </div>
                                 </div>
@@ -286,7 +286,7 @@
                                             avoid
                                             penalties. Stay compliant with GST and focus on growing your business.</p>
                                         <a href="{{ route('register_page') }}"> <button
-                                                class="btn btn-primary me-1 mb-1" type="button">INR 1500</button></a>
+                                                class="btn btn-primary me-1 mb-1" type="button">Register Now</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -310,7 +310,7 @@
                                             enjoy peace of
                                             mind.</p>
                                         <a href="{{ route('register_page') }}"><button
-                                                class="btn btn-primary me-1 mb-1" type="button">INR 1000</button></a>
+                                                class="btn btn-primary me-1 mb-1" type="button">Register Now</button></a>
 
                                     </div>
                                 </div>
@@ -334,7 +334,7 @@
                                     framework, minimizing
                                     risks and ensuring smooth operations.</p>
                                 <a href="{{ route('register_page') }}"><button class="btn btn-primary me-1 mb-1"
-                                        type="button">INR 3000</button></a>
+                                        type="button">Get Started</button></a>
                             </div>
                         </div>
                     </div>
@@ -400,7 +400,7 @@
                                             financial plan that aligns perfectly with my goals. I highly recommend their
                                             services to anyone
                                             seeking sound financial advice and guidance.</p>
-                                        <p class="fs-0 text-600">- Scott Tolinski</p>
+                                        <p class="fs-0 text-600">- Ashwin Kumar - Iscon Enterprises, Pharma</p>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -412,7 +412,7 @@
                                             practical solutions have been invaluable in helping me regain control of my
                                             finances. I'm truly
                                             grateful for their expertise and support.</p>
-                                        <p class="fs-0 text-600">- Jeff Escalante, Developer</p>
+                                        <p class="fs-0 text-600">- A K Pathak- Legal Consultancy</p>
                                     </div>
                                 </div>
                                 <div class="swiper-slide">
@@ -427,7 +427,7 @@
                                             positively impacted my
                                             business's bottom line.
                                         </p>
-                                        <p class="fs-0 text-600">- Liam Martens</p>
+                                        <p class="fs-0 text-600">- Avinav, Moletro Films Pvt Ltd, Film Making</p>
                                     </div>
                                 </div>
                             </div>
@@ -704,9 +704,9 @@
                                     <li class="mb-1"><a class="link-600"
                                             href="#!">contact@sampurnasuvidhakendra.com</a></li>
                                     <li class="mb-1"><a class="link-600" href="#!">+91 - 6203324932</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">+91 - 9798995769</a></li>
-                                    <li class="mb-1"><a class="link-600" href="#!">101,RAJ KRISHNA
-                                            APARTMENT,B.C. Road,Phulwari,Patna-800001,Bihar</a></li>
+                                    <li class="mb-1"><a class="link-600" href="#!">+91 - 8709476161</a></li>
+                                    <li class="mb-1"><a class="link-600" href="#!">Office number 201, 
+Second floor, Jawahar park, beside Heera sweets, Laxmi Nagar , New Delhi - 92</a></li>
 
 
                                 </ul>
