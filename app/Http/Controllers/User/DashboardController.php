@@ -25,6 +25,7 @@ use App\Models\UserFssaiDetail;
 use App\Models\UserItrDetail;
 use App\Models\UserTdsDetail;
 use App\Models\UserTaxauditDetail;
+use App\Models\PaymentValue;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
 use App\Models\UserISIDetail;
@@ -48,63 +49,67 @@ class DashboardController extends Controller
         $userId = auth()->user()->id;
 
         $data['userGstDetails'] = UserGstDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['gst_instamojo_amount'] = config::get('constants.instamojo.gst');
+        $data['gst_instamojo_amount'] = PaymentValue::where('id', 1)->first()->value;
 
         $data['userPanDetails'] = UserPanDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['pan_instamojo_amount'] = config::get('constants.instamojo.pan');
+        $data['pan_instamojo_amount'] = PaymentValue::where('id', 4)->first()->value;
 
         $data['userTanDetails'] = UserTanDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['tan_instamojo_amount'] = config::get('constants.instamojo.tan');
+        $data['tan_instamojo_amount'] = PaymentValue::where('id', 5)->first()->value;
 
         $data['userEpfDetails'] = UserEpfDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['epf_instamojo_amount'] = config::get('constants.instamojo.epf');
+        $data['epf_instamojo_amount'] = PaymentValue::where('id', 6)->first()->value;
         
         $data['userEsicDetails'] = UserEsicDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['esic_instamojo_amount'] = config::get('constants.instamojo.esic');
+        $data['esic_instamojo_amount'] = PaymentValue::where('id', 7)->first()->value;
 
         $data['userTrademarkDetails'] = UserTrademarkDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['trademark_instamojo_amount'] = config::get('constants.instamojo.trademark');
+        $data['trademark_instamojo_amount'] = PaymentValue::where('id', 8)->first()->value;
 
         $data['userCompanyDetails'] = UserCompanyDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['company_instamojo_amount'] = config::get('constants.instamojo.company');
+        $data['company_instamojo_amount'] = PaymentValue::where('id', 9)->first()->value;
 
         $data['userPartnershipDetails'] = UserPartnershipDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['partnership_instamojo_amount'] = config::get('constants.instamojo.partnership');
+        $data['partnership_instamojo_amount'] = PaymentValue::where('id', 10)->first()->value;
 
         $data['userHufDetails'] = UserHufDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['huf_instamojo_amount'] = config::get('constants.instamojo.huf');
+        $data['huf_instamojo_amount'] = PaymentValue::where('id', 11)->first()->value;
 
         $data['userTrustDetails'] = UserTrustDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['trust_instamojo_amount'] = config::get('constants.instamojo.trust');
+        $data['trust_instamojo_amount'] = PaymentValue::where('id', 12)->first()->value;
 
         $data['userUdamyDetails'] = UserUdamyDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['udamy_instamojo_amount'] = config::get('constants.instamojo.udamy');
+        $data['udamy_instamojo_amount'] = PaymentValue::where('id', 13)->first()->value;
 
         $data['userImportExportDetails'] = UserImportExportDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['import_instamojo_amount'] = config::get('constants.instamojo.Import');
+        $data['import_instamojo_amount'] = PaymentValue::where('id', 14)->first()->value;
 
         $data['userLabourDetails'] = UserLabourDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['labour_instamojo_amount'] = config::get('constants.instamojo.labour');
+        $data['labour_instamojo_amount'] = PaymentValue::where('id', 15)->first()->value;
 
         $data['userShopDetails'] = UserShopDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['shop_instamojo_amount'] = config::get('constants.instamojo.shop');
+        $data['shop_instamojo_amount'] = PaymentValue::where('id', 18)->first()->value;
 
         $data['userIsoDetails'] = UserIsoDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['iso_instamojo_amount'] = config::get('constants.instamojo.iso');
+        $data['iso_instamojo_amount'] = PaymentValue::where('id', 19)->first()->value;
 
         $data['userFssaiDetails'] = UserFssaiDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        $data['fssai_instamojo_amount'] = config::get('constants.instamojo.fssai');
+        $data['fssai_instamojo_amount'] = PaymentValue::where('id', 20)->first()->value;
 
         $data['userItrDetails'] = UserItrDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
-        
+        $data['itr_instamojo_amount'] = PaymentValue::where('id', 21)->first()->value;
+
         $data['userTaxauditDetails'] = UserTaxauditDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
+        $data['taxAudit_instamojo_amount'] = PaymentValue::where('id', 22)->first()->value;
 
         $data['userTdsDetails'] = UserTdsDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
+        $data['tds_instamojo_amount'] = PaymentValue::where('id', 23)->first()->value;
 
         $data['userFactoryLicenseDetails'] = UserFactoryLicenseDetail::whereIn('status', [1, 2, 3, 4])->where('user_id', $userId)->orderBy('id', 'DESC')->get();
+        $data['factory_instamojo_amount'] = PaymentValue::where('id', 24)->first()->value;
 
         $data['userISIDetail'] = UserISIDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-        $data['factory_instamojo_amount'] = config::get('constants.instamojo.factory');
+        $data['isi_instamojo_amount'] = PaymentValue::where('id', 37)->first()->value;
         // $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->paginate(5);
         return view('user.pages.dashboard.dashboard')->with($data);
     }
@@ -309,6 +314,16 @@ class DashboardController extends Controller
                 $datas->save();
             }
 
+            if ($formType == 'ISI') {
+                $datas = UserISIDetail::find($id);
+                $datas->user_note = $request->user_note;
+                $datas->status = 3; // Query Updated      
+                $datas->last_update_by = 'user';
+                $datas->last_update_by_id = $userId;
+                $datas->additional_img = $img['additional_img'];
+                $datas->save();
+            }
+
             return redirect('/dashboard')->with('success', 'Uploaded the Document!');
         }
     }
@@ -407,6 +422,8 @@ class DashboardController extends Controller
       
         if ($form_type == 'PAN') {
             UserPanDetail::where('payment_unique_id', '=', $data->payment_request_id)->update(array('payment_status' => $data->payment_status));
+        } else if ($form_type == 'ISI') {
+            UserISIDetail::where('payment_unique_id', '=', $data->payment_request_id)->update(array('payment_status' => $data->payment_status));
         } else if ($form_type == 'TAN') {
             UserTanDetail::where('payment_unique_id', '=', $data->payment_request_id)->update(array('payment_status' => $data->payment_status));
         } else if ($form_type == 'Company') {

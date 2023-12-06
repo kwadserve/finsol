@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\LoanFinance\CMA;
 use App\Models\LoanFinance\Estimated;
 use App\Models\LoanFinance\ProjectReport;
+use App\Models\PaymentValue;
 
 class DashboardController extends Controller
 {
@@ -19,6 +20,10 @@ class DashboardController extends Controller
         $data['estimated'] = Estimated::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['cma'] = CMA::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['projectReport'] = ProjectReport::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['cma_instamojo_amount'] = PaymentValue::where('id', 34)->first()->value;
+        $data['estimated_instamojo_amount'] = PaymentValue::where('id', 36)->first()->value;
+        $data['project_instamojo_amount'] = PaymentValue::where('id', 35)->first()->value;
+        
         return view('user.pages.loanfinance.dashboard.dashboard')->with($data);  
     }
  

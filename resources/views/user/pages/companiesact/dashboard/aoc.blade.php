@@ -44,7 +44,7 @@
 
                                         <input type="hidden" name="form_type" value="Aoc">
                                         <input type="hidden" name="insert_id" value="{{ $detail->id }}">
-                                        <input type="hidden" name="payment_amount" value="10">
+                                        <input type="hidden" name="payment_amount" value="{{ $aoc_instamojo_amount }}">
                                         <input type="hidden" name="route" value="form_dashboard">
                                         <input type="hidden" name="payment_purpose" value="Aoc">
                                         <input type="hidden" name="email_id" value="{{ $detail->email_id }}">

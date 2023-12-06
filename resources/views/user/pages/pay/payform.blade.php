@@ -96,7 +96,7 @@
                                             <label class="form-label"
                                                 for="bootstrap-wizard-validation-wizard-email">Amount
                                             </label><input class="form-control" type="number" name="amount"
-                                                placeholder="Payment For"
+                                                placeholder="Amount to be paid"
                                                 
                                                 required="required" id="bootstrap-wizard-validation-wizard-email"
                                                   />
@@ -107,7 +107,7 @@
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <button class="btn btn-primary me-1 mb-1" type="submit">Submit & Pay</button>
-                                            <p>Amount: ₹{{$amount}}</p>
+                                            
                                         </div>
                                     </div>
                                 </div>

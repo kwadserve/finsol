@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
 use App\Models\LegalWork;
+use App\Models\PaymentValue;
 
 class DashboardController extends Controller
 {
@@ -17,7 +18,9 @@ class DashboardController extends Controller
     public function index(Request $request) {
         $userId = auth()->user()->id;
         $data['legalworks'] = LegalWork::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-       return view('user.pages.legalwork.dashboard.dashboard')->with($data);  
+        $data['legal_instamojo_amount'] = PaymentValue::where('id', 44)->first()->value;
+
+        return view('user.pages.legalwork.dashboard.dashboard')->with($data);  
     }
  
     public function queryRaised(Request $request){

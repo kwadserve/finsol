@@ -61,7 +61,30 @@ class GstController extends Controller
 
     public function existing_register_form()
     {
-        return view('user.pages.gst.existing_form');
+        if (isset($_REQUEST["payment_id"]) && !empty($_REQUEST["payment_request_id"])) {
+            UserGstDetail::where('payment_unique_id', '=', $_REQUEST["payment_request_id"])->update(array('payment_status' => $_REQUEST["payment_status"]));
+            $response = $_REQUEST;
+            $response['userid'] = auth()->user()->id;
+            $response['type'] = 'Gst';
+            Helper::storePaymentResponse($response);
+
+            if ($_REQUEST["payment_status"] == 'Credit') {
+                $msg = 'Registered Gst and Payment received successfully!';
+            } else {
+                $msg = 'Registered Gst successfully! but we are unable to complete payment transaction. Please visit Dashboard to initiate the payment again.';
+            }
+            return redirect('/gst/register')->with('success', $msg);
+        }
+        $data['images'] = Documents::where(['for_multiple' => 'GST'])->get();
+        $data['firm_images'] = Documents::where(['for_multiple' => 'GST Firm'])->get();
+        $data['firm_partner_images'] = Documents::where(['for_multiple' => 'GST Firm Partner'])->get();
+        $data['company_images'] = Documents::where(['for_multiple' => "GST Company"])->get();
+        $data['company_director_images'] = Documents::where(['for_multiple' => 'GST Company Director'])->get();
+        $data['amount'] = PaymentValue::where('id', 1)->first()->value;
+        $data['amount_fi'] = PaymentValue::where('id', 2)->first()->value;
+        $data['amount_ci'] = PaymentValue::where('id', 3)->first()->value;
+        
+        return view('user.pages.gst.existing_form')->with($data);
     }
 
     public function storeExistingRegister(Request $request)

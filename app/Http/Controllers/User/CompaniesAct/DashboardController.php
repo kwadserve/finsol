@@ -10,6 +10,7 @@ use App\Models\CompaniesAct\UserDinkycDetail;
 use App\Models\CompaniesAct\UserStatutoryAuditDetail;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
+use App\Models\PaymentValue;
  
 class DashboardController  extends Controller {
     public function __construct() {
@@ -24,6 +25,13 @@ class DashboardController  extends Controller {
         $data['userMinutesDetails'] = UserMinutesDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userDinkycDetails'] = UserDinkycDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userStatutoryAuditDetails'] = UserStatutoryAuditDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
+        $data['mgt_instamojo_amount'] = PaymentValue::where('id', 26)->first()->value;
+        $data['adt_instamojo_amount'] = PaymentValue::where('id', 27)->first()->value;
+        $data['aoc_instamojo_amount'] = PaymentValue::where('id', 28)->first()->value;
+        $data['minute_instamojo_amount'] = PaymentValue::where('id', 25)->first()->value;
+        $data['dinkyc_instamojo_amount'] = PaymentValue::where('id', 29)->first()->value;
+        $data['sAudit_instamojo_amount'] = PaymentValue::where('id', 30)->first()->value;
+        
         return view('user.pages.companiesact.dashboard.dashboard')->with($data);  
     }
  

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Certification\UserCaDetail;
 use App\Models\Certification\UserNetworthDetail;
 use App\Models\Certification\UserTurnoverDetail;
+use App\Models\PaymentValue;
 use App\Helpers\Helper as Helper;
 use Illuminate\Support\Facades\File;
 
@@ -19,7 +20,11 @@ class DashboardController  extends Controller {
         $data['userCaDetails'] = UserCaDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userNetworthDetails'] = UserNetworthDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['userTurnoverDetails'] = UserTurnoverDetail::whereIn('status',[1,2,3,4])->where('user_id',$userId)->orderBy('id', 'DESC')->get();
-       return view('user.pages.certification.dashboard.dashboard')->with($data);  
+        $data['ca_instamojo_amount'] = PaymentValue::where('id', 31)->first()->value;
+        $data['networth_instamojo_amount'] = PaymentValue::where('id', 32)->first()->value;
+        $data['turnover_instamojo_amount'] = PaymentValue::where('id', 33)->first()->value;
+
+        return view('user.pages.certification.dashboard.dashboard')->with($data);  
     }
  
     public function queryRaised(Request $request){
