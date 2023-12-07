@@ -1,7 +1,7 @@
 @if ($gstDetails->gst_type == 'Firm')
     <div class="card mb-3">
         <div class="card-header">
-            <h5 class="mb-0">Basic Firm Documents</h5>
+            <h5 class="mb-0">Basic Firm Documents: {{ $user->name }}</h5>
         </div>
         <div class="card-body bg-light">
 

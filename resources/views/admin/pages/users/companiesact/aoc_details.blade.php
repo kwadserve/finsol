@@ -10,7 +10,7 @@
                         <thead class="bg-200 text-900">
                             <tr>
                                 <!-- <th scope="col"></th> -->
-
+                                <th scope="col">User(ID)</th>
                                 <th scope="col">Email Id</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Admin Note</th>
@@ -25,7 +25,7 @@
                             @if ($usersAoc)
                                 @foreach ($usersAoc as $detail)
                                     <tr class="align-middle">
-
+                                        <td>{{ $user->name }}({{ $user->id }})</td>
                                         <td class="text-nowrap">{{ $detail->email_id ? $detail->email_id : '--' }}</td>
 
                                         <td class="text-nowrap">{{ $detail->type ? $detail->type : '' }}</td>

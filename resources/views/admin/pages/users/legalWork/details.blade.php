@@ -7,7 +7,8 @@
 
                     <table class="table table-bordered table-striped fs--1 mb-0">
                         <thead class="bg-200 text-900">
-                            <tr></tr>
+                            <tr>
+                                <th scope="col">User(ID)</th>
                                 <th scope="col">Email Id</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Admin Note</th>
@@ -22,7 +23,7 @@
                             @if ($legal)
                                 @foreach ($legal as $detail)
                                     <tr class="align-middle">
-
+                                        <td>{{ $user->name }}({{ $user->id }})</td>
                                         <td class="text-nowrap">{{ $detail->email_id ? $detail->email_id : '--' }}</td>
 
                                         <td class="text-nowrap">

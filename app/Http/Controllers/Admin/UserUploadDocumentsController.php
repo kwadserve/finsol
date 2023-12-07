@@ -22,6 +22,7 @@ class UserUploadDocumentsController extends Controller
 
     public function index(Request $request, $userId)
     {
+        $data['user'] = User::where('id', $userId)->first();
         $data['routeUrl'] = Helper::getBaseUrl($request); 
         $data['userUploadeDocuments'] = UserGstUploadDocument::where('user_id',$userId)->orderBy('id', 'DESC')->get();
         return view('admin.pages.users.uploaddocuments')->with($data);

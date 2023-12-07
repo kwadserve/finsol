@@ -28,7 +28,7 @@
                                                 <thead class="bg-200 text-900">
                                                     <tr>
                                                         <!-- <th scope="col"></th> -->
-
+                                                        <th scope="col">User(ID)</th>
                                                         <th scope="col">Type</th>
                                                         <th scope="col">Amount</th>
                                                         <th scope="col">Status</th>
@@ -39,9 +39,9 @@
 
                                                 <tbody class="list">
                                                     @if ($transaction)
-                                                        @foreach ($transaction as $detail)
+                                                        @foreach ($transaction as $detail)                                                        
                                                             <tr class="align-middle">
-
+                                                                <td>{{$user->name}}({{ $user->id ? $user->id : '' }})</td>
                                                                 <td class="text-nowrap">{{ $detail->type ? $detail->type : '--' }}</td>
 
                                                                 <td class="text-nowrap">₹{{ $detail->amount ? $detail->amount : '' }}</td>

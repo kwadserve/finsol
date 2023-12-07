@@ -23,7 +23,7 @@ class LoanDashboardController extends Controller
 
     public function index(Request $request, $userId)
     {
-
+        $data['user'] = User::where('id', $userId)->first();
         $data['routeurl'] = Helper::getBaseUrl($request);
         $data['estimated'] = Estimated::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
         $data['cma'] = CMA::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();

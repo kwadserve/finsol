@@ -25,7 +25,7 @@ class CertificationDashboardController extends Controller
 
     public function index(Request $request, $userId)
     {
-       
+        $data['user'] = User::where('id', $userId)->first();       
         $data['routeurl'] =  Helper::getBaseUrl($request);  
         $data['usersCa'] = UserCaDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['usersNetworth'] = UserNetworthDetail::select('*')->where('user_id',$userId)->orderBy('id', 'DESC')->get();

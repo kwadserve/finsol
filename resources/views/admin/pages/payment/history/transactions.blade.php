@@ -1,7 +1,5 @@
 @extends('admin.layouts.admin')
 
-
-
 @section('content')
 <!-- ===============================================-->
 <!--    Main Content-->
@@ -40,8 +38,7 @@
                                                     @if ($transaction)
                                                         @foreach ($transaction as $detail)
                                                         @php
-                                                            $user = App\Models\User::select('*')->where('id', $detail->user_id)->first();
-                                                                                                                    
+                                                            $user = App\Models\User::select('*')->where('id', $detail->user_id)->first();                                                                                                                    
                                                         @endphp
                                                             <tr class="align-middle">
                                                                 <td>{{$user->name}}({{ $detail->user_id ? $detail->user_id : '' }})</td>
@@ -50,8 +47,7 @@
                                                                 <td class="text-nowrap">{{ $detail->amount ? $detail->amount : '' }}</td>
                                                                 <td>{{ $detail->staus ? $detail->staus : '' }}</td>
                                                                 <td>{{ $detail->payment_id ? $detail->payment_id : '' }}</td>
-                                                                <td>{{ $detail->updated_at ? $detail->updated_at : '' }}</td>
-                                                                
+                                                                <td>{{ $detail->updated_at ? $detail->updated_at : '' }}</td>                                                                
                                                             </tr>
                                                         @endforeach
                                                     @endif

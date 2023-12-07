@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Instamojo;
 use App\Models\PaymentValue;
 use App\Models\Documents;
+use App\Models\User;
 
 class PaymentController extends Controller
 {
@@ -17,6 +18,7 @@ class PaymentController extends Controller
 
     public function userPaymentDetails($userId)
     {
+        $data['user'] = User::where('id', $userId)->first();
         $data['transaction'] = Instamojo::select('*')->where('user_id', $userId)->orderBy('updated_at', 'DESC')->get();
         return view('admin.pages.users.payment')->with($data);
     }

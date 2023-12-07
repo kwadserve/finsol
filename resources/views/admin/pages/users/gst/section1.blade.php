@@ -6,7 +6,7 @@
 <div class="col-lg-8 pe-lg-2">
     <div class="card mb-3">
         <div class="card-header">
-            <h5 class="mb-0">GST Details</h5>
+            <h5 class="mb-0">GST Details: {{ $user->name }}</h5>
         </div>
         <div class="card-body bg-light row">
             <div class="col-lg-6 mb-3"> <label class="form-label" for="gst-type">GST Type :

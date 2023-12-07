@@ -21,6 +21,7 @@ class LegalWorkDashboardController extends Controller
 
     public function index(Request $request, $userId)
     {
+        $data['user'] = User::where('id', $userId)->first();
         $data['routeurl'] = Helper::getBaseUrl($request);
         $data['legal'] = LegalWork::select('*')->where('user_id', $userId)->orderBy('id', 'DESC')->get();
         

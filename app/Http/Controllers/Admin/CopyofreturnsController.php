@@ -23,6 +23,7 @@ class CopyofreturnsController extends Controller
 
     public function index($userId, Request $request)
     {
+        $data['user'] = User::where('id', $userId)->first();
         $data['routeUrl'] = Helper::getBaseUrl($request); 
         $data['copyofreturns'] = CopyOfReturns::where('user_id',$userId)->orderBy('id', 'DESC')->get();
         $data['gstNumbers'] =  UserGstDetail::select('gst_number')->whereNotNull('gst_number')->where('user_id',$userId)->get();
