@@ -61,6 +61,7 @@ class User extends Authenticatable
         'image',
         'original_image_path',
         'password',
+        'mobile',
     ];
 
     protected $hidden = [
@@ -142,8 +143,4 @@ class User extends Authenticatable
         || count($e) ; 
         return $rowcount; 
     }
-
-
 }
-
-  

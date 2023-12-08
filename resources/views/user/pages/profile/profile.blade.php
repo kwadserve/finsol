@@ -61,8 +61,8 @@ $block = App\Models\Block::where('id', $user->block)->first()->name;
                                     <div class="col-lg-6"> <label class="form-label" for="email1">Email</label><input
                                             class="form-control" id="email1" type="text" value="{{$user->email}}" />
                                     </div>
-                                    <div class="col-lg-6"> <label class="form-label" for="email2">Phone</label><input
-                                            class="form-control" id="email2" type="text" value="{{$user->phone}}" /></div>
+                                    <div class="col-lg-6"> <label class="form-label" for="email2">Mobile</label><input
+                                            class="form-control" id="email2" type="text" value="{{$user->mobile}}" readonly="readonly"/></div>
                                     <div class="col-lg-12"><label class="form-label" for="email3">Block</label><input
                                             class="form-control" id="email3" type="text" value="{{$block}}" readonly="readonly"/>
                                     </div>

@@ -49,18 +49,19 @@
                                     <!-- <form class="needs-validation" novalidate=""> -->
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
-                                        <div class="mb-3"><label class="form-label" for="card-email">Mobile/Aadhar Number</label><input
-                                                class="form-control @error('email') is-invalid @enderror"
-                                                pattern="^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$"
-                                                required="required" data-wizard-validate-email="true" id="card-email"
-                                                type="email" value="{{ old('email') }}" name="email"
-                                                autocomplete="email" autofocus />
+                                        <div class="mb-3">
+                                            <label class="form-label" for="card-email">Mobile/Aadhar Number</label><input
+                                                class="form-control" 
+                                                maxlength="12"
+                                                required="required" id="card-email"
+                                                type="text" value="{{ old('email') }}" name="email"
+                                                autofocus />
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
-                                            <div class="invalid-feedback">Please Provide Email address or Aadhar Number
+                                            <div class="invalid-feedback">Please Provide Mobile Number or Aadhar Number
                                             </div>
                                         </div>
                                         <div class="mb-3">

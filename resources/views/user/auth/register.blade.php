@@ -68,13 +68,13 @@
                                                 <div class="mb-3">
                                                     <label class="form-label" for="">Mobile No.</label>
                                                     <input class="form-control" type="text" name="mobile"
-                                                        autocomplete="on" required="" id=""
+                                                        autocomplete="on" required="" id="" maxlength="10"
                                                         pattern="^$|^[0-9]{10}$" />
                                                     <div class="invalid-feedback">Please Provide Mobile No.</div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label" for="">Email</label>
-                                                    <input class="form-control" type="text" name="email"
+                                                    <input class="form-control" type="email" name="email"
                                                         autocomplete="on" id="" />
                                                     <div class="invalid-feedback">Please Provide Email</div>
                                                 </div>
@@ -89,7 +89,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label" for="">Adhaar No.</label>
                                                     <input class="form-control" type="text" maxlength="12" name="aadhaar"
-                                                        autocomplete="on" required="" id="" 
+                                                        autocomplete="on" id="" 
                                                         pattern="^$|^[0-9]{12}$"/>
                                                     <div class="invalid-feedback">Please provide correct Aadhaar Number</div>
                                                 </div>
